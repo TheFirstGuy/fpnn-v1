@@ -69,15 +69,27 @@ architecture Behavioral of link_skeleton is
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
 --ACC_F
 SIGNAL acc_f_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_f
+--ACC_W
+SIGNAL acc_w_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_w
 --Foward MUX
 SIGNAL acc_f_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- output of mux into ACC_F
 --Sel_fwd
 SIGNAL f_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- Select signal for forward input MUX
+SIGNAL sel_fwd_reset_m: STD_LOGIC;
+SIGNAL sel_fwd_en_m: STD_LOGIC;  
+--Sel bck
+SIGNAL sel_bck_en_m: STD_LOGIC;
+SIGNAL sel_bck_reset_m: STD_LOGIC;
 --Mult
 SIGNAL mult_end: STD_LOGIC; -- Result when multiply is finished
 SIGNAL mult_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Input for multiplier
+SIGNAL mult_w_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Weight or acc_f input for mult
+SIGNAL mult_enable: STD_LOGIC; -- result of ORing sel_fwd_en_in, update_reg, sel_bck_m
+SIGNAL mult_reset: STD_LOGIC;
 --Other
 SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
+SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
+SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
 begin
 
 -- Bck_pred 
@@ -100,7 +112,27 @@ WITH backward SELECT
 	mult_in <= acc_f_out WHEN '0',
 	acc_b_out WHEN '1',
 	acc_f_out WHEN others;
-
+	
+--Multiply enable control
+	mult_enable <= sel_fwd_en_m OR sel_bck_en_m OR update_reg;
+	
+--Multiply W input MUX
+WITH update SELECT
+	mult_w_in <= acc_w_out WHEN '0',
+	acc_f_out WHEN '1',
+	acc_w_out WHEN others;
+	
+--Mutliply reset control
+update_and_nupdate <= NOT update_reg AND update;
+mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR update_and_nupdate;
+	
+--Update register
+PROCESS(clk, update)
+	BEGIN
+	IF(clk'EVENT AND clk = '1') THEN
+		update_reg <= update;
+	END IF;
+END PROCESS;
 
 
 
