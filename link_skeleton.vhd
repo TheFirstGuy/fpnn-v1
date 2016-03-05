@@ -65,8 +65,44 @@ back_pred: OUT STD_LOGIC_VECTOR( 3 DOWNTO 0 ) -- Sends request to preds that bac
 end link_skeleton;
 
 architecture Behavioral of link_skeleton is
-
+--ACC_B
+SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
+--ACC_F
+SIGNAL acc_f_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_f
+--Foward MUX
+SIGNAL acc_f_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- output of mux into ACC_F
+--Sel_fwd
+SIGNAL f_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- Select signal for forward input MUX
+--Mult
+SIGNAL mult_end: STD_LOGIC; -- Result when multiply is finished
+SIGNAL mult_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Input for multiplier
+--Other
+SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
 begin
+
+-- Bck_pred 
+is_back_prop <= mult_end AND backward; -- To signal pred for back prop
+back_pred(0) <= rp_pred(0) AND is_back_prop;
+back_pred(1) <= rp_pred(1) AND is_back_prop;
+back_pred(2) <= rp_pred(2) AND is_back_prop;
+back_pred(3) <= rp_pred(3) AND is_back_prop;
+
+-- Forward input MUX
+WITH f_sel( 1 DOWNTO 0 ) SELECT
+	acc_f_in <= x_pred_0 WHEN "00",
+	x_pred_1 WHEN "01",
+	x_pred_2 WHEN "10",
+	x_pred_3 WHEN "11",
+	x_pred_0 WHEN others;
+	
+--Multiply input MUX
+WITH backward SELECT
+	mult_in <= acc_f_out WHEN '0',
+	acc_b_out WHEN '1',
+	acc_f_out WHEN others;
+
+
+
 
 
 end Behavioral;
