@@ -67,12 +67,12 @@ end link_skeleton;
 architecture Behavioral of link_skeleton is
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
+SIGNAL acc_b_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- input of accumulate B
 --ACC_F
 SIGNAL acc_f_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_f
+SIGNAL acc_f_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- output of mux into ACC_F
 --ACC_W
 SIGNAL acc_w_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_w
---Foward MUX
-SIGNAL acc_f_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- output of mux into ACC_F
 --Sel_fwd
 SIGNAL f_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- Select signal for forward input MUX
 SIGNAL sel_fwd_reset_m: STD_LOGIC;
@@ -80,6 +80,7 @@ SIGNAL sel_fwd_en_m: STD_LOGIC;
 --Sel bck
 SIGNAL sel_bck_en_m: STD_LOGIC;
 SIGNAL sel_bck_reset_m: STD_LOGIC;
+SIGNAL b_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- selection from select back
 --Mult
 SIGNAL mult_end: STD_LOGIC; -- Result when multiply is finished
 SIGNAL mult_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Input for multiplier
@@ -106,6 +107,14 @@ WITH f_sel( 1 DOWNTO 0 ) SELECT
 	x_pred_2 WHEN "10",
 	x_pred_3 WHEN "11",
 	x_pred_0 WHEN others;
+
+-- Backward input MUX
+WITH b_sel( 1 DOWNTO 0 ) SELECT
+	acc_b <= b_succ_0 WHEN "00",
+	b_succ_1 WHEN "01",
+	b_succ_2 WHEN "10",
+	b_succ_3 WHEN "11",
+	b_succ_0 WHEN others;
 	
 --Multiply input MUX
 WITH backward SELECT
