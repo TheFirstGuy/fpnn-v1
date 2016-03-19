@@ -56,7 +56,7 @@ PROCESS( clk, enable )
 			ELSE
 				cnt <= cnt - 1;
 			END IF;
-			IF( cnt = "10") THEN-- This might need to be changed to when cnt = "01"
+			IF( cnt = "10") THEN-- This might need to be changed to when cnt = "00"
 				fin <= '1';
 			ELSE
 				fin <= '0';
