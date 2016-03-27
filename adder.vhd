@@ -36,6 +36,7 @@ entity adder is
     Port ( clk : in std_logic;
            rst : in std_logic;
            en : in std_logic;
+		   save_b: in std_logic; -- For back propagation step
            a : in std_logic_vector(19 downto 0);
            b : in std_logic_vector(19 downto 0);
            c : out std_logic_vector(19 downto 0));
@@ -51,7 +52,11 @@ begin
                 sum <= (others => '0');	--Reset Counter Register
             else
                 if (en = '1') then
-                    sum <= a + b;	--Sum of Counter Value and Input 
+					if(save_b = '0') then
+						sum <= a + b;	--Sum of Counter Value and Input 
+					else
+						sum <= b; -- save the input of b
+					end if;
                 else
                     sum <= sum;
                 end if;
