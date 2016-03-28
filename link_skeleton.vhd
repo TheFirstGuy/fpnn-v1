@@ -91,6 +91,7 @@ SIGNAL mult_reset: STD_LOGIC;
 SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
 SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
 SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
+SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
 begin
 
 -- Bck_pred 
@@ -143,8 +144,12 @@ PROCESS(clk, update)
 	END IF;
 END PROCESS;
 
-
-
+--fwd_succ
+is_fwd <= foward AND mult_end;
+fwd_succ(0) <= rn_succ(0) AND is_fwd;
+fwd_succ(1) <= rn_succ(1) AND is_fwd;
+fwd_succ(2) <= rn_succ(2) AND is_fwd;
+fwd_succ(3) <= rn_succ(3) AND is_fwd;
 
 end Behavioral;
 
