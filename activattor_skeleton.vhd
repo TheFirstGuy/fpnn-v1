@@ -89,12 +89,55 @@ SIGNAL mult_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Input for multiplier
 SIGNAL mult_w_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Weight or acc_f input for mult
 SIGNAL mult_enable: STD_LOGIC; -- result of ORing sel_fwd_en_in, update_reg, sel_bck_m
 SIGNAL mult_reset: STD_LOGIC;
+--CNT
+SIGNAL fin: STD_LOGIC; -- when last degree is given
 --Other
 SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
 SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
 SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
 SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
+SIGNAL back_ack_all: STD_LOGIC; -- When all pred send ack signal
+--State Machine
+type s_type is (init, accumulate, fa0, fa1, fa2, fa3, th0, th1, bp0, bp1, bp2, bp3);
+signal state, nextstate: s_type;
+
 begin
+
+--State Machine
+	stateFSM: PROCESS(clk, reset)
+		BEGIN
+			IF( reset = '1' ) THEN
+				state <= init;
+			ELSE
+				IF( clk'EVENT and clk = '1') THEN
+					state <= nextstate;
+				ELSE
+					state <= state;
+				END IF;
+			END IF;
+	END PROCESS stateFSM;
+	
+	outputFSM: PROCESS( state, mult_end, sel_fwd_en_m, fin, backward )
+		BEGIN
+			nextstate <= init;
+			CASE state is
+				WHEN init => nextstate <= accumulate;
+				WHEN accumulate => IF(sel_fwd_en_m = '1') THEN nextstate <= fa0; ELSE nextstate <= accumulate; END IF;
+				WHEN fa0 => nextstate <= fa1;
+				WHEN fa1 => IF(fin = '1') THEN nextstate <= fa2; ELSE nextstate <= fa1; END IF;
+				WHEN fa2 => IF(mult_end = '1') THEN nextstate <= fa3; ELSE nextstate <= fa2; END IF;
+				WHEN fa3 => IF(backward = '1') THEN nextstate <= th0; ELSE nextstate <= fa3; END IF;
+				WHEN th0 => nextstate <= th1; 
+				WHEN th1 => nextstate <= bp0;
+				WHEN bp0 => nextstate <= bp1;
+				WHEN bp1 => nextstate <= bp2;
+				WHEN bp2 => IF( mult_end = '1') THEN nextstate <= bp3; ELSE nextstate <= bp2; END IF; 
+				WHEN bp3 => IF( back_ack_all = '1') THEN nextstate <= init; ELSE nextstate <= bp3; END IF; 
+			END CASE;
+	END PROCESS outputFSM;
+	
+
+	
 
 -- Bck_pred 
 is_back_prop <= mult_end AND backward; -- To signal pred for back prop
