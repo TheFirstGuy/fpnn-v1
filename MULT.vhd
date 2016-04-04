@@ -65,7 +65,7 @@ B <= W;
 CE <= en;
 clk <= clock;
 SCLR <= reset;
-Output <= P(29 downto 10);
+Output <= P(39) & P(34 downto 16);
 Process (en, clk)
 begin
 if(clk'EVENT AND clk='1') THEN
