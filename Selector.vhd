@@ -16,13 +16,14 @@ PORT( clr, clk : std_logic;
 
 forward: std_logic;
 r, reqs: inout std_logic_vector(3 downto 0)
+res_m, en_m, en_a: out std_logic;
 );
 end SELECTOR;
 
 architecture Behavioral of SELECTOR is
 r_reg, d, q, reqsorq, nqr, predand: std_logic_vector(3 downto 0);
-res_m, pre_res, res_d, res_q, e, r01or, r23or, trior: std_logic;
-en_m, en_a: std_logic;
+pre_res, res_d, res_q, e, r01or, r23or, trior: std_logic;
+
 begin
 process (clr, clk) begin
 if (clk'EVENT AND clk = '1') then
