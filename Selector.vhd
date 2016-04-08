@@ -15,45 +15,50 @@ entity SELECTOR is
 PORT( clr, clk : std_logic;
 
 forward: std_logic;
-r, reqs: inout std_logic_vector(3 downto 0)
-res_m, en_m, en_a: out std_logic;
+r, reqs: inout std_logic_vector(3 downto 0);
+sel: inout std_logic_vector(3 downto 0)
 );
 end SELECTOR;
 
 architecture Behavioral of SELECTOR is
-r_reg, d, q, reqsorq, nqr, predand: std_logic_vector(3 downto 0);
-pre_res, res_d, res_q, e, r01or, r23or, trior: std_logic;
-
+signal r_reg, d, q, reqsorq, nqr, predand: std_logic_vector(3 downto 0);
+signal res_m, pre_res, res_d, res_q, e, r01or, r23or, trior: std_logic;
+signal en_m, en_a: std_logic;
 begin
+
 process (clr, clk) begin
 if (clk'EVENT AND clk = '1') then
 reqsorq (0) <= NOT reqs(0) OR q(0);
 reqsorq (1) <= NOT reqs(1) OR q(1);
 reqsorq (2) <= NOT reqs(2) OR q(2);
 reqsorq (3) <= NOT reqs(3) OR q(3);
-pre_res <= reqsorq(0) AND reqsorq(1) AND reqsorq(2) AND reqsorq(3);
-res_d <= pre_res AND forward;
+
+pre_res <= reqsorq(0) AND reqsorq(1) AND reqsorq(2) AND reqsorq(3); --4 Input AND Gate
+
+res_d <= pre_res AND forward; --AND Gate following 4 input AND Gate
 res_q <= res_d;
-en_m <= res_q;
+en_m <= res_q; --MULT Enable signal
 res_m <= res_d AND res_q;
 
-nqr <= NOT q AND r;
+nqr <= NOT q AND r; --AND Gate following each of the four flip flops
 
 
 r23or <= nqr(2) OR nqr(3);
-r01or <= nqr(0) OR nqr(1) OR r23or;
+r01or <= nqr(0) OR nqr(1) OR r23or; --3 Input OR gate 
 
-predand(3) <= r23or AND (nqr(3) OR (NOT nqr(2) AND nqr(1));
-predand(2) <= NOT (nqr(3) OR (NOT nqr(2) AND nqr(1)) AND r23or;
-predand(1) <= (nqr(3) OR (NOT nqr(2) AND nqr(1)) AND NOT r23or;
-predand(0) <= NOT (nqr(3) OR (NOT nqr(2) AND nqr(1)) AND NOT r23or;
+predand(3) <= r23or AND (nqr(3) OR (NOT nqr(2) AND nqr(1)));
+predand(2) <= NOT (nqr(3) OR (NOT nqr(2) AND nqr(1))) AND r23or;
+predand(1) <= (nqr(3) OR (NOT nqr(2) AND nqr(1))) AND NOT r23or;
+predand(0) <= NOT (nqr(3) OR (NOT nqr(2) AND nqr(1))) AND NOT r23or; --AND Gate preceding OR gate to d
 
 
 q <= d;
 d <= predand OR q;
 
-en_a <= r01or AND forward;
+en_a <= r01or AND forward; --ACC Enable signal
 e <= en_a;
+
+sel <= reqs;
 end if;
 end process;
 process(clr, clk) begin
@@ -63,10 +68,4 @@ elsif (clk'EVENT AND clk = '1') then
 r_reg <= r;
 end if;
 end process;
-
-
-
-
-
-
 end Behavioral;
