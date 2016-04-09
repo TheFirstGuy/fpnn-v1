@@ -37,6 +37,7 @@ foward: IN STD_LOGIC;  -- Forward activation mode
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
 update: IN STD_LOGIC; -- update weight control signal
+broadcast: IN STD_LOGIC; -- Broadcase connections
 
 --Forward Data Input Signals
 --Data values from pred for forward activation
@@ -96,10 +97,17 @@ begin
 
 -- Bck_pred 
 is_back_prop <= mult_end AND backward; -- To signal pred for back prop
-back_pred(0) <= rp_pred(0) AND is_back_prop;
-back_pred(1) <= rp_pred(1) AND is_back_prop;
-back_pred(2) <= rp_pred(2) AND is_back_prop;
-back_pred(3) <= rp_pred(3) AND is_back_prop;
+back_pred(0) <= (rp_pred(0) AND is_back_prop) OR broadcast;
+back_pred(1) <= (rp_pred(1) AND is_back_prop) OR broadcast;
+back_pred(2) <= (rp_pred(2) AND is_back_prop) OR broadcast;
+back_pred(3) <= (rp_pred(3) AND is_back_prop) OR broadcast;
+
+--fwd_succ
+is_fwd <= foward AND mult_end;
+fwd_succ(0) <= (sn_succ(0) AND is_fwd) OR broadcast;
+fwd_succ(1) <= (sn_succ(1) AND is_fwd) OR broadcast;
+fwd_succ(2) <= (sn_succ(2) AND is_fwd) OR broadcast;
+fwd_succ(3) <= (sn_succ(3) AND is_fwd) OR broadcast;
 
 -- Forward input MUX
 WITH f_sel( 1 DOWNTO 0 ) SELECT
@@ -144,12 +152,9 @@ PROCESS(clk, update)
 	END IF;
 END PROCESS;
 
---fwd_succ
-is_fwd <= foward AND mult_end;
-fwd_succ(0) <= rn_succ(0) AND is_fwd;
-fwd_succ(1) <= rn_succ(1) AND is_fwd;
-fwd_succ(2) <= rn_succ(2) AND is_fwd;
-fwd_succ(3) <= rn_succ(3) AND is_fwd;
+
+
+
 
 end Behavioral;
 
