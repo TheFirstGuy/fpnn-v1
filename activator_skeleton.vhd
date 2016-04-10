@@ -38,6 +38,7 @@ foward: IN STD_LOGIC;  -- Forward activation mode
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
 update: IN STD_LOGIC; -- update weight control signal
+broadcast: IN STD_LOGIC; -- Broadcase connections
 
 --Forward Data Input Signals
 --Data values from pred for forward activation
