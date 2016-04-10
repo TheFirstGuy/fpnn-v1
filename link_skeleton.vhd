@@ -115,7 +115,9 @@ component SELECTOR is
 			forward: std_logic;
 			r, reqs: in std_logic_vector(3 downto 0);
 				en_a: out std_logic;
-				 sel: out std_logic_vector(1 downto 0)
+				 sel: out std_logic_vector(1 downto 0);
+				 en_m : out std_logic;
+				res_m: out std_logic
 		);
 end component;
 --ACC_B
@@ -130,7 +132,8 @@ SIGNAL acc_w_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_w
 --Sel_fwd
 SIGNAL f_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- Select signal for forward input MUX
 SIGNAL sel_fwd_reset_m: STD_LOGIC;
-SIGNAL sel_fwd_en_m: STD_LOGIC;  
+SIGNAL sel_fwd_en_m: STD_LOGIC;
+Signal sel_fwd_en_accf: STD_LOGIC;  
 --Sel bck
 SIGNAL sel_bck_en_m: STD_LOGIC;
 SIGNAL sel_bck_reset_m: STD_LOGIC;
@@ -141,6 +144,7 @@ SIGNAL mult_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Input for multiplier
 SIGNAL mult_w_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Weight or acc_f input for mult
 SIGNAL mult_enable: STD_LOGIC; -- result of ORing sel_fwd_en_in, update_reg, sel_bck_m
 SIGNAL mult_reset: STD_LOGIC;
+SIGNAL mult_out: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); 
 --Other
 SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
 SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
@@ -152,15 +156,15 @@ begin
 
 --port
 U1: MULT PORT MAP(reset=>mult_reset,clock=>clk,en=>mult_enable,Input=>mult_in,W=>mult_w_in,Output=>mult_out,ready=>mult_end);
-U2: acc_f PORT MAP(clk=>clk , rst0=>reset , rst1=>'0' , f_in=>acc_f_in , en=>sel_fwd_en_accf , init0=>'0' , init1=>'0' , f_out=>acc_f_out );
+U2: acc_f PORT MAP(clk=>clk , rst0=>reset , rst1=>'0' , f_in=>acc_f_in , en=>sel_fwd_en_accf , init0=>x"00000" , init1=>x"00000" , f_out=>acc_f_out );
 --U3: oneminusx PORT MAP(Input=>mult_out, Output=>omx_out);
 U4: ACC_W PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>mult_out,w_out=>acc_w_out); 
 U5: ACC_B PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>acc_b_out);
 --U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 --U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 --U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
-U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, f_sel=>f_sel);				---FORWARD
-U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>rn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, f_sel=>b_sel);
+U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
+U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>rn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);
 
 -- Bck_pred 
 is_back_prop <= mult_end AND backward; -- To signal pred for back prop
@@ -186,7 +190,7 @@ WITH f_sel( 1 DOWNTO 0 ) SELECT
 
 -- Backward input MUX
 WITH b_sel( 1 DOWNTO 0 ) SELECT
-	acc_b <= b_succ_0 WHEN "00",
+	acc_b_in <= b_succ_0 WHEN "00",
 	b_succ_1 WHEN "01",
 	b_succ_2 WHEN "10",
 	b_succ_3 WHEN "11",
