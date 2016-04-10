@@ -78,6 +78,7 @@ process(clk, clr, e) begin
 	end if;
 end process;
 
+q <= d;
 en_a <= e;
 e <= r01or AND forward; --ACC Enable signal
 
