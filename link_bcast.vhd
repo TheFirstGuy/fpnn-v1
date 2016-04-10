@@ -34,7 +34,8 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity link_bcast is
     Port ( clk : in std_logic; 
-           rst : in std_logic; 
+           rst : in std_logic;
+           en : in std_logic; 
            p0 : in std_logic;
            p1 : in std_logic;
            p2 : in std_logic;
@@ -42,8 +43,7 @@ entity link_bcast is
            p0_val : out std_logic;
            p1_val : out std_logic;
            p2_val : out std_logic;
-           p3_val : out std_logic;
-           request : out std_logic_vector(3 downto 0));
+           p3_val : out std_logic);
 end link_bcast;
 
 architecture Behavioral of link_bcast is
@@ -61,7 +61,9 @@ begin
             elsif (req_cnt = "0100") then       --Loop Back to 0 when Counter = 4
                 req_cnt <= "0000";
             else
-                req_cnt <= req_cnt + 1;         --Increment Counter
+                if (en = '1') then
+                    req_cnt <= req_cnt + 1;         --Increment Counter
+                end if;
             end if;
        end if;
     end process cnt;
@@ -75,25 +77,27 @@ begin
                 p2_r <= '0';
                 p3_r <= '0';
             else
-                case req_cnt is                 --Check Port Specified by Counter
-                    when "0000" =>
-                        if(p0 = '1') then
-                            p0_r <= '1';
-                        end if;
-                    when "0001" =>
-                        if(p1 = '1') then
-                            p1_r <= '1';
-                        end if;
-                    when "0010" =>
-                        if(p2 = '1') then
-                            p2_r <= '1';
-                        end if;
-                    when "0100" =>
-                        if(p3 = '1') then
-                            p3_r <= '1';
-                        end if;
-                    when others =>
-                end case;
+                if (en = '1') then 
+                    case req_cnt is                 --Check Port Specified by Counter
+                        when "0000" =>
+                            if(p0 = '1') then
+                                p0_r <= '1';
+                            end if;
+                        when "0001" =>
+                            if(p1 = '1') then
+                                p1_r <= '1';
+                            end if;
+                        when "0010" =>
+                            if(p2 = '1') then
+                                p2_r <= '1';
+                            end if;
+                        when "0100" =>
+                            if(p3 = '1') then
+                                p3_r <= '1';
+                            end if;
+                        when others =>
+                    end case;
+                end if;
             end if;
         end if;
     end process bcast;
@@ -101,6 +105,5 @@ begin
     p1_val <= p1_r;
     p2_val <= p2_r;
     p3_val <= p3_r;
-    request <= req_cnt;   --Send Request
     
 end Behavioral;
