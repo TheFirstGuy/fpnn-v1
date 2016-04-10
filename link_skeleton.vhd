@@ -66,6 +66,58 @@ back_pred: OUT STD_LOGIC_VECTOR( 3 DOWNTO 0 ) -- Sends request to preds that bac
 end link_skeleton;
 
 architecture Behavioral of link_skeleton is
+
+
+
+component MULT
+	port(
+			reset : IN  STD_LOGIC;
+			clock : IN  STD_LOGIC;
+				en : IN  STD_LOGIC;
+         Input : IN  STD_LOGIC_VECTOR(19 DOWNTO 0):=x"00000";
+			    W : IN  STD_LOGIC_VECTOR(19 DOWNTO 0):=x"00000";
+        Output : OUT STD_LOGIC_VECTOR(19 DOWNTO 0);
+		  ready  : OUT STD_LOGIC:='0'
+		  );
+end component;
+
+component acc_f is
+    Port ( clk : in std_logic;
+           rst0 : in std_logic;
+           rst1 : in std_logic;
+           f_in : in std_logic_vector(19 downto 0);
+           en : in std_logic;
+           init0 : in std_logic_vector(19 downto 0);
+           init1 : in std_logic_vector(19 downto 0);
+           f_out : out std_logic_vector(19 downto 0));
+end component;
+
+component ACC_W is
+	PORT(
+			 clk: IN STD_LOGIC;
+		write_w: IN STD_LOGIC; -- enable controlled by rand or update signal
+		mult_in: IN STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- accumlated weight for learning
+		  w_out: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 )); -- Output weight
+end component;
+
+component acc_b is
+	port (
+		 clk: in std_logic;	--Clock Input
+		 rst: in std_logic;	--Reset Input
+		b_in: in std_logic_vector(31 downto 0);	--Accumulator Input
+		b_en: in std_logic;	--Accumulator Enable
+		b_out: out std_logic_vector(31 downto 0));	--Accumulator Output
+end component;
+
+component SELECTOR is
+	PORT( 
+		 clr, clk : std_logic;
+			forward: std_logic;
+			r, reqs: in std_logic_vector(3 downto 0);
+				en_a: out std_logic;
+				 sel: out std_logic_vector(1 downto 0)
+		);
+end component;
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
 SIGNAL acc_b_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- input of accumulate B
@@ -107,8 +159,8 @@ U5: ACC_B PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>
 --U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 --U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 --U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
-U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
-U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>rn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);
+U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, f_sel=>f_sel);				---FORWARD
+U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>rn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, f_sel=>b_sel);
 
 -- Bck_pred 
 is_back_prop <= mult_end AND backward; -- To signal pred for back prop
