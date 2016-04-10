@@ -136,8 +136,8 @@ U5: ACC_B PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>
 U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
-U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, select=>f_sel);				---FORWARD
-U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, select=>b_sel);                 ---BACK 
+U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
+U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
 
 
 
@@ -367,17 +367,17 @@ END PROCESS controlSignals;
 
 -- Bck_pred 
 is_back_prop <= back_rdy AND backward; -- To signal pred for back prop
-back_pred(0) <= rp_pred(0) AND is_back_prop;
-back_pred(1) <= rp_pred(1) AND is_back_prop;
-back_pred(2) <= rp_pred(2) AND is_back_prop;
-back_pred(3) <= rp_pred(3) AND is_back_prop;
+back_pred(0) <= (rp_pred(0) AND is_back_prop) OR broadcast;
+back_pred(1) <= (rp_pred(1) AND is_back_prop) OR broadcast;
+back_pred(2) <= (rp_pred(2) AND is_back_prop) OR broadcast;
+back_pred(3) <= (rp_pred(3) AND is_back_prop) OR broadcast;
 
 --fwd_succ
 is_fwd <= foward AND mult_end;
-fwd_succ(0) <= sn_succ(0) AND is_fwd;
-fwd_succ(1) <= sn_succ(1) AND is_fwd;
-fwd_succ(2) <= sn_succ(2) AND is_fwd;
-fwd_succ(3) <= sn_succ(3) AND is_fwd;
+fwd_succ(0) <= (sn_succ(0) AND is_fwd) OR broadcast;
+fwd_succ(1) <= (sn_succ(1) AND is_fwd) OR broadcast;
+fwd_succ(2) <= (sn_succ(2) AND is_fwd) OR broadcast;
+fwd_succ(3) <= (sn_succ(3) AND is_fwd) OR broadcast;
 
 -- Forward input MUX
 WITH f_sel( 1 DOWNTO 0 ) SELECT
