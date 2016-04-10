@@ -155,7 +155,9 @@ component SELECTOR is
 			forward: std_logic;
 			r, reqs: in std_logic_vector(3 downto 0);
 				en_a: out std_logic;
-				 sel: out std_logic_vector(1 downto 0)
+				 sel: out std_logic_vector(1 downto 0);
+			  en_m : out std_logic;
+		  	  res_m: out std_logic
 		);
 end component;
 
