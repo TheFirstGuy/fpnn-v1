@@ -34,13 +34,13 @@ entity acc_b is
 port (
 	clk: in std_logic;	--Clock Input
 	rst: in std_logic;	--Reset Input
-	b_in: in std_logic_vector(31 downto 0);	--Accumulator Input
+	b_in: in std_logic_vector(19 downto 0);	--Accumulator Input
 	b_en: in std_logic;	--Accumulator Enable
-	b_out: out std_logic_vector(31 downto 0));	--Accumulator Output
+	b_out: out std_logic_vector(19 downto 0));	--Accumulator Output
 end acc_b;
 
 architecture Behavioral of acc_b is
-	signal cnt: std_logic_vector(31 downto 0);	--Counter Register to Store Results
+	signal cnt: std_logic_vector(19 downto 0);	--Counter Register to Store Results
 begin
 	add: process(clk, rst, b_in)
 	begin

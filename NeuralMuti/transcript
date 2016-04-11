@@ -1,0 +1,278 @@
+# Reading C:/Modeltech_pe_edu_10.4a/tcl/vsim/pref.tcl
+# do {MULT.tdo}
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+# Start time: 16:34:51 on Apr 01,2016
+# vcom -reportprogress 300 -explicit -93 netgen/par/MULT_timesim.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package VITAL_Timing
+# -- Loading package VCOMPONENTS
+# -- Loading package VITAL_Primitives
+# -- Loading package VPACKAGE
+# -- Compiling entity MULT
+# -- Compiling architecture Structure of MULT
+# End time: 16:34:53 on Apr 01,2016, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
+# //  ModelSim PE Student Edition 10.4a Apr  7 2015 
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# // NOT FOR CORPORATE OR PRODUCTION USE.
+# // THE ModelSim PE Student Edition IS NOT A SUPPORTED PRODUCT.
+# // FOR HIGHER EDUCATION PURPOSES ONLY
+# //
+# vsim -gui -do "do {MULT.tdo}" 
+# Start time: 16:34:53 on Apr 01,2016
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading vital2000.vital_timing(body)
+# Loading simprim.vcomponents
+# Loading vital2000.vital_primitives(body)
+# Loading simprim.vpackage(body)
+# Loading work.mult(structure)
+# SDF 10.4a Compiler 2015.03 Apr  7 2015
+# 
+# Loading simprim.x_lut6(x_lut6_v)
+# Loading simprim.x_zero(x_zero_v)
+# Loading simprim.x_carry4(x_carry4_v)
+# Loading simprim.x_buf(x_buf_v)
+# Loading simprim.x_lut5(x_lut5_v)
+# Loading simprim.x_one(x_one_v)
+# Loading simprim.x_sff(x_sff_v)
+# Loading simprim.x_obuf(x_obuf_v)
+# Loading simprim.x_ibuf_intermdisable_tpwrgt(x_ibuf_intermdisable_tpwrgt_v)
+# Loading simprim.x_ckbuf(x_ckbuf_v)
+# Loading simprim.x_roc(x_roc_v)
+# Loading simprim.x_toc(x_toc_v)
+# Loading instances from netgen/par/MULT_timesim.sdf
+# Loading timing data from netgen/par/MULT_timesim.sdf
+# ** Warning: Design size of 176664 statements or 1557 leaf instances exceeds ModelSim PE Student Edition recommended capacity.
+# Expect performance to be quite adversely affected.
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Instance: /mult File: netgen/par/MULT_timesim.vhd
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Omair  Hostname: OMAIR-VAIO  ProcessID: 1156
+# 
+#           Attempting to use alternate WLF file "./wlft475jk5".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlft475jk5
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+force -freeze sim:/mult/clock 1 0, 0 {5000 ps} -r 10ns
+force -freeze sim:/mult/Input 20'b0100110000000000000 0
+force -freeze sim:/mult/W 20'b00010011001100110011 0
+run
+force -freeze sim:/mult/reset 1 0
+run
+run
+force -freeze sim:/mult/reset 0 0
+force -freeze sim:/mult/en 1 0
+run
+force -freeze sim:/mult/Input 20'b01001100000000000000 0
+run
+run
+force -freeze sim:/mult/reset 1 0
+run
+run
+force -freeze sim:/mult/clock 1 0, 0 {50000 ps} -r 100ns
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/mult/reset 0 0
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/mult/en 0 0
+run
+run
+run
+run
+run
+run
+force -freeze sim:/mult/Input 20'b01001111001010010011 0
+run
+force -freeze sim:/mult/reset 1 0
+run
+force -freeze sim:/mult/reset 0 0
+run
+force -freeze sim:/mult/W 20'h13E5E 0
+run
+force -freeze sim:/mult/en 1 0
+run
+force -freeze sim:/mult/W 20'h00000 0
+run
+force -freeze sim:/mult/clock 1 0, 0 {5000 ps} -r 10ns
+run
+run
+run
+run
+run
+run
+force -freeze sim:/mult/W 20'h13E5E 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/mult/W 20'h0 0
+run
+run
+force -freeze sim:/mult/en 0 0
+run
+run
+run
+force -freeze sim:/mult/W 20'h13E5E 0
+run
+force -freeze sim:/mult/en 1 0
+run
+run
+run
+force -freeze sim:/mult/en 0 0
+run
+run
+force -freeze sim:/mult/reset 1 0
+run
+run
+force -freeze sim:/mult/reset 0 0
+run
+run
+force -freeze sim:/mult/clock 1 0, 0 {500 ps} -r 1ns
+run
+run
+run
+force -freeze sim:/mult/en 1 0
+run
+run
+# ** Warning: /X_SFF SETUP High VIOLATION ON I WITH RESPECT TO CLK;
+# 
+#   Expected := 0.667 ns; Observed := 0.357 ns; At : 3494.729 ns
+#    Time: 3494729 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3494.729 ns
+#    Time: 3494729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3495.229 ns
+#    Time: 3495229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3495.729 ns
+#    Time: 3495729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3496.229 ns
+#    Time: 3496229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3496.729 ns
+#    Time: 3496729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3497.229 ns
+#    Time: 3497229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3497.729 ns
+#    Time: 3497729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3498.229 ns
+#    Time: 3498229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3498.729 ns
+#    Time: 3498729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3499.229 ns
+#    Time: 3499229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3499.729 ns
+#    Time: 3499729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3500.229 ns
+#    Time: 3500229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3500.729 ns
+#    Time: 3500729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3501.229 ns
+#    Time: 3501229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3501.729 ns
+#    Time: 3501729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3502.229 ns
+#    Time: 3502229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3502.729 ns
+#    Time: 3502729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3503.229 ns
+#    Time: 3503229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3503.729 ns
+#    Time: 3503729 ps  Iteration: 3  Instance: /mult/ready_1156
+run
+# ** Warning: /X_SFF PERIOD  Low VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3504.229 ns
+#    Time: 3504229 ps  Iteration: 3  Instance: /mult/ready_1156
+# ** Warning: /X_SFF PERIOD High VIOLATION ON CLK;
+# 
+#   Expected := 1.263 ns; Observed := 1 ns; At : 3504.729 ns
+#    Time: 3504729 ps  Iteration: 3  Instance: /mult/ready_1156
