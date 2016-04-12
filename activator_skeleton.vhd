@@ -29,15 +29,14 @@ reset: IN STD_LOGIC;
 still_fwd: IN STD_LOGIC; --tells activator to go back to forward active. (we are done with back prop)
 --rand_T : IN STD_LOGIC -- not implemented 
 --NOTE: Not sure where these signals originate from
-rp_pred: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if pred connections exist
-sn_succ: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if succ connections exist
+--rp_pred: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if pred connections exist
+--sn_succ: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if succ connections exist
 fwd_pred: IN STD_LOGIC_VECTOR( 3 DOWNTO 0 ); -- Forward pred request signals
 foward: IN STD_LOGIC;  -- Forward activation mode
 
 --Backwards Control Signals
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
-update: IN STD_LOGIC; -- update weight control signal
 broadcast: IN STD_LOGIC; -- Broadcase connections
 
 --Forward Data Input Signals
@@ -115,9 +114,9 @@ component acc_b is
 	port (
 		 clk: in std_logic;	--Clock Input
 		 rst: in std_logic;	--Reset Input
-		b_in: in std_logic_vector(31 downto 0);	--Accumulator Input
+		b_in: in std_logic_vector(19 downto 0);	--Accumulator Input
 		b_en: in std_logic;	--Accumulator Enable
-		b_out: out std_logic_vector(31 downto 0));	--Accumulator Output
+		b_out: out std_logic_vector(19 downto 0));	--Accumulator Output
 end component;
 
 component COEFFS is
@@ -161,11 +160,24 @@ component SELECTOR is
 		);
 end component;
 
+component link_bcast is
+    Port ( clk : in std_logic; 
+           rst : in std_logic;
+           en : in std_logic; 
+           p0 : in std_logic;
+           p1 : in std_logic;
+           p2 : in std_logic;
+           p3 : in std_logic;
+           p0_val : out std_logic;
+           p1_val : out std_logic;
+           p2_val : out std_logic;
+           p3_val : out std_logic);
+end component;
 
 
 
-
-
+SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if pred connections exist
+SIGNAL sn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if succ connections exist
 
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
@@ -237,8 +249,8 @@ U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
 U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
 U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
-
-
+U11: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
+U12: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p1=>bck_succ(1), p2=>bck_succ(2), p3=>bck_succ(3), p0_val=>sn_succ(0), p1_val=>sn_succ(1), p2_val=>sn_succ(2), p3_val=>sn_succ(3)); -- Backward
 
 --State Machine
 	stateFSM: PROCESS(clk, reset)
@@ -503,8 +515,6 @@ WITH mux1_sel SELECT
 	add_out WHEN '1',
 	acc_f_out WHEN others;
 	
---Multiply enable control
-	--mult_enable <= sel_fwd_en_m OR sel_bck_en_m OR update_reg;
 	
 --Multiply W input MUX
 -- input addout when forward
@@ -516,16 +526,10 @@ WITH mux2_sel SELECT
 	acc_b_out WHEN others;
 	
 --Mutliply reset control
-update_and_nupdate <= NOT update_reg AND update;
-mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR update_and_nupdate;
+--update_and_nupdate <= NOT update_reg AND update;
+--mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR update_and_nupdate;
 	
---Update register
-PROCESS(clk, update)
-	BEGIN
-	IF(clk'EVENT AND clk = '1') THEN
-		update_reg <= update;
-	END IF;
-END PROCESS;
+
 
 
 

@@ -28,8 +28,8 @@ clk: IN STD_LOGIC;
 reset: IN STD_LOGIC;
 --rand_W : IN STD_LOGIC -- not implemented 
 --NOTE: Not sure where these signals originate from
-rp_pred: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if pred connections exist
-rn_succ: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if succ connections exist
+--rp_pred: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if pred connections exist
+--rn_succ: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if succ connections exist
 fwd_pred: IN STD_LOGIC_VECTOR( 3 DOWNTO 0 ); -- Forward pred request signals
 foward: IN STD_LOGIC;  -- Forward activation mode
 
@@ -104,9 +104,9 @@ component acc_b is
 	port (
 		 clk: in std_logic;	--Clock Input
 		 rst: in std_logic;	--Reset Input
-		b_in: in std_logic_vector(31 downto 0);	--Accumulator Input
+		b_in: in std_logic_vector(19 downto 0);	--Accumulator Input
 		b_en: in std_logic;	--Accumulator Enable
-		b_out: out std_logic_vector(31 downto 0));	--Accumulator Output
+		b_out: out std_logic_vector(19 downto 0));	--Accumulator Output
 end component;
 
 component SELECTOR is
@@ -120,6 +120,23 @@ component SELECTOR is
 				res_m: out std_logic
 		);
 end component;
+
+component link_bcast is
+    Port ( clk : in std_logic; 
+           rst : in std_logic;
+           en : in std_logic; 
+           p0 : in std_logic;
+           p1 : in std_logic;
+           p2 : in std_logic;
+           p3 : in std_logic;
+           p0_val : out std_logic;
+           p1_val : out std_logic;
+           p2_val : out std_logic;
+           p3_val : out std_logic);
+end component;
+
+SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if pred connections exist
+SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if succ connections exist
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
 SIGNAL acc_b_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- input of accumulate B
@@ -165,6 +182,9 @@ U5: ACC_B PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>
 --U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
 U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
 U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>rn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);
+U11: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
+U12: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p1=>bck_succ(1), p2=>bck_succ(2), p3=>bck_succ(3), p0_val=>rn_succ(0), p1_val=>rn_succ(1), p2_val=>rn_succ(2), p3_val=>rn_succ(3)); -- Backward
+
 
 -- Bck_pred 
 is_back_prop <= mult_end AND backward; -- To signal pred for back prop

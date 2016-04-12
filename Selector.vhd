@@ -25,8 +25,8 @@ end SELECTOR;
 
 architecture Behavioral of SELECTOR is
 signal r_reg, d, q, reqsorq, nqr, predand: std_logic_vector(3 downto 0);
-signal res_m, pre_res, res_d, e, r01or, r23or, trior: std_logic;
-signal en_m: std_logic;
+signal pre_res, res_d, e, r01or, r23or, trior: std_logic;
+--signal en_m: std_logic;
 begin
 
 --process (clr, clk) begin
