@@ -40,17 +40,17 @@ port (
 end acc_b;
 
 architecture Behavioral of acc_b is
-	signal cnt: std_logic_vector(19 downto 0);	--Counter Register to Store Results
+	signal cnt: std_logic_vector(19 downto 0) := X"00000";	--Counter Register to Store Results
 begin
 	add: process(clk, rst, b_in)
 	begin
 		if (clk'event and clk =  '1') then	--Enable on Clock Tick
 			if (rst = '1') then	--Reset
-				cnt <= (others => '0');	--Reset Counter Register
-			else
-				if (b_en = '1') then	--Accumulator Input Enable
+				cnt <= X"00000";	--Reset Counter Register
+			elsif (b_en = '1') then	--Accumulator Input Enable
 					cnt <= cnt + b_in;	--Sum of Counter Value and Input
-				end if;
+			else
+				cnt<= cnt;
 			end if;
 		end if;
 	end process add;

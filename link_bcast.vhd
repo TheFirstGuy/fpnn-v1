@@ -47,7 +47,7 @@ entity link_bcast is
 end link_bcast;
 
 architecture Behavioral of link_bcast is
-    signal req_cnt: std_logic_vector(3 downto 0);   --Port Request Counter
+    signal req_cnt: std_logic_vector(2 downto 0);   --Port Request Counter
     signal p0_r: std_logic; --Registers for Ports 1 - 3
     signal p1_r: std_logic;
     signal p2_r: std_logic;
@@ -57,9 +57,9 @@ begin
     begin
         if (clk'event and clk =  '1') then      --Synchronous Clock
             if (rst = '1' and rst = '1') then   -- Reset State
-                req_cnt <= "0000"; 
-            elsif (req_cnt = "0100") then       --Loop Back to 0 when Counter = 4
-                req_cnt <= "0000";
+                req_cnt <= "000"; 
+            elsif (req_cnt = "100") then       --Loop Back to 0 when Counter = 4
+                req_cnt <= "000";
             else
                 if (en = '1') then
                     req_cnt <= req_cnt + 1;         --Increment Counter
@@ -79,19 +79,19 @@ begin
             else
                 if (en = '1') then 
                     case req_cnt is                 --Check Port Specified by Counter
-                        when "0000" =>
+                        when "000" =>
                             if(p0 = '1') then
                                 p0_r <= '1';
                             end if;
-                        when "0001" =>
+                        when "001" =>
                             if(p1 = '1') then
                                 p1_r <= '1';
                             end if;
-                        when "0010" =>
+                        when "010" =>
                             if(p2 = '1') then
                                 p2_r <= '1';
                             end if;
-                        when "0100" =>
+                        when "100" =>
                             if(p3 = '1') then
                                 p3_r <= '1';
                             end if;
