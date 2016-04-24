@@ -33,10 +33,11 @@ entity inputLink is
 PORT(
 	--Data
 	y: OUT STD_LOGIC_VECTOR(19 DOWNTO 0);
+	fwd_succ: OUT STD_LOGIC;
 	-- UART IN
 	uart_in: IN STD_LOGIC_VECTOR(19 DOWNTO 0); 
 	-- Control Signal
-	fwd_succ: IN STD_LOGIC --Forward request signal
+	fwd_pred: IN STD_LOGIC --Forward request signal
 	
 );
 end inputLink;
@@ -44,7 +45,8 @@ end inputLink;
 architecture Behavioral of inputLink is
 begin
 y <= uart_in;
-fwd_succ<='1';
+fwd_succ<=fwd_pred;
+
 
 end Behavioral;
 

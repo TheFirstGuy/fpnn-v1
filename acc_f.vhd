@@ -51,11 +51,11 @@ begin
         if (clk'event and clk =  '1') then	--Enable on Clock Tick
             if (rst0 = '1' and rst1 = '1') then	--Reset to init0 + init1
                 cnt <= init0 + init1;
-            elsif (rst0 = '1') then --Reset to init0
+            elsif (rst0 = '1' and rst1='0') then --Reset to init0
                 cnt <= init0;
-            elsif (rst1 = '1') then --Reset to init1
+            elsif (rst1 = '1' and rst0 = '0') then --Reset to init1
                 cnt <= init1;
-            else
+            elsif( rst0 = '0' and rst1 = '0') then
                 if (en = '1') then
                     cnt <= cnt + f_in;	--Sum of Counter Value and Input 
                 else
