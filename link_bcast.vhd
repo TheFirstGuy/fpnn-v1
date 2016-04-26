@@ -56,7 +56,7 @@ begin
     cnt: process(clk, rst)  -- Counter
     begin
         if (clk'event and clk =  '1') then      --Synchronous Clock
-            if (rst = '1' and rst = '1') then   -- Reset State
+            if (rst = '1') then   -- Reset State
                 req_cnt <= "000"; 
             elsif (req_cnt = "100") then       --Loop Back to 0 when Counter = 4
                 req_cnt <= "000";
