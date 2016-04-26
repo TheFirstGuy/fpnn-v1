@@ -131,6 +131,7 @@ component CNT is
 	PORT(
 			clk: IN STD_LOGIC;
 		enable: IN STD_LOGIC;
+		 reset: IN STD_LOGIC;
 			fin: OUT STD_LOGIC;
 		degree: OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
 	);
@@ -245,7 +246,7 @@ U3: oneminusx PORT MAP(Input=>mult_out, Output=>omx_out);
 U4: ACC_W PORT MAP(clk=>clk,write_w=>acc_t_en,mult_in=>mult_out,w_out=>acc_t_out); ---ACC_T
 U5: ACC_B PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>acc_b_out);
 U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
-U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
+U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en, reset=>reset ,fin=>fin ,degree=>degree);
 U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
 U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>open , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
 U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>open , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
