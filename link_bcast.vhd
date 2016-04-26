@@ -71,7 +71,7 @@ begin
     bcast: process(clk, rst, p0, p1, p2, p3)    --Broadcast Request
     begin
         if (clk'event and clk =  '1') then      --Synchronous Clock
-            if (rst = '1' and rst = '1') then	--Reset State
+            if (rst = '1') then	--Reset State
                 p0_r <= '0';
                 p1_r <= '0';
                 p2_r <= '0';
