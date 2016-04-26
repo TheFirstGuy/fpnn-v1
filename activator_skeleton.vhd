@@ -248,7 +248,7 @@ U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
 U9: SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>open , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
-U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>open , en_m=>open, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
+U10:SELECTOR PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>open , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
 U11: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
 U12: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p1=>bck_succ(1), p2=>bck_succ(2), p3=>bck_succ(3), p0_val=>sn_succ(0), p1_val=>sn_succ(1), p2_val=>sn_succ(2), p3_val=>sn_succ(3)); -- Backward
 

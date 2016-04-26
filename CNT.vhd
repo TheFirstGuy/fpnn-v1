@@ -34,6 +34,7 @@ PORT(
 --Inputs
 clk: IN STD_LOGIC;
 enable: IN STD_LOGIC;
+reset: IN STD_LOGIC;
 
 --Outputs
 fin: OUT STD_LOGIC;
@@ -47,19 +48,24 @@ SIGNAL cnt: UNSIGNED(1 DOWNTO 0) := "10";
 begin
 
 -- Simple counter. Counts from second degree down to degree 0
-PROCESS( clk, enable )
+PROCESS( clk, enable, reset )
 	BEGIN
-	IF( clk'EVENT AND clk = '1' )THEN
-		IF( enable = '1') THEN
-			IF( cnt = "00") THEN -- Reset count after last degree
-				cnt <= "10";
-			ELSE
-				cnt <= cnt - 1;
-			END IF;
-			IF( cnt = "10") THEN-- This might need to be changed to when cnt = "00"
-				fin <= '1';
-			ELSE
-				fin <= '0';
+	IF( reset = '1') THEN
+		cnt <= "00";
+		fin <= '0';
+	ELSIF( reset = '0') THEN
+		IF( clk'EVENT AND clk = '1' )THEN
+			IF( enable = '1') THEN
+				IF( cnt = "00") THEN -- Reset count after last degree
+					cnt <= "10";
+				ELSE
+					cnt <= cnt - 1;
+				END IF;
+				IF( cnt = "10") THEN-- This might need to be changed to when cnt = "00"
+					fin <= '1';
+				ELSE
+					fin <= '0';
+				END IF;
 			END IF;
 		END IF;
 	END IF;
