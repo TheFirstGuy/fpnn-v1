@@ -33,11 +33,11 @@ use IEEE.STD_LOGIC_SIGNED.ALL;
 --use UNISIM.VComponents.all;
 
 entity err is
-    Port ( clk : in std_logic;
-           rst : in std_logic;
-           rslt : in std_logic_vector(19 downto 0);
-           c_val : in std_logic_vector(19 downto 0);
-           err : out std_logic_vector(19 downto 0));
+    Port ( clk : in std_logic;  --Clock
+           rst : in std_logic;  --Reset
+           rslt : in std_logic_vector(19 downto 0); --Calculated Result
+           c_val : in std_logic_vector(19 downto 0);    --Classification Value
+           err : out std_logic_vector(19 downto 0));    --Calculated Error
 end err;
 
 architecture Behavioral of err is
@@ -49,11 +49,11 @@ begin
             if (rst = '1') then
                 err_val <= (others => '0');
             else
-                err_val <= c_val - rslt;
+                err_val <= c_val - rslt;    --Calculate Error (Classification - Result)
             end if;
         end if;
     end process calc_err;
     
-    err <= err_val;
+    err <= err_val; --Output Error
                 
 end Behavioral;
