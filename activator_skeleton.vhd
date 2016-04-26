@@ -292,8 +292,8 @@ U12: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p
 controlSignals: PROCESS( state )
 	BEGIN
 		IF( state = init ) THEN
-			acc_f_reset0 <= '0';
-			acc_f_reset1 <= '1';
+			acc_f_reset0 <= '1';
+			acc_f_reset1 <= '0';
 			mult_reset <= '1';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -352,8 +352,8 @@ controlSignals: PROCESS( state )
 			back_rdy <= '0';
 			forward_rdy <= '0';
 		ELSIF( state = fa2 ) THEN-- Add stores multiply and acc_f updates threshold 
-			acc_f_reset0 <= '0';
-			acc_f_reset1 <= '1';
+			acc_f_reset0 <= '1';
+			acc_f_reset1 <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '1';
@@ -412,8 +412,8 @@ controlSignals: PROCESS( state )
 			back_rdy <= '0';
 			forward_rdy <= '0';
 		ELSIF( state = bp1 ) THEN-- ACC_F <- (1 - x)
-			acc_f_reset0 <= '1';
-			acc_f_reset1 <= '0';
+			acc_f_reset0 <= '0';
+			acc_f_reset1 <= '1';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -457,8 +457,8 @@ controlSignals: PROCESS( state )
 			back_rdy <= '1';
 			forward_rdy <= '0';
 		ELSE -- Default to init stage
-			acc_f_reset0 <= '0';
-			acc_f_reset1 <= '1';
+			acc_f_reset0 <= '1';
+			acc_f_reset1 <= '0';
 			mult_reset <= '1';
 			cnt_en <= '0';
 			add_en <= '0';
