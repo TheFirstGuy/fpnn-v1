@@ -243,6 +243,8 @@ PROCESS(clk, update)
 	END IF;
 END PROCESS;
 
+y<=mult_out;
+
 
 
 

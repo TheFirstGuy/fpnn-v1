@@ -528,7 +528,8 @@ WITH mux2_sel SELECT
 --Mutliply reset control
 --update_and_nupdate <= NOT update_reg AND update;
 --mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR update_and_nupdate;
-	
+y<=mult_out;	
+
 
 
 

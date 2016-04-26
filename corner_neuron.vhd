@@ -56,7 +56,7 @@ PORT(
 	west_fdata_in: IN STD_LOGIC_VECTOR(19 DOWNTO 0);
 	wa_bdata_out: OUT STD_LOGIC_VECTOR(19 DOWNTO 0);
 	wa_in_r: IN STD_LOGIC;
-	wa_out_r, we_out_r: OUT STD_LOGIC;
+	wa_out_r: OUT STD_LOGIC;
 	--Output Link Connections
 	--North
 	north_fdata_out: OUT STD_LOGIC_VECTOR(19 DOWNTO 0);
