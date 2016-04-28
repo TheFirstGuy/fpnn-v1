@@ -50,7 +50,8 @@ process(clk, clr) begin
 end process;
 
 en_m <= res_d; --MULT Enable signal
-res_m <= res_d AND pre_res AND forward;
+--res_m <= res_d AND pre_res AND forward;
+res_m <= '0';
 
 nqr <= NOT d AND r; --AND Gate following each of the four flip flops
 
