@@ -36,7 +36,7 @@ foward: IN STD_LOGIC;  -- Forward activation mode
 --Backwards Control Signals
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
-update: IN STD_LOGIC; -- update weight control signal
+----update: IN STD_LOGIC; -- update weight control signal --------------------------------------------------------- Now a signal Update<=forward
 broadcast: IN STD_LOGIC; -- Broadcase connections
 
 --Forward Data Input Signals
@@ -67,7 +67,7 @@ end link_skeleton;
 
 architecture Behavioral of link_skeleton is
 
-
+SIGNAL update: STD_LOGIC; --------------------------------------------------------------Update<=forward rather than input
 
 component MULT
 	port(
@@ -243,9 +243,10 @@ PROCESS(clk, update)
 	END IF;
 END PROCESS;
 
+
 y<=mult_out;
 
-
+update<-forward;
 
 
 
