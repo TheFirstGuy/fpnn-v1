@@ -191,6 +191,7 @@ SIGNAL acc_f_reset0: STD_LOGIC; -- Store signal for threshold
 --ACC_T
 SIGNAL acc_t_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_t
 SIGNAL acc_t_en: STD_LOGIC; --enable and store in ACC_T
+SIGNAL acc_t_in: STD_LOGIC_VECTOR(19 DOWNTO 0); -- input to acc_t in
 --Sel_fwd
 SIGNAL f_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- Select signal for forward input MUX
 --SIGNAL sel_fwd_reset_m: STD_LOGIC;
@@ -243,7 +244,7 @@ begin
 U1: MULT PORT MAP(reset=>mult_reset,clock=>clk,en=>mult_enable,Input=>mult_in,W=>mult_w_in,Output=>mult_out,ready=>mult_end);
 U2: acc_f PORT MAP(clk=>clk , rst0=>acc_f_reset0 , rst1=>acc_f_reset1 , f_in=>acc_f_in , en=>sel_fwd_en_accf , init0=>acc_t_out , init1=>omx_out , f_out=>acc_f_out );
 U3: oneminusx PORT MAP(Input=>mult_out, Output=>omx_out);
-U4: ACC_W PORT MAP(clk=>clk,write_w=>acc_t_en,mult_in=>mult_out,w_out=>acc_t_out); ---ACC_T
+U4: ACC_W PORT MAP(clk=>clk,write_w=>acc_t_en,mult_in=>acc_t_in,w_out=>acc_t_out); ---ACC_T
 U5: ACC_B PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>acc_b_out);
 U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en, reset=>reset ,fin=>fin ,degree=>degree);
@@ -267,7 +268,7 @@ U12: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p
 			END IF;
 	END PROCESS stateFSM;
 	
-	outputFSM: PROCESS( state, mult_end, sel_fwd_en_m, fin, backward, still_fwd, foward)
+	outputFSM: PROCESS( state, mult_end, sel_fwd_en_m, sel_bck_en_m, fin, backward, still_fwd, foward)
 		BEGIN
 			nextstate <= init;
 			CASE state is
@@ -275,7 +276,7 @@ U12: link_bcast PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p
 				WHEN accumulate => IF(sel_fwd_en_m = '1') THEN nextstate <= fa0; ELSE nextstate <= accumulate; END IF;
 				WHEN fa0 => nextstate <= fa1;
 				WHEN fa1 => IF(fin = '1') THEN nextstate <= fa2; ELSE nextstate <= fa0; END IF;
-				WHEN fa2 => IF(backward = '1') THEN nextstate <= th0; ELSIF( still_fwd = '1' ) THEN nextstate <= accumulate; ELSE nextstate <= fa2; END IF;
+				WHEN fa2 => IF(backward = '1' AND sel_bck_en_m = '1') THEN nextstate <= th0; ELSIF( still_fwd = '1' ) THEN nextstate <= accumulate; ELSE nextstate <= fa2; END IF;
 				--WHEN fa3 => IF(backward = '1') THEN nextstate <= th0; ELSE nextstate <= fa3; END IF;
 				WHEN th0 => nextstate <= th1; 
 				WHEN th1 => nextstate <= bp0;
@@ -529,7 +530,12 @@ WITH mux2_sel SELECT
 --Mutliply reset control
 --update_and_nupdate <= NOT update_reg AND update;
 --mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR update_and_nupdate;
-y<=mult_out;	
+y<=mult_out;
+
+WITH mult_out(19) SELECT
+		acc_t_in<= ('0'& mult_out(19 DOWNTO 1)) WHEN '0',
+		('1'& mult_out(19 DOWNTO 1)) WHEN '1',
+		('0'& mult_out(19 DOWNTO 1)) WHEN others;
 
 
 

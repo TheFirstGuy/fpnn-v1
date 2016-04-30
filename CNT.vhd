@@ -51,17 +51,19 @@ begin
 PROCESS( clk, enable, reset )
 	BEGIN
 	IF( reset = '1') THEN
-		cnt <= "00";
+		cnt <= "10";
 		fin <= '0';
 	ELSIF( reset = '0') THEN
 		IF( clk'EVENT AND clk = '1' )THEN
 			IF( enable = '1') THEN
 				IF( cnt = "00") THEN -- Reset count after last degree
 					cnt <= "10";
+					--fin <= '1';
 				ELSE
 					cnt <= cnt - 1;
+					--fin <= '0';
 				END IF;
-				IF( cnt = "10") THEN-- This might need to be changed to when cnt = "00"
+				IF( cnt = "01") THEN-- This might need to be changed to when cnt = "00"
 					fin <= '1';
 				ELSE
 					fin <= '0';
