@@ -187,7 +187,7 @@ begin
 	fwd_pred(0)=>wa_in_r, fwd_pred(1)=>sa_in_r, fwd_pred(2)=>ea_in_r, fwd_pred(3)=>'0',
 	foward=>forward, bck_succ(0)=>north_back_r, bck_succ(3 DOWNTO 1)=>"000", backward=>backward,
 	broadcast=>broadcast, x_pred_0=>west_fdata_in, x_pred_1=>south_fdata_in,
-	x_pred_2=>east_fdata_in, b_succ_1=>north_y, y=>act_out, fwd_succ=>act_fwd_r,
+	x_pred_2=>east_fdata_in, x_pred_3=>X"00000", b_succ_0=>north_y, y=>act_out, fwd_succ=>act_fwd_r,
 	back_pred(0)=> wa_out_r, back_pred(1)=>sa_out_r, back_pred(2)=>ea_out_r, back_pred(3)=>ground(0));
 	
 	

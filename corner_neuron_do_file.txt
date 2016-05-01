@@ -1,30 +1,23 @@
 force -freeze sim:/corner_neuron/clk 1 0, 0 {5000 ps} -r 10ns
 force -freeze sim:/corner_neuron/broadcast 0 0
+force -freeze sim:/corner_neuron/update 0 0
 force -freeze sim:/corner_neuron/forward 0 0
 force -freeze sim:/corner_neuron/still_fwd 0 0
 force -freeze sim:/corner_neuron/backward 0 0
-force -freeze sim:/corner_neuron/update 0 0
 force -freeze sim:/corner_neuron/reset 1 0
 force -freeze sim:/corner_neuron/south_fdata_in 20'h00000 0
 force -freeze sim:/corner_neuron/sw_in_r 0 0
 force -freeze sim:/corner_neuron/sa_in_r 0 0
-force -freeze sim:/corner_neuron/se_in_r 0 0
 force -freeze sim:/corner_neuron/east_fdata_in 20'h00000 0
 force -freeze sim:/corner_neuron/ea_in_r 0 0
 force -freeze sim:/corner_neuron/ew_in_r 0 0
 force -freeze sim:/corner_neuron/west_fdata_in 20'h00000 0
 force -freeze sim:/corner_neuron/wa_in_r 0 0
-force -freeze sim:/corner_neuron/we_in_r 0 0
 force -freeze sim:/corner_neuron/north_bdata_in0 20'h0000 0
 force -freeze sim:/corner_neuron/north_bdata_in1 20'h0000 0
 force -freeze sim:/corner_neuron/north_bdata_in2 20'h00000 0
 force -freeze sim:/corner_neuron/north_bdata_in3 20'h00000 0
 force -freeze sim:/corner_neuron/north_br 4'h0 0
-force -freeze sim:/corner_neuron/east_bdata_in0 20'h00000 0
-force -freeze sim:/corner_neuron/east_bdata_in1 20'h00000 0
-force -freeze sim:/corner_neuron/east_bdata_in2 20'h00000 0
-force -freeze sim:/corner_neuron/east_bdata_in3 20'h00000 0
-force -freeze sim:/corner_neuron/east_br 4'h0 0
 force -freeze sim:/corner_neuron/west_bdata_in0 20'h00000 0
 force -freeze sim:/corner_neuron/west_bdata_in1 20'h00000 0
 force -freeze sim:/corner_neuron/west_bdata_in2 20'h00000 0
@@ -32,19 +25,70 @@ force -freeze sim:/corner_neuron/west_bdata_in3 20'h00000 0
 force -freeze sim:/corner_neuron/west_br 4'h0 0
 run 10ns
 force -freeze sim:/corner_neuron/broadcast 1 0
+force -freeze sim:/corner_neuron/north_br 4'hF 0
+force -freeze sim:/corner_neuron/west_br 4'h7 0
 force -freeze sim:/corner_neuron/reset 0 0
+force -freeze sim:/corner_neuron/wa_in_r 1 0
+force -freeze sim:/corner_neuron/ea_in_r 1 0
+force -freeze sim:/corner_neuron/ew_in_r 1 0
+force -freeze sim:/corner_neuron/sw_in_r 1 0
+force -freeze sim:/corner_neuron/sa_in_r 1 0
 run 100ns
+force -freeze sim:/corner_neuron/wa_in_r 0 0
+force -freeze sim:/corner_neuron/ea_in_r 0 0
+force -freeze sim:/corner_neuron/ew_in_r 0 0
+force -freeze sim:/corner_neuron/sw_in_r 0 0
+force -freeze sim:/corner_neuron/sa_in_r 0 0
+force -freeze sim:/corner_neuron/north_br 4'h0 0
+force -freeze sim:/corner_neuron/west_br 4'h0 0
 force -freeze sim:/corner_neuron/broadcast 0 0
 force -freeze sim:/corner_neuron/forward 1 0
 run 10ns
 force -freeze sim:/corner_neuron/south_fdata_in 20'h000E1 0
 force -freeze sim:/corner_neuron/sw_in_r 1 0
 force -freeze sim:/corner_neuron/sa_in_r 1 0
-force -freeze sim:/corner_neuron/se_in_r 1 0
 force -freeze sim:/corner_neuron/east_fdata_in 20'hFF321 0
 force -freeze sim:/corner_neuron/ea_in_r 1 0
 force -freeze sim:/corner_neuron/ew_in_r 1 0
 force -freeze sim:/corner_neuron/west_fdata_in 20'h14253 0
 force -freeze sim:/corner_neuron/wa_in_r 1 0
-force -freeze sim:/corner_neuron/we_in_r 1 0
+run 100ns
+force -freeze sim:/corner_neuron/wa_in_r 0 0
+force -freeze sim:/corner_neuron/ea_in_r 0 0
+force -freeze sim:/corner_neuron/ew_in_r 0 0
+force -freeze sim:/corner_neuron/sw_in_r 0 0
+force -freeze sim:/corner_neuron/sa_in_r 0 0
+force -freeze sim:/corner_neuron/forward 0 0
+force -freeze sim:/corner_neuron/backward 1 0
+force -freeze sim:/corner_neuron/north_bdata_in0 20'hABCDE 0
+force -freeze sim:/corner_neuron/north_bdata_in1 20'h11111 0
+force -freeze sim:/corner_neuron/north_bdata_in2 20'hFFFFF 0
+force -freeze sim:/corner_neuron/north_bdata_in3 20'hF1303 0
+force -freeze sim:/corner_neuron/west_bdata_in0 20'h51234 0
+force -freeze sim:/corner_neuron/west_bdata_in1 20'hF3293 0
+force -freeze sim:/corner_neuron/west_bdata_in2 20'hA3234 0
+force -freeze sim:/corner_neuron/north_br 4'hF 0
+force -freeze sim:/corner_neuron/west_br 4'h7 0
+run 150ns
+force -freeze sim:/corner_neuron/wa_in_r 0 0
+force -freeze sim:/corner_neuron/ea_in_r 0 0
+force -freeze sim:/corner_neuron/ew_in_r 0 0
+force -freeze sim:/corner_neuron/sw_in_r 0 0
+force -freeze sim:/corner_neuron/sa_in_r 0 0
+force -freeze sim:/corner_neuron/backward 0 0
+force -freeze sim:/corner_neuron/update 1 0
 run 10ns
+force -freeze sim:/corner_neuron/update 0 0
+force -freeze sim:/corner_neuron/forward 1 0
+run 10ns
+force -freeze sim:/corner_neuron/south_fdata_in 20'h0addd 0
+force -freeze sim:/corner_neuron/sw_in_r 1 0
+force -freeze sim:/corner_neuron/sa_in_r 1 0
+force -freeze sim:/corner_neuron/east_fdata_in 20'h12312 0
+force -freeze sim:/corner_neuron/ea_in_r 1 0
+force -freeze sim:/corner_neuron/ew_in_r 1 0
+force -freeze sim:/corner_neuron/west_fdata_in 20'h99834 0
+force -freeze sim:/corner_neuron/wa_in_r 1 0
+run 50ns
+
+
