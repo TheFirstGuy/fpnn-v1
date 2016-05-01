@@ -1,0 +1,61 @@
+force -freeze sim:/activator_skeleton/clk 1 0, 0 {5000 ps} -r 10ns
+force -freeze sim:/activator_skeleton/reset 1 0
+force -freeze sim:/activator_skeleton/still_fwd 0 0
+force -freeze sim:/activator_skeleton/fwd_pred 4'h7 0
+force -freeze sim:/activator_skeleton/foward 0 0
+force -freeze sim:/activator_skeleton/bck_succ 4'h1 0
+force -freeze sim:/activator_skeleton/backward 0 0
+force -freeze sim:/activator_skeleton/broadcast 0 0
+force -freeze sim:/activator_skeleton/x_pred_0 20'h00000 0
+force -freeze sim:/activator_skeleton/x_pred_1 20'h00000 0
+force -freeze sim:/activator_skeleton/x_pred_2 20'h00000 0
+force -freeze sim:/activator_skeleton/x_pred_3 20'h00000 0
+force -freeze sim:/activator_skeleton/b_succ_0 20'h00000 0
+force -freeze sim:/activator_skeleton/b_succ_1 20'h00000 0
+force -freeze sim:/activator_skeleton/b_succ_2 20'h00000 0
+force -freeze sim:/activator_skeleton/b_succ_3 20'h00000 0
+run 10ns
+force -freeze sim:/activator_skeleton/broadcast 1 0
+force -freeze sim:/activator_skeleton/reset 0 0
+run 10ns
+run 10ns
+run 10ns
+run 10ns
+run 10ns
+run 10ns
+run 10ns
+run 10ns
+run 10ns
+run 10ns
+run 10ns
+force -freeze sim:/activator_skeleton/broadcast 0 0
+force -freeze sim:/activator_skeleton/bck_succ 4'h0 0
+force -freeze sim:/activator_skeleton/fwd_pred 4'h0 0
+force -freeze sim:/activator_skeleton/bck_succ 4'h0 0
+run 10ns
+force -freeze sim:/activator_skeleton/fwd_pred 4'h7 0
+force -freeze sim:/activator_skeleton/foward 1 0
+force -freeze sim:/activator_skeleton/x_pred_0 20'h000E1 0
+force -freeze sim:/activator_skeleton/x_pred_1 20'hFF321 0
+force -freeze sim:/activator_skeleton/x_pred_2 20'h14253 0
+force -freeze sim:/activator_skeleton/x_pred_3 20'h00000 0
+force -freeze sim:/activator_skeleton/bck_succ 4'h0 0
+run 70ns
+force -freeze sim:/activator_skeleton/foward 0 0
+force -freeze sim:/activator_skeleton/b_succ_0 20'hFE83B 0
+force -freeze sim:/activator_skeleton/b_succ_1 20'h00000 0
+force -freeze sim:/activator_skeleton/b_succ_2 20'h00000 0
+force -freeze sim:/activator_skeleton/b_succ_3 20'h00000 0
+force -freeze sim:/activator_skeleton/bck_succ 4'h1 0
+run 50ns
+force -freeze sim:/activator_skeleton/backward 1 0
+run 10ns
+run 10ns
+force -freeze sim:/activator_skeleton/fwd_pred 4'h0 0
+force -freeze sim:/activator_skeleton/bck_succ 4'h1 0
+run 100ns
+force -freeze sim:/activator_skeleton/foward 1 0
+force -freeze sim:/activator_skeleton/backward 0 0
+
+
+
