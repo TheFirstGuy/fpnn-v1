@@ -1,0 +1,10 @@
+added reset to cnt module
+fixed activator state for acc_f to store acc_t
+fixed count reset
+fixed acc_t update value to be half of mult out (shifted bits to the right by 1)
+fixed activator back prop state machine
+
+
+0000.0000 0000 0000 0011 1111 11
+1111.1111 1111 1111 1100 0000 01
+F.FFFC

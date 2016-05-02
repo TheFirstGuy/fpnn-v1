@@ -224,6 +224,7 @@ begin
 	
 
 	west_fdata_out<=west_y;
+	east_fdata_out<=east_y;
 	ew_bdata_out<=west_y;
 	sw_bdata_out<=west_y;
 	we_bdata_out<=east_y;
