@@ -20,6 +20,8 @@ ROC : in STD_LOGIC;REF : in STD_LOGIC;
 --G1,G2,G3,G6: in STD_LOGIC; 
 LEDS: out std_logic_vector(7 downto 0) := "11111111";
 clk : in std_logic; OUTDIGIT: out STD_LOGIC_VECTOR (7 downto 0);
+seg_out: out std_logic_vector(6 downto 0);
+dis: out std_logic_vector(7 downto 0);
 ANODE : out STD_LOGIC_VECTOR (3 downto 0);RST: in std_logic	:= '0'
 );
 end DISPLAY_UNIT;
@@ -61,8 +63,8 @@ component RS232RefComp
    Port (  	TXD 	: out	std_logic	:= '1';
 		 	RXD 	: in	std_logic;					
   		 	CLK 	: in	std_logic;							
-			DBIN 	: in	std_logic_vector (7 downto 0);
-			DBOUT 	: out	std_logic_vector (7 downto 0);
+			DBIN 	: in	std_logic_vector (19 downto 0);
+			DBOUT,DBOUT2,DBOUT3 	: out	std_logic_vector (19 downto 0);
 			RDA		: inout	std_logic;							
 			TBE		: inout	std_logic 	:= '1';				
 			RD		: in	std_logic;							
@@ -84,8 +86,8 @@ COMPONENT HEX2ASC
 	type StateType is (Idle, cnt, receive,Decide, send1, send2,
 	                   stInput,stOutput,Test_vector,DisplayI );
 
-	signal dbInSig	:	std_logic_vector(7 downto 0);
-	signal dbOutSig:  std_logic_vector(7 downto 0);
+	signal dbInSig	:	std_logic_vector(19 downto 0);
+	signal dbOutSig, dbOutSig2, dbOutSig3:  std_logic_vector(19 downto 0);
 	signal rdaSig	:	std_logic;
 	signal tbeSig	:	std_logic;
 	signal rdSig	:	std_logic;
@@ -95,13 +97,16 @@ COMPONENT HEX2ASC
 	signal oeSig	:	std_logic;
 	signal state	:	StateType;
    signal RST_TEMP:	Std_logic;
-   signal reg_in  :  std_logic_vector(7 downto 0);
+   signal reg_in  :  std_logic_vector(19 downto 0);
 	signal count   :  std_logic_vector(3 downto 0);
 	signal ro		:  std_logic_vector(63 downto 0);
    signal St_indic:  std_logic_vector(2 downto 0);
 	signal Rflag   :  std_logic_vector(M-1 downto 0);
 	Signal Shift_Length:  std_logic_vector(M-1 downto 0);
 	signal tv   	:  std_logic_vector(N-1 downto 0);
+	signal i_cntx: std_logic_vector(2 downto 0);
+	signal big_counter: std_logic_vector(31 downto 0);
+	signal temps: std_logic_vector (3 downto 0);
    
 signal osc,out1,GEX : std_logic;
 signal G1,G2,G3,G6,G7,EN,D: std_logic;
@@ -111,6 +116,59 @@ signal countR,count_RO,count_RO_t,count1: std_logic_vector(31 downto 0);
 signal packet: std_logic_vector(N-1 downto 0);
 
 begin
+PROCESS(clk)  BEGIN
+IF(clk'EVENT AND clk='1') THEN
+	    big_counter<=big_counter+'1';    
+
+END IF;
+END PROCESS;  
+i_cntx <= big_counter(13 downto 11); 
+
+with temps select
+seg_out <= "0000001" when "0000",
+			  "1001111" when "0001",
+			  "0010010" when "0010",
+			  "0000110" when "0011",
+			  "1001100" when "0100",
+			  "0100100" when "0101",
+			  "0100000" when "0110",
+			  "0001111" when "0111",
+			  "0000000" when "1000",
+			  "0000100" when "1001",
+			  "0001000" when "1010",
+			  "1100000" when "1011",
+			  "0110001" when "1100",
+			  "1000010" when "1101",
+			  "0110000" when "1110",
+			  "0111000" when "1111",
+			  "1111110" when others;
+			  
+
+with i_cntx select
+ dis<= "11111110" when "000",
+		"11111101" when "001",
+		"11111011" when "010",
+		"11110111" when "011",
+		"11101111" when "100",
+		"11011111" when "101",
+		"10111111" when "110",
+		"01111111" when "111",
+		"11111111" when others;
+		
+
+with i_cntx select
+temps <= dbOutSig(3 downto 0) when "000",
+dbOutSig(7 downto 4) when "001",
+dbOutSig(11 downto 8) when "010",
+dbOutSig(15 downto 12) when "011",
+dbOutSig(19 downto 16) when "100",
+dbOutSig2(3 downto 0) when "101",
+dbOutSig2(7 downto 4) when "110",
+dbOutSig2(11 downto 8) when others;	
+
+
+
+
 Shift_Length<= std_logic_vector( to_unsigned( N,M ));
 --	LEDS(7) <= Count_RO_t(0);
 --	LEDS(6) <= Count_RO_t(1);
@@ -141,6 +199,8 @@ Shift_Length<= std_logic_vector( to_unsigned( N,M ));
 									CLK 	=> CLK,
 									DBIN 	=> dbInSig,
 									DBOUT	=> dbOutSig,
+									DBOUT2 => dbOutSig2,
+									DBOUT3 => dbOutSig3,
 									RDA		=> rdaSig,
 									TBE		=> tbeSig,	
 									RD		=> rdSig,
@@ -282,25 +342,25 @@ process(clk, rst)
 		  when stoutput   => 
 		  
 		  if count = "0001" then
-		  dbInSig <=x"20";
+		  dbInSig <=x"00020";
 		  ELSif count = "1010" then
-		  dbInSig <=x"0A";
+		  dbInSig <=x"0000A";
 		  elsif count = "0010" then
-		  dbInSig <=ro (63 downto 56);
+		  dbInSig <=ro (63 downto 44);
 		  elsif count = "0011" then
-		  dbInSig <=ro (55 downto 48);
+		  dbInSig <=ro (43 downto 24);
 			elsif count = "0100" then
-		  dbInSig <=ro (47 downto 40);
+		  dbInSig <=ro (23 downto 4);
 			elsif count = "0101" then
-		  dbInSig <=ro (39 downto 32);
-			elsif count = "0110" then
-		  dbInSig <=ro (31 downto 24);
-			elsif count = "0111" then
-		  dbInSig <=ro (23 downto 16);
-			elsif count = "1000" then
-		  dbInSig <=ro (15 downto 8);
-			elsif count = "1001" then
-		  dbInSig <=ro (7 downto 0);
+		  dbInSig <=ro (3 downto 0) & x"0000";
+			--elsif count = "0110" then
+		 -- dbInSig <=ro (31 downto 24);
+			--elsif count = "0111" then
+		 -- dbInSig <=ro (23 downto 16);
+			--elsif count = "1000" then
+		 -- dbInSig <=ro (15 downto 8);
+			--elsif count = "1001" then
+		  --dbInSig <=ro (7 downto 0);
 		  end if;
 
 							         rdsig<='0'; wrsig<='0';

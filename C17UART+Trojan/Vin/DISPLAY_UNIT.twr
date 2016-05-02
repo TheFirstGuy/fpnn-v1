@@ -4,8 +4,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 C:\Documents\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise
 -v 3 -s 3 -n 3 -fastpaths -xml DISPLAY_UNIT.twx DISPLAY_UNIT.ncd -o
-DISPLAY_UNIT.twr DISPLAY_UNIT.pcf -ucf DISPLAY_UNIT.ucf -ucf
-Nexys4DDR_Master.ucf
+DISPLAY_UNIT.twr DISPLAY_UNIT.pcf -ucf DISPLAY_UNIT.ucf
 
 Design file:              DISPLAY_UNIT.ncd
 Physical constraint file: DISPLAY_UNIT.pcf
@@ -38,7 +37,7 @@ Setup/Hold to clock clk
             |Max Setup to|  Process   |Max Hold to |  Process   |                  | Clock  |
 Source      | clk (edge) |   Corner   | clk (edge) |   Corner   |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------+------------+------------------+--------+
-RST         |    0.604(R)|      FAST  |    1.792(R)|      SLOW  |clk_BUFGP         |   0.000|
+RST         |    0.020(R)|      FAST  |    1.780(R)|      SLOW  |clk_BUFGP         |   0.000|
 ------------+------------+------------+------------+------------+------------------+--------+
 
 Clock clk to Pad
@@ -46,13 +45,14 @@ Clock clk to Pad
             |Max (slowest) clk|  Process   |Min (fastest) clk|  Process   |                  | Clock  |
 Destination |  (edge) to PAD  |   Corner   |  (edge) to PAD  |   Corner   |Internal Clock(s) | Phase  |
 ------------+-----------------+------------+-----------------+------------+------------------+--------+
-LEDS<0>     |        15.590(R)|      SLOW  |         6.175(R)|      FAST  |clk_BUFGP         |   0.000|
-LEDS<1>     |        10.197(R)|      SLOW  |         3.916(R)|      FAST  |clk_BUFGP         |   0.000|
-LEDS<3>     |        10.028(R)|      SLOW  |         3.851(R)|      FAST  |clk_BUFGP         |   0.000|
-LEDS<4>     |        10.102(R)|      SLOW  |         3.915(R)|      FAST  |clk_BUFGP         |   0.000|
-LEDS<5>     |         9.577(R)|      SLOW  |         3.605(R)|      FAST  |clk_BUFGP         |   0.000|
-LEDS<6>     |         9.626(R)|      SLOW  |         3.650(R)|      FAST  |clk_BUFGP         |   0.000|
-LEDS<7>     |         9.464(R)|      SLOW  |         3.572(R)|      FAST  |clk_BUFGP         |   0.000|
+dis<0>      |        10.126(R)|      SLOW  |         3.767(R)|      FAST  |clk_BUFGP         |   0.000|
+dis<1>      |        10.134(R)|      SLOW  |         3.759(R)|      FAST  |clk_BUFGP         |   0.000|
+dis<2>      |        10.473(R)|      SLOW  |         3.943(R)|      FAST  |clk_BUFGP         |   0.000|
+dis<3>      |        10.409(R)|      SLOW  |         3.883(R)|      FAST  |clk_BUFGP         |   0.000|
+dis<4>      |         9.760(R)|      SLOW  |         3.559(R)|      FAST  |clk_BUFGP         |   0.000|
+dis<5>      |        10.138(R)|      SLOW  |         3.768(R)|      FAST  |clk_BUFGP         |   0.000|
+dis<6>      |        11.261(R)|      SLOW  |         4.269(R)|      FAST  |clk_BUFGP         |   0.000|
+dis<7>      |        10.449(R)|      SLOW  |         3.802(R)|      FAST  |clk_BUFGP         |   0.000|
 ------------+-----------------+------------+-----------------+------------+------------------+--------+
 
 Clock to Setup on destination clock clk
@@ -60,18 +60,18 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    2.797|         |         |         |
+clk            |    2.701|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Tue Apr 26 01:59:34 2016 
+Analysis completed Sun May 01 21:58:11 2016 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 672 MB
+Peak Memory Usage: 674 MB
 
 
 

@@ -3,17 +3,14 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pn" timeStamp="Tue Apr 26 01:58:56 2016">
+<application name="pn" timeStamp="Sun May 01 21:57:34 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="8A158F19B83C4036A7A98729162EDF8D" type="project"/>
-<property name="ProjectIteration" value="1" type="project"/>
-<property name="ProjectFile" value="C:/Users/Steyr/Documents/FPNN/C17UART+Trojan/Vin/Vin.xise" type="project"/>
+<property name="ProjectIteration" value="2" type="project"/>
+<property name="ProjectFile" value="C:/Users/Steyr/Documents/C17UART+Trojan/Vin/Vin.xise" type="project"/>
 <property name="ProjectCreationTimestamp" value="2010-07-28T20:14:43" type="project"/>
 </section>
 <section name="Project Statistics" visible="true">
-<property name="PROPEXT_xstUseClockEnable_virtex5" value="Yes" type="process"/>
-<property name="PROPEXT_xstUseSyncReset_virtex5" value="Yes" type="process"/>
-<property name="PROPEXT_xstUseSyncSet_virtex5" value="Yes" type="process"/>
 <property name="PROP_Enable_Message_Filtering" value="false" type="design"/>
 <property name="PROP_FitterReportFormat" value="HTML" type="process"/>
 <property name="PROP_LastAppliedGoal" value="Balanced" type="design"/>
@@ -27,10 +24,9 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="PROP_UserConstraintEditorPreference" value="Text Editor" type="process"/>
 <property name="PROP_intProjectCreationTimestamp" value="2010-07-28T20:14:43" type="design"/>
 <property name="PROP_intWbtProjectID" value="8A158F19B83C4036A7A98729162EDF8D" type="design"/>
-<property name="PROP_intWbtProjectIteration" value="1" type="process"/>
+<property name="PROP_intWbtProjectIteration" value="2" type="process"/>
 <property name="PROP_intWorkingDirLocWRTProjDir" value="Same" type="design"/>
 <property name="PROP_intWorkingDirUsed" value="No" type="design"/>
-<property name="PROPEXT_mapTimingMode_virtex5" value="Non Timing Driven" type="process"/>
 <property name="PROP_AutoTop" value="true" type="design"/>
 <property name="PROP_DevFamily" value="Artix7" type="design"/>
 <property name="PROP_DevDevice" value="xc7a100t" type="design"/>

@@ -23,8 +23,8 @@ entity Rs232RefComp is
 		TXD 	: out std_logic  	:= '1';
     	RXD 	: in  std_logic;					
     	CLK 	: in  std_logic;								--Master Clock = 50MHz
-		DBIN 	: in  std_logic_vector (7 downto 0);	--Data Bus in
-		DBOUT : out std_logic_vector (7 downto 0);	--Data Bus out
+		DBIN: in  std_logic_vector (19 downto 0);	--Data Bus in
+		DBOUT, DBOUT2, DBOUT3 : out std_logic_vector (19 downto 0);	--Data Bus out
 		RDA	: inout std_logic;						--Read Data Available
 		TBE	: inout std_logic 	:= '1';			--Transfer Bus Empty
 		RD		: in  std_logic;					--Read Strobe
@@ -70,9 +70,9 @@ architecture Behavioral of Rs232RefComp is
 ------------------------------------------------------------------------
 	constant baudDivide : std_logic_vector(7 downto 0) := "10100011"; 	--Baud Rate dividor, set now for a rate of 9600.
 																								--Found by dividing 50MHz by 9600 and 16.
-	signal rdReg	:  std_logic_vector(7 downto 0) := "00000000";			--Receive holding register
+	signal rdReg	:  std_logic_vector(59 downto 0) := x"000000000000000";			--Receive holding register
 	signal rdSReg	:  std_logic_vector(9 downto 0) := "1111111111";		--Receive shift register
-	signal tfReg	:  std_logic_vector(7 downto 0);								--Transfer holding register
+	signal tfReg	:  std_logic_vector(19 downto 0);								--Transfer holding register
 	signal tfSReg  :  std_logic_vector(10 downto 0) 	:= "11111111111";	--Transfer shift register
 	signal clkDiv	:  std_logic_vector(8 downto 0)	:= "000000000";		--used for rClk
 	signal rClkDiv :  std_logic_vector(3 downto 0)	:= "0000";				--used for tClk
@@ -107,7 +107,9 @@ architecture Behavioral of Rs232RefComp is
 begin
 	frameError <= not rdSReg(9);
 	parError <= not ( rdSReg(8) xor (((rdSReg(0) xor rdSReg(1)) xor (rdSReg(2) xor rdSReg(3))) xor ((rdSReg(4) xor rdSReg(5)) xor (rdSReg(6) xor rdSReg(7)))) );
-	DBOUT <= rdReg;
+	DBOUT <= rdReg(59 downto 40);
+	DBOUT2 <= rdReg(39 downto 20);
+	DBOUT3 <= rdReg(19 downto 0);
 	tfReg <= DBIN;
 	par <=  not ( ((tfReg(0) xor tfReg(1)) xor (tfReg(2) xor tfReg(3))) xor ((tfReg(4) xor tfReg(5)) xor (tfReg(6) xor tfReg(7))) );
 
