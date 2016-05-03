@@ -256,19 +256,19 @@ component err is
 end component;
 
 component RS232RefComp
-   port (  	TXD 	: out	std_logic	:= '1';
-		 	RXD 	: in	std_logic;					
-  		 	CLK 	: in	std_logic;							
-			DBIN 	: in	std_logic_vector (19 downto 0);
-			DBOUT,DBOUT2,DBOUT3 	: out	std_logic_vector (19 downto 0);
-			RDA		: inout	std_logic;							
-			TBE		: inout	std_logic 	:= '1';				
-			RD		: in	std_logic;							
-			WR		: in	std_logic;							
-			PE		: out	std_logic;							
-			FE		: out	std_logic;							
-			OE		: out	std_logic;											
-			RST		: in	std_logic	:= '0');				
+    Port ( TXD 	: out std_logic  	:= '1';
+           RXD 	: in  std_logic;					
+    	   CLK 	: in  std_logic;       --Master Clock = 50MHz
+		   DBIN: in  std_logic_vector (19 downto 0);      --Data Bus in
+		   DBOUT, DBOUT2, DBOUT3 : out std_logic_vector (19 downto 0);    --Data Bus out
+		   RDA	: inout std_logic;     --Read Data Available
+           TBE	: inout std_logic 	:= '1';   --Transfer Bus Empty
+           RD		: in  std_logic;     --Read Strobe
+           WR		: in  std_logic;     --Write Strobe
+           PE		: out std_logic;     --Parity Error Flag
+           FE		: out std_logic;     --Frame Error Flag
+           OE		: out std_logic;     --Overwrite Error Flag
+           RST		: in  std_logic	:= '0');    --Master Reset				
 end component;
 
 --Node to network CU
@@ -299,7 +299,7 @@ SIGNAL ground: STD_LOGIC := '0'; -- to sink open inputs
 SIGNAL openGround: STD_LOGIC_VECTOR(13 DOWNTO 0);-- To sink partially mapped vectors 
 SIGNAL sink: STD_LOGIC_VECTOR(5 DOWNTO 0);-- Another sink 
 begin
-    CU: control_unit port map( clk=>clk, rst=>reset, f_init=>net_fwd_done, f_val=>input1_fwd_req(0), b_val=>back_prop_done(0), io_val=>RDA, bcast_en=>broadcast, io_rdy=>, f_en=>forward , b_en=>backward);
+    CU: control_unit port map( clk=>clk, rst=>reset, f_init=>net_fwd_done, f_val=>input1_fwd_req(0), b_val=>back_prop_done(0), io_val=>RDA, bcast_en=>broadcast, io_rdy=>RDA, f_en=>forward , b_en=>backward);
     ERROR: err port map(clk=>clk, rst=>reset, en=>back_prop_done(0), rslt=>o_y, c_val=>,err=>b_succ_0);
 
 	IL1: link_skeleton PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 
