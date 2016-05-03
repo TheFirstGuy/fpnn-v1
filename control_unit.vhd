@@ -63,6 +63,8 @@ begin
             b <= '0';
         elsif (clk'event and clk = '1') then
             case state is
+                when ST_RST => 
+                    state <= ST_BCAST; --Switch to Broadcast State
                 when ST_BCAST =>    --Broadcast State
                     if (cnt = "1000") then  --Enable for 8 clock cycles (2x Port Verify)
                         state <= ST_IO;     --Switch to I/O Ready State

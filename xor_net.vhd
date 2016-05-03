@@ -233,6 +233,44 @@ back_pred: OUT STD_LOGIC_VECTOR( 3 DOWNTO 0 ) -- Sends request to preds that bac
 );
 end component;
 
+component control_unit is
+    port ( clk : in std_logic;  --Clock
+           rst : in std_logic;  --Reset
+           f_init : in std_logic;   --Forward Initialize
+           f_val : in std_logic;    --Forward Valid
+           b_val : in std_logic;    --Backward Valid
+           io_val : in std_logic;   --I/O Ready
+           bcast_en : out std_logic;    --Broadcast Enable
+           io_rdy : out std_logic;  --I/O Ready
+           f_en : out std_logic;    --Forward Enable
+           b_en : out std_logic);   --Backward Enable
+end component;
+
+component err is
+    port ( clk : in std_logic;  --Clock
+           rst : in std_logic;  --Reset
+           en : in std_logic; --Enable Calculation
+           rslt : in std_logic_vector(19 downto 0); --Calculated Result
+           c_val : in std_logic_vector(19 downto 0);    --Classification Value
+           err : out std_logic_vector(19 downto 0));    --Calculated Error
+end component;
+
+component RS232RefComp
+   port (  	TXD 	: out	std_logic	:= '1';
+		 	RXD 	: in	std_logic;					
+  		 	CLK 	: in	std_logic;							
+			DBIN 	: in	std_logic_vector (19 downto 0);
+			DBOUT,DBOUT2,DBOUT3 	: out	std_logic_vector (19 downto 0);
+			RDA		: inout	std_logic;							
+			TBE		: inout	std_logic 	:= '1';				
+			RD		: in	std_logic;							
+			WR		: in	std_logic;							
+			PE		: out	std_logic;							
+			FE		: out	std_logic;							
+			OE		: out	std_logic;											
+			RST		: in	std_logic	:= '0');				
+end component;
+
 --Node to network CU
 SIGNAL broadcast: STD_LOGIC;
 SIGNAL forward: STD_LOGIC;
@@ -261,6 +299,8 @@ SIGNAL ground: STD_LOGIC := '0'; -- to sink open inputs
 SIGNAL openGround: STD_LOGIC_VECTOR(13 DOWNTO 0);-- To sink partially mapped vectors 
 SIGNAL sink: STD_LOGIC_VECTOR(5 DOWNTO 0);-- Another sink 
 begin
+    CU: control_unit port map( clk=>clk, rst=>reset, f_init=>net_fwd_done, f_val=>input1_fwd_req(0), b_val=>back_prop_done(0), io_val=>RDA, bcast_en=>broadcast, io_rdy=>, f_en=>forward , b_en=>backward);
+    ERROR: err port map(clk=>clk, rst=>reset, en=>back_prop_done(0), rslt=>o_y, c_val=>,err=>b_succ_0);
 
 	IL1: link_skeleton PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 
 	fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in1_br, bck_succ(1)=>n1_in1_br, bck_succ(3 DOWNTO 2)=>"00",

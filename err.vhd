@@ -35,6 +35,7 @@ use IEEE.STD_LOGIC_SIGNED.ALL;
 entity err is
     Port ( clk : in std_logic;  --Clock
            rst : in std_logic;  --Reset
+           en : in std_logic; --Enable Calculation
            rslt : in std_logic_vector(19 downto 0); --Calculated Result
            c_val : in std_logic_vector(19 downto 0);    --Classification Value
            err : out std_logic_vector(19 downto 0));    --Calculated Error
@@ -49,7 +50,9 @@ begin
             if (rst = '1') then
                 err_val <= (others => '0');
             else
-                err_val <= c_val - rslt;    --Calculate Error (Classification - Result)
+                if (en = '1') then --Calculate After Backpropagation
+                    err_val <= c_val - rslt;    --Calculate Error (Classification - Result)
+                end if;
             end if;
         end if;
     end process calc_err;
