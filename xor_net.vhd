@@ -21,6 +21,21 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity xor_net is
+generic (
+	rand1  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand2  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand3  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand4  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand5  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand6  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand7  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand8  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand9  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand10 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand11 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand12 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand13 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000"
+	);
 PORT(
 clk: IN STD_LOGIC;
 reset: IN STD_LOGIC;
@@ -36,6 +51,7 @@ end xor_net;
 architecture Behavioral of xor_net is
 
 component link_skeleton is
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
 PORT(
 --Input
 --Forward Control Signals
@@ -81,6 +97,12 @@ back_pred: OUT STD_LOGIC_VECTOR( 3 DOWNTO 0 ) -- Sends request to preds that bac
 end component;
 
 component neuron is
+generic (
+	rand1: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand2: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand4: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000"
+	);
 PORT(
 	--Control
 	clk: IN STD_LOGIC;
@@ -139,6 +161,11 @@ PORT(
 end component;
 
 component corner_neuron is
+generic (
+	rand1: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand2: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000"
+	);
 PORT(
 	--Control
 	clk: IN STD_LOGIC;
@@ -187,6 +214,7 @@ PORT(
 end component;
 
 component activator_skeleton is
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
 PORT(
 --Input
 --Forward Control Signals
@@ -262,64 +290,82 @@ SIGNAL openGround: STD_LOGIC_VECTOR(13 DOWNTO 0);-- To sink partially mapped vec
 SIGNAL sink: STD_LOGIC_VECTOR(5 DOWNTO 0);-- Another sink 
 begin
 
-	IL1: link_skeleton PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 
-	fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in1_br, bck_succ(1)=>n1_in1_br, bck_succ(3 DOWNTO 2)=>"00",
-	backward=>backward, update=>update, broadcast=>broadcast, x_pred_0=>uart_in1, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
-	b_succ_0=>n3_in1, b_succ_1=>n1_in1, b_succ_2=>X"00000", b_succ_3=>X"00000", y=>input1Node1, fwd_succ=>input1_fwd_req, 
-	back_pred(0)=>back_prop_done(0), back_pred(3 DOWNTO 1)=>sink(2 DOWNTO 0));
+	IL1: link_skeleton 
+	GENERIC MAP (rand => rand1)
+	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 
+		fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in1_br, bck_succ(1)=>n1_in1_br, bck_succ(3 DOWNTO 2)=>"00",
+		backward=>backward, update=>update, broadcast=>broadcast, x_pred_0=>uart_in1, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
+		b_succ_0=>n3_in1, b_succ_1=>n1_in1, b_succ_2=>X"00000", b_succ_3=>X"00000", y=>input1Node1, fwd_succ=>input1_fwd_req, 
+		back_pred(0)=>back_prop_done(0), back_pred(3 DOWNTO 1)=>sink(2 DOWNTO 0));
 
-	IL2: link_skeleton PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred2,
-	fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in2_br, bck_succ(1)=>n2_in2_br, bck_succ(3 DOWNTO 2)=>"00",
-	backward=>backward, update=>update, broadcast=>broadcast, x_pred_0=>uart_in2, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
-	b_succ_0=>n3_in2, b_succ_1=>n2_in2, b_succ_2=>X"00000", b_succ_3=>X"00000", y=>input2Node2, fwd_succ=>input2_fwd_req,
-	back_pred(0)=>back_prop_done(1), back_pred(3 DOWNTO 1)=>sink(5 DOWNTO 3));
+	IL2: link_skeleton 
+	GENERIC MAP (rand => rand2)
+	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred2,
+		fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in2_br, bck_succ(1)=>n2_in2_br, bck_succ(3 DOWNTO 2)=>"00",
+		backward=>backward, update=>update, broadcast=>broadcast, x_pred_0=>uart_in2, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
+		b_succ_0=>n3_in2, b_succ_1=>n2_in2, b_succ_2=>X"00000", b_succ_3=>X"00000", y=>input2Node2, fwd_succ=>input2_fwd_req,
+		back_pred(0)=>back_prop_done(1), back_pred(3 DOWNTO 1)=>sink(5 DOWNTO 3));
 
 	--South port is input link
 	--Node 1 connects to input link 1, to the middle neuron (node3) and to the output neuron (node4)
 	--Because it is a corner node, the east link has been removed.
-	Node1: corner_neuron PORT MAP( clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
-	backward=>backward, update=>update, reset=>reset, south_fdata_in=>input1Node1, sw_bdata_out=>n3_in1, sa_bdata_out=>n1_in1,
-	sw_in_r=>input1_fwd_req(0), sa_in_r=>input1_fwd_req(1), sw_out_r=>n3_in1_br, sa_out_r=>n1_in1_br,
-	east_fdata_in=>X"00000", ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r=>ground, ew_in_r=>ground, ea_out_r=>open,
-	ew_out_r=>open, west_fdata_in=>n3_n1_y, wa_bdata_out=>n1_n3_b, wa_in_r=>n3_n1_fr, wa_out_r=>n1_n3_br, 
-	north_fdata_out=>n1_n4_y, north_bdata_in0=>n4_b, north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", north_bdata_in3=>X"00000",
-	north_r=>n1_nfr, north_br(0)=>n4_br(0), north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
-	west_fdata_out=>n1_n3_y, west_bdata_in0=>n3_b, west_bdata_in1=>n3_n1_b, west_bdata_in2=>X"00000", west_bdata_in3=>X"00000",
-	west_r=>n1_n3_fr, west_br=>n3_n1_br);
+	Node1: corner_neuron 
+	GENERIC MAP (rand1 => rand3)
+	GENERIC MAP (rand2 => rand4)
+	GENERIC MAP (rand3 => rand5)
+	PORT MAP( clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
+		backward=>backward, update=>update, reset=>reset, south_fdata_in=>input1Node1, sw_bdata_out=>n3_in1, sa_bdata_out=>n1_in1,
+		sw_in_r=>input1_fwd_req(0), sa_in_r=>input1_fwd_req(1), sw_out_r=>n3_in1_br, sa_out_r=>n1_in1_br,
+		east_fdata_in=>X"00000", ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r=>ground, ew_in_r=>ground, ea_out_r=>open,
+		ew_out_r=>open, west_fdata_in=>n3_n1_y, wa_bdata_out=>n1_n3_b, wa_in_r=>n3_n1_fr, wa_out_r=>n1_n3_br, 
+		north_fdata_out=>n1_n4_y, north_bdata_in0=>n4_b, north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", north_bdata_in3=>X"00000",
+		north_r=>n1_nfr, north_br(0)=>n4_br(0), north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
+		west_fdata_out=>n1_n3_y, west_bdata_in0=>n3_b, west_bdata_in1=>n3_n1_b, west_bdata_in2=>X"00000", west_bdata_in3=>X"00000",
+		west_r=>n1_n3_fr, west_br=>n3_n1_br);
 	
 	--Node 2 connections to input link 2, to the middle neuron (node3) and to the output neuron (node 4)
-	Node2: corner_neuron PORT MAP( clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
-	backward=>backward, update=>update, reset=>reset, south_fdata_in=>input2Node2, sw_bdata_out=>n3_in2, sa_bdata_out=>n2_in2,
-	sw_in_r=>input2_fwd_req(0), sa_in_r=>input2_fwd_req(1), sw_out_r=>n3_in2_br, sa_out_r=>n2_in2_br,
-	east_fdata_in=>X"00000", ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r=>ground, ew_in_r=>ground, ea_out_r=>open,
-	ew_out_r=>open, west_fdata_in=>n3_n2_y, wa_bdata_out=>n2_n3_b, wa_in_r=>n3_n2_fr, wa_out_r=>n2_n3_br, 
-	north_fdata_out=>n2_n4_y, north_bdata_in0=>n4_b, north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", north_bdata_in3=>X"00000",
-	north_r=>n2_nfr, north_br(0)=>n4_br(2), north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
-	west_fdata_out=>n2_n3_y, west_bdata_in0=>n3_b, west_bdata_in1=>n3_n2_b, west_bdata_in2=>X"00000", west_bdata_in3=>X"00000",
-	west_r=>n2_n3_fr, west_br=>n3_n2_br);
+	Node2: corner_neuron 
+	GENERIC MAP (rand1 => rand6)
+	GENERIC MAP (rand2 => rand7)
+	GENERIC MAP (rand3 => rand8)
+	PORT MAP( clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
+		backward=>backward, update=>update, reset=>reset, south_fdata_in=>input2Node2, sw_bdata_out=>n3_in2, sa_bdata_out=>n2_in2,
+		sw_in_r=>input2_fwd_req(0), sa_in_r=>input2_fwd_req(1), sw_out_r=>n3_in2_br, sa_out_r=>n2_in2_br,
+		east_fdata_in=>X"00000", ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r=>ground, ew_in_r=>ground, ea_out_r=>open,
+		ew_out_r=>open, west_fdata_in=>n3_n2_y, wa_bdata_out=>n2_n3_b, wa_in_r=>n3_n2_fr, wa_out_r=>n2_n3_br, 
+		north_fdata_out=>n2_n4_y, north_bdata_in0=>n4_b, north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", north_bdata_in3=>X"00000",
+		north_r=>n2_nfr, north_br(0)=>n4_br(2), north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
+		west_fdata_out=>n2_n3_y, west_bdata_in0=>n3_b, west_bdata_in1=>n3_n2_b, west_bdata_in2=>X"00000", west_bdata_in3=>X"00000",
+		west_r=>n2_n3_fr, west_br=>n3_n2_br);
 	
 	--Node 3 is the central neuron. It recieves its inputs from its link connections from node 1 and 2. 
 	-- Node 3 is a full neuron with bi direction links and an output link
-	Node3: neuron PORT MAP(clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
-	backward=>backward, update=>update, reset=>reset, south_fdata_in=>X"00000", sw_bdata_out=>open, sa_bdata_out=>open, se_bdata_out=>open,
-	sw_in_r=>ground, sa_in_r=>ground, se_in_r=>ground, sw_out_r=>open, sa_out_r=>open, se_out_r=>open,
-	east_fdata_in=>n2_n3_y, ew_bdata_out=>n3_n2_b, ea_bdata_out=>n3_b, ea_in_r =>n2_n3_fr(0), ew_in_r=>n2_n3_fr(1),
-	ea_out_r=>n3_n2_br(0), ew_out_r=>n3_n2_br(1), west_fdata_in=>n1_n3_y, we_bdata_out=>n3_n1_b, wa_bdata_out=>n3_b,
-	wa_in_r=>n1_n3_fr(0), we_in_r=>n1_n3_fr(1), wa_out_r=>n3_n1_br(0), we_out_r=>n3_n1_br(1),
-	north_fdata_out=>n3_n4_y, north_bdata_in0=>n4_b, north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", 
-	north_bdata_in3=>X"00000", north_r=>n3_nfr, north_br(0)=>n4_br(1), north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
-	east_fdata_out=>n3_n2_y, east_bdata_in0=>n2_n3_b, east_bdata_in1=>X"00000", east_bdata_in2=>X"00000",
-	east_bdata_in3=>X"00000", east_r(0)=>n3_n2_fr, east_r(3 DOWNTO 1)=>openGround(2 DOWNTO 0), east_br(0)=>n3_n2_br(0), east_br(3 DOWNTO 1)=>openGround(5 DOWNTO 3),west_fdata_out=>n3_n1_y,
-	west_bdata_in0=>n1_n3_b, west_bdata_in1=>X"00000", west_bdata_in2=>X"00000", west_bdata_in3=>X"00000", west_r(0)=>n3_n1_fr, west_r(3 DOWNTO 1)=>openGround(8 DOWNTO 6),
-	west_br(0)=>n1_n3_br, west_br(3 DOWNTO 1)=>"000");
+	Node3: neuron 
+	GENERIC MAP (rand1 => rand9)
+	GENERIC MAP (rand2 => rand10)
+	GENERIC MAP (rand3 => rand11)
+	GENERIC MAP (rand4 => rand12)
+	PORT MAP(clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
+		backward=>backward, update=>update, reset=>reset, south_fdata_in=>X"00000", sw_bdata_out=>open, sa_bdata_out=>open, se_bdata_out=>open,
+		sw_in_r=>ground, sa_in_r=>ground, se_in_r=>ground, sw_out_r=>open, sa_out_r=>open, se_out_r=>open,
+		east_fdata_in=>n2_n3_y, ew_bdata_out=>n3_n2_b, ea_bdata_out=>n3_b, ea_in_r =>n2_n3_fr(0), ew_in_r=>n2_n3_fr(1),
+		ea_out_r=>n3_n2_br(0), ew_out_r=>n3_n2_br(1), west_fdata_in=>n1_n3_y, we_bdata_out=>n3_n1_b, wa_bdata_out=>n3_b,
+		wa_in_r=>n1_n3_fr(0), we_in_r=>n1_n3_fr(1), wa_out_r=>n3_n1_br(0), we_out_r=>n3_n1_br(1),
+		north_fdata_out=>n3_n4_y, north_bdata_in0=>n4_b, north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", 
+		north_bdata_in3=>X"00000", north_r=>n3_nfr, north_br(0)=>n4_br(1), north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
+		east_fdata_out=>n3_n2_y, east_bdata_in0=>n2_n3_b, east_bdata_in1=>X"00000", east_bdata_in2=>X"00000",
+		east_bdata_in3=>X"00000", east_r(0)=>n3_n2_fr, east_r(3 DOWNTO 1)=>openGround(2 DOWNTO 0), east_br(0)=>n3_n2_br(0), east_br(3 DOWNTO 1)=>openGround(5 DOWNTO 3),west_fdata_out=>n3_n1_y,
+		west_bdata_in0=>n1_n3_b, west_bdata_in1=>X"00000", west_bdata_in2=>X"00000", west_bdata_in3=>X"00000", west_r(0)=>n3_n1_fr, west_r(3 DOWNTO 1)=>openGround(8 DOWNTO 6),
+		west_br(0)=>n1_n3_br, west_br(3 DOWNTO 1)=>"000");
 
 	--Node 4 is simply an activator. When forward request is sent from Node4, forward activation is complete.
-	Node4: activator_skeleton PORT MAP( clk=>clk, reset=>reset, still_fwd=>still_fwd, fwd_pred(0)=>n1_nfr(0), fwd_pred(1)=>n2_nfr(0), fwd_pred(2)=>n3_nfr(0), fwd_pred(3)=>'0',
-	foward=>forward, bck_succ(0)=>error_br, bck_succ(3 DOWNTO 1)=>"000", backward=>backward, broadcast=>broadcast, x_pred_0=>n1_n4_y,
-	x_pred_1=>n2_n4_y, x_pred_2=>n3_n4_y, x_pred_3=>X"00000", b_succ_0=>error_b, b_succ_1=>X"00000", b_succ_2=>X"00000",
-	b_succ_3=>X"00000", y=>o_y, fwd_succ(0)=>net_fwd_done, fwd_succ(3 DOWNTO 1)=>openGround(10 DOWNTO 8), back_pred(2 DOWNTO 0)=>n4_br,
-	back_pred(3)=>openGround(12));
+	Node4: activator_skeleton 
+	GENERIC MAP (rand => rand13)
+	PORT MAP( clk=>clk, reset=>reset, still_fwd=>still_fwd, fwd_pred(0)=>n1_nfr(0), fwd_pred(1)=>n2_nfr(0), fwd_pred(2)=>n3_nfr(0), fwd_pred(3)=>'0',
+		foward=>forward, bck_succ(0)=>error_br, bck_succ(3 DOWNTO 1)=>"000", backward=>backward, broadcast=>broadcast, x_pred_0=>n1_n4_y,
+		x_pred_1=>n2_n4_y, x_pred_2=>n3_n4_y, x_pred_3=>X"00000", b_succ_0=>error_b, b_succ_1=>X"00000", b_succ_2=>X"00000",
+		b_succ_3=>X"00000", y=>o_y, fwd_succ(0)=>net_fwd_done, fwd_succ(3 DOWNTO 1)=>openGround(10 DOWNTO 8), back_pred(2 DOWNTO 0)=>n4_br,
+		back_pred(3)=>openGround(12));
 	
 	n4_b <= o_y;
 end Behavioral;
-
