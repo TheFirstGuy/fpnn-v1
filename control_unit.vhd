@@ -42,38 +42,58 @@ entity control_unit is
            bcast_en : out std_logic;    --Broadcast Enable
            io_rdy : out std_logic;  --I/O Ready
            f_en : out std_logic;    --Forward Enable
-           b_en : out std_logic);   --Backward Enable
+           b_en : out std_logic;   --Backward Enable
+			  u_en : out std_logic); --Update enable
 end control_unit;
 
 architecture Behavioral of control_unit is
-    type  StateType is (ST_RST,ST_BCAST,ST_IO,ST_F,ST_B);   --States
+    type  StateType is (ST_RST,ST_BCAST,ST_IO,ST_F,ST_B,ST_U);   --States
     signal state : StateType;
     signal bcast : std_logic;   --Broadcast Enable Signal
     signal cnt : std_logic_vector(3 downto 0);  --Counter
     signal f : std_logic;   --Forward Enable Signal
     signal b : std_logic;   --Backward Enable Signal
+	 signal u : std_logic;  -- update enable signal
     signal io : std_logic;  --I/O Ready Signal
 begin
     st: process(rst, clk, state) begin
-        if (rst = '0') then --Reset State
+        if (rst = '1') then --Reset State
             state <= ST_RST;
             bcast <= '0';
             io <= '0';
             f <= '0';
             b <= '0';
+				u <= '0';
+				cnt <= "0000";
         elsif (clk'event and clk = '1') then
             case state is
+					 when ST_RST => state <= ST_BCAST;
                 when ST_BCAST =>    --Broadcast State
                     if (cnt = "1000") then  --Enable for 8 clock cycles (2x Port Verify)
                         state <= ST_IO;     --Switch to I/O Ready State
                     else
                         bcast <= '1';
                         cnt <= cnt + 1;
+								io <= '0';
+								f <= '0';
+								b <= '0';
+								u <= '0';
                     end if;
                 when ST_IO =>   --I/O Ready
 					if (io_val = '1') then --Verify I/O Ready
 					   io <= io_val;
 					   state <= ST_F;  --Switch to Forward State when Ready
+						bcast <= '0';
+						f <= '0';
+						b <= '0';
+						u <= '0';
+						cnt <= "0000";
+					else 
+						bcast <= '0';
+						f <= '0';
+						b <= '0';
+						u <= '0';
+						cnt <= "0000";
 					end if;
                 when ST_F =>    --Forward State
 					if (f_init = '0' and f_val = '1') then --Verify if in Learning Phase and Result is Valid
@@ -83,14 +103,33 @@ begin
 					       state <= ST_IO; --Switch to I/O Ready State if Learning
 					   else
 					       f <= '1';   --Forward Enable
+							bcast <= '0';
+							io <= '0';
+							b <= '0';
+							u <= '0';
+							cnt <= "0000";
 					   end if;
 					end if;
                 when ST_B =>    --Backward State
                     if (b_val = '1') then   --Verify Result is Valid
-					   state <= ST_IO; --Switch to I/O Ready State if Valid
+								state <= ST_U; --Switch to update State if Valid
 					else
 					   b <= '1';   --Backward Enable
+						bcast <= '0';
+						io <= '0';
+						f <= '0';
+						u <= '0';
+						cnt <= "0000";
 					end if;
+					 when ST_U => -- Update state
+						b <= '1'; -- keep b for acc_b
+						u <= '1'; -- turn on u for 1 cp
+						bcast <= '0';
+						io <= '0';
+						f <= '0';
+						cnt <= "0000";
+						state <= ST_IO;
+						
                 when others =>
             end case;
         end if;
@@ -100,5 +139,6 @@ begin
    io_rdy <= io;    --I/O Ready
    f_en <= f;   --Forward Enable
    b_en <= b;   --Backward Enable
+	u_en <= u;
 
 end Behavioral;
