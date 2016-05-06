@@ -167,7 +167,7 @@ SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
 SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
 SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
 SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
-
+SIGNAL muxw_sel: STD_LOGIC; -- Controls mux2
 
 begin
 
@@ -226,7 +226,8 @@ WITH backward SELECT
 	mult_enable <= sel_fwd_en_m OR sel_bck_en_m OR update_reg;
 	
 --Multiply W input MUX
-WITH update SELECT
+muxw_sel <= foward NOR update;
+WITH muxw_sel SELECT
 	mult_w_in <= acc_w_out WHEN '0',
 	acc_f_out WHEN '1',
 	acc_w_out WHEN others;
