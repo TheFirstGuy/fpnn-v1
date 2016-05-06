@@ -23,6 +23,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 --Neuron which does not have a north link. Output comes directly from activator
 
 entity o_neuron is
+generic (
+	rand1: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand2: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000"
+	);
 PORT(
 	--Control
 	clk: IN STD_LOGIC;
@@ -81,6 +86,7 @@ end o_neuron;
 architecture Behavioral of o_neuron is
 
 component activator_skeleton
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
 PORT(
 --Input
 --Forward Control Signals
@@ -126,6 +132,7 @@ back_pred: OUT STD_LOGIC_VECTOR( 3 DOWNTO 0 ) -- Sends request to preds that bac
 end component;
 
 component link_skeleton
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
 PORT(
 --Input
 --Forward Control Signals
@@ -185,26 +192,31 @@ SIGNAL ground: STD_LOGIC_VECTOR(7 DOWNTO 0);
 begin
 
 --PORT MAP
-	ACT: activator_skeleton PORT MAP(clk=>clk, reset=>reset, still_fwd=>still_fwd, 
-	fwd_pred(0)=>wa_in_r, fwd_pred(1)=>sa_in_r, fwd_pred(2)=>ea_in_r, fwd_pred(3)=>'0',
-	foward=>forward, bck_succ(0)=>error_req, bck_succ(3 DOWNTO 1)=>"000", backward=>backward,
-	broadcast=>broadcast, x_pred_0=>west_fdata_in, x_pred_1=>south_fdata_in,
-	x_pred_2=>east_fdata_in, b_succ_1=>error, y=>act_out, fwd_succ=>act_fwd_r,
-	back_pred(0)=> wa_out_r, back_pred(1)=>sa_out_r, back_pred(2)=>ea_out_r, back_pred(3)=>ground(0));
+	ACT: activator_skeleton 
+	GENERIC MAP (rand => rand1)
+	PORT MAP(clk=>clk, reset=>reset, still_fwd=>still_fwd, 
+		fwd_pred(0)=>wa_in_r, fwd_pred(1)=>sa_in_r, fwd_pred(2)=>ea_in_r, fwd_pred(3)=>'0',
+		foward=>forward, bck_succ(0)=>error_req, bck_succ(3 DOWNTO 1)=>"000", backward=>backward,
+		broadcast=>broadcast, x_pred_0=>west_fdata_in, x_pred_1=>south_fdata_in,
+		x_pred_2=>east_fdata_in, b_succ_1=>error, y=>act_out, fwd_succ=>act_fwd_r,
+		back_pred(0)=> wa_out_r, back_pred(1)=>sa_out_r, back_pred(2)=>ea_out_r, back_pred(3)=>ground(0));
 	
 	
-	WL: link_skeleton PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>ew_in_r, fwd_pred(1)=>sw_in_r,
-	fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>west_br, backward=>backward, update=>update,
-	broadcast=>broadcast, x_pred_0=>east_fdata_in, x_pred_1=>south_fdata_in, x_pred_2=>open, x_pred_3=>open,
-	b_succ_0=>west_bdata_in0, b_succ_1=>west_bdata_in1, b_succ_2=>west_bdata_in2,
-	b_succ_3=>west_bdata_in3, y=>west_y, fwd_succ=>west_r, back_pred(0)=>ew_out_r, back_pred(1)=>sw_out_r,
-	back_pred(3 DOWNTO 2)=>ground(2 DOWNTO 1));
+	WL: link_skeleton 
+	GENERIC MAP (rand => rand2)
+	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>ew_in_r, fwd_pred(1)=>sw_in_r,
+		fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>west_br, backward=>backward, update=>update,
+		broadcast=>broadcast, x_pred_0=>east_fdata_in, x_pred_1=>south_fdata_in, x_pred_2=>open, x_pred_3=>open,
+		b_succ_0=>west_bdata_in0, b_succ_1=>west_bdata_in1, b_succ_2=>west_bdata_in2,
+		b_succ_3=>west_bdata_in3, y=>west_y, fwd_succ=>west_r, back_pred(0)=>ew_out_r, back_pred(1)=>sw_out_r,
+		back_pred(3 DOWNTO 2)=>ground(2 DOWNTO 1));
 	
-	EL: link_skeleton PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>we_in_r, fwd_pred(1)=>se_in_r, 
-	fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>east_br, backward=>backward, update=>update,
-	broadcast=>broadcast, x_pred_0=>west_fdata_in, x_pred_1=>south_fdata_in, x_pred_2=>open, x_pred_3=>open,
-	b_succ_0=>east_bdata_in0, b_succ_1=>east_bdata_in1, b_succ_2=>east_bdata_in2, b_succ_3=>east_bdata_in3, y=>east_y,
-	fwd_succ=>east_r, back_pred(0)=>we_out_r, back_pred(1)=>se_out_r, back_pred(3 DOWNTO 2)=>ground(7 DOWNTO 6));
+	EL: link_skeleton 
+	GENERIC MAP (rand => rand3)
+	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>we_in_r, fwd_pred(1)=>se_in_r, 
+		fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>east_br, backward=>backward, update=>update,
+		broadcast=>broadcast, x_pred_0=>west_fdata_in, x_pred_1=>south_fdata_in, x_pred_2=>open, x_pred_3=>open,
+		b_succ_0=>east_bdata_in0, b_succ_1=>east_bdata_in1, b_succ_2=>east_bdata_in2, b_succ_3=>east_bdata_in3, y=>east_y,
+		fwd_succ=>east_r, back_pred(0)=>we_out_r, back_pred(1)=>se_out_r, back_pred(3 DOWNTO 2)=>ground(7 DOWNTO 6));
 	
 end Behavioral;
-
