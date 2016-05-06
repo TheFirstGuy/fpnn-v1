@@ -22,6 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_SIGNED.ALL;
 
 entity ACC_W is
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000");
 PORT(
 --Control signals
 clk: IN STD_LOGIC;
@@ -36,8 +37,8 @@ w_out: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 )); -- Output weight
 end ACC_W;
 
 architecture Behavioral of ACC_W is
-SIGNAL weight_reg: STD_LOGIC_VECTOR( 19 DOWNTO 0 ):= X"004A4"; -- Stores the weight of link
-	
+SIGNAL weight_reg: STD_LOGIC_VECTOR( 19 DOWNTO 0 ):= rand; -- Stores the weight of link
+
 begin
 
 -- Update weight after back propagation is complete

@@ -21,6 +21,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity link_skeleton is
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000");
 PORT(
 --Input
 --Forward Control Signals
@@ -93,6 +94,7 @@ component acc_f is
 end component;
 
 component ACC_W is
+	generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
 	PORT(
 			 clk: IN STD_LOGIC;
 		write_w: IN STD_LOGIC; -- enable controlled by rand or update signal
@@ -175,7 +177,8 @@ begin
 U1: MULT PORT MAP(reset=>mult_reset,clock=>clk,en=>mult_enable,Input=>mult_in,W=>mult_w_in,Output=>mult_out,ready=>mult_end);
 U2: acc_f PORT MAP(clk=>clk , rst0=>reset , rst1=>'0' , f_in=>acc_f_in , en=>sel_fwd_en_accf , init0=>x"00000" , init1=>x"00000" , f_out=>acc_f_out );
 --U3: oneminusx PORT MAP(Input=>mult_out, Output=>omx_out);
-U4: ACC_W PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>mult_out,w_out=>acc_w_out); 
+U4: ACC_W GENERIC MAP (rand => rand)
+		    PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>mult_out,w_out=>acc_w_out); 
 U5: ACC_B PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>acc_b_out);
 --U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 --U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
