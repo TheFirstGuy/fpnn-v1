@@ -44,7 +44,10 @@ uart_in1: IN STD_LOGIC_VECTOR(19 DOWNTO 0);
 u_fwd_pred1: IN STD_LOGIC;
 
 uart_in2: IN STD_LOGIC_VECTOR(19 DOWNTO 0);
-u_fwd_pred2: IN STD_LOGIC
+u_fwd_pred2: IN STD_LOGIC;
+
+uart_cval: IN STD_LOGIC_VECTOR(19 DOWNTO 0); -- Correct value of uart
+io_val: IN STD_LOGIC -- io valid
 );
 end xor_net;
 
@@ -261,12 +264,41 @@ back_pred: OUT STD_LOGIC_VECTOR( 3 DOWNTO 0 ) -- Sends request to preds that bac
 );
 end component;
 
+component control_unit is
+    Port ( clk : in std_logic;  --Clock
+           rst : in std_logic;  --Reset
+           f_init : in std_logic;   --Forward Initialize
+           f_val : in std_logic;    --Forward Valid
+           b_val : in std_logic;    --Backward Valid
+           io_val : in std_logic;   --I/O Ready
+           bcast_en : out std_logic;    --Broadcast Enable
+           io_rdy : out std_logic;  --I/O Ready
+           f_en : out std_logic;    --Forward Enable
+           b_en : out std_logic;   --Backward Enable
+			  u_en : out std_logic); --Update enable
+end component;
+
+component err is
+    Port ( clk : in std_logic;  --Clock
+           rst : in std_logic;  --Reset
+			  broadcast : in std_logic; -- broadcast
+			  rslt_valid : in std_logic; -- result ready
+           rslt : in std_logic_vector(19 downto 0); --Calculated Result
+           c_val : in std_logic_vector(19 downto 0);    --Classification Value
+           err : out std_logic_vector(19 downto 0);    --Calculated Error
+			  err_valid: out std_logic); -- error output valid
+end component;
+
 --Node to network CU
 SIGNAL broadcast: STD_LOGIC;
 SIGNAL forward: STD_LOGIC;
 SIGNAL still_fwd: STD_LOGIC;
 SIGNAL backward: STD_LOGIC;
 SIGNAL update: STD_LOGIC;
+SIGNAL f_init: STD_LOGIC := '0'; -- Will use for hybrid activation mod
+SIGNAL f_val: STD_LOGIC; -- When forward activation is done
+SIGNAL b_val: STD_LOGIC; -- When back prop is done
+SIGNAL io_rdy: STD_LOGIC;
 
 
 
@@ -290,6 +322,13 @@ SIGNAL openGround: STD_LOGIC_VECTOR(13 DOWNTO 0);-- To sink partially mapped vec
 SIGNAL sink: STD_LOGIC_VECTOR(5 DOWNTO 0);-- Another sink 
 begin
 
+
+	CU: control_unit
+	PORT MAP(clk=>clk, rst=>reset, f_init=>f_init, f_val=>f_val, b_val=>b_val, io_val=>io_val, 
+	bcast_en=>broadcast, io_rdy=>io_rdy,f_en=>forward, b_en=>backward, u_en=>update );
+	
+	ERROR: err
+	PORT MAP(clk=>clk, rst=>reset, broadcast=>broadcast, rslt_valid=>net_fwd_done, rslt=>o_y, c_val=>uart_cval, err=>error_b, err_valid=>error_br); 
 	IL1: link_skeleton 
 	GENERIC MAP (rand => rand1)
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 
@@ -310,9 +349,7 @@ begin
 	--Node 1 connects to input link 1, to the middle neuron (node3) and to the output neuron (node4)
 	--Because it is a corner node, the east link has been removed.
 	Node1: corner_neuron 
-	GENERIC MAP (rand1 => rand3)
-	GENERIC MAP (rand2 => rand4)
-	GENERIC MAP (rand3 => rand5)
+	GENERIC MAP (rand1 => rand3,rand2 => rand4,rand3 => rand5)
 	PORT MAP( clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
 		backward=>backward, update=>update, reset=>reset, south_fdata_in=>input1Node1, sw_bdata_out=>n3_in1, sa_bdata_out=>n1_in1,
 		sw_in_r=>input1_fwd_req(0), sa_in_r=>input1_fwd_req(1), sw_out_r=>n3_in1_br, sa_out_r=>n1_in1_br,
@@ -325,9 +362,7 @@ begin
 	
 	--Node 2 connections to input link 2, to the middle neuron (node3) and to the output neuron (node 4)
 	Node2: corner_neuron 
-	GENERIC MAP (rand1 => rand6)
-	GENERIC MAP (rand2 => rand7)
-	GENERIC MAP (rand3 => rand8)
+	GENERIC MAP (rand1 => rand6,rand2 => rand7,rand3 => rand8)
 	PORT MAP( clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
 		backward=>backward, update=>update, reset=>reset, south_fdata_in=>input2Node2, sw_bdata_out=>n3_in2, sa_bdata_out=>n2_in2,
 		sw_in_r=>input2_fwd_req(0), sa_in_r=>input2_fwd_req(1), sw_out_r=>n3_in2_br, sa_out_r=>n2_in2_br,
@@ -341,10 +376,7 @@ begin
 	--Node 3 is the central neuron. It recieves its inputs from its link connections from node 1 and 2. 
 	-- Node 3 is a full neuron with bi direction links and an output link
 	Node3: neuron 
-	GENERIC MAP (rand1 => rand9)
-	GENERIC MAP (rand2 => rand10)
-	GENERIC MAP (rand3 => rand11)
-	GENERIC MAP (rand4 => rand12)
+	GENERIC MAP (rand1 => rand9,rand2 => rand10,rand3 => rand11,rand4 => rand12)
 	PORT MAP(clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
 		backward=>backward, update=>update, reset=>reset, south_fdata_in=>X"00000", sw_bdata_out=>open, sa_bdata_out=>open, se_bdata_out=>open,
 		sw_in_r=>ground, sa_in_r=>ground, se_in_r=>ground, sw_out_r=>open, sa_out_r=>open, se_out_r=>open,
@@ -367,5 +399,7 @@ begin
 		b_succ_3=>X"00000", y=>o_y, fwd_succ(0)=>net_fwd_done, fwd_succ(3 DOWNTO 1)=>openGround(10 DOWNTO 8), back_pred(2 DOWNTO 0)=>n4_br,
 		back_pred(3)=>openGround(12));
 	
+	f_val<= error_br AND NOT broadcast AND NOT io_rdy;
+	b_val<= back_prop_done(1) AND back_prop_done(0) AND NOT broadcast AND NOT io_rdy;
 	n4_b <= o_y;
 end Behavioral;
