@@ -170,9 +170,11 @@ SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchron
 SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
 SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
 SIGNAL muxw_sel: STD_LOGIC; -- Controls mux2
-
+SIGNAL F_SEL_CLR: STD_LOGIC; 
+SIGNAL B_SEL_CLR: STD_LOGIC; 
 begin
-
+F_SEL_CLR <= (reset or backward);
+B_SEL_CLR <= (reset or foward);
 --port
 U1: MULT 
 	PORT MAP(reset=>mult_reset,clock=>clk,en=>mult_enable,Input=>mult_in,W=>mult_w_in,Output=>mult_out,ready=>mult_end);
@@ -188,9 +190,9 @@ U5: ACC_B
 --U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 --U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
 U9: SELECTOR 
-	PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
+	PORT MAP (clr=>F_SEL_CLR, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>sel_fwd_reset_m , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
 U10:SELECTOR 
-	PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>rn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);
+	PORT MAP (clr=>B_SEL_CLR, clk=>clk, forward=>backward, r=>bck_succ , reqs=>rn_succ, res_m=>sel_bck_reset_m , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);
 U11: link_bcast 
 	PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
 U12: link_bcast 
