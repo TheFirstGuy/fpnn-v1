@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.08 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: DISPLAY_UNIT.prj
 
@@ -601,7 +601,7 @@ WARNING:Xst:2677 - Node <big_counter_31> of sequential type is unconnected in bl
 INFO:Xst:2261 - The FF/Latch <wrSig> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <rdSig> 
 WARNING:Xst:1426 - The value init of the FF/Latch DIGIT_7 hinder the constant cleaning in the block DISPLAY_UNIT.
    You should achieve better results by setting this init to 1.
-WARNING:Xst:2170 - Unit DISPLAY_UNIT : the following signal(s) form a combinatorial loop: RO2/G6t, RO2/G23t, RO2/G11, RO2/G19.
+WARNING:Xst:2170 - Unit DISPLAY_UNIT : the following signal(s) form a combinatorial loop: RO2/G11, RO2/G19, RO2/G6t, RO2/G23t.
 
 Optimizing unit <DISPLAY_UNIT> ...
 
@@ -749,10 +749,9 @@ WARNING:Xst:1293 - FF/Latch <NAMEB_28> has a constant value of 0 in block <DISPL
 WARNING:Xst:1293 - FF/Latch <NAMEB_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <countR_31> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <UART/clkDiv_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <UART/clkDiv_7> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <UART/clkDiv_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <UART/clkDiv_5> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 INFO:Xst:2261 - The FF/Latch <NAMEB_0> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <NAMED_0> 
+INFO:Xst:2261 - The FF/Latch <big_counter_0> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <UART/clkDiv_0> 
+INFO:Xst:2261 - The FF/Latch <big_counter_1> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <UART/clkDiv_1> 
 INFO:Xst:3203 - The FF/Latch <NAMEA_1> in Unit <DISPLAY_UNIT> is the opposite to the following FF/Latch, which will be removed : <NAMEC_1> 
 INFO:Xst:3203 - The FF/Latch <NAMEB_0> in Unit <DISPLAY_UNIT> is the opposite to the following 2 FFs/Latches, which will be removed : <NAMEA_0> <NAMEC_0> 
 INFO:Xst:3203 - The FF/Latch <NAMEB_1> in Unit <DISPLAY_UNIT> is the opposite to the following FF/Latch, which will be removed : <NAMED_1> 
@@ -771,8 +770,8 @@ Unit <DISPLAY_UNIT> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 279
- Flip-Flops                                            : 279
+# Registers                                            : 280
+ Flip-Flops                                            : 280
 # Shift Registers                                      : 1
  3-bit shift register                                  : 1
 
@@ -797,26 +796,26 @@ Top Level Output File Name         : DISPLAY_UNIT.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 867
+# BELS                             : 875
 #      GND                         : 1
 #      INV                         : 18
-#      LUT1                        : 126
+#      LUT1                        : 129
 #      LUT2                        : 31
-#      LUT3                        : 65
+#      LUT3                        : 66
 #      LUT4                        : 135
-#      LUT5                        : 60
-#      LUT6                        : 160
-#      MUXCY                       : 126
+#      LUT5                        : 59
+#      LUT6                        : 161
+#      MUXCY                       : 129
 #      MUXF7                       : 13
 #      VCC                         : 1
-#      XORCY                       : 131
-# FlipFlops/Latches                : 281
+#      XORCY                       : 132
+# FlipFlops/Latches                : 282
 #      FD                          : 30
 #      FDC                         : 4
 #      FDCE                        : 82
 #      FDE                         : 87
 #      FDPE                        : 4
-#      FDR                         : 26
+#      FDR                         : 27
 #      FDRE                        : 47
 #      LD                          : 1
 # Shift Registers                  : 1
@@ -835,17 +834,17 @@ Selected Device : 7a100tcsg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             280  out of  126800     0%  
- Number of Slice LUTs:                  596  out of  63400     0%  
-    Number used as Logic:               595  out of  63400     0%  
+ Number of Slice Registers:             281  out of  126800     0%  
+ Number of Slice LUTs:                  600  out of  63400     0%  
+    Number used as Logic:               599  out of  63400     0%  
     Number used as Memory:                1  out of  19000     0%  
        Number used as SRL:                1
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    623
-   Number with an unused Flip Flop:     343  out of    623    55%  
-   Number with an unused LUT:            27  out of    623     4%  
-   Number of fully used LUT-FF pairs:   253  out of    623    40%  
+ Number of LUT Flip Flop pairs used:    627
+   Number with an unused Flip Flop:     346  out of    627    55%  
+   Number with an unused LUT:            27  out of    627     4%  
+   Number of fully used LUT-FF pairs:   254  out of    627    40%  
    Number of unique control sets:        33
 
 IO Utilization: 
@@ -877,7 +876,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 112   |
+clk                                | BUFGP                  | 113   |
 RO2/G23t(RO2/G23_lut:O)            | NONE(*)(count_RO_0)    | 64    |
 CLKM                               | BUFG                   | 57    |
 UART/rClkDiv_3                     | NONE(UART/tfCtr_3)     | 16    |
@@ -909,7 +908,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
   Clock period: 2.691ns (frequency: 371.633MHz)
-  Total number of paths / destination ports: 3650 / 266
+  Total number of paths / destination ports: 3694 / 268
 -------------------------------------------------------------------------
 Delay:               2.691ns (Levels of Logic = 2)
   Source:            Z_11 (FF)
@@ -1280,14 +1279,14 @@ clk                  |    2.691|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 13.00 secs
-Total CPU time to Xst completion: 13.13 secs
+Total REAL time to Xst completion: 14.00 secs
+Total CPU time to Xst completion: 13.63 secs
  
 --> 
 
-Total memory usage is 432192 kilobytes
+Total memory usage is 432212 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  186 (   0 filtered)
-Number of infos    :   13 (   0 filtered)
+Number of warnings :  183 (   0 filtered)
+Number of infos    :   15 (   0 filtered)
 
