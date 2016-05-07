@@ -10,39 +10,45 @@ Target Device  : xc7a100t
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : artix7 -- $Revision: 1.55 $
-Mapped Date    : Sun May 01 21:56:48 2016
+Mapped Date    : Sat May 07 14:25:51 2016
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:    1
+Number of warnings:    2
 Slice Logic Utilization:
-  Number of Slice Registers:                   196 out of 126,800    1%
-    Number used as Flip Flops:                 195
+  Number of Slice Registers:                   280 out of 126,800    1%
+    Number used as Flip Flops:                 279
     Number used as Latches:                      1
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                        291 out of  63,400    1%
-    Number used as logic:                      282 out of  63,400    1%
-      Number using O6 output only:             154
-      Number using O5 output only:              91
-      Number using O5 and O6:                   37
+  Number of Slice LUTs:                        509 out of  63,400    1%
+    Number used as logic:                      490 out of  63,400    1%
+      Number using O6 output only:             269
+      Number using O5 output only:             116
+      Number using O5 and O6:                  105
       Number used as ROM:                        0
-    Number used as Memory:                       0 out of  19,000    0%
-    Number used exclusively as route-thrus:      9
-      Number with same-slice register load:      0
-      Number with same-slice carry load:         8
-      Number with other load:                    1
+    Number used as Memory:                       1 out of  19,000    1%
+      Number used as Dual Port RAM:              0
+      Number used as Single Port RAM:            0
+      Number used as Shift Register:             1
+        Number using O6 output only:             1
+        Number using O5 output only:             0
+        Number using O5 and O6:                  0
+    Number used exclusively as route-thrus:     18
+      Number with same-slice register load:      8
+      Number with same-slice carry load:        10
+      Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                   112 out of  15,850    1%
-  Number of LUT Flip Flop pairs used:          297
-    Number with an unused Flip Flop:           117 out of     297   39%
-    Number with an unused LUT:                   6 out of     297    2%
-    Number of fully used LUT-FF pairs:         174 out of     297   58%
-    Number of unique control sets:              20
+  Number of occupied Slices:                   198 out of  15,850    1%
+  Number of LUT Flip Flop pairs used:          545
+    Number with an unused Flip Flop:           288 out of     545   52%
+    Number with an unused LUT:                  36 out of     545    6%
+    Number of fully used LUT-FF pairs:         221 out of     545   40%
+    Number of unique control sets:              32
     Number of slice register sites lost
-      to control set restrictions:             100 out of 126,800    1%
+      to control set restrictions:             127 out of 126,800    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -60,8 +66,8 @@ IO Utilization:
 Specific Feature Utilization:
   Number of RAMB36E1/FIFO36E1s:                  0 out of     135    0%
   Number of RAMB18E1/FIFO18E1s:                  0 out of     270    0%
-  Number of BUFG/BUFGCTRLs:                      2 out of      32    6%
-    Number used as BUFGs:                        2
+  Number of BUFG/BUFGCTRLs:                      3 out of      32    9%
+    Number used as BUFGs:                        3
     Number used as BUFGCTRLs:                    0
   Number of IDELAYE2/IDELAYE2_FINEDELAYs:        0 out of     300    0%
   Number of ILOGICE2/ILOGICE3/ISERDESE2s:        0 out of     300    0%
@@ -93,11 +99,11 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of XADCs:                               0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                2.93
+Average Fanout of Non-Clock Nets:                3.67
 
 Peak Memory Usage:  919 MB
-Total REAL time to MAP completion:  34 secs 
-Total CPU time to MAP completion:   30 secs 
+Total REAL time to MAP completion:  30 secs 
+Total CPU time to MAP completion:   29 secs 
 
 Table of Contents
 -----------------
@@ -123,6 +129,9 @@ Section 2 - Warnings
 WARNING:PhysDesignRules:372 - Gated clock. Clock net UART/rClkDiv<3> is sourced
    by a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net RO2/G23t is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 
 Section 3 - Informational
 -------------------------
@@ -139,541 +148,15 @@ INFO:Pack:1650 - Map created a placed design.
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-  96 block(s) removed
- 165 block(s) optimized away
-  96 signal(s) removed
+   2 block(s) optimized away
 
 Section 5 - Removed Logic
 -------------------------
 
-The trimmed logic reported below is either:
-   1. part of a cycle
-   2. part of disabled logic
-   3. a side-effect of other trimmed logic
-
-The signal "countR[31]_GND_6_o_LessThan_8_o" is unused and has been removed.
- Unused block "countR[31]_GND_6_o_LessThan_8_o1" (ROM) removed.
-The signal "Result<0>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<0>" (XOR) removed.
-  The signal "Mcount_countR_lut<0>" is unused and has been removed.
-   Unused block "Mcount_countR_lut<0>_INV_0" (BUF) removed.
-The signal "Result<1>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<1>" (XOR) removed.
-  The signal "Mcount_countR_cy<0>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<0>" (MUX) removed.
-  The signal "Mcount_countR_cy<1>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<1>_rt" (ROM) removed.
-The signal "Result<2>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<2>" (XOR) removed.
-  The signal "Mcount_countR_cy<1>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<1>" (MUX) removed.
-  The signal "Mcount_countR_cy<2>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<2>_rt" (ROM) removed.
-The signal "Result<3>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<3>" (XOR) removed.
-  The signal "Mcount_countR_cy<2>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<2>" (MUX) removed.
-  The signal "Mcount_countR_cy<3>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<3>_rt" (ROM) removed.
-The signal "Result<4>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<4>" (XOR) removed.
-  The signal "Mcount_countR_cy<3>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<3>" (MUX) removed.
-  The signal "Mcount_countR_cy<4>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<4>_rt" (ROM) removed.
-The signal "Result<5>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<5>" (XOR) removed.
-  The signal "Mcount_countR_cy<4>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<4>" (MUX) removed.
-  The signal "Mcount_countR_cy<5>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<5>_rt" (ROM) removed.
-The signal "Result<6>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<6>" (XOR) removed.
-  The signal "Mcount_countR_cy<5>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<5>" (MUX) removed.
-  The signal "Mcount_countR_cy<6>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<6>_rt" (ROM) removed.
-The signal "Result<7>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<7>" (XOR) removed.
-  The signal "Mcount_countR_cy<6>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<6>" (MUX) removed.
-  The signal "Mcount_countR_cy<7>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<7>_rt" (ROM) removed.
-The signal "Result<8>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<8>" (XOR) removed.
-  The signal "Mcount_countR_cy<7>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<7>" (MUX) removed.
-  The signal "Mcount_countR_cy<8>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<8>_rt" (ROM) removed.
-The signal "Result<9>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<9>" (XOR) removed.
-  The signal "Mcount_countR_cy<8>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<8>" (MUX) removed.
-  The signal "Mcount_countR_cy<9>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<9>_rt" (ROM) removed.
-The signal "Result<10>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<10>" (XOR) removed.
-  The signal "Mcount_countR_cy<9>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<9>" (MUX) removed.
-  The signal "Mcount_countR_cy<10>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<10>_rt" (ROM) removed.
-The signal "Result<11>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<11>" (XOR) removed.
-  The signal "Mcount_countR_cy<10>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<10>" (MUX) removed.
-  The signal "Mcount_countR_cy<11>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<11>_rt" (ROM) removed.
-The signal "Result<12>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<12>" (XOR) removed.
-  The signal "Mcount_countR_cy<11>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<11>" (MUX) removed.
-  The signal "Mcount_countR_cy<12>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<12>_rt" (ROM) removed.
-The signal "Result<13>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<13>" (XOR) removed.
-  The signal "Mcount_countR_cy<12>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<12>" (MUX) removed.
-  The signal "Mcount_countR_cy<13>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<13>_rt" (ROM) removed.
-The signal "Result<14>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<14>" (XOR) removed.
-  The signal "Mcount_countR_cy<13>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<13>" (MUX) removed.
-  The signal "Mcount_countR_cy<14>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<14>_rt" (ROM) removed.
-The signal "Result<15>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<15>" (XOR) removed.
-  The signal "Mcount_countR_cy<14>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<14>" (MUX) removed.
-  The signal "Mcount_countR_cy<15>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<15>_rt" (ROM) removed.
-The signal "Result<16>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<16>" (XOR) removed.
-  The signal "Mcount_countR_cy<15>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<15>" (MUX) removed.
-  The signal "Mcount_countR_cy<16>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<16>_rt" (ROM) removed.
-The signal "Result<17>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<17>" (XOR) removed.
-  The signal "Mcount_countR_cy<16>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<16>" (MUX) removed.
-  The signal "Mcount_countR_cy<17>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<17>_rt" (ROM) removed.
-The signal "Result<18>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<18>" (XOR) removed.
-  The signal "Mcount_countR_cy<17>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<17>" (MUX) removed.
-  The signal "Mcount_countR_cy<18>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<18>_rt" (ROM) removed.
-The signal "Result<19>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<19>" (XOR) removed.
-  The signal "Mcount_countR_cy<18>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<18>" (MUX) removed.
-  The signal "Mcount_countR_cy<19>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<19>_rt" (ROM) removed.
-The signal "Result<20>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<20>" (XOR) removed.
-  The signal "Mcount_countR_cy<19>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<19>" (MUX) removed.
-  The signal "Mcount_countR_cy<20>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<20>_rt" (ROM) removed.
-The signal "Result<21>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<21>" (XOR) removed.
-  The signal "Mcount_countR_cy<20>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<20>" (MUX) removed.
-  The signal "Mcount_countR_cy<21>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<21>_rt" (ROM) removed.
-The signal "Result<22>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<22>" (XOR) removed.
-  The signal "Mcount_countR_cy<21>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<21>" (MUX) removed.
-  The signal "Mcount_countR_cy<22>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<22>_rt" (ROM) removed.
-The signal "Result<23>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<23>" (XOR) removed.
-  The signal "Mcount_countR_cy<22>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<22>" (MUX) removed.
-  The signal "Mcount_countR_cy<23>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<23>_rt" (ROM) removed.
-The signal "Result<24>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<24>" (XOR) removed.
-  The signal "Mcount_countR_cy<23>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<23>" (MUX) removed.
-  The signal "Mcount_countR_cy<24>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<24>_rt" (ROM) removed.
-The signal "Result<25>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<25>" (XOR) removed.
-  The signal "Mcount_countR_cy<24>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<24>" (MUX) removed.
-  The signal "Mcount_countR_cy<25>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<25>_rt" (ROM) removed.
-The signal "Result<26>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<26>" (XOR) removed.
-  The signal "Mcount_countR_cy<25>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<25>" (MUX) removed.
-  The signal "Mcount_countR_cy<26>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<26>_rt" (ROM) removed.
-The signal "Result<27>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<27>" (XOR) removed.
-  The signal "Mcount_countR_cy<26>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<26>" (MUX) removed.
-  The signal "Mcount_countR_cy<27>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<27>_rt" (ROM) removed.
-The signal "Result<28>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<28>" (XOR) removed.
-  The signal "Mcount_countR_cy<27>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<27>" (MUX) removed.
-  The signal "Mcount_countR_cy<28>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<28>_rt" (ROM) removed.
-The signal "Result<29>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<29>" (XOR) removed.
-  The signal "Mcount_countR_cy<28>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<28>" (MUX) removed.
-  The signal "Mcount_countR_cy<29>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<29>_rt" (ROM) removed.
-The signal "Result<30>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<30>" (XOR) removed.
-  The signal "Mcount_countR_cy<29>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<29>" (MUX) removed.
-  The signal "Mcount_countR_cy<30>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_cy<30>_rt" (ROM) removed.
-The signal "Result<31>7" is unused and has been removed.
- Unused block "Mcount_countR_xor<31>" (XOR) removed.
-  The signal "Mcount_countR_cy<30>" is unused and has been removed.
-   Unused block "Mcount_countR_cy<30>" (MUX) removed.
-  The signal "Mcount_countR_xor<31>_rt" is unused and has been removed.
-   Unused block "Mcount_countR_xor<31>_rt" (ROM) removed.
-
 Optimized Block(s):
 TYPE 		BLOCK
-LUT5 		CONV1/Mram_Y11
-   optimized to 0
-LUT5 		CONV1/Mram_Y111
-   optimized to 0
-LUT5 		CONV1/Mram_Y21
-   optimized to 0
-LUT5 		CONV1/Mram_Y41
-   optimized to 0
-LUT5 		CONV1/Mram_Y51
-   optimized to 0
-LUT5 		CONV1/Mram_Y61
-   optimized to 1
-LUT5 		CONV2/Mram_Y11
-   optimized to 0
-LUT5 		CONV2/Mram_Y111
-   optimized to 0
-LUT5 		CONV2/Mram_Y21
-   optimized to 0
-LUT5 		CONV2/Mram_Y31
-   optimized to 0
-LUT5 		CONV2/Mram_Y41
-   optimized to 0
-LUT5 		CONV2/Mram_Y51
-   optimized to 0
-LUT5 		CONV2/Mram_Y61
-   optimized to 1
-LUT5 		CONV3/Mram_Y11
-   optimized to 0
-LUT5 		CONV3/Mram_Y111
-   optimized to 0
-LUT5 		CONV3/Mram_Y21
-   optimized to 0
-LUT5 		CONV3/Mram_Y31
-   optimized to 0
-LUT5 		CONV3/Mram_Y41
-   optimized to 0
-LUT5 		CONV3/Mram_Y51
-   optimized to 0
-LUT5 		CONV3/Mram_Y61
-   optimized to 1
-LUT5 		CONV4/Mram_Y11
-   optimized to 0
-LUT5 		CONV4/Mram_Y111
-   optimized to 0
-LUT5 		CONV4/Mram_Y21
-   optimized to 0
-LUT5 		CONV4/Mram_Y31
-   optimized to 0
-LUT5 		CONV4/Mram_Y41
-   optimized to 0
-LUT5 		CONV4/Mram_Y51
-   optimized to 0
-LUT5 		CONV4/Mram_Y61
-   optimized to 1
-LUT5 		CONV5/Mram_Y11
-   optimized to 0
-LUT5 		CONV5/Mram_Y111
-   optimized to 0
-LUT5 		CONV5/Mram_Y21
-   optimized to 0
-LUT5 		CONV5/Mram_Y31
-   optimized to 0
-LUT5 		CONV5/Mram_Y51
-   optimized to 0
-LUT5 		CONV5/Mram_Y61
-   optimized to 1
-LUT5 		CONV6/Mram_Y11
-   optimized to 0
-LUT5 		CONV6/Mram_Y111
-   optimized to 0
-LUT5 		CONV6/Mram_Y21
-   optimized to 0
-LUT5 		CONV6/Mram_Y31
-   optimized to 0
-LUT5 		CONV6/Mram_Y41
-   optimized to 0
-LUT5 		CONV6/Mram_Y51
-   optimized to 0
-LUT5 		CONV6/Mram_Y61
-   optimized to 1
-LUT5 		CONV7/Mram_Y11
-   optimized to 0
-LUT5 		CONV7/Mram_Y111
-   optimized to 0
-LUT5 		CONV7/Mram_Y21
-   optimized to 0
-LUT5 		CONV7/Mram_Y31
-   optimized to 0
-LUT5 		CONV7/Mram_Y41
-   optimized to 0
-LUT5 		CONV7/Mram_Y51
-   optimized to 0
-LUT5 		CONV7/Mram_Y61
-   optimized to 1
-LUT5 		CONV8/Mram_Y11
-   optimized to 0
-LUT5 		CONV8/Mram_Y111
-   optimized to 0
-LUT5 		CONV8/Mram_Y21
-   optimized to 0
-LUT5 		CONV8/Mram_Y31
-   optimized to 0
-LUT5 		CONV8/Mram_Y41
-   optimized to 0
-LUT5 		CONV8/Mram_Y51
-   optimized to 0
-LUT5 		CONV8/Mram_Y61
-   optimized to 1
-LUT5 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT101
-   optimized to 0
-LUT5 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT103
-   optimized to 0
-LUT4 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT104
-   optimized to 0
-LUT4 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT105
-   optimized to 0
-LUT6 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT121
-   optimized to 0
-LUT4 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT123
-   optimized to 0
-LUT6 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT21
-   optimized to 0
-LUT4 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT23
-   optimized to 0
-LUT4 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT43
-   optimized to 0
-LUT5 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT44
-   optimized to 0
-LUT4 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT61
-   optimized to 0
-LUT4 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT63
-   optimized to 0
-LUT5 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT64
-   optimized to 0
-LUT5 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT81
-   optimized to 0
-LUT4 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT83
-   optimized to 0
-LUT6 		Mmux_NAMEA[3]_NAME[15][7]_wide_mux_111_OUT85
-   optimized to 0
-LUT5 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT101
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT104
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT105
-   optimized to 0
-LUT6 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT121
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT123
-   optimized to 0
-LUT6 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT21
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT23
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT41
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT43
-   optimized to 0
-LUT5 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT44
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT61
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT63
-   optimized to 0
-LUT5 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT64
-   optimized to 0
-LUT5 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT81
-   optimized to 0
-LUT4 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT83
-   optimized to 0
-LUT6 		Mmux_NAMEB[3]_NAME[15][7]_wide_mux_115_OUT85
-   optimized to 0
-LUT5 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT101
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT104
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT105
-   optimized to 0
-LUT6 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT121
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT123
-   optimized to 0
-LUT6 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT21
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT23
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT41
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT43
-   optimized to 0
-LUT5 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT44
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT61
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT63
-   optimized to 0
-LUT5 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT64
-   optimized to 0
-LUT5 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT81
-   optimized to 0
-LUT4 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT83
-   optimized to 0
-LUT6 		Mmux_NAMEC[3]_NAME[15][7]_wide_mux_119_OUT85
-   optimized to 0
-LUT5 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT101
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT104
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT105
-   optimized to 0
-LUT6 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT121
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT123
-   optimized to 0
-LUT6 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT21
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT23
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT41
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT43
-   optimized to 0
-LUT5 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT44
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT61
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT63
-   optimized to 0
-LUT5 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT64
-   optimized to 0
-LUT5 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT81
-   optimized to 0
-LUT4 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT83
-   optimized to 0
-LUT6 		Mmux_NAMED[3]_NAME[15][7]_wide_mux_123_OUT85
-   optimized to 0
-LUT2 		Mmux_n036111
-   optimized to 0
-LUT2 		Mmux_n036121
-   optimized to 0
-LUT2 		Mmux_n036131
-   optimized to 0
-LUT2 		Mmux_n036141
-   optimized to 0
-LUT4 		Mmux_n036811
-   optimized to 0
-LUT4 		Mmux_n036821
-   optimized to 0
-LUT4 		Mmux_n036831
-   optimized to 0
-LUT2 		RO2/G10_lut
-   optimized to 1
-LUT2 		RO2/G11_lut
-   optimized to 1
-LUT2 		RO2/G16_lut
-   optimized to 1
-LUT2 		RO2/G19_lut
-   optimized to 1
-LUT2 		RO2/G22_lut
-   optimized to 0
-LUT2 		RO2/G23_lut
-   optimized to 0
 GND 		XST_GND
 VCC 		XST_VCC
-FDCE 		countR_0
-   optimized to 0
-FDCE 		countR_1
-   optimized to 0
-FDCE 		countR_10
-   optimized to 0
-FDCE 		countR_11
-   optimized to 0
-FDCE 		countR_12
-   optimized to 0
-FDCE 		countR_13
-   optimized to 0
-FDCE 		countR_14
-   optimized to 0
-FDCE 		countR_15
-   optimized to 0
-FDCE 		countR_16
-   optimized to 0
-FDCE 		countR_17
-   optimized to 0
-FDCE 		countR_18
-   optimized to 0
-FDCE 		countR_19
-   optimized to 0
-FDCE 		countR_2
-   optimized to 0
-FDCE 		countR_20
-   optimized to 0
-FDCE 		countR_21
-   optimized to 0
-FDCE 		countR_22
-   optimized to 0
-FDCE 		countR_23
-   optimized to 0
-FDCE 		countR_24
-   optimized to 0
-FDCE 		countR_25
-   optimized to 0
-FDCE 		countR_26
-   optimized to 0
-FDCE 		countR_27
-   optimized to 0
-FDCE 		countR_28
-   optimized to 0
-FDCE 		countR_29
-   optimized to 0
-FDCE 		countR_3
-   optimized to 0
-FDCE 		countR_30
-   optimized to 0
-FDCE 		countR_31
-   optimized to 0
-FDCE 		countR_4
-   optimized to 0
-FDCE 		countR_5
-   optimized to 0
-FDCE 		countR_6
-   optimized to 0
-FDCE 		countR_7
-   optimized to 0
-FDCE 		countR_8
-   optimized to 0
-FDCE 		countR_9
-   optimized to 0
 
 To enable printing of redundant blocks removed and signals merged, set the
 detailed map report option and rerun map.

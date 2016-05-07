@@ -65,64 +65,64 @@
 <msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &quot;LEDS[7]&quot; LOC = R4;&gt; [DISPLAY_UNIT.ucf(30)]&apos; could not be found and so the Locate constraint will be removed.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;ANODE[0]&quot; LOC = F17;&gt; [DISPLAY_UNIT.ucf(11)]</arg> is overridden on the design object <arg fmt="%s" index="2">ANODE&lt;0&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;ANODE&lt;0&gt;&quot;        LOC=R12 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(51)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;ANODE[0]&quot; LOC = F17;&gt; [DISPLAY_UNIT.ucf(11)]</arg> is overridden on the design object <arg fmt="%s" index="2">ANODE&lt;0&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;ANODE&lt;0&gt;&quot;        LOC=R12 |&gt; [Nexys4DDR_Master.ucf(51)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;ANODE[1]&quot; LOC = H17;&gt; [DISPLAY_UNIT.ucf(12)]</arg> is overridden on the design object <arg fmt="%s" index="2">ANODE&lt;1&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;ANODE&lt;1&gt;&quot;        LOC=M16 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(52)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;ANODE[1]&quot; LOC = H17;&gt; [DISPLAY_UNIT.ucf(12)]</arg> is overridden on the design object <arg fmt="%s" index="2">ANODE&lt;1&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;ANODE&lt;1&gt;&quot;        LOC=M16 |&gt; [Nexys4DDR_Master.ucf(52)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;ANODE[2]&quot; LOC = C18;&gt; [DISPLAY_UNIT.ucf(13)]</arg> is overridden on the design object <arg fmt="%s" index="2">ANODE&lt;2&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;ANODE&lt;2&gt;&quot;        LOC=N15 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(53)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;ANODE[2]&quot; LOC = C18;&gt; [DISPLAY_UNIT.ucf(13)]</arg> is overridden on the design object <arg fmt="%s" index="2">ANODE&lt;2&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;ANODE&lt;2&gt;&quot;        LOC=N15 |&gt; [Nexys4DDR_Master.ucf(53)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;ANODE[3]&quot; LOC = F15;&gt; [DISPLAY_UNIT.ucf(14)]</arg> is overridden on the design object <arg fmt="%s" index="2">ANODE&lt;3&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;ANODE&lt;3&gt;&quot;        LOC=G14 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(54)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;ANODE[3]&quot; LOC = F15;&gt; [DISPLAY_UNIT.ucf(14)]</arg> is overridden on the design object <arg fmt="%s" index="2">ANODE&lt;3&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;ANODE&lt;3&gt;&quot;        LOC=G14 |&gt; [Nexys4DDR_Master.ucf(54)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[0]&quot; LOC = L18;&gt; [DISPLAY_UNIT.ucf(15)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;0&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;0&gt;&quot;         LOC=V16 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(42)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[0]&quot; LOC = L18;&gt; [DISPLAY_UNIT.ucf(15)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;0&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;0&gt;&quot;         LOC=V16 |&gt; [Nexys4DDR_Master.ucf(42)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[1]&quot; LOC = F18;&gt; [DISPLAY_UNIT.ucf(16)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;1&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;1&gt;&quot;         LOC=T15 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(43)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[1]&quot; LOC = F18;&gt; [DISPLAY_UNIT.ucf(16)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;1&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;1&gt;&quot;         LOC=T15 |&gt; [Nexys4DDR_Master.ucf(43)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[2]&quot; LOC = D17;&gt; [DISPLAY_UNIT.ucf(17)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;2&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;2&gt;&quot;        LOC=U14 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(44)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[2]&quot; LOC = D17;&gt; [DISPLAY_UNIT.ucf(17)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;2&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;2&gt;&quot;        LOC=U14 |&gt; [Nexys4DDR_Master.ucf(44)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[3]&quot; LOC = D16;&gt; [DISPLAY_UNIT.ucf(18)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;3&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;3&gt;&quot;        LOC=T16 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(45)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[3]&quot; LOC = D16;&gt; [DISPLAY_UNIT.ucf(18)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;3&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;3&gt;&quot;        LOC=T16 |&gt; [Nexys4DDR_Master.ucf(45)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[4]&quot; LOC = G14;&gt; [DISPLAY_UNIT.ucf(19)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;4&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;4&gt;&quot;        LOC=V15 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(46)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[4]&quot; LOC = G14;&gt; [DISPLAY_UNIT.ucf(19)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;4&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;4&gt;&quot;        LOC=V15 |&gt; [Nexys4DDR_Master.ucf(46)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[5]&quot; LOC = J17;&gt; [DISPLAY_UNIT.ucf(20)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;5&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;5&gt;&quot;        LOC=V14 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(47)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[5]&quot; LOC = J17;&gt; [DISPLAY_UNIT.ucf(20)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;5&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;5&gt;&quot;        LOC=V14 |&gt; [Nexys4DDR_Master.ucf(47)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[6]&quot; LOC = H14;&gt; [DISPLAY_UNIT.ucf(21)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;6&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;6&gt;&quot;        LOC=V12 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(48)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[6]&quot; LOC = H14;&gt; [DISPLAY_UNIT.ucf(21)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;6&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;6&gt;&quot;        LOC=V12 |&gt; [Nexys4DDR_Master.ucf(48)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[7]&quot; LOC = C17;&gt; [DISPLAY_UNIT.ucf(22)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;7&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;7&gt;&quot;        LOC=V11 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(49)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;OUTDIGIT[7]&quot; LOC = C17;&gt; [DISPLAY_UNIT.ucf(22)]</arg> is overridden on the design object <arg fmt="%s" index="2">OUTDIGIT&lt;7&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;OUTDIGIT&lt;7&gt;&quot;        LOC=V11 |&gt; [Nexys4DDR_Master.ucf(49)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[0]&quot; LOC = J14;&gt; [DISPLAY_UNIT.ucf(23)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;0&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;0&gt;&quot;         LOC=H17 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(34)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[0]&quot; LOC = J14;&gt; [DISPLAY_UNIT.ucf(23)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;0&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;0&gt;&quot;         LOC=H17 |&gt; [Nexys4DDR_Master.ucf(34)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[1]&quot; LOC = J15;&gt; [DISPLAY_UNIT.ucf(24)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;1&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;1&gt;&quot;         LOC=K15 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(35)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[1]&quot; LOC = J15;&gt; [DISPLAY_UNIT.ucf(24)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;1&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;1&gt;&quot;         LOC=K15 |&gt; [Nexys4DDR_Master.ucf(35)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[2]&quot; LOC = K15;&gt; [DISPLAY_UNIT.ucf(25)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;2&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;2&gt;&quot;         LOC=J13 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(36)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[2]&quot; LOC = K15;&gt; [DISPLAY_UNIT.ucf(25)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;2&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;2&gt;&quot;         LOC=J13 |&gt; [Nexys4DDR_Master.ucf(36)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[3]&quot; LOC = K14;&gt; [DISPLAY_UNIT.ucf(26)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;3&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;3&gt;&quot;         LOC=N14 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(37)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[3]&quot; LOC = K14;&gt; [DISPLAY_UNIT.ucf(26)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;3&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;3&gt;&quot;         LOC=N14 |&gt; [Nexys4DDR_Master.ucf(37)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[4]&quot; LOC = E17;&gt; [DISPLAY_UNIT.ucf(27)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;4&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;4&gt;&quot;         LOC=R18 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(38)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[4]&quot; LOC = E17;&gt; [DISPLAY_UNIT.ucf(27)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;4&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;4&gt;&quot;         LOC=R18 |&gt; [Nexys4DDR_Master.ucf(38)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[5]&quot; LOC = P15;&gt; [DISPLAY_UNIT.ucf(28)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;5&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;5&gt;&quot;         LOC=V17 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(39)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[5]&quot; LOC = P15;&gt; [DISPLAY_UNIT.ucf(28)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;5&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;5&gt;&quot;         LOC=V17 |&gt; [Nexys4DDR_Master.ucf(39)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[6]&quot; LOC = F4;&gt; [DISPLAY_UNIT.ucf(29)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;6&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;6&gt;&quot;         LOC=U17 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(40)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[6]&quot; LOC = F4;&gt; [DISPLAY_UNIT.ucf(29)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;6&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;6&gt;&quot;         LOC=U17 |&gt; [Nexys4DDR_Master.ucf(40)]</arg>.
 </msg>
 
-<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[7]&quot; LOC = R4;&gt; [DISPLAY_UNIT.ucf(30)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;7&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;7&gt;&quot;         LOC=U16 |&gt; [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(41)]</arg>.
+<msg type="warning" file="NgdBuild" num="1012" delta="old" >The constraint <arg fmt="%s" index="1">&lt;NET &quot;LEDS[7]&quot; LOC = R4;&gt; [DISPLAY_UNIT.ucf(30)]</arg> is overridden on the design object <arg fmt="%s" index="2">LEDS&lt;7&gt;</arg> by the constraint <arg fmt="%s" index="3">&lt;NET &quot;LEDS&lt;7&gt;&quot;         LOC=U16 |&gt; [Nexys4DDR_Master.ucf(41)]</arg>.
 </msg>
 
 </messages>
