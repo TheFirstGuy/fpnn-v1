@@ -1,0 +1,19 @@
+   Build using "C:/Xilinx/Vivado_HLS/2015.4/msys/bin/g++.exe"
+   Compiling apatb_cmp_max.cpp
+   Compiling (apcc) cmp_max.c_pre.c.tb.c
+@I [HLS-10] Running 'c:/Xilinx/Vivado_HLS/2015.4/bin/unwrapped/win64.o/apcc.exe'
+            for user 'stevenlee' on host 'stevenlee7db2' (Windows NT_amd64 version 6.1) on Fri May 06 22:46:55 -0400 2016
+            in directory 'C:/Users/stevenlee/Documents/cmp_max/solution1/sim/wrapc'
+clang: warning: argument unused during compilation: '-fno-builtin-isinf'
+clang: warning: argument unused during compilation: '-fno-builtin-isnan'
+@I [APCC-3] Tmp directory is apcc_db
+@I [APCC-1] APCC is done.
+   Compiling (apcc) cmp_max_test.c_pre.c.tb.c
+@I [HLS-10] Running 'c:/Xilinx/Vivado_HLS/2015.4/bin/unwrapped/win64.o/apcc.exe'
+            for user 'stevenlee' on host 'stevenlee7db2' (Windows NT_amd64 version 6.1) on Fri May 06 22:46:58 -0400 2016
+            in directory 'C:/Users/stevenlee/Documents/cmp_max/solution1/sim/wrapc'
+clang: warning: argument unused during compilation: '-fno-builtin-isinf'
+clang: warning: argument unused during compilation: '-fno-builtin-isnan'
+@I [APCC-3] Tmp directory is apcc_db
+@I [APCC-1] APCC is done.
+   Generating cosim.tv.exe

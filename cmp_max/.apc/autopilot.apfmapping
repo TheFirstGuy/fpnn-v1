@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="cmp_max.c" path="C:\Users\stevenlee\Documents\cmp_max\cmp_max.c"/>
+  </source>
+  <testbench>
+    <originFiles name="cmp_max_test.c" path="C:\Users\stevenlee\Documents\cmp_max\cmp_max_test.c"/>
+    <originFiles name="output_gold.dat" path="C:\Users\stevenlee\Documents\cmp_max\output_gold.dat"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

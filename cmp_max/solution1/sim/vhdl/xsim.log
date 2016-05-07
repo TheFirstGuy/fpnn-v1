@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# xsim v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+# IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+# Start of session at: Fri May 06 22:47:27 2016
+# Process ID: 928
+# Current directory: C:/Users/stevenlee/Documents/cmp_max/solution1/sim/vhdl
+# Command line: xsim.exe -mode tcl -source {xsim.dir/cmp_max/xsim_script.tcl}
+# Log file: C:/Users/stevenlee/Documents/cmp_max/solution1/sim/vhdl/xsim.log
+# Journal file: C:/Users/stevenlee/Documents/cmp_max/solution1/sim/vhdl\xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/cmp_max/xsim_script.tcl
+# xsim {cmp_max} -maxdeltaid 10000 -autoloadwcfg -tclbatch {cmp_max.tcl}
+Vivado Simulator 2015.4
+Time resolution is 1 ps
+source cmp_max.tcl
+## run all
+Note: simulation done!
+Time: 475 ns  Iteration: 1  Process: /apatb_cmp_max_top/generate_sim_done_proc  File: C:/Users/stevenlee/Documents/cmp_max/solution1/sim/vhdl/cmp_max.autotb.vhd
+Failure: NORMAL EXIT (note: failure is to force the simulator to stop)
+Time: 475 ns  Iteration: 1  Process: /apatb_cmp_max_top/generate_sim_done_proc  File: C:/Users/stevenlee/Documents/cmp_max/solution1/sim/vhdl/cmp_max.autotb.vhd
+$finish called at time : 475 ns
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri May 06 22:47:31 2016...

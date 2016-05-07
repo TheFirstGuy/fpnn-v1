@@ -1,0 +1,244 @@
+
+
+================================================================
+== Vivado HLS Report for 'cmp_max'
+================================================================
+* Date:           Fri May 06 22:46:39 2016
+
+* Version:        2015.4 (Build 1412921 on Wed Nov 18 09:58:55 AM 2015)
+* Project:        cmp_max
+* Solution:       solution1
+* Product family: artix7
+* Target device:  xc7a200tfbg676-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      7.61|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    1|    2|    2|    3|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 3
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / (en_read)
+	3  / (!en_read)
+2 --> 
+	3  / true
+3 --> 
+* FSM state operations: 
+
+ <State 1>: 7.61ns
+ST_1: stg_4 [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap(float %y0) nounwind, !map !0
+
+ST_1: stg_5 [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap(float %y1) nounwind, !map !6
+
+ST_1: stg_6 [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap(float %y2) nounwind, !map !10
+
+ST_1: stg_7 [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecBitsMap(float* %max) nounwind, !map !14
+
+ST_1: stg_8 [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecBitsMap(i1 %en) nounwind, !map !20
+
+ST_1: stg_9 [1/1] 0.00ns
+:5  call void (...)* @_ssdm_op_SpecTopModule([8 x i8]* @cmp_max_str) nounwind
+
+ST_1: en_read [1/1] 0.00ns
+:6  %en_read = call i1 @_ssdm_op_Read.ap_auto.i1(i1 %en) nounwind
+
+ST_1: y2_read [1/1] 0.00ns
+:7  %y2_read = call float @_ssdm_op_Read.ap_auto.float(float %y2) nounwind
+
+ST_1: y1_read [1/1] 0.00ns
+:8  %y1_read = call float @_ssdm_op_Read.ap_auto.float(float %y1) nounwind
+
+ST_1: y0_read [1/1] 0.00ns
+:9  %y0_read = call float @_ssdm_op_Read.ap_auto.float(float %y0) nounwind
+
+ST_1: stg_14 [1/1] 0.00ns
+:10  br i1 %en_read, label %_ifconv, label %._crit_edge
+
+ST_1: y0_to_int [1/1] 0.00ns
+_ifconv:0  %y0_to_int = bitcast float %y0_read to i32
+
+ST_1: tmp [1/1] 0.00ns
+_ifconv:1  %tmp = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %y0_to_int, i32 23, i32 30)
+
+ST_1: tmp_1 [1/1] 0.00ns
+_ifconv:2  %tmp_1 = trunc i32 %y0_to_int to i23
+
+ST_1: y1_to_int [1/1] 0.00ns
+_ifconv:3  %y1_to_int = bitcast float %y1_read to i32
+
+ST_1: tmp_2 [1/1] 0.00ns
+_ifconv:4  %tmp_2 = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %y1_to_int, i32 23, i32 30)
+
+ST_1: tmp_3 [1/1] 0.00ns
+_ifconv:5  %tmp_3 = trunc i32 %y1_to_int to i23
+
+ST_1: notlhs [1/1] 1.99ns
+_ifconv:6  %notlhs = icmp ne i8 %tmp, -1
+
+ST_1: notrhs [1/1] 2.45ns
+_ifconv:7  %notrhs = icmp eq i23 %tmp_1, 0
+
+ST_1: tmp_4 [1/1] 1.15ns
+_ifconv:8  %tmp_4 = or i1 %notrhs, %notlhs
+
+ST_1: notlhs6 [1/1] 1.99ns
+_ifconv:9  %notlhs6 = icmp ne i8 %tmp_2, -1
+
+ST_1: notrhs7 [1/1] 2.45ns
+_ifconv:10  %notrhs7 = icmp eq i23 %tmp_3, 0
+
+ST_1: tmp_5 [1/1] 1.15ns
+_ifconv:11  %tmp_5 = or i1 %notrhs7, %notlhs6
+
+ST_1: tmp_6 [1/1] 1.15ns
+_ifconv:12  %tmp_6 = and i1 %tmp_4, %tmp_5
+
+ST_1: tmp_7 [1/1] 5.31ns
+_ifconv:13  %tmp_7 = fcmp ogt float %y0_read, %y1_read
+
+ST_1: tmp_8 [1/1] 1.15ns
+_ifconv:14  %tmp_8 = and i1 %tmp_6, %tmp_7
+
+ST_1: y2_to_int [1/1] 0.00ns
+_ifconv:15  %y2_to_int = bitcast float %y2_read to i32
+
+ST_1: tmp_s [1/1] 0.00ns
+_ifconv:16  %tmp_s = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %y2_to_int, i32 23, i32 30)
+
+ST_1: tmp_9 [1/1] 0.00ns
+_ifconv:17  %tmp_9 = trunc i32 %y2_to_int to i23
+
+ST_1: notlhs1 [1/1] 1.99ns
+_ifconv:18  %notlhs1 = icmp ne i8 %tmp_s, -1
+
+ST_1: notrhs1 [1/1] 2.45ns
+_ifconv:19  %notrhs1 = icmp eq i23 %tmp_9, 0
+
+ST_1: tmp_10 [1/1] 1.15ns
+_ifconv:20  %tmp_10 = or i1 %notrhs1, %notlhs1
+
+ST_1: tmp_11 [1/1] 1.15ns
+_ifconv:21  %tmp_11 = and i1 %tmp_4, %tmp_10
+
+ST_1: tmp_12 [1/1] 5.31ns
+_ifconv:22  %tmp_12 = fcmp ogt float %y0_read, %y2_read
+
+ST_1: tmp_13 [1/1] 1.15ns
+_ifconv:23  %tmp_13 = and i1 %tmp_11, %tmp_12
+
+ST_1: or_cond [1/1] 1.15ns
+_ifconv:24  %or_cond = and i1 %tmp_8, %tmp_13
+
+ST_1: tmp_16 [1/1] 1.15ns
+_ifconv:27  %tmp_16 = and i1 %tmp_5, %tmp_10
+
+
+ <State 2>: 7.61ns
+ST_2: tmp_14 [1/1] 5.31ns
+_ifconv:25  %tmp_14 = fcmp ogt float %y1_read, %y0_read
+
+ST_2: tmp_15 [1/1] 1.15ns
+_ifconv:26  %tmp_15 = and i1 %tmp_6, %tmp_14
+
+ST_2: tmp_17 [1/1] 5.31ns
+_ifconv:28  %tmp_17 = fcmp ogt float %y1_read, %y2_read
+
+ST_2: tmp_18 [1/1] 1.15ns
+_ifconv:29  %tmp_18 = and i1 %tmp_16, %tmp_17
+
+ST_2: or_cond2 [1/1] 1.15ns
+_ifconv:30  %or_cond2 = and i1 %tmp_15, %tmp_18
+
+
+ <State 3>: 2.30ns
+ST_3: y1_assign [1/1] 1.15ns
+_ifconv:31  %y1_assign = select i1 %or_cond2, float %y1_read, float %y2_read
+
+ST_3: storemerge1 [1/1] 1.15ns
+_ifconv:32  %storemerge1 = select i1 %or_cond, float %y0_read, float %y1_assign
+
+ST_3: stg_48 [1/1] 0.00ns
+_ifconv:33  call void @_ssdm_op_Write.ap_auto.floatP(float* %max, float %storemerge1) nounwind
+
+ST_3: stg_49 [1/1] 0.00ns
+_ifconv:34  br label %._crit_edge
+
+ST_3: stg_50 [1/1] 0.00ns
+._crit_edge:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

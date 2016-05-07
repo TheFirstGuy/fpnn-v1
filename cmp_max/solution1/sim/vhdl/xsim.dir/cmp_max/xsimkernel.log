@@ -1,0 +1,7 @@
+Running: xsim.dir/cmp_max/xsimk.exe -maxdeltaid 10000 -simmode gui -wdb cmp_max.wdb -simrunnum 0 -socket 49265
+Design successfully loaded
+Design Loading Memory Usage: 20692 KB (Peak: 20692 KB)
+Design Loading CPU Usage: 139 ms
+Simulation completed
+Simulation Memory Usage: 20772 KB (Peak: 20772 KB)
+Simulation CPU Usage: 171 ms

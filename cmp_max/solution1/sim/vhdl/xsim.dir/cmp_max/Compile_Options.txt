@@ -1,0 +1,1 @@
+"xil_defaultlib.apatb_cmp_max_top" -prj "cmp_max.prj" --lib "ieee_proposed=./ieee_proposed" -s "cmp_max" 
