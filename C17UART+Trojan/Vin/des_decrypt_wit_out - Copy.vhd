@@ -309,10 +309,10 @@ process(clk, rst)
           tv<=tv(N-2 downto 0) & '0';
 			 Rflag<= Rflag +'1';
           state<= displayI;
-			 elsif dboutsig = x"31" then
-          tv<=tv(N-2 downto 0) & '1';
-          Rflag<= Rflag +'1';
-          state<= displayI;
+			-- elsif dboutsig = x"31" then
+        --  tv<=tv(N-2 downto 0) & '1';
+         -- Rflag<= Rflag +'1';
+         -- state<= displayI;
 			 elsif (dboutsig = x"72") then
 			 tv<=(Others=>'0');
 			 state<= Idle ;
