@@ -94,7 +94,7 @@ end component;
 
 	signal dbInSig	:	std_logic_vector(7 downto 0);
 	signal dbOutSig, dbOutSig2, dbOutSig3:  std_logic_vector(7 downto 0);
-	signal hex0, hex1, hex2 : std_logic_vector(4 downto 0);
+	signal hex0, hex1, hex2 : std_logic_vector(3 downto 0);
 	signal rdaSig	:	std_logic;
 	signal tbeSig	:	std_logic;
 	signal rdSig	:	std_logic;
@@ -315,28 +315,28 @@ process(clk, rst)
 			 end if;
 			
         when test_vector =>
-          if dboutsig = x"30" then
-          tv<=tv(N-2 downto 0) & '0';
-			 Rflag<= Rflag +'1';
-          state<= displayI;
+            if (dboutsig = x"30") then
+                tv<=tv(N-2 downto 0) & '0';
+                Rflag<= Rflag +'1';
+                state<= displayI;
 			-- elsif dboutsig = x"31" then
-        --  tv<=tv(N-2 downto 0) & '1';
-         -- Rflag<= Rflag +'1';
-         -- state<= displayI;
-			 elsif (dboutsig = x"72") then
-			 tv<=(Others=>'0');
-			 state<= Idle ;
-			 elsif (dboutsig = x"52") then
-          tv<=(Others=>'0');
-			 state<= Idle;
-			 elsif (dbOutSig = x"4F") then 
- 			 state <= StOutput;
-			 elsif (dbOutSig<=x"6F") then
-			 state <= StOutput;
-				else 
-		    tv<= tv;
-			 state<= idle;
-			 end if;
+            --  tv<=tv(N-2 downto 0) & '1';
+            -- Rflag<= Rflag +'1';
+            -- state<= displayI;
+            elsif (dboutsig = x"72") then
+                tv<=(Others=>'0');
+                state<= Idle ;
+            elsif (dboutsig = x"52") then
+                tv<=(Others=>'0');
+                state<= Idle;
+            elsif (dbOutSig = x"4F") then 
+                state <= StOutput;
+            elsif (dbOutSig<=x"6F") then
+                state <= StOutput;
+            else 
+                tv<= tv;
+                state<= idle;
+            end if;
           state<= displayI;
 			 St_indic<="110";
        
@@ -399,7 +399,8 @@ process(clk, rst)
 	    end case;
          end if;
 end process;
-Packet <=TV(N-1 Downto 0);
+--Packet <=TV(N-1 Downto 0);
+Packet <= hex0 & "00";
 
 
 
