@@ -25,6 +25,7 @@ generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000");
 PORT(
 --Input
 --Forward Control Signals
+--debug: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 );
 clk: IN STD_LOGIC;
 reset: IN STD_LOGIC;
 still_fwd: IN STD_LOGIC; --tells activator to go back to forward active. (we are done with back prop)
@@ -552,6 +553,6 @@ WITH mult_out(19) SELECT
 		('1'& mult_out(19 DOWNTO 1)) WHEN '1',
 		('0'& mult_out(19 DOWNTO 1)) WHEN others;
 
-
+--debug<= acc_b_out;
 
 end Behavioral;

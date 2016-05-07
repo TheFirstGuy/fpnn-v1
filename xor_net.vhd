@@ -23,18 +23,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity xor_net is
 generic (
 	rand1  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand2  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand3  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand4  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand5  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand6  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand7  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand8  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand9  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand10 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand11 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand12 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand13 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000"
+	rand2  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"F8000";
+	rand3  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"07210";
+	rand4  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"032F2";
+	rand5  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"0AB32";
+	rand6  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"083C3";
+	rand7  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"FF293";
+	rand8  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"F2332";
+	rand9  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"02934";
+	rand10 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"0F323";
+	rand11 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"F1009";
+	rand12 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"F1244";
+	rand13 : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"F132d"
 	);
 PORT(
 clk: IN STD_LOGIC;
@@ -386,7 +386,7 @@ begin
 		north_fdata_out=>n3_n4_y, north_bdata_in0=>n4_b, north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", 
 		north_bdata_in3=>X"00000", north_r=>n3_nfr, north_br(0)=>n4_br(1), north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
 		east_fdata_out=>n3_n2_y, east_bdata_in0=>n2_n3_b, east_bdata_in1=>X"00000", east_bdata_in2=>X"00000",
-		east_bdata_in3=>X"00000", east_r(0)=>n3_n2_fr, east_r(3 DOWNTO 1)=>openGround(2 DOWNTO 0), east_br(0)=>n3_n2_br(0), east_br(3 DOWNTO 1)=>openGround(5 DOWNTO 3),west_fdata_out=>n3_n1_y,
+		east_bdata_in3=>X"00000", east_r(0)=>n3_n2_fr, east_r(3 DOWNTO 1)=>openGround(2 DOWNTO 0), east_br(0)=>n3_n2_br(0), east_br(3 DOWNTO 1)=>"000",west_fdata_out=>n3_n1_y,
 		west_bdata_in0=>n1_n3_b, west_bdata_in1=>X"00000", west_bdata_in2=>X"00000", west_bdata_in3=>X"00000", west_r(0)=>n3_n1_fr, west_r(3 DOWNTO 1)=>openGround(8 DOWNTO 6),
 		west_br(0)=>n1_n3_br, west_br(3 DOWNTO 1)=>"000");
 
@@ -399,6 +399,8 @@ begin
 		b_succ_3=>X"00000", y=>o_y, fwd_succ(0)=>net_fwd_done, fwd_succ(3 DOWNTO 1)=>openGround(10 DOWNTO 8), back_pred(2 DOWNTO 0)=>n4_br,
 		back_pred(3)=>openGround(12));
 	
+	n3_n1_br(3 DOWNTO 2) <= "00";
+	n3_n2_br(3 DOWNTO 2) <= "00";
 	f_val<= error_br AND NOT broadcast AND NOT io_rdy;
 	b_val<= back_prop_done(1) AND back_prop_done(0) AND NOT broadcast AND NOT io_rdy;
 	n4_b <= o_y;

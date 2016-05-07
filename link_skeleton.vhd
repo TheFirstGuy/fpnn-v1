@@ -201,10 +201,10 @@ U12: link_bcast
 
 -- Bck_pred 
 is_back_prop <= mult_end AND backward; -- To signal pred for back prop
-back_pred(0) <= (rp_pred(0) AND is_back_prop) OR broadcast;
-back_pred(1) <= (rp_pred(1) AND is_back_prop) OR broadcast;
-back_pred(2) <= (rp_pred(2) AND is_back_prop) OR broadcast;
-back_pred(3) <= (rp_pred(3) AND is_back_prop) OR broadcast;
+back_pred(0) <= (rp_pred(0) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
+back_pred(1) <= (rp_pred(1) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
+back_pred(2) <= (rp_pred(2) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
+back_pred(3) <= (rp_pred(3) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
 
 --fwd_succ
 is_fwd <= foward AND mult_end;

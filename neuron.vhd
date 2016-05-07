@@ -100,6 +100,7 @@ generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
 PORT(
 --Input
 --Forward Control Signals
+--debug: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 );
 clk: IN STD_LOGIC;
 reset: IN STD_LOGIC;
 still_fwd: IN STD_LOGIC; --tells activator to go back to forward active. (we are done with back prop)
@@ -191,6 +192,7 @@ end component;
 SIGNAL north_back_r: STD_LOGIC;
 SIGNAL act_out: STD_LOGIC_VECTOR(19 DOWNTO 0);
 SIGNAL act_fwd_r: STD_LOGIC_VECTOR(3 DOWNTO 0);
+--SIGNAL debug: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
 --West Signals
 SIGNAL west_y: STD_LOGIC_VECTOR(19 DOWNTO 0);
 
@@ -205,11 +207,11 @@ begin
 	--PORT MAP
 	ACT: activator_skeleton 
 	GENERIC MAP (rand => rand1)
-	PORT MAP(clk=>clk, reset=>reset, still_fwd=>still_fwd, 
+	PORT MAP( clk=>clk, reset=>reset, still_fwd=>still_fwd, 
 		fwd_pred(0)=>wa_in_r, fwd_pred(1)=>sa_in_r, fwd_pred(2)=>ea_in_r, fwd_pred(3)=>'0',
 		foward=>forward, bck_succ(0)=>north_back_r, bck_succ(3 DOWNTO 1)=>"000", backward=>backward,
 		broadcast=>broadcast, x_pred_0=>west_fdata_in, x_pred_1=>south_fdata_in,
-		x_pred_2=>east_fdata_in, b_succ_1=>north_y, y=>act_out, fwd_succ=>act_fwd_r,
+		x_pred_2=>east_fdata_in, b_succ_0=>north_y, y=>act_out, fwd_succ=>act_fwd_r,
 		back_pred(0)=> wa_out_r, back_pred(1)=>sa_out_r, back_pred(2)=>ea_out_r, back_pred(3)=>ground(0));
 	
 	
