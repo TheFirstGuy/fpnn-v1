@@ -1,7 +1,7 @@
 ############################################################
 ## This file is generated automatically by Vivado HLS.
 ## Please DO NOT edit it.
-## Copyright (C) 2015 Xilinx Inc. All rights reserved.
+## Copyright (C) 1986-2016 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project cmp_max
 set_top cmp_max
@@ -15,4 +15,4 @@ create_clock -period 10 -name default
 csim_design -clean
 csynth_design
 cosim_design -rtl vhdl
-export_design -format ip_catalog
+export_design -evaluate vhdl -format sysgen

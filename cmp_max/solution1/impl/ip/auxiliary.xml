@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="cmp_max" xd:componentRef="cmp_max" xd:initiationInterval="3" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
+  <xd:arg xd:name="y0" xd:originalName="y0" xd:direction="in" xd:interfaceRef="y0" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="y1" xd:originalName="y1" xd:direction="in" xd:interfaceRef="y1" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="y2" xd:originalName="y2" xd:direction="in" xd:interfaceRef="y2" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="*(max)" xd:originalName="max" xd:direction="out" xd:interfaceRef="max" xd:busTypeRef="register" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
+  <xd:arg xd:name="en" xd:originalName="en" xd:direction="in" xd:interfaceRef="en" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:latencyEstimates xd:best-case="1" xd:worst-case="2" xd:average-case="2"/>
+  <xd:resourceEstimates xd:LUT="340" xd:FF="139" xd:BRAM="0" xd:DSP="0"/>
+</xd:acceleratorMap>

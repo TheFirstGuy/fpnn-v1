@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Webtalk v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:27 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Sat May 07 01:42:55 2016
+# Process ID: 3160
+# Current directory: C:/Users/stevenlee/Documents/cmp_max/solution1/impl/ip
+# Command line: wbtcv.exe -mode batch -source C:/Users/stevenlee/Documents/cmp_max/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
+# Log file: C:/Users/stevenlee/Documents/cmp_max/solution1/impl/ip/webtalk.log
+# Journal file: C:/Users/stevenlee/Documents/cmp_max/solution1/impl/ip\webtalk.jou
+#-----------------------------------------------------------
+source C:/Users/stevenlee/Documents/cmp_max/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sat May 07 01:42:56 2016...

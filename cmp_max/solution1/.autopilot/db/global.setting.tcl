@@ -44,7 +44,7 @@ set TargetInfo "xc7a200t:fbg676:-2"
 set SourceFiles {sc {} c ../cmp_max.c}
 set SourceFlags {sc {} c {{}}}
 set DirectiveFile {C:/Users/stevenlee/Documents/cmp_max/solution1/solution1.directive}
-set TBFiles {verilog {../output_gold.dat ../cmp_max_test.c} bc {../output_gold.dat ../cmp_max_test.c} sc {../output_gold.dat ../cmp_max_test.c} vhdl {../output_gold.dat ../cmp_max_test.c} c {} cas {../output_gold.dat ../cmp_max_test.c}}
+set TBFiles {verilog {../cmp_max_test.c ../output_gold.dat} bc {../cmp_max_test.c ../output_gold.dat} sc {../cmp_max_test.c ../output_gold.dat} vhdl {../cmp_max_test.c ../output_gold.dat} c {} cas {../cmp_max_test.c ../output_gold.dat}}
 set SpecLanguage "C"
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'cmp_max'
 ================================================================
-* Date:           Fri May 06 22:46:39 2016
+* Date:           Fri May 06 23:22:15 2016
 
 * Version:        2015.4 (Build 1412921 on Wed Nov 18 09:58:55 AM 2015)
 * Project:        cmp_max
@@ -358,11 +358,11 @@ STG Binding:
 - Is pipelined: 0
 - Is top level: 1
 Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
-Port [ y0]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; mode=0x7e73080; pingpong=0; private_global=0; IO mode=ap_none:ce=0
-Port [ y1]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; mode=0x7e73230; pingpong=0; private_global=0; IO mode=ap_none:ce=0
-Port [ y2]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; mode=0x7e72ff0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
-Port [ max]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; mode=0x7e72f60; pingpong=0; private_global=0; IO mode=ap_vld:ce=0
-Port [ en]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; mode=0x7e72ed0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ y0]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; mode=0x46b92c0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ y1]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; mode=0x46b9470; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ y2]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; mode=0x46b9230; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ max]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=0; mode=0x46b91a0; pingpong=0; private_global=0; IO mode=ap_vld:ce=0
+Port [ en]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; mode=0x46b9110; pingpong=0; private_global=0; IO mode=ap_none:ce=0
 ---------------- STG Properties END ------------------
 
 ---------------- Datapath Model BEGIN ----------------

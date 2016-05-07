@@ -1,0 +1,257 @@
+
+{
+  'fileSets' => [
+    {
+      'files' => [
+        {
+          'fileType' => 'verilogSource',
+          'logicalName' => 'work',
+          'name' => 'verilog_sim/cmp_max_fcmp_32ns_32ns_1_1.v'
+        },
+        {
+          'fileType' => 'verilogSource',
+          'logicalName' => 'work',
+          'name' => 'verilog_sim/cmp_max.v'
+        }
+      ],
+      'name' => 'vivado_hls_sim_verilog_fileset'
+    },
+    {
+      'files' => [
+        {
+          'fileType' => 'vhdlSource',
+          'logicalName' => 'work',
+          'name' => 'vhdl_sim/cmp_max_fcmp_32ns_32ns_1_1.vhd'
+        },
+        {
+          'fileType' => 'vhdlSource',
+          'logicalName' => 'work',
+          'name' => 'vhdl_sim/cmp_max.vhd'
+        }
+      ],
+      'name' => 'vivado_hls_sim_vhdl_fileset'
+    },
+    {
+      'files' => [
+        {
+          'fileType' => 'TCLSource',
+          'logicalName' => 'work',
+          'name' => 'verilog_impl/cmp_max_ap_fcmp_0_no_dsp_32_ip.tcl'
+        },
+        {
+          'fileType' => 'verilogSource',
+          'logicalName' => 'cmp_max_fcmp_32ns_32ns_1_1',
+          'name' => 'verilog_impl/cmp_max_fcmp_32ns_32ns_1_1.v'
+        },
+        {
+          'fileType' => 'verilogSource',
+          'logicalName' => 'work',
+          'name' => 'verilog_impl/cmp_max.v'
+        }
+      ],
+      'name' => 'vivado_hls_impl_verilog_fileset'
+    },
+    {
+      'files' => [
+        {
+          'fileType' => 'TCLSource',
+          'logicalName' => 'work',
+          'name' => 'vhdl_impl/cmp_max_ap_fcmp_0_no_dsp_32_ip.tcl'
+        },
+        {
+          'fileType' => 'vhdlSource',
+          'logicalName' => 'work',
+          'name' => 'vhdl_impl/cmp_max_fcmp_32ns_32ns_1_1.vhd'
+        },
+        {
+          'fileType' => 'vhdlSource',
+          'logicalName' => 'work',
+          'name' => 'vhdl_impl/cmp_max.vhd'
+        }
+      ],
+      'name' => 'vivado_hls_impl_vhdl_fileset'
+    }
+  ],
+  'DesignConstraint' => {
+      'clk_period' => '10.000000'
+  },
+  'library' => 'VIVADO_HLS',
+  'model' => {
+    'modelParameters'=>{
+        'combinational' => '0',
+        'latency' => '1',
+        'II' => 'x'
+    },
+    'ports' => [
+      {
+        'dataType' => {
+          'fractionWidth' => '0',
+          'type' => 'bool'
+        },
+        'direction' => 'in',
+        'left' => '0',
+        'name' => 'ap_clk',
+        'right' => '0',
+        'type' => 'std_logic'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '0',
+          'type' => 'bool'
+        },
+        'direction' => 'in',
+        'left' => '0',
+        'name' => 'ap_rst',
+        'right' => '0',
+        'type' => 'std_logic'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '0',
+          'type' => 'bool'
+        },
+        'direction' => 'in',
+        'left' => '0',
+        'name' => 'ap_start',
+        'right' => '0',
+        'type' => 'std_logic'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '0',
+          'type' => 'bool'
+        },
+        'direction' => 'out',
+        'left' => '0',
+        'name' => 'ap_done',
+        'right' => '0',
+        'type' => 'std_logic'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '0',
+          'type' => 'bool'
+        },
+        'direction' => 'out',
+        'left' => '0',
+        'name' => 'ap_idle',
+        'right' => '0',
+        'type' => 'std_logic'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '0',
+          'type' => 'bool'
+        },
+        'direction' => 'out',
+        'left' => '0',
+        'name' => 'ap_ready',
+        'right' => '0',
+        'type' => 'std_logic'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '24',
+          'type' => 'Floating-point'
+        },
+        'direction' => 'in',
+        'left' => '31',
+        'name' => 'y0',
+        'right' => '0',
+        'type' => 'std_logic_vector'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '24',
+          'type' => 'Floating-point'
+        },
+        'direction' => 'in',
+        'left' => '31',
+        'name' => 'y1',
+        'right' => '0',
+        'type' => 'std_logic_vector'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '24',
+          'type' => 'Floating-point'
+        },
+        'direction' => 'in',
+        'left' => '31',
+        'name' => 'y2',
+        'right' => '0',
+        'type' => 'std_logic_vector'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '24',
+          'type' => 'Floating-point'
+        },
+        'direction' => 'out',
+        'left' => '31',
+        'name' => 'max',
+        'right' => '0',
+        'type' => 'std_logic_vector'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '0',
+          'type' => 'bool'
+        },
+        'direction' => 'out',
+        'left' => '0',
+        'name' => 'max_ap_vld',
+        'right' => '0',
+        'type' => 'std_logic'
+      },
+      {
+        'dataType' => {
+          'fractionWidth' => '0',
+          'type' => 'Signed'
+        },
+        'direction' => 'in',
+        'left' => '0',
+        'name' => 'en',
+        'right' => '0',
+        'type' => 'std_logic_vector'
+      }
+    ],
+    'views' => [
+      {
+        'envIdentifier' => 'verilogSource:sysgen.xilinx.com:synthesis',
+        'fileSetRef' => {
+          'localName' => 'vivado_hls_impl_verilog_fileset'
+        },
+        'language' => 'VERILOG',
+        'name' => 'xilinx_verilogsynthesis'
+      },
+      {
+        'envIdentifier' => 'vhdlSource:sysgen.xilinx.com:synthesis',
+        'fileSetRef' => {
+          'localName' => 'vivado_hls_impl_vhdl_fileset'
+        },
+        'language' => 'VHDL',
+        'name' => 'xilinx_vhdlsynthesis'
+      },
+      {
+        'envIdentifier' => 'verilogSource:sysgen.xilinx.com:synthesis',
+        'fileSetRef' => {
+          'localName' => 'vivado_hls_sim_verilog_fileset'
+        },
+        'language' => 'VERILOG',
+        'name' => 'xilinx_verilogsimulation'
+      },
+      {
+        'envIdentifier' => 'vhdlSource:sysgen.xilinx.com:synthesis',
+        'fileSetRef' => {
+          'localName' => 'vivado_hls_sim_vhdl_fileset'
+        },
+        'language' => 'VHDL',
+        'name' => 'xilinx_vhdlsimulation'
+      }
+    ]
+  },
+  'name' => 'cmp_max',
+  'vendor' => 'xilinx.com',
+  'version' => '1.0'
+}
