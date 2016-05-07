@@ -34,6 +34,7 @@ reset: IN STD_LOGIC;
 fwd_pred: IN STD_LOGIC_VECTOR( 3 DOWNTO 0 ); -- Forward pred request signals
 foward: IN STD_LOGIC;  -- Forward activation mode
 still_fwd: IN STD_LOGIC;
+
 --Backwards Control Signals
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
@@ -146,8 +147,11 @@ SIGNAL acc_b_en: STD_LOGIC;
 --ACC_F
 SIGNAL acc_f_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_f
 SIGNAL acc_f_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- output of mux into ACC_F
+SIGNAL acc_f_reset: STD_LOGIC;
+SIGNAL acc_b_reset: STD_LOGIC;
 --ACC_W
 SIGNAL acc_w_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_w
+SIGNAL acc_w_in: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- input of acc_w
 --Sel_fwd
 SIGNAL f_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- Select signal for forward input MUX
 SIGNAL sel_fwd_reset_m: STD_LOGIC;
@@ -171,23 +175,27 @@ SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
 SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
 SIGNAL muxw_sel: STD_LOGIC; -- Controls mux2
 SIGNAL F_SEL_CLR: STD_LOGIC; 
-SIGNAL B_SEL_CLR: STD_LOGIC;
+SIGNAL B_SEL_CLR: STD_LOGIC; 
 SIGNAL ACC_F_RST: STD_LOGIC; 
+SIGNAL delay_foward: STD_LOGIC;
 begin
+
 F_SEL_CLR <= reset or backward or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
 B_SEL_CLR <= reset or foward;
 ACC_F_RST <= reset or update or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
+acc_f_reset <= update OR reset;
+acc_b_reset <= foward OR reset;
 --port
 U1: MULT 
 	PORT MAP(reset=>mult_reset,clock=>clk,en=>mult_enable,Input=>mult_in,W=>mult_w_in,Output=>mult_out,ready=>mult_end);
 U2: acc_f 
-	PORT MAP(clk=>clk , rst0=>reset , rst1=>'0' , f_in=>acc_f_in , en=>sel_fwd_en_accf , init0=>x"00000" , init1=>x"00000" , f_out=>acc_f_out );
+	PORT MAP(clk=>clk , rst0=>acc_f_reset , rst1=>'0' , f_in=>acc_f_in , en=>sel_fwd_en_accf , init0=>x"00000" , init1=>x"00000" , f_out=>acc_f_out );
 --U3: oneminusx PORT MAP(Input=>mult_out, Output=>omx_out);
 U4: ACC_W 
 	GENERIC MAP (rand => rand)
-	PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>mult_out,w_out=>acc_w_out); 
+	PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>acc_w_in,w_out=>acc_w_out); 
 U5: ACC_B 
-	PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>acc_b_out);
+	PORT MAP(clk=>clk, rst=>acc_b_reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>acc_b_out);
 --U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 --U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 --U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
@@ -209,7 +217,7 @@ back_pred(2) <= (rp_pred(2) AND is_back_prop AND mult_end AND sel_bck_en_m) OR b
 back_pred(3) <= (rp_pred(3) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
 
 --fwd_succ
-is_fwd <= foward AND mult_end;
+is_fwd <= foward AND mult_end AND NOT delay_foward;
 fwd_succ(0) <= (rn_succ(0) AND is_fwd) OR broadcast;
 fwd_succ(1) <= (rn_succ(1) AND is_fwd) OR broadcast;
 fwd_succ(2) <= (rn_succ(2) AND is_fwd) OR broadcast;
@@ -259,10 +267,23 @@ PROCESS(clk, update)
 	END IF;
 END PROCESS;
 
+-- ACC_W update value times learning rate
+WITH mult_out(19) SELECT
+		acc_w_in<= ('0'& mult_out(19 DOWNTO 1)) WHEN '0',
+		('1'& mult_out(19 DOWNTO 1)) WHEN '1',
+		('0'& mult_out(19 DOWNTO 1)) WHEN others;
+
+
+PROCESS(clk, update_reg)
+	BEGIN
+	IF(clk'EVENT AND clk = '1' )THEN
+		delay_foward<= update_reg;
+	END IF;
+END PROCESS;
 
 y<=mult_out;
 
---update<-forward;
+
 
 
 

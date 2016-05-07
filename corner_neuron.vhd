@@ -149,6 +149,7 @@ bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signa
 backward: IN STD_LOGIC; -- backward activation mode
 update: IN STD_LOGIC; -- update weight control signal
 broadcast: IN STD_LOGIC; -- Broadcase connections
+still_fwd: IN STD_LOGIC;
 
 --Forward Data Input Signals
 --Data values from pred for forward activation
@@ -203,7 +204,7 @@ begin
 	WL: link_skeleton 
 	GENERIC MAP (rand => rand2)
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>ew_in_r, fwd_pred(1)=>sw_in_r,
-		fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>west_br, backward=>backward, update=>update,
+		fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>west_br, backward=>backward, update=>update, still_fwd=>still_fwd,
 		broadcast=>broadcast, x_pred_0=>east_fdata_in, x_pred_1=>south_fdata_in, x_pred_2=>open, x_pred_3=>open,
 		b_succ_0=>west_bdata_in0, b_succ_1=>west_bdata_in1, b_succ_2=>west_bdata_in2,
 		b_succ_3=>west_bdata_in3, y=>west_y, fwd_succ=>west_r, back_pred(0)=>ew_out_r, back_pred(1)=>sw_out_r,
@@ -212,7 +213,7 @@ begin
 	NL: link_skeleton 
 	GENERIC MAP (rand => rand3)
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>act_fwd_r(0), fwd_pred(3 DOWNTO 1)=>"000",
-		foward=>forward, bck_succ=>north_br, backward=>backward, update=>update, broadcast=>broadcast, x_pred_0=>act_out,
+		foward=>forward, bck_succ=>north_br, backward=>backward, update=>update, broadcast=>broadcast,still_fwd=>still_fwd, x_pred_0=>act_out,
 		x_pred_1=>open, x_pred_2=>open, x_pred_3=>open, b_succ_0=>north_bdata_in0, b_succ_1=>north_bdata_in1,
 		b_succ_2=>north_bdata_in2, b_succ_3=>north_bdata_in3, y=>north_y, fwd_succ=>north_r, back_pred(0)=>north_back_r,
 		back_pred(3 DOWNTO 1)=>ground(5 DOWNTO 3));

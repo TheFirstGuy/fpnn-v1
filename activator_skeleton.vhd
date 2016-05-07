@@ -237,7 +237,6 @@ SIGNAL forward_rdy: STD_LOGIC; --forward activation ready
 Signal omx_out: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
 SIGNAL F_SEL_CLR: STD_LOGIC; 
 SIGNAL B_SEL_CLR: STD_LOGIC;
-
 --PORT MAPPING FUN TIME
 
 
@@ -245,9 +244,11 @@ SIGNAL B_SEL_CLR: STD_LOGIC;
 type s_type is (init, accumulate, fa0, fa1, fa2, fa3, th0, th1, bp0, bp1, bp2, bp3);
 signal state, nextstate: s_type;
 
+
+
 begin
 
-F_SEL_CLR <= reset or backward or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
+F_SEL_CLR <= reset or backward or (still_fwd and (not sn_succ(0) or bck_succ(0)) and (not sn_succ(1) or bck_succ(1)) and (not sn_succ(2) or bck_succ(2)) and (not sn_succ(3) or bck_succ(3)));
 B_SEL_CLR <= reset or foward;
 
 -- PORT

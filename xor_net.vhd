@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity xor_net is
 generic (
-	rand1  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	rand1  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08123";
 	rand2  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"F8000";
 	rand3  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"07210";
 	rand4  : STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"032F2";
@@ -72,7 +72,7 @@ bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signa
 backward: IN STD_LOGIC; -- backward activation mode
 update: IN STD_LOGIC; -- update weight control signal --------------------------------------------------------- Now a signal Update<=forward
 broadcast: IN STD_LOGIC; -- Broadcase connections
-
+still_fwd: IN STD_LOGIC;
 --Forward Data Input Signals
 --Data values from pred for forward activation
 x_pred_0: IN STD_LOGIC_VECTOR( 19 DOWNTO 0 );
@@ -275,6 +275,7 @@ component control_unit is
            io_rdy : out std_logic;  --I/O Ready
            f_en : out std_logic;    --Forward Enable
            b_en : out std_logic;   --Backward Enable
+			  still_fwd: out STD_LOGIC;  
 			  u_en : out std_logic); --Update enable
 end component;
 
@@ -325,7 +326,7 @@ begin
 
 	CU: control_unit
 	PORT MAP(clk=>clk, rst=>reset, f_init=>f_init, f_val=>f_val, b_val=>b_val, io_val=>io_val, 
-	bcast_en=>broadcast, io_rdy=>io_rdy,f_en=>forward, b_en=>backward, u_en=>update );
+	bcast_en=>broadcast, io_rdy=>io_rdy,f_en=>forward, b_en=>backward, u_en=>update, still_fwd=>still_fwd );
 	
 	ERROR: err
 	PORT MAP(clk=>clk, rst=>reset, broadcast=>broadcast, rslt_valid=>net_fwd_done, rslt=>o_y, c_val=>uart_cval, err=>error_b, err_valid=>error_br); 
@@ -333,7 +334,7 @@ begin
 	GENERIC MAP (rand => rand1)
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 
 		fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in1_br, bck_succ(1)=>n1_in1_br, bck_succ(3 DOWNTO 2)=>"00",
-		backward=>backward, update=>update, broadcast=>broadcast, x_pred_0=>uart_in1, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
+		backward=>backward, update=>update, broadcast=>broadcast,still_fwd=>still_fwd, x_pred_0=>uart_in1, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
 		b_succ_0=>n3_in1, b_succ_1=>n1_in1, b_succ_2=>X"00000", b_succ_3=>X"00000", y=>input1Node1, fwd_succ=>input1_fwd_req, 
 		back_pred(0)=>back_prop_done(0), back_pred(3 DOWNTO 1)=>sink(2 DOWNTO 0));
 
@@ -341,7 +342,7 @@ begin
 	GENERIC MAP (rand => rand2)
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred2,
 		fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in2_br, bck_succ(1)=>n2_in2_br, bck_succ(3 DOWNTO 2)=>"00",
-		backward=>backward, update=>update, broadcast=>broadcast, x_pred_0=>uart_in2, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
+		backward=>backward, update=>update, broadcast=>broadcast,still_fwd=>still_fwd, x_pred_0=>uart_in2, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
 		b_succ_0=>n3_in2, b_succ_1=>n2_in2, b_succ_2=>X"00000", b_succ_3=>X"00000", y=>input2Node2, fwd_succ=>input2_fwd_req,
 		back_pred(0)=>back_prop_done(1), back_pred(3 DOWNTO 1)=>sink(5 DOWNTO 3));
 
