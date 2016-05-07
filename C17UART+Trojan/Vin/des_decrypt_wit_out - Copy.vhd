@@ -83,11 +83,18 @@ COMPONENT HEX2ASC
 		);
 	END COMPONENT;
 	
+component ascii_hex
+	Port ( clk : in std_logic;
+           ascii : in std_logic_vector(7 downto 0);
+           hex : out std_logic_vector(3 downto 0));
+end component;
+
 	type StateType is (Idle, cnt, receive,Decide, send1, send2,
 	                   stInput,stOutput,Test_vector,DisplayI );
 
 	signal dbInSig	:	std_logic_vector(7 downto 0);
 	signal dbOutSig, dbOutSig2, dbOutSig3:  std_logic_vector(7 downto 0);
+	signal hex0, hex1, hex2 : std_logic_vector(4 downto 0);
 	signal rdaSig	:	std_logic;
 	signal tbeSig	:	std_logic;
 	signal rdSig	:	std_logic;
@@ -249,6 +256,9 @@ D6: HEX2ASC PORT MAP(count_RO(11 DOWNTO 8),CLK,RO(23 downto 16));
 D7: HEX2ASC PORT MAP(count_RO(7 DOWNTO 4),CLK,RO(15 downto 8));
 D8: HEX2ASC PORT MAP(count_RO(3 DOWNTO 0),CLK,RO(7 downto 0));
 ----------------------------------------------------------------------------
+h1: ascii_hex port map(clk=>clk, ascii=>dbOutSig, hex=>hex0);
+h2: ascii_hex port map(clk=>clk, ascii=>dbOutSig2, hex=>hex1);
+h3: ascii_hex port map(clk=>clk, ascii=>dbOutSig, hex=>hex2);
 
 process(clk, rst)
     begin
