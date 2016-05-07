@@ -235,6 +235,9 @@ SIGNAL back_rdy: STD_LOGIC; -- back propagation value ready
 SIGNAL forward_rdy: STD_LOGIC; --forward activation ready
 --1-x
 Signal omx_out: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
+SIGNAL F_SEL_CLR: STD_LOGIC; 
+SIGNAL B_SEL_CLR: STD_LOGIC;
+
 --PORT MAPPING FUN TIME
 
 
@@ -243,6 +246,10 @@ type s_type is (init, accumulate, fa0, fa1, fa2, fa3, th0, th1, bp0, bp1, bp2, b
 signal state, nextstate: s_type;
 
 begin
+
+F_SEL_CLR <= reset or backward or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
+B_SEL_CLR <= reset or foward;
+
 -- PORT
 U1: MULT 
 	PORT MAP(reset=>mult_reset,clock=>clk,en=>mult_enable,Input=>mult_in,W=>mult_w_in,Output=>mult_out,ready=>mult_end);
@@ -292,7 +299,7 @@ U12: link_bcast
 				WHEN accumulate => IF(sel_fwd_en_m = '1') THEN nextstate <= fa0; ELSE nextstate <= accumulate; END IF;
 				WHEN fa0 => nextstate <= fa1;
 				WHEN fa1 => IF(fin = '1') THEN nextstate <= fa2; ELSE nextstate <= fa0; END IF;
-				WHEN fa2 => IF(backward = '1' AND sel_bck_en_m = '1') THEN nextstate <= th0; ELSIF( still_fwd = '1' ) THEN nextstate <= accumulate; ELSE nextstate <= fa2; END IF;
+				WHEN fa2 => IF(backward = '1' AND sel_bck_en_m = '1') THEN nextstate <= th0; ELSIF( still_fwd = '1' ) THEN nextstate <= init; ELSE nextstate <= fa2; END IF;
 				--WHEN fa3 => IF(backward = '1') THEN nextstate <= th0; ELSE nextstate <= fa3; END IF;
 				WHEN th0 => nextstate <= th1; 
 				WHEN th1 => nextstate <= bp0;

@@ -33,7 +33,7 @@ reset: IN STD_LOGIC;
 --rn_succ: IN STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if succ connections exist
 fwd_pred: IN STD_LOGIC_VECTOR( 3 DOWNTO 0 ); -- Forward pred request signals
 foward: IN STD_LOGIC;  -- Forward activation mode
-
+still_fwd: IN STD_LOGIC;
 --Backwards Control Signals
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
@@ -171,10 +171,12 @@ SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
 SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
 SIGNAL muxw_sel: STD_LOGIC; -- Controls mux2
 SIGNAL F_SEL_CLR: STD_LOGIC; 
-SIGNAL B_SEL_CLR: STD_LOGIC; 
+SIGNAL B_SEL_CLR: STD_LOGIC;
+SIGNAL ACC_F_RST: STD_LOGIC; 
 begin
-F_SEL_CLR <= (reset or backward);
-B_SEL_CLR <= (reset or foward);
+F_SEL_CLR <= reset or backward or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
+B_SEL_CLR <= reset or foward;
+ACC_F_RST <= reset or update or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
 --port
 U1: MULT 
 	PORT MAP(reset=>mult_reset,clock=>clk,en=>mult_enable,Input=>mult_in,W=>mult_w_in,Output=>mult_out,ready=>mult_end);
