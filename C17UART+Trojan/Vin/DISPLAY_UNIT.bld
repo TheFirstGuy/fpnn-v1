@@ -3,18 +3,16 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 Command Line:
 C:\Documents\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe -intstyle
-ise -dd _ngo -nt timestamp -uc DISPLAY_UNIT.ucf -uc
-C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf -p xc7a100t-csg324-3
-DISPLAY_UNIT.ngc DISPLAY_UNIT.ngd
+ise -dd _ngo -nt timestamp -uc DISPLAY_UNIT.ucf -uc Nexys4DDR_Master.ucf -p
+xc7a100t-csg324-3 DISPLAY_UNIT.ngc DISPLAY_UNIT.ngd
 
-Reading NGO file "C:/Users/Steyr/Documents/C17UART+Trojan/Vin/DISPLAY_UNIT.ngc"
-...
+Reading NGO file
+"C:/Users/Steyr/Documents/FPNN/C17UART+Trojan/Vin/DISPLAY_UNIT.ngc" ...
 Gathering constraint information from source properties...
 Done.
 
 Annotating constraints to design from ucf file "DISPLAY_UNIT.ucf" ...
-Annotating constraints to design from ucf file
-"C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf" ...
+Annotating constraints to design from ucf file "Nexys4DDR_Master.ucf" ...
 Resolving constraint associations...
 Checking Constraint Associations...
 WARNING:ConstraintSystem - A target design object for the Locate constraint
@@ -99,84 +97,64 @@ WARNING:ConstraintSystem - A target design object for the Locate constraint
 
 WARNING:NgdBuild:1012 - The constraint <NET "ANODE[0]" LOC = F17;>
    [DISPLAY_UNIT.ucf(11)] is overridden on the design object ANODE<0> by the
-   constraint <NET "ANODE<0>"        LOC=R12 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(51)].
+   constraint <NET "ANODE<0>"        LOC=R12 |> [Nexys4DDR_Master.ucf(51)].
 WARNING:NgdBuild:1012 - The constraint <NET "ANODE[1]" LOC = H17;>
    [DISPLAY_UNIT.ucf(12)] is overridden on the design object ANODE<1> by the
-   constraint <NET "ANODE<1>"        LOC=M16 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(52)].
+   constraint <NET "ANODE<1>"        LOC=M16 |> [Nexys4DDR_Master.ucf(52)].
 WARNING:NgdBuild:1012 - The constraint <NET "ANODE[2]" LOC = C18;>
    [DISPLAY_UNIT.ucf(13)] is overridden on the design object ANODE<2> by the
-   constraint <NET "ANODE<2>"        LOC=N15 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(53)].
+   constraint <NET "ANODE<2>"        LOC=N15 |> [Nexys4DDR_Master.ucf(53)].
 WARNING:NgdBuild:1012 - The constraint <NET "ANODE[3]" LOC = F15;>
    [DISPLAY_UNIT.ucf(14)] is overridden on the design object ANODE<3> by the
-   constraint <NET "ANODE<3>"        LOC=G14 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(54)].
+   constraint <NET "ANODE<3>"        LOC=G14 |> [Nexys4DDR_Master.ucf(54)].
 WARNING:NgdBuild:1012 - The constraint <NET "OUTDIGIT[0]" LOC = L18;>
    [DISPLAY_UNIT.ucf(15)] is overridden on the design object OUTDIGIT<0> by the
-   constraint <NET "OUTDIGIT<0>"         LOC=V16 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(42)].
+   constraint <NET "OUTDIGIT<0>"         LOC=V16 |> [Nexys4DDR_Master.ucf(42)].
 WARNING:NgdBuild:1012 - The constraint <NET "OUTDIGIT[1]" LOC = F18;>
    [DISPLAY_UNIT.ucf(16)] is overridden on the design object OUTDIGIT<1> by the
-   constraint <NET "OUTDIGIT<1>"         LOC=T15 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(43)].
+   constraint <NET "OUTDIGIT<1>"         LOC=T15 |> [Nexys4DDR_Master.ucf(43)].
 WARNING:NgdBuild:1012 - The constraint <NET "OUTDIGIT[2]" LOC = D17;>
    [DISPLAY_UNIT.ucf(17)] is overridden on the design object OUTDIGIT<2> by the
-   constraint <NET "OUTDIGIT<2>"        LOC=U14 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(44)].
+   constraint <NET "OUTDIGIT<2>"        LOC=U14 |> [Nexys4DDR_Master.ucf(44)].
 WARNING:NgdBuild:1012 - The constraint <NET "OUTDIGIT[3]" LOC = D16;>
    [DISPLAY_UNIT.ucf(18)] is overridden on the design object OUTDIGIT<3> by the
-   constraint <NET "OUTDIGIT<3>"        LOC=T16 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(45)].
+   constraint <NET "OUTDIGIT<3>"        LOC=T16 |> [Nexys4DDR_Master.ucf(45)].
 WARNING:NgdBuild:1012 - The constraint <NET "OUTDIGIT[4]" LOC = G14;>
    [DISPLAY_UNIT.ucf(19)] is overridden on the design object OUTDIGIT<4> by the
-   constraint <NET "OUTDIGIT<4>"        LOC=V15 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(46)].
+   constraint <NET "OUTDIGIT<4>"        LOC=V15 |> [Nexys4DDR_Master.ucf(46)].
 WARNING:NgdBuild:1012 - The constraint <NET "OUTDIGIT[5]" LOC = J17;>
    [DISPLAY_UNIT.ucf(20)] is overridden on the design object OUTDIGIT<5> by the
-   constraint <NET "OUTDIGIT<5>"        LOC=V14 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(47)].
+   constraint <NET "OUTDIGIT<5>"        LOC=V14 |> [Nexys4DDR_Master.ucf(47)].
 WARNING:NgdBuild:1012 - The constraint <NET "OUTDIGIT[6]" LOC = H14;>
    [DISPLAY_UNIT.ucf(21)] is overridden on the design object OUTDIGIT<6> by the
-   constraint <NET "OUTDIGIT<6>"        LOC=V12 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(48)].
+   constraint <NET "OUTDIGIT<6>"        LOC=V12 |> [Nexys4DDR_Master.ucf(48)].
 WARNING:NgdBuild:1012 - The constraint <NET "OUTDIGIT[7]" LOC = C17;>
    [DISPLAY_UNIT.ucf(22)] is overridden on the design object OUTDIGIT<7> by the
-   constraint <NET "OUTDIGIT<7>"        LOC=V11 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(49)].
+   constraint <NET "OUTDIGIT<7>"        LOC=V11 |> [Nexys4DDR_Master.ucf(49)].
 WARNING:NgdBuild:1012 - The constraint <NET "LEDS[0]" LOC = J14;>
    [DISPLAY_UNIT.ucf(23)] is overridden on the design object LEDS<0> by the
-   constraint <NET "LEDS<0>"         LOC=H17 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(34)].
+   constraint <NET "LEDS<0>"         LOC=H17 |> [Nexys4DDR_Master.ucf(34)].
 WARNING:NgdBuild:1012 - The constraint <NET "LEDS[1]" LOC = J15;>
    [DISPLAY_UNIT.ucf(24)] is overridden on the design object LEDS<1> by the
-   constraint <NET "LEDS<1>"         LOC=K15 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(35)].
+   constraint <NET "LEDS<1>"         LOC=K15 |> [Nexys4DDR_Master.ucf(35)].
 WARNING:NgdBuild:1012 - The constraint <NET "LEDS[2]" LOC = K15;>
    [DISPLAY_UNIT.ucf(25)] is overridden on the design object LEDS<2> by the
-   constraint <NET "LEDS<2>"         LOC=J13 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(36)].
+   constraint <NET "LEDS<2>"         LOC=J13 |> [Nexys4DDR_Master.ucf(36)].
 WARNING:NgdBuild:1012 - The constraint <NET "LEDS[3]" LOC = K14;>
    [DISPLAY_UNIT.ucf(26)] is overridden on the design object LEDS<3> by the
-   constraint <NET "LEDS<3>"         LOC=N14 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(37)].
+   constraint <NET "LEDS<3>"         LOC=N14 |> [Nexys4DDR_Master.ucf(37)].
 WARNING:NgdBuild:1012 - The constraint <NET "LEDS[4]" LOC = E17;>
    [DISPLAY_UNIT.ucf(27)] is overridden on the design object LEDS<4> by the
-   constraint <NET "LEDS<4>"         LOC=R18 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(38)].
+   constraint <NET "LEDS<4>"         LOC=R18 |> [Nexys4DDR_Master.ucf(38)].
 WARNING:NgdBuild:1012 - The constraint <NET "LEDS[5]" LOC = P15;>
    [DISPLAY_UNIT.ucf(28)] is overridden on the design object LEDS<5> by the
-   constraint <NET "LEDS<5>"         LOC=V17 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(39)].
+   constraint <NET "LEDS<5>"         LOC=V17 |> [Nexys4DDR_Master.ucf(39)].
 WARNING:NgdBuild:1012 - The constraint <NET "LEDS[6]" LOC = F4;>
    [DISPLAY_UNIT.ucf(29)] is overridden on the design object LEDS<6> by the
-   constraint <NET "LEDS<6>"         LOC=U17 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(40)].
+   constraint <NET "LEDS<6>"         LOC=U17 |> [Nexys4DDR_Master.ucf(40)].
 WARNING:NgdBuild:1012 - The constraint <NET "LEDS[7]" LOC = R4;>
    [DISPLAY_UNIT.ucf(30)] is overridden on the design object LEDS<7> by the
-   constraint <NET "LEDS<7>"         LOC=U16 |>
-   [C:/Users/Steyr/Documents/DP1Lab0/Lab3/Nexys4DDR_Master.ucf(41)].
+   constraint <NET "LEDS<7>"         LOC=U16 |> [Nexys4DDR_Master.ucf(41)].
 Done...
 
 Checking expanded design ...
@@ -192,7 +170,7 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:  40
 
-Total memory usage is 257372 kilobytes
+Total memory usage is 257336 kilobytes
 
 Writing NGD file "DISPLAY_UNIT.ngd" ...
 Total REAL time to NGDBUILD completion:  6 sec

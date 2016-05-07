@@ -63,8 +63,8 @@ component RS232RefComp
    Port (  	TXD 	: out	std_logic	:= '1';
 		 	RXD 	: in	std_logic;					
   		 	CLK 	: in	std_logic;							
-			DBIN 	: in	std_logic_vector (19 downto 0);
-			DBOUT,DBOUT2,DBOUT3 	: out	std_logic_vector (19 downto 0);
+			DBIN 	: in	std_logic_vector (7 downto 0);
+			DBOUT,DBOUT2,DBOUT3 	: out	std_logic_vector (7 downto 0);
 			RDA		: inout	std_logic;							
 			TBE		: inout	std_logic 	:= '1';				
 			RD		: in	std_logic;							
@@ -86,8 +86,8 @@ COMPONENT HEX2ASC
 	type StateType is (Idle, cnt, receive,Decide, send1, send2,
 	                   stInput,stOutput,Test_vector,DisplayI );
 
-	signal dbInSig	:	std_logic_vector(19 downto 0);
-	signal dbOutSig, dbOutSig2, dbOutSig3:  std_logic_vector(19 downto 0);
+	signal dbInSig	:	std_logic_vector(7 downto 0);
+	signal dbOutSig, dbOutSig2, dbOutSig3:  std_logic_vector(7 downto 0);
 	signal rdaSig	:	std_logic;
 	signal tbeSig	:	std_logic;
 	signal rdSig	:	std_logic;
@@ -97,7 +97,7 @@ COMPONENT HEX2ASC
 	signal oeSig	:	std_logic;
 	signal state	:	StateType;
    signal RST_TEMP:	Std_logic;
-   signal reg_in  :  std_logic_vector(19 downto 0);
+   signal reg_in  :  std_logic_vector(7 downto 0);
 	signal count   :  std_logic_vector(3 downto 0);
 	signal ro		:  std_logic_vector(63 downto 0);
    signal St_indic:  std_logic_vector(2 downto 0);
@@ -159,12 +159,12 @@ with i_cntx select
 with i_cntx select
 temps <= dbOutSig(3 downto 0) when "000",
 dbOutSig(7 downto 4) when "001",
-dbOutSig(11 downto 8) when "010",
-dbOutSig(15 downto 12) when "011",
-dbOutSig(19 downto 16) when "100",
-dbOutSig2(3 downto 0) when "101",
-dbOutSig2(7 downto 4) when "110",
-dbOutSig2(11 downto 8) when others;	
+dbInSig(3 downto 0) when "010",
+dbInSig(7 downto 4) when "011",
+dbOutSig2(3 downto 0) when "100",
+dbOutSig2(7 downto 4) when "101",
+dbOutSig3(3 downto 0) when "110",
+x"0" when others;	
 
 
 
@@ -290,9 +290,11 @@ process(clk, rst)
  				state <= StOutput;
 				elsif (dbOutSig<=x"6F") then
 				state <= StOutput;
+				
 				else
 				state<= Idle;
-          	End if;					
+          	End if;
+					
 
 		  when StInput =>
 		   St_indic<="000"; 
@@ -341,26 +343,26 @@ process(clk, rst)
 				 
 		  when stoutput   => 
 		  
-		  if count = "0001" then
-		  dbInSig <=x"00020";
+		    if count = "0001" then
+		  dbInSig <=x"20";
 		  ELSif count = "1010" then
-		  dbInSig <=x"0000A";
+		  dbInSig <=x"0A";
 		  elsif count = "0010" then
-		  dbInSig <=ro (63 downto 44);
+		  dbInSig <=ro (63 downto 56);
 		  elsif count = "0011" then
-		  dbInSig <=ro (43 downto 24);
+		  dbInSig <=ro (55 downto 48);
 			elsif count = "0100" then
-		  dbInSig <=ro (23 downto 4);
+		  dbInSig <=ro (47 downto 40);
 			elsif count = "0101" then
-		  dbInSig <=ro (3 downto 0) & x"0000";
-			--elsif count = "0110" then
-		 -- dbInSig <=ro (31 downto 24);
-			--elsif count = "0111" then
-		 -- dbInSig <=ro (23 downto 16);
-			--elsif count = "1000" then
-		 -- dbInSig <=ro (15 downto 8);
-			--elsif count = "1001" then
-		  --dbInSig <=ro (7 downto 0);
+		  dbInSig <=ro (39 downto 32);
+			elsif count = "0110" then
+		  dbInSig <=ro (31 downto 24);
+			elsif count = "0111" then
+		  dbInSig <=ro (23 downto 16);
+			elsif count = "1000" then
+		  dbInSig <=ro (15 downto 8);
+			elsif count = "1001" then
+		  dbInSig <=ro (7 downto 0);
 		  end if;
 
 							         rdsig<='0'; wrsig<='0';
