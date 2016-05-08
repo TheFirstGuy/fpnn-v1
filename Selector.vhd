@@ -45,7 +45,11 @@ process(clk, clr) begin
 			res_d <= '0';
 		elsif(clr = '0')then
 			res_d <= pre_res AND forward;
+		else
+			res_d <=res_d;
 		end if;
+	else
+		res_d <= res_d;
 	end if;
 end process;
 
@@ -78,7 +82,11 @@ process(clk, clr, e) begin
 			d <= "0000";
 		elsif(clr = '0' AND e = '1') then
 			d <= predand OR d;
+		else
+			d <= d;
 		end if;
+	else
+		d <= d;
 	end if;
 end process;
 

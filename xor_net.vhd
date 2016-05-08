@@ -47,7 +47,8 @@ uart_in2: IN STD_LOGIC_VECTOR(19 DOWNTO 0);
 u_fwd_pred2: IN STD_LOGIC;
 
 uart_cval: IN STD_LOGIC_VECTOR(19 DOWNTO 0); -- Correct value of uart
-io_val: IN STD_LOGIC -- io valid
+io_val: IN STD_LOGIC; -- io valid
+u_art_out: OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
 );
 end xor_net;
 
@@ -405,4 +406,5 @@ begin
 	f_val<= error_br AND NOT broadcast AND NOT io_rdy;
 	b_val<= back_prop_done(1) AND back_prop_done(0) AND NOT broadcast AND NOT io_rdy;
 	n4_b <= o_y;
+	u_art_out<= o_y;
 end Behavioral;

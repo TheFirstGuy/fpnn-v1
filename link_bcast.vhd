@@ -58,20 +58,24 @@ begin
         if (clk'event and clk =  '1') then      --Synchronous Clock
             if (rst = '1') then   -- Reset State
                 req_cnt <= "000"; 
-            elsif (req_cnt = "100") then       --Loop Back to 0 when Counter = 4
-                req_cnt <= "000";
-            else
-                if (en = '1') then
-                    req_cnt <= req_cnt + 1;         --Increment Counter
-                end if;
-            end if;
+				else
+					if (req_cnt = "100") then       --Loop Back to 0 when Counter = 4
+						 req_cnt <= "000";
+					else
+						 if (en = '1') then
+							  req_cnt <= req_cnt + 1;         --Increment Counter
+						 else
+							  req_cnt <= req_cnt;
+						 end if;
+					end if;
+				end if;
        end if;
     end process cnt;
     
     bcast: process(clk, rst, p0, p1, p2, p3)    --Broadcast Request
     begin
         if (clk'event and clk =  '1') then      --Synchronous Clock
-            if (rst = '1') then	--Reset State
+            if (rst = '1' and rst = '1') then	--Reset State
                 p0_r <= '0';
                 p1_r <= '0';
                 p2_r <= '0';
@@ -82,23 +86,49 @@ begin
                         when "000" =>
                             if(p0 = '1') then
                                 p0_r <= '1';
+									  else
+										  p0_r <= p0_r;
                             end if;
                         when "001" =>
                             if(p1 = '1') then
                                 p1_r <= '1';
+									 else
+										  p1_r <= p1_r;
                             end if;
                         when "010" =>
                             if(p2 = '1') then
                                 p2_r <= '1';
+									 else
+										  p2_r <= p2_r;
                             end if;
                         when "100" =>
                             if(p3 = '1') then
                                 p3_r <= '1';
+									else
+										  p3_r <= p3_r;
                             end if;
                         when others =>
+										p0_r <= p0_r;
+										p1_r <= p1_r;
+										p2_r <= p2_r;
+										p3_r <= p3_r;
                     end case;
+					 else
+						p0_r <= p0_r;
+						p1_r <= p1_r;
+						p2_r <= p2_r;
+						p3_r <= p3_r;
                 end if;
+					p0_r <= p0_r;
+					p1_r <= p1_r;
+					p2_r <= p2_r;
+					p3_r <= p3_r;
             end if;
+		  else
+				p0_r <= p0_r;
+				p1_r <= p1_r;
+				p2_r <= p2_r;
+				p3_r <= p3_r;
         end if;
     end process bcast;
     p0_val <= p0_r;    --Output Current Register Values

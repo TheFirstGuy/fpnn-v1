@@ -44,6 +44,7 @@ end CNT;
 
 architecture Behavioral of CNT is
 SIGNAL cnt: UNSIGNED(1 DOWNTO 0) := "10";
+SIGNAL f: STD_LOGIC;
 
 begin
 
@@ -52,8 +53,8 @@ PROCESS( clk, enable, reset )
 	BEGIN
 	IF( reset = '1') THEN
 		cnt <= "10";
-		fin <= '0';
-	ELSIF( reset = '0') THEN
+		f <= '0';
+	ELSE
 		IF( clk'EVENT AND clk = '1' )THEN
 			IF( enable = '1') THEN
 				IF( cnt = "00") THEN -- Reset count after last degree
@@ -64,15 +65,18 @@ PROCESS( clk, enable, reset )
 					--fin <= '0';
 				END IF;
 				IF( cnt = "01") THEN-- This might need to be changed to when cnt = "00"
-					fin <= '1';
+					f <= '1';
 				ELSE
-					fin <= '0';
+					f <= '0';
 				END IF;
+			ELSE
+				cnt <= cnt;
+				f <= f;
 			END IF;
 		END IF;
 	END IF;
 END PROCESS;
-
+fin <= f;
 degree <= STD_LOGIC_VECTOR(cnt);
 
 end Behavioral;
