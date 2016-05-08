@@ -42,7 +42,7 @@ end acc_b;
 architecture Behavioral of acc_b is
 	signal cnt: std_logic_vector(19 downto 0) := X"00000";	--Counter Register to Store Results
 begin
-	add: process(clk, rst, b_in)
+	add: process(clk, rst, b_in, cnt)
 	begin
 		if (clk'event and clk =  '1') then	--Enable on Clock Tick
 			if (rst = '1') then	--Reset

@@ -80,10 +80,12 @@ process(clk, clr, e, d) begin
 	if(clk'EVENT AND clk = '1')then
 		if(clr = '1')then
 			d <= "0000";
-		elsif(clr = '0' AND e = '1') then
-			d <= predand OR d;
 		else
-			d <= d;
+			IF( e = '1') then
+				d <= predand OR d;
+			else
+				d <= d;
+			end if;
 		end if;
 	else
 		d <= d;

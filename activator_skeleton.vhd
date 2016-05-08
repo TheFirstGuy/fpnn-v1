@@ -270,9 +270,9 @@ U7: CNT
 U8: adder 
 	PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
 U9: SELECTOR 
-	PORT MAP (clr=>reset, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>open , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
+	PORT MAP (clr=>F_SEL_CLR, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>open , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
 U10:SELECTOR 
-	PORT MAP (clr=>reset, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>open , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
+	PORT MAP (clr=>B_SEL_CLR, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>open , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
 U11: link_bcast 
 	PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
 U12: link_bcast 
@@ -296,7 +296,7 @@ U12: link_bcast
 		BEGIN
 			nextstate <= init;
 			CASE state is
-				WHEN init => nextstate <= accumulate;
+				WHEN init => IF( foward = '1' ) THEN nextstate <= accumulate; ELSE nextstate<= init; END IF;
 				WHEN accumulate => IF(sel_fwd_en_m = '1') THEN nextstate <= fa0; ELSE nextstate <= accumulate; END IF;
 				WHEN fa0 => nextstate <= fa1;
 				WHEN fa1 => IF(fin = '1') THEN nextstate <= fa2; ELSE nextstate <= fa0; END IF;
