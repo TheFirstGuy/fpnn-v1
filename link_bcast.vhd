@@ -48,33 +48,33 @@ end link_bcast;
 
 architecture Behavioral of link_bcast is
     signal req_cnt: std_logic_vector(2 downto 0);   --Port Request Counter
-    signal p0_r: std_logic; --Registers for Ports 1 - 3
-    signal p1_r: std_logic;
-    signal p2_r: std_logic;
-    signal p3_r: std_logic;
+    signal p0_r: std_logic := '0'; --Registers for Ports 1 - 3
+    signal p1_r: std_logic := '0';
+    signal p2_r: std_logic := '0';
+    signal p3_r: std_logic := '0';
 begin
-    cnt: process(clk, rst)  -- Counter
-    begin
-        if (clk'event and clk =  '1') then      --Synchronous Clock
-            if (rst = '1') then   -- Reset State
-                req_cnt <= "000"; 
-				else
-					if (req_cnt = "100") then       --Loop Back to 0 when Counter = 4
-						 req_cnt <= "000";
-					else
-						 if (en = '1') then
-							  req_cnt <= req_cnt + 1;         --Increment Counter
-						 else
-							  req_cnt <= req_cnt;
-						 end if;
-					end if;
-				end if;
-			else
-				req_cnt <= req_cnt;
-       end if;
-    end process cnt;
+--    cnt: process(clk, rst)  -- Counter
+--    begin
+--        if (clk'event and clk =  '1') then      --Synchronous Clock
+--            if (rst = '1') then   -- Reset State
+--                req_cnt <= "000"; 
+--				else
+--					if (req_cnt = "011") then       --Loop Back to 0 when Counter = 4
+--						 req_cnt <= "000";
+--					else
+--						 if (en = '1') then
+--							  req_cnt <= req_cnt + 1;         --Increment Counter
+--						 else
+--							  req_cnt <= req_cnt;
+--						 end if;
+--					end if;
+--				end if;
+--			else
+--				req_cnt <= req_cnt;
+--       end if;
+--    end process cnt;
     
-    bcast: process(clk, rst, p0, p1, p2, p3, p0_r, p1_r, p2_r, p3_r)    --Broadcast Request
+    bcast: process(clk, rst, en, req_cnt, p0, p1, p2, p3, p0_r, p1_r, p2_r, p3_r)    --Broadcast Request
     begin
         if (clk'event and clk =  '1') then      --Synchronous Clock
             if (rst = '1') then	--Reset State
@@ -83,49 +83,23 @@ begin
                 p2_r <= '0';
                 p3_r <= '0';
             elsif( rst = '0') then
-                if (en = '1') then 
-                    case req_cnt is                 --Check Port Specified by Counter
-                        when "000" =>
-                            if(p0 = '1') then
-                                p0_r <= '1';
-									  else
-										  p0_r <= p0_r;
-                            end if;
-                        when "001" =>
-                            if(p1 = '1') then
-                                p1_r <= '1';
-									 else
-										  p1_r <= p1_r;
-                            end if;
-                        when "010" =>
-                            if(p2 = '1') then
-                                p2_r <= '1';
-									 else
-										  p2_r <= p2_r;
-                            end if;
-                        when "100" =>
-                            if(p3 = '1') then
-                                p3_r <= '1';
-									else
-										  p3_r <= p3_r;
-                            end if;
-                        when others =>
-										p0_r <= p0_r;
-										p1_r <= p1_r;
-										p2_r <= p2_r;
-										p3_r <= p3_r;
-                    end case;
+                if( en = '1' ) then
+						p0_r <= p0;
+						p1_r <= p1;
+						p2_r <= p2;
+						p3_r <= p3;
 					 else
 						p0_r <= p0_r;
 						p1_r <= p1_r;
 						p2_r <= p2_r;
 						p3_r <= p3_r;
-                end if;
+					 end if;
+				else
 					p0_r <= p0_r;
 					p1_r <= p1_r;
 					p2_r <= p2_r;
-					p3_r <= p3_r;
-            end if;
+					p3_r <= p3_r; 
+			   end if;
 		  else
 				p0_r <= p0_r;
 				p1_r <= p1_r;
