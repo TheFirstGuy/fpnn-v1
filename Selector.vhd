@@ -39,7 +39,7 @@ reqsorq (3) <= NOT reqs(3) OR q(3);
 
 pre_res <= reqsorq(0) AND reqsorq(1) AND reqsorq(2) AND reqsorq(3); --4 Input AND Gate
 
-process(clk, clr) begin
+process(clk, clr, res_d) begin
 	if(clk'EVENT AND clk = '1')then
 		if(clr = '1')then --AND Gate following 4 input AND Gate
 			res_d <= '0';
@@ -76,7 +76,7 @@ with predand select
 	"11" when "1000",
 	"00" when others;
 
-process(clk, clr, e) begin
+process(clk, clr, e, d) begin
 	if(clk'EVENT AND clk = '1')then
 		if(clr = '1')then
 			d <= "0000";

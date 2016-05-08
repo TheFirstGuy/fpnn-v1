@@ -52,6 +52,8 @@ begin
 			else
 				cnt<= cnt;
 			end if;
+		else
+			cnt<= cnt;
 		end if;
 	end process add;
 	b_out <= cnt;	--Output Current Counter Value

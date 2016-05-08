@@ -69,18 +69,20 @@ begin
 						 end if;
 					end if;
 				end if;
+			else
+				req_cnt <= req_cnt;
        end if;
     end process cnt;
     
-    bcast: process(clk, rst, p0, p1, p2, p3)    --Broadcast Request
+    bcast: process(clk, rst, p0, p1, p2, p3, p0_r, p1_r, p2_r, p3_r)    --Broadcast Request
     begin
         if (clk'event and clk =  '1') then      --Synchronous Clock
-            if (rst = '1' and rst = '1') then	--Reset State
+            if (rst = '1') then	--Reset State
                 p0_r <= '0';
                 p1_r <= '0';
                 p2_r <= '0';
                 p3_r <= '0';
-            else
+            elsif( rst = '0') then
                 if (en = '1') then 
                     case req_cnt is                 --Check Port Specified by Counter
                         when "000" =>
