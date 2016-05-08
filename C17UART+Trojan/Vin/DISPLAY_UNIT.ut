@@ -1,3 +1,4 @@
+-g UnconstrainedPins:Allow
 -w
 -g DebugBitstream:No
 -g Binary:no
@@ -14,7 +15,7 @@
 -g TdoPin:PullUp
 -g TmsPin:PullUp
 -g Disable_JTAG:No
--g UnusedPin:PullDown
+-g UnusedPin:PullNone
 -g UserID:0xFFFFFFFF
 -g ExtMasterCclk_en:Disable
 -g ConfigFallback:Disable
@@ -31,7 +32,7 @@
 -g DONE_cycle:4
 -g GTS_cycle:5
 -g GWE_cycle:6
--g Match_cycle:Auto
+-g Match_cycle:NoWait
 -g Security:None
 -g ICAP_select:Auto
 -g DonePipe:Yes

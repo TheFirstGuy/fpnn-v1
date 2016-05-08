@@ -32,17 +32,17 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity ascii_hex is
-    Port ( clk : in std_logic;
-           ascii : in std_logic_vector(7 downto 0);
-           hex : out std_logic_vector(3 downto 0));
+    Port ( clk : in std_logic; ascii : in std_logic_vector(7 downto 0); hex : out std_logic_vector(3 downto 0)
+          
+          );
 end ascii_hex;
 
 architecture Behavioral of ascii_hex is
 
 begin
-    conv : process(clk)
+    process(CLK)
     begin
-        if (clk'event and clk =  '1') then
+       -- if (clk'event and clk =  '1') then
             case ascii is
                 when x"30" => hex <= "0000";
                 when x"31" => hex <= "0001";
@@ -54,15 +54,15 @@ begin
                 when x"37" => hex <= "0111";
                 when x"38" => hex <= "1000";
                 when x"39" => hex <= "1001";
-                when x"41" => hex <= "1010";
-                when x"42" => hex <= "1011";
-                when x"43" => hex <= "1100";
-                when x"44" => hex <= "1101";
-                when x"45" => hex <= "1110";
-                when x"46" => hex <= "1111";
-                when others =>
+                when x"61" => hex <= "1010";
+                when x"62" => hex <= "1011";
+                when x"63" => hex <= "1100";
+                when x"64" => hex <= "1101";
+                when x"65" => hex <= "1110";
+                when x"66" => hex <= "1111";
+                when others => hex <= "0000"; 
             end case;
-        end if;
+        --end if;
 end process;
 
 

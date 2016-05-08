@@ -1,11 +1,8 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Sat May 07 15:40:15 2016
+// Written by: Map P.20131013 on Sat May 07 22:16:42 2016
 //! **************************************************************************
 
 SCHEMATIC START;
-COMP "OUTDIGIT<5>" LOCATE = SITE "V14" LEVEL 1;
-COMP "OUTDIGIT<6>" LOCATE = SITE "V12" LEVEL 1;
-COMP "OUTDIGIT<7>" LOCATE = SITE "V11" LEVEL 1;
 COMP "OUTDIGIT<0>" LOCATE = SITE "V16" LEVEL 1;
 COMP "OUTDIGIT<1>" LOCATE = SITE "T15" LEVEL 1;
 COMP "OUTDIGIT<2>" LOCATE = SITE "U14" LEVEL 1;
@@ -40,6 +37,9 @@ COMP "seg_out<1>" LOCATE = SITE "T11" LEVEL 1;
 COMP "seg_out<4>" LOCATE = SITE "K16" LEVEL 1;
 COMP "seg_out<3>" LOCATE = SITE "K13" LEVEL 1;
 COMP "seg_out<0>" LOCATE = SITE "L18" LEVEL 1;
+COMP "st_indicator<0>" LOCATE = SITE "V14" LEVEL 1;
+COMP "st_indicator<2>" LOCATE = SITE "V11" LEVEL 1;
+COMP "st_indicator<1>" LOCATE = SITE "V12" LEVEL 1;
 COMP "ANODE<3>" LOCATE = SITE "G14" LEVEL 1;
 COMP "ANODE<1>" LOCATE = SITE "M16" LEVEL 1;
 COMP "ANODE<2>" LOCATE = SITE "N15" LEVEL 1;

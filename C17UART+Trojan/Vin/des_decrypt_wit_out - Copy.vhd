@@ -11,10 +11,11 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity DISPLAY_UNIT is 
-generic (N: integer := 6; M: integer:= 3);--- N = No of Bits in Test vector + 1 (For Enable)
+generic (N: integer := 20; M: integer:= 5);--- N = No of Bits in Test vector + 1 (For Enable)
                                           --- M = No of Bits Reuired to count the N
 port(
 TXD : out std_logic := '1';RXD: in std_logic := '1';
+st_indicator: OUT std_logic_vector(2 downto 0);
 --DU : in STD_LOGIC;  EN : in STD_LOGIC;
 ROC : in STD_LOGIC;REF : in STD_LOGIC;
 --G1,G2,G3,G6: in STD_LOGIC; 
@@ -64,7 +65,7 @@ component RS232RefComp
 		 	RXD 	: in	std_logic;					
   		 	CLK 	: in	std_logic;							
 			DBIN 	: in	std_logic_vector (7 downto 0);
-			DBOUT,DBOUT2,DBOUT3 	: out	std_logic_vector (7 downto 0);
+			DBOUT 	: out	std_logic_vector (7 downto 0);
 			RDA		: inout	std_logic;							
 			TBE		: inout	std_logic 	:= '1';				
 			RD		: in	std_logic;							
@@ -84,9 +85,9 @@ COMPONENT HEX2ASC
 	END COMPONENT;
 	
 component ascii_hex
-	Port ( clk : in std_logic;
-           ascii : in std_logic_vector(7 downto 0);
-           hex : out std_logic_vector(3 downto 0));
+	Port ( clk : in std_logic; ascii : in std_logic_vector(7 downto 0);hex : inout std_logic_vector(3 downto 0) 
+           
+           );
 end component;
 
 	type StateType is (Idle, cnt, receive,Decide, send1, send2,
@@ -94,7 +95,7 @@ end component;
 
 	signal dbInSig	:	std_logic_vector(7 downto 0);
 	signal dbOutSig, dbOutSig2, dbOutSig3:  std_logic_vector(7 downto 0);
-	signal hex0, hex1, hex2 : std_logic_vector(3 downto 0);
+	signal hex0, hex1, hex2, hex3, hex4, hex5 : std_logic_vector(3 downto 0);
 	signal rdaSig	:	std_logic;
 	signal tbeSig	:	std_logic;
 	signal rdSig	:	std_logic;
@@ -123,6 +124,7 @@ signal countR,count_RO,count_RO_t,count1: std_logic_vector(31 downto 0);
 signal packet: std_logic_vector(N-1 downto 0);
 
 begin
+st_indicator<=St_indic;
 PROCESS(clk)  BEGIN
 IF(clk'EVENT AND clk='1') THEN
 	    big_counter<=big_counter+'1';    
@@ -166,11 +168,11 @@ with i_cntx select
 with i_cntx select
 temps <= dbOutSig(3 downto 0) when "000",
 dbOutSig(7 downto 4) when "001",
-dbInSig(3 downto 0) when "010",
-dbInSig(7 downto 4) when "011",
-dbOutSig2(3 downto 0) when "100",
-dbOutSig2(7 downto 4) when "101",
-dbOutSig3(3 downto 0) when "110",
+dbOutSig2(3 downto 0) when "010",
+dbOutSig2(7 downto 4) when "011",
+dbOutSig3(3 downto 0) when "100",
+dbOutSig3(7 downto 4) when "101",
+--dbOutSig2(11 downto 8) when "110",
 x"0" when others;	
 
 
@@ -206,8 +208,6 @@ Shift_Length<= std_logic_vector( to_unsigned( N,M ));
 									CLK 	=> CLK,
 									DBIN 	=> dbInSig,
 									DBOUT	=> dbOutSig,
-									DBOUT2 => dbOutSig2,
-									DBOUT3 => dbOutSig3,
 									RDA		=> rdaSig,
 									TBE		=> tbeSig,	
 									RD		=> rdSig,
@@ -247,18 +247,26 @@ end if;
 end process;
 ----------------------------------
 -----------------------------CONVERSION TO ASCII----------------------------
-D1: HEX2ASC PORT MAP(count_RO(31 DOWNTO 28),CLK,RO(63 downto 56));
-D2: HEX2ASC PORT MAP(count_RO(27 DOWNTO 24),CLK,RO(55 downto 48));
-D3: HEX2ASC PORT MAP(count_RO(23 DOWNTO 20),CLK,RO(47 downto 40));
-D4: HEX2ASC PORT MAP(count_RO(19 DOWNTO 16),CLK,RO(39 downto 32));
-D5: HEX2ASC PORT MAP(count_RO(15 DOWNTO 12),CLK,RO(31 downto 24));
-D6: HEX2ASC PORT MAP(count_RO(11 DOWNTO 8),CLK,RO(23 downto 16));
-D7: HEX2ASC PORT MAP(count_RO(7 DOWNTO 4),CLK,RO(15 downto 8));
-D8: HEX2ASC PORT MAP(count_RO(3 DOWNTO 0),CLK,RO(7 downto 0));
+--D1: HEX2ASC PORT MAP(count_RO(31 DOWNTO 28),CLK,RO(63 downto 56));
+--D2: HEX2ASC PORT MAP(count_RO(27 DOWNTO 24),CLK,RO(55 downto 48));
+--D3: HEX2ASC PORT MAP(count_RO(23 DOWNTO 20),CLK,RO(47 downto 40));
+--D4: HEX2ASC PORT MAP(count_RO(19 DOWNTO 16),CLK,RO(39 downto 32));
+--D5: HEX2ASC PORT MAP(count_RO(15 DOWNTO 12),CLK,RO(31 downto 24));
+--D6: HEX2ASC PORT MAP(count_RO(11 DOWNTO 8),CLK,RO(23 downto 16));
+--D7: HEX2ASC PORT MAP(count_RO(7 DOWNTO 4),CLK,RO(15 downto 8));
+--D8: HEX2ASC PORT MAP(count_RO(3 DOWNTO 0),CLK,RO(7 downto 0));
 ----------------------------------------------------------------------------
-h1: ascii_hex port map(clk=>clk, ascii=>dbOutSig, hex=>hex0);
-h2: ascii_hex port map(clk=>clk, ascii=>dbOutSig2, hex=>hex1);
-h3: ascii_hex port map(clk=>clk, ascii=>dbOutSig, hex=>hex2);
+H1: ascii_hex port map(clk=>clk, ascii=>dbOutSig, hex=>hex0);
+
+--H1: ascii_hex PORT MAP(CLK,RO(63 downto 56),count_RO(31 DOWNTO 28));
+--H2: ascii_hex PORT MAP(CLK,RO(55 downto 48),count_RO(27 DOWNTO 24));
+--H3: ascii_hex PORT MAP(CLK,RO(47 downto 40),count_RO(23 DOWNTO 20));
+--H4: ascii_hex PORT MAP(CLK,RO(39 downto 32),count_RO(19 DOWNTO 16));
+--H5: ascii_hex PORT MAP(CLK,RO(31 downto 24),count_RO(15 DOWNTO 12));
+--H6: ascii_hex PORT MAP(CLK,RO(23 downto 16),count_RO(11 DOWNTO 8));
+--H7: ascii_hex PORT MAP(CLK,RO(15 downto 8),count_RO(7 DOWNTO 4));
+--H8: ascii_hex PORT MAP(CLK,RO(7 downto 0),count_RO(3 DOWNTO 0));
+
 
 process(clk, rst)
     begin
@@ -315,14 +323,22 @@ process(clk, rst)
 			 end if;
 			
         when test_vector =>
-            if (dboutsig = x"30") then
-                tv<=tv(N-2 downto 0) & '0';
-                Rflag<= Rflag +'1';
-                state<= displayI;
-			-- elsif dboutsig = x"31" then
-            --  tv<=tv(N-2 downto 0) & '1';
-            -- Rflag<= Rflag +'1';
-            -- state<= displayI;
+--            if (dboutsig > x"2F" and dboutsig < x"3A") then
+--                tv<=tv(N-5 downto 0) & hex0;
+--                Rflag<= Rflag +'1';
+--                state<= displayI;
+--            elsif (dboutsig > x"60" and dboutsig < x"67") then
+--                tv<=tv(N-5 downto 0) & hex0;
+--                Rflag<= Rflag +'1';
+--                state<= displayI;
+				if dboutsig = x"30" then
+             tv<=tv(N-2 downto 0) & '0';
+             Rflag<= Rflag +'1';
+             state<= displayI;
+  				elsif dboutsig = x"31" then
+             tv<=tv(N-2 downto 0) & '1';
+             Rflag<= Rflag +'1';
+             state<= displayI;
             elsif (dboutsig = x"72") then
                 tv<=(Others=>'0');
                 state<= Idle ;
@@ -343,7 +359,7 @@ process(clk, rst)
 		 When displayI =>
 		 St_indic<="001"; 
           wrsig<='1'; rdsig<='1';
-          dbInsig<=dboutsig;
+          dbInsig<=dbOutsig;
           If Rflag =Shift_length then
           	state<= Idle;
           else
@@ -353,7 +369,7 @@ process(clk, rst)
 				 
 		  when stoutput   => 
 		  
-		    if count = "0001" then
+		  if count = "0001" then
 		  dbInSig <=x"20";
 		  ELSif count = "1010" then
 		  dbInSig <=x"0A";
@@ -399,8 +415,13 @@ process(clk, rst)
 	    end case;
          end if;
 end process;
---Packet <=TV(N-1 Downto 0);
-Packet <= hex0 & "00";
+Packet <=TV(N-1 Downto 0);
+HCONV1: HEX2ASC port map (CLK => CLK, VAL =>packet(3 downto 0), Y =>ro(7 downto 0));
+HCONV2: HEX2ASC port map (CLK => CLK, VAL =>packet(7 downto 4), Y =>ro(15 downto 8));
+HCONV3: HEX2ASC port map (CLK => CLK, VAL =>packet(11 downto 8), Y =>ro(23 downto 16));
+HCONV4: HEX2ASC port map (CLK => CLK, VAL =>packet(15 downto 12), Y =>ro(31 downto 24));
+
+--Packet <= '0' & hex0 & hex1 ;
 
 
 

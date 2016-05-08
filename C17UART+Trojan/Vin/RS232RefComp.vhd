@@ -24,7 +24,7 @@ entity Rs232RefComp is
     	RXD 	: in  std_logic;					
     	CLK 	: in  std_logic;								--Master Clock = 50MHz
 		DBIN: in  std_logic_vector (7 downto 0);	--Data Bus in
-		DBOUT, DBOUT2, DBOUT3 : out std_logic_vector (7 downto 0);	--Data Bus out
+		DBOUT: out std_logic_vector (7 downto 0);	--Data Bus out
 		RDA	: inout std_logic;						--Read Data Available
 		TBE	: inout std_logic 	:= '1';			--Transfer Bus Empty
 		RD		: in  std_logic;					--Read Strobe

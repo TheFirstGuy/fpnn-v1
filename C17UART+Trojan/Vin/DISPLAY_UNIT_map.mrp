@@ -10,23 +10,23 @@ Target Device  : xc7a100t
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : artix7 -- $Revision: 1.55 $
-Mapped Date    : Sat May 07 15:39:43 2016
+Mapped Date    : Sat May 07 22:16:12 2016
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:    2
+Number of warnings:    9
 Slice Logic Utilization:
-  Number of Slice Registers:                   281 out of 126,800    1%
-    Number used as Flip Flops:                 280
+  Number of Slice Registers:                   300 out of 126,800    1%
+    Number used as Flip Flops:                 299
     Number used as Latches:                      1
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                        505 out of  63,400    1%
-    Number used as logic:                      494 out of  63,400    1%
-      Number using O6 output only:             270
+  Number of Slice LUTs:                        497 out of  63,400    1%
+    Number used as logic:                      479 out of  63,400    1%
+      Number using O6 output only:             267
       Number using O5 output only:             119
-      Number using O5 and O6:                  105
+      Number using O5 and O6:                   93
       Number used as ROM:                        0
     Number used as Memory:                       1 out of  19,000    1%
       Number used as Dual Port RAM:              0
@@ -35,20 +35,20 @@ Slice Logic Utilization:
         Number using O6 output only:             1
         Number using O5 output only:             0
         Number using O5 and O6:                  0
-    Number used exclusively as route-thrus:     10
-      Number with same-slice register load:      0
+    Number used exclusively as route-thrus:     17
+      Number with same-slice register load:      7
       Number with same-slice carry load:        10
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                   202 out of  15,850    1%
-  Number of LUT Flip Flop pairs used:          552
-    Number with an unused Flip Flop:           286 out of     552   51%
-    Number with an unused LUT:                  47 out of     552    8%
-    Number of fully used LUT-FF pairs:         219 out of     552   39%
-    Number of unique control sets:              32
+  Number of occupied Slices:                   179 out of  15,850    1%
+  Number of LUT Flip Flop pairs used:          523
+    Number with an unused Flip Flop:           252 out of     523   48%
+    Number with an unused LUT:                  26 out of     523    4%
+    Number of fully used LUT-FF pairs:         245 out of     523   46%
+    Number of unique control sets:              33
     Number of slice register sites lost
-      to control set restrictions:             126 out of 126,800    1%
+      to control set restrictions:             131 out of 126,800    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -59,8 +59,8 @@ Slice Logic Distribution:
   over-mapped for a non-BRAM resource or if placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                        41 out of     210   19%
-    Number of LOCed IOBs:                       41 out of      41  100%
+  Number of bonded IOBs:                        44 out of     210   20%
+    Number of LOCed IOBs:                       41 out of      44   93%
     IOB Flip Flops:                              1
 
 Specific Feature Utilization:
@@ -99,11 +99,11 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of XADCs:                               0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                3.68
+Average Fanout of Non-Clock Nets:                3.78
 
-Peak Memory Usage:  919 MB
-Total REAL time to MAP completion:  32 secs 
-Total CPU time to MAP completion:   31 secs 
+Peak Memory Usage:  935 MB
+Total REAL time to MAP completion:  31 secs 
+Total CPU time to MAP completion:   29 secs 
 
 Table of Contents
 -----------------
@@ -126,12 +126,48 @@ Section 1 - Errors
 
 Section 2 - Warnings
 --------------------
+WARNING:LIT:701 - PAD symbol "OUTDIGIT<7>" has an undefined IOSTANDARD.
+WARNING:LIT:702 - PAD symbol "OUTDIGIT<7>" is not constrained (LOC) to a
+   specific location.
+WARNING:Place:837 - Partially locked IO Bus is found. 
+    Following components of the bus are not locked: 
+   	 Comp: OUTDIGIT<7>
+   	 Comp: OUTDIGIT<6>
+   	 Comp: OUTDIGIT<5>
+
+WARNING:Place:838 - An IO Bus with more than one IO standard is found.
+   Components associated with this bus are as follows: 
+   	 Comp: OUTDIGIT<0>   IOSTANDARD = LVCMOS33
+   	 Comp: OUTDIGIT<1>   IOSTANDARD = LVCMOS33
+   	 Comp: OUTDIGIT<2>   IOSTANDARD = LVCMOS33
+   	 Comp: OUTDIGIT<3>   IOSTANDARD = LVCMOS33
+   	 Comp: OUTDIGIT<4>   IOSTANDARD = LVCMOS33
+   	 Comp: OUTDIGIT<5>   IOSTANDARD = LVCMOS18
+   	 Comp: OUTDIGIT<6>   IOSTANDARD = LVCMOS18
+   	 Comp: OUTDIGIT<7>   IOSTANDARD = LVCMOS18
+
+
 WARNING:PhysDesignRules:372 - Gated clock. Clock net UART/rClkDiv<3> is sourced
    by a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net RO2/G23t is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:2452 - The IOB OUTDIGIT<5> is either not constrained
+   (LOC) to a specific location and/or has an undefined I/O Standard
+   (IOSTANDARD). This condition may seriously affect the device and will be an
+   error in bitstream creation. It should be corrected by properly specifying
+   the pin location and I/O Standard.
+WARNING:PhysDesignRules:2452 - The IOB OUTDIGIT<6> is either not constrained
+   (LOC) to a specific location and/or has an undefined I/O Standard
+   (IOSTANDARD). This condition may seriously affect the device and will be an
+   error in bitstream creation. It should be corrected by properly specifying
+   the pin location and I/O Standard.
+WARNING:PhysDesignRules:2452 - The IOB OUTDIGIT<7> is either not constrained
+   (LOC) to a specific location and/or has an undefined I/O Standard
+   (IOSTANDARD). This condition may seriously affect the device and will be an
+   error in bitstream creation. It should be corrected by properly specifying
+   the pin location and I/O Standard.
 
 Section 3 - Informational
 -------------------------
@@ -144,6 +180,9 @@ INFO:Pack:1720 - Initializing voltage to 0.950 Volts. (default - Range: 0.950 to
    1.050 Volts)
 INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
    (.mrp).
+INFO:Place:834 - Only a subset of IOs are locked. Out of 44 IOs, 41 are locked
+   and 3 are not locked. If you would like to print the names of these IOs,
+   please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1. 
 INFO:Pack:1650 - Map created a placed design.
 
 Section 4 - Removed Logic Summary
@@ -185,9 +224,9 @@ Section 6 - IOB Properties
 | OUTDIGIT<2>                        | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
 | OUTDIGIT<3>                        | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
 | OUTDIGIT<4>                        | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| OUTDIGIT<5>                        | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| OUTDIGIT<6>                        | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| OUTDIGIT<7>                        | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW | OFF          |          |          |
+| OUTDIGIT<5>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| OUTDIGIT<6>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW |              |          |          |
+| OUTDIGIT<7>                        | IOB              | OUTPUT    | LVCMOS18             |       | 12       | SLOW | OFF          |          |          |
 | REF                                | IOB33            | INPUT     | LVCMOS33             |       |          |      |              |          |          |
 | ROC                                | IOB33            | INPUT     | LVCMOS33             |       |          |      |              |          |          |
 | RST                                | IOB33            | INPUT     | LVCMOS33             |       |          |      |              |          |          |
@@ -209,6 +248,9 @@ Section 6 - IOB Properties
 | seg_out<4>                         | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
 | seg_out<5>                         | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
 | seg_out<6>                         | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
+| st_indicator<0>                    | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
+| st_indicator<1>                    | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
+| st_indicator<2>                    | IOB33            | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Section 7 - RPMs
