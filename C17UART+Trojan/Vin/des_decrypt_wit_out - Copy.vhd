@@ -11,7 +11,7 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity DISPLAY_UNIT is 
-generic (N: integer := 20; M: integer:= 5);--- N = No of Bits in Test vector + 1 (For Enable)
+generic (N: integer := 20; M: integer:= 3);--- N = No of Bits in Test vector + 1 (For Enable)
                                           --- M = No of Bits Reuired to count the N
 port(
 TXD : out std_logic := '1';RXD: in std_logic := '1';
@@ -178,7 +178,7 @@ x"0" when others;
 
 
 
-Shift_Length<= std_logic_vector( to_unsigned( N,M ));
+Shift_Length<= std_logic_vector( to_unsigned( N/4,M ));
 --	LEDS(7) <= Count_RO_t(0);
 --	LEDS(6) <= Count_RO_t(1);
 --	LEDS(5) <= Count_RO_t(2);
@@ -323,22 +323,22 @@ process(clk, rst)
 			 end if;
 			
         when test_vector =>
---            if (dboutsig > x"2F" and dboutsig < x"3A") then
---                tv<=tv(N-5 downto 0) & hex0;
---                Rflag<= Rflag +'1';
---                state<= displayI;
---            elsif (dboutsig > x"60" and dboutsig < x"67") then
---                tv<=tv(N-5 downto 0) & hex0;
---                Rflag<= Rflag +'1';
---                state<= displayI;
-				if dboutsig = x"30" then
-             tv<=tv(N-2 downto 0) & '0';
-             Rflag<= Rflag +'1';
-             state<= displayI;
-  				elsif dboutsig = x"31" then
-             tv<=tv(N-2 downto 0) & '1';
-             Rflag<= Rflag +'1';
-             state<= displayI;
+            if (dboutsig > x"2F" and dboutsig < x"3A") then
+                tv<=tv(N-5 downto 0) & hex0;
+                Rflag<= Rflag +'1';
+                state<= displayI;
+            elsif (dboutsig > x"60" and dboutsig < x"67") then
+                tv<=tv(N-5 downto 0) & hex0;
+                Rflag<= Rflag +'1';
+                state<= displayI;
+--				if dboutsig = x"30" then
+--             tv<=tv(N-2 downto 0) & '0';
+--             Rflag<= Rflag +'1';
+--             state<= displayI;
+--  				elsif dboutsig = x"31" then
+--             tv<=tv(N-2 downto 0) & '1';
+--             Rflag<= Rflag +'1';
+--             state<= displayI;
             elsif (dboutsig = x"72") then
                 tv<=(Others=>'0');
                 state<= Idle ;
