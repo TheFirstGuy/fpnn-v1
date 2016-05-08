@@ -24,8 +24,8 @@ res_m: out std_logic
 end SELECTOR;
 
 architecture Behavioral of SELECTOR is
-signal r_reg, d, q, reqsorq, nqr, predand: std_logic_vector(3 downto 0);
-signal pre_res, e, r01or, r23or, trior: std_logic;
+signal r_reg, d, q, reqsorq, nqr, predand: std_logic_vector(3 downto 0) := "0000";
+signal pre_res_d, pre_res, e, r01or, r23or, trior: std_logic := '0';
 signal res_d: std_logic := '0';
 --signal en_m: std_logic;
 begin
@@ -38,18 +38,14 @@ reqsorq (2) <= NOT reqs(2) OR q(2);
 reqsorq (3) <= NOT reqs(3) OR q(3);
 
 pre_res <= reqsorq(0) AND reqsorq(1) AND reqsorq(2) AND reqsorq(3); --4 Input AND Gate
-
-process(clk, clr, res_d) begin
+pre_res_d <= pre_res AND forward;
+process(clk, clr, res_d, forward) begin
 	if(clk'EVENT AND clk = '1')then
-		if(clr = '1')then --AND Gate following 4 input AND Gate
-			res_d <= '0';
-		elsif(clr = '0')then
-			res_d <= pre_res AND forward;
+		if(forward = '1')then
+			res_d <= pre_res_d;
 		else
-			res_d <=res_d;
+			res_d <= '0';
 		end if;
-	else
-		res_d <= res_d;
 	end if;
 end process;
 
@@ -78,17 +74,11 @@ with predand select
 
 process(clk, clr, e, d) begin
 	if(clk'EVENT AND clk = '1')then
-		if(clr = '1')then
-			d <= "0000";
+		IF( e = '1') then
+			d <= predand OR d;
 		else
-			IF( e = '1') then
-				d <= predand OR d;
-			else
-				d <= d;
-			end if;
+			d <= d;
 		end if;
-	else
-		d <= d;
 	end if;
 end process;
 

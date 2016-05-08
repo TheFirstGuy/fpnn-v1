@@ -21,7 +21,9 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity activator_skeleton is
-generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000");
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"F";
+			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"F");
 PORT(
 --Input
 --Forward Control Signals
@@ -180,8 +182,8 @@ end component;
 
 
 
-SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if pred connections exist
-SIGNAL sn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ); -- Vector determining if succ connections exist
+SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ) := pred; -- Vector determining if pred connections exist
+SIGNAL sn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ) := succ; -- Vector determining if succ connections exist
 
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
@@ -261,8 +263,8 @@ U3: oneminusx
 U4: ACC_W 
 	GENERIC MAP (rand => rand)
 	PORT MAP(clk=>clk,write_w=>acc_t_en,mult_in=>acc_t_in,w_out=>acc_t_out); ---ACC_T
-U5: ACC_B 
-	PORT MAP(clk=>clk, rst=>reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>acc_b_out);
+U5: acc_F 
+	PORT MAP(clk=>clk, rst0=>reset, rst1=>'0', f_in=>acc_b_in, en=>acc_b_en, init0=>X"00000", init1=>X"00000", f_out=>acc_b_out);
 U6: COEFFS 
 	PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 U7: CNT 
@@ -273,10 +275,10 @@ U9: SELECTOR
 	PORT MAP (clr=>F_SEL_CLR, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>open , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
 U10:SELECTOR 
 	PORT MAP (clr=>B_SEL_CLR, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>open , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
-U11: link_bcast 
-	PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
-U12: link_bcast 
-	PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p1=>bck_succ(1), p2=>bck_succ(2), p3=>bck_succ(3), p0_val=>sn_succ(0), p1_val=>sn_succ(1), p2_val=>sn_succ(2), p3_val=>sn_succ(3)); -- Backward
+--U11: link_bcast 
+--	PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
+--U12: link_bcast 
+--	PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p1=>bck_succ(1), p2=>bck_succ(2), p3=>bck_succ(3), p0_val=>sn_succ(0), p1_val=>sn_succ(1), p2_val=>sn_succ(2), p3_val=>sn_succ(3)); -- Backward
 
 --State Machine
 	stateFSM: PROCESS(clk, reset, state)
