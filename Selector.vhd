@@ -24,8 +24,8 @@ res_m: out std_logic
 end SELECTOR;
 
 architecture Behavioral of SELECTOR is
-signal r_reg, d, q, reqsorq, nqr, predand: std_logic_vector(3 downto 0) := "0000";
-signal pre_res_d, pre_res, e, r01or, r23or, trior: std_logic := '0';
+signal r_reg, d, q, reqsorq, nqr, predand, last_d, selected: std_logic_vector(3 downto 0) := "0000";
+signal pre_res_d, pre_res, e, ep, r01or, r23or, trior: std_logic := '0';
 signal res_d: std_logic := '0';
 --signal en_m: std_logic;
 begin
@@ -64,8 +64,21 @@ predand(2) <= NOT (nqr(3) OR (NOT nqr(2) AND nqr(1))) AND r23or;
 predand(1) <= (nqr(3) OR (NOT nqr(2) AND nqr(1))) AND NOT r23or;
 predand(0) <= NOT (nqr(3) OR (NOT nqr(2) AND nqr(1))) AND NOT r23or; --AND Gate preceding OR gate to d
 
+
+process(clk, d)begin
+	if(clk'EVENT AND clk='1')then
+		last_d <= d;
+	end if;
+end process;
+
+selected(0)<= last_d(0) xor d(0);
+selected(1)<= last_d(1) xor d(1);
+selected(2)<= last_d(2) xor d(2);
+selected(3)<= last_d(3) xor d(3);
+
+
 --Select signal
-with predand select
+with selected select
 	sel <= "00" when "0001",
 	"01" when "0010",
 	"10" when "0100",
@@ -74,17 +87,26 @@ with predand select
 
 process(clk, clr, e, d) begin
 	if(clk'EVENT AND clk = '1')then
-		IF( e = '1') then
-			d <= predand OR d;
+		if(clr = '1') then
+			d <= "0000";
 		else
-			d <= d;
+			IF( e = '1') then
+				d <= predand OR d;
+			else
+				d <= d;
+			end if;
 		end if;
 	end if;
 end process;
 
 q <= d;
-en_a <= e;
+en_a <= ep;
 e <= r01or AND forward; --ACC Enable signal
+process(clk, clr)begin
+	if(clk'event and clk = '1') then
+		ep <= e;
+	end if;
+end process;
 
 --sel <= reqs;
 --end if;
