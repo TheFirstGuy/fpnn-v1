@@ -35,7 +35,7 @@ use IEEE.STD_LOGIC_SIGNED.ALL;
 entity err is
     Port ( clk : in std_logic;  --Clock
            rst : in std_logic;  --Reset
-			  broadcast : in std_logic; -- broadcast
+			  --broadcast : in std_logic; -- broadcast
 			  rslt_valid : in std_logic; -- result ready
            rslt : in std_logic_vector(19 downto 0); --Calculated Result
            c_val : in std_logic_vector(19 downto 0);    --Classification Value
@@ -53,15 +53,17 @@ begin
                 err_val <= (others => '0');
 					 err_valid <= '0';
 				else
-					if( broadcast = '1' or rslt_valid = '1') then -- broadcast 
-						 err_valid <= '1';
-					else
-						 err_valid <= '0';
+					--if( broadcast = '1' or rslt_valid = '1') then -- broadcast 
+					--	 err_valid <= '1';
+					--else
+					--	 err_valid <= '0';
 					end if;
 					if( rslt_valid = '1')then
 						err_val <= c_val - rslt;    --Calculate Error (Classification - Result)
+						err_valid <= '1';
 					else
 						err_val <= err_val;
+						err_valid <= '0';
 					end if;
             end if;
         end if;

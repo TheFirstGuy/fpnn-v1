@@ -41,7 +41,7 @@ foward: IN STD_LOGIC;  -- Forward activation mode
 --Backwards Control Signals
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
-broadcast: IN STD_LOGIC; -- Broadcase connections
+--broadcast: IN STD_LOGIC; -- Broadcase connections
 
 --Forward Data Input Signals
 --Data values from pred for forward activation

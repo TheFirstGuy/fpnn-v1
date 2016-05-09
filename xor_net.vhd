@@ -72,7 +72,7 @@ foward: IN STD_LOGIC;  -- Forward activation mode
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
 update: IN STD_LOGIC; -- update weight control signal --------------------------------------------------------- Now a signal Update<=forward
-broadcast: IN STD_LOGIC; -- Broadcase connections
+--broadcast: IN STD_LOGIC; -- Broadcase connections
 still_fwd: IN STD_LOGIC;
 --Forward Data Input Signals
 --Data values from pred for forward activation
@@ -110,7 +110,7 @@ generic (
 PORT(
 	--Control
 	clk: IN STD_LOGIC;
-	broadcast: IN STD_LOGIC;
+	--broadcast: IN STD_LOGIC;
 	forward: IN STD_LOGIC;
 	still_fwd: IN STD_LOGIC;
 	backward: IN STD_LOGIC;
@@ -173,7 +173,7 @@ generic (
 PORT(
 	--Control
 	clk: IN STD_LOGIC;
-	broadcast: IN STD_LOGIC;
+	--broadcast: IN STD_LOGIC;
 	forward: IN STD_LOGIC;
 	still_fwd: IN STD_LOGIC;
 	backward: IN STD_LOGIC;
@@ -235,7 +235,7 @@ foward: IN STD_LOGIC;  -- Forward activation mode
 --Backwards Control Signals
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
-broadcast: IN STD_LOGIC; -- Broadcase connections
+--broadcast: IN STD_LOGIC; -- Broadcase connections
 
 --Forward Data Input Signals
 --Data values from pred for forward activation
@@ -272,7 +272,7 @@ component control_unit is
            f_val : in std_logic;    --Forward Valid
            b_val : in std_logic;    --Backward Valid
            io_val : in std_logic;   --I/O Ready
-           bcast_en : out std_logic;    --Broadcast Enable
+          -- bcast_en : out std_logic;    --Broadcast Enable
            io_rdy : out std_logic;  --I/O Ready
            f_en : out std_logic;    --Forward Enable
            b_en : out std_logic;   --Backward Enable
@@ -283,7 +283,7 @@ end component;
 component err is
     Port ( clk : in std_logic;  --Clock
            rst : in std_logic;  --Reset
-			  broadcast : in std_logic; -- broadcast
+			 -- broadcast : in std_logic; -- broadcast
 			  rslt_valid : in std_logic; -- result ready
            rslt : in std_logic_vector(19 downto 0); --Calculated Result
            c_val : in std_logic_vector(19 downto 0);    --Classification Value
@@ -292,7 +292,7 @@ component err is
 end component;
 
 --Node to network CU
-SIGNAL broadcast: STD_LOGIC;
+--SIGNAL broadcast: STD_LOGIC;
 SIGNAL forward: STD_LOGIC;
 SIGNAL still_fwd: STD_LOGIC;
 SIGNAL backward: STD_LOGIC;
@@ -326,16 +326,18 @@ begin
 
 
 	CU: control_unit
-	PORT MAP(clk=>clk, rst=>reset, f_init=>f_init, f_val=>f_val, b_val=>b_val, io_val=>io_val, 
-	bcast_en=>broadcast, io_rdy=>io_rdy,f_en=>forward, b_en=>backward, u_en=>update, still_fwd=>still_fwd );
+	PORT MAP(clk=>clk, rst=>reset, f_init=>f_init, f_val=>f_val, b_val=>b_val, io_val=>io_val, --bcast_en=>broadcast,
+	io_rdy=>io_rdy,f_en=>forward, b_en=>backward, u_en=>update, still_fwd=>still_fwd );
 	
 	ERROR: err
-	PORT MAP(clk=>clk, rst=>reset, broadcast=>broadcast, rslt_valid=>net_fwd_done, rslt=>o_y, c_val=>uart_cval, err=>error_b, err_valid=>error_br); 
+	PORT MAP(clk=>clk, rst=>reset, --broadcast=>broadcast,
+	rslt_valid=>net_fwd_done, rslt=>o_y, c_val=>uart_cval, err=>error_b, err_valid=>error_br); 
 	IL1: link_skeleton 
 	GENERIC MAP (rand => rand1)
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 
 		fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in1_br, bck_succ(1)=>n1_in1_br, bck_succ(3 DOWNTO 2)=>"00",
-		backward=>backward, update=>update, broadcast=>broadcast,still_fwd=>still_fwd, x_pred_0=>uart_in1, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
+		backward=>backward, update=>update, --broadcast=>broadcast,
+		still_fwd=>still_fwd, x_pred_0=>uart_in1, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
 		b_succ_0=>n3_in1, b_succ_1=>n1_in1, b_succ_2=>X"00000", b_succ_3=>X"00000", y=>input1Node1, fwd_succ=>input1_fwd_req, 
 		back_pred(0)=>back_prop_done(0), back_pred(3 DOWNTO 1)=>sink(2 DOWNTO 0));
 
@@ -343,7 +345,8 @@ begin
 	GENERIC MAP (rand => rand2)
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred2,
 		fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in2_br, bck_succ(1)=>n2_in2_br, bck_succ(3 DOWNTO 2)=>"00",
-		backward=>backward, update=>update, broadcast=>broadcast,still_fwd=>still_fwd, x_pred_0=>uart_in2, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
+		backward=>backward, update=>update, --broadcast=>broadcast,
+		still_fwd=>still_fwd, x_pred_0=>uart_in2, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
 		b_succ_0=>n3_in2, b_succ_1=>n2_in2, b_succ_2=>X"00000", b_succ_3=>X"00000", y=>input2Node2, fwd_succ=>input2_fwd_req,
 		back_pred(0)=>back_prop_done(1), back_pred(3 DOWNTO 1)=>sink(5 DOWNTO 3));
 
@@ -352,7 +355,8 @@ begin
 	--Because it is a corner node, the east link has been removed.
 	Node1: corner_neuron 
 	GENERIC MAP (rand1 => rand3,rand2 => rand4,rand3 => rand5)
-	PORT MAP( clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
+	PORT MAP( clk=>clk, --broadcast=>broadcast,
+	forward=>forward, still_fwd=>still_fwd,
 		backward=>backward, update=>update, reset=>reset, south_fdata_in=>input1Node1, sw_bdata_out=>n3_in1, sa_bdata_out=>n1_in1,
 		sw_in_r=>input1_fwd_req(0), sa_in_r=>input1_fwd_req(1), sw_out_r=>n3_in1_br, sa_out_r=>n1_in1_br,
 		east_fdata_in=>X"00000", ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r=>ground, ew_in_r=>ground, ea_out_r=>open,
@@ -365,7 +369,8 @@ begin
 	--Node 2 connections to input link 2, to the middle neuron (node3) and to the output neuron (node 4)
 	Node2: corner_neuron 
 	GENERIC MAP (rand1 => rand6,rand2 => rand7,rand3 => rand8)
-	PORT MAP( clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
+	PORT MAP( clk=>clk, --broadcast=>broadcast,
+	forward=>forward, still_fwd=>still_fwd,
 		backward=>backward, update=>update, reset=>reset, south_fdata_in=>input2Node2, sw_bdata_out=>n3_in2, sa_bdata_out=>n2_in2,
 		sw_in_r=>input2_fwd_req(0), sa_in_r=>input2_fwd_req(1), sw_out_r=>n3_in2_br, sa_out_r=>n2_in2_br,
 		east_fdata_in=>X"00000", ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r=>ground, ew_in_r=>ground, ea_out_r=>open,
@@ -379,7 +384,8 @@ begin
 	-- Node 3 is a full neuron with bi direction links and an output link
 	Node3: neuron 
 	GENERIC MAP (rand1 => rand9,rand2 => rand10,rand3 => rand11,rand4 => rand12)
-	PORT MAP(clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
+	PORT MAP(clk=>clk, --broadcast=>broadcast,
+	forward=>forward, still_fwd=>still_fwd,
 		backward=>backward, update=>update, reset=>reset, south_fdata_in=>X"00000", sw_bdata_out=>open, sa_bdata_out=>open, se_bdata_out=>open,
 		sw_in_r=>ground, sa_in_r=>ground, se_in_r=>ground, sw_out_r=>open, sa_out_r=>open, se_out_r=>open,
 		east_fdata_in=>n2_n3_y, ew_bdata_out=>n3_n2_b, ea_bdata_out=>n3_b, ea_in_r =>n2_n3_fr(0), ew_in_r=>n2_n3_fr(1),
@@ -396,15 +402,16 @@ begin
 	Node4: activator_skeleton 
 	GENERIC MAP (rand => rand13)
 	PORT MAP( clk=>clk, reset=>reset, still_fwd=>still_fwd, fwd_pred(0)=>n1_nfr(0), fwd_pred(1)=>n2_nfr(0), fwd_pred(2)=>n3_nfr(0), fwd_pred(3)=>'0',
-		foward=>forward, bck_succ(0)=>error_br, bck_succ(3 DOWNTO 1)=>"000", backward=>backward, broadcast=>broadcast, x_pred_0=>n1_n4_y,
+		foward=>forward, bck_succ(0)=>error_br, bck_succ(3 DOWNTO 1)=>"000", backward=>backward, --broadcast=>broadcast,
+		x_pred_0=>n1_n4_y,
 		x_pred_1=>n2_n4_y, x_pred_2=>n3_n4_y, x_pred_3=>X"00000", b_succ_0=>error_b, b_succ_1=>X"00000", b_succ_2=>X"00000",
 		b_succ_3=>X"00000", y=>o_y, fwd_succ(0)=>net_fwd_done, fwd_succ(3 DOWNTO 1)=>openGround(10 DOWNTO 8), back_pred(2 DOWNTO 0)=>n4_br,
 		back_pred(3)=>openGround(12));
 	
 	n3_n1_br(3 DOWNTO 2) <= "00";
 	n3_n2_br(3 DOWNTO 2) <= "00";
-	f_val<= error_br AND NOT broadcast AND NOT io_rdy;
-	b_val<= back_prop_done(1) AND back_prop_done(0) AND NOT broadcast AND NOT io_rdy;
+	f_val<= error_br AND NOT io_rdy;--AND NOT broadcast ;
+	b_val<= back_prop_done(1) AND back_prop_done(0)  AND NOT io_rdy;--AND NOT broadcast;
 	n4_b <= o_y;
 	u_art_out<= o_y;
 end Behavioral;
