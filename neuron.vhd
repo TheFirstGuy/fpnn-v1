@@ -34,7 +34,9 @@ generic (
 	rand1: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand2: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand4: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000"
+	rand4: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	fwd_pred:  STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := "0000";
+	bck_succ:  STD_LOGIC_VECTOR( 3 DOWNTO 0) := "0000"
 	);
 PORT(
 	--Control
