@@ -32,10 +32,10 @@ begin
 
 --process (clr, clk) begin
 --if (clk'EVENT AND clk = '1') then
-reqsorq (0) <= NOT reqs(0) OR q(0);
-reqsorq (1) <= NOT reqs(1) OR q(1);
-reqsorq (2) <= NOT reqs(2) OR q(2);
-reqsorq (3) <= NOT reqs(3) OR q(3);
+reqsorq (0) <= NOT reqs(0) OR d(0);
+reqsorq (1) <= NOT reqs(1) OR d(1);
+reqsorq (2) <= NOT reqs(2) OR d(2);
+reqsorq (3) <= NOT reqs(3) OR d(3);
 
 pre_res <= reqsorq(0) AND reqsorq(1) AND reqsorq(2) AND reqsorq(3); --4 Input AND Gate
 pre_res_d <= pre_res AND forward;
@@ -99,7 +99,7 @@ process(clk, clr, e, d) begin
 	end if;
 end process;
 
-q <= d;
+--q <= d;
 en_a <= ep;
 e <= r01or AND forward; --ACC Enable signal
 process(clk, clr)begin
