@@ -42,14 +42,14 @@ pre_res_d <= pre_res AND forward;
 process(clk, clr, res_d, forward) begin
 	if(clk'EVENT AND clk = '1')then
 		if(forward = '1')then
-			res_d <= pre_res_d;
+			en_m <= pre_res_d;
 		else
-			res_d <= '0';
+			en_m <= '0';
 		end if;
 	end if;
 end process;
 
-en_m <= res_d; --MULT Enable signal
+--en_m <= res_d; --MULT Enable signal
 --res_m <= res_d AND pre_res AND forward;
 res_m <= '0';
 

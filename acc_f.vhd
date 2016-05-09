@@ -45,25 +45,35 @@ end acc_f;
 
 architecture Behavioral of acc_f is
     signal cnt: std_logic_vector(19 downto 0);
+	 signal control_sig: std_logic_vector(2 downto 0);
 begin
+control_sig<=rst0 & rst1 & en;
     add: process(clk, rst0, rst1, f_in, en)
-    begin
-        if (clk'event and clk =  '1') then	--Enable on Clock Tick
-            if (rst0 = '1' and rst1 = '1') then	--Reset to init0 + init1
-                cnt <= init0 + init1;
-            elsif (rst0 = '1' and rst1='0') then --Reset to init0
-                cnt <= init0;
-            elsif (rst1 = '1' and rst0 = '0') then --Reset to init1
-                cnt <= init1;
-            elsif( rst0 = '0' and rst1 = '0') then
-                if (en = '1') then
-                    cnt <= cnt + f_in;	--Sum of Counter Value and Input 
-                else
-                    cnt <= cnt;
-                end if;
-            end if; 
-        end if; 
+			begin
+			if rising_edge(clk) then
+				case control_sig is
+					when "000"=> cnt<=cnt;
+					when "001"=> cnt<=cnt+f_in;
+					when "010" =>cnt<= init1;
+					when "100" => cnt<=init0;
+					when others => cnt<=cnt;
+				end case;		
+			end if;	
     end process add;
+
+--    add: process(clk, rst0, rst1, f_in, en)
+--    begin
+--        if (rst0 = '1') then --Reset to init0
+--                cnt <= init0;
+--        if (clk'event and clk =  '1') then	--Enable on Clock Tick
+--                cnt <= init1;
+--            if(en = '1') then
+--					  cnt <= cnt + f_in;	--Sum of Counter Value and Input 
+--				else
+--						cnt<=cnt;
+--            end if; 
+--        end if; 
+--    end process add;
     f_out <= cnt;   --Output of Current Counter Value
 
 end Behavioral;
