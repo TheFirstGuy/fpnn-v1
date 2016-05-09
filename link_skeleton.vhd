@@ -195,7 +195,7 @@ U4: ACC_W
 	GENERIC MAP (rand => rand)
 	PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>acc_w_in,w_out=>acc_w_out);  
 U5: acc_f 
-	PORT MAP(clk=>clk , rst0=>acc_b_reset , rst1=>'0' , f_in=>acc_b_in , en=>accb_en , init0=>x"00000" , init1=>x"00000" , f_out=>acc_b_out );
+	PORT MAP(clk=>clk , rst0=>acc_b_reset , rst1=>'0' , f_in=>acc_b_in , en=>acc_b_en , init0=>x"00000" , init1=>x"00000" , f_out=>acc_b_out );
 --U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 --U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 --U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
