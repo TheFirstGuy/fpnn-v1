@@ -188,6 +188,7 @@ SIGNAL sn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ) := succ; -- Vector determining if 
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
 SIGNAL acc_b_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- input of accumulate B
+SIGNAL acc_b_reset: STD_LOGIC;
 --ACC_F
 SIGNAL acc_f_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_f
 SIGNAL acc_f_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- output of mux into ACC_F
@@ -204,9 +205,10 @@ SIGNAL sel_fwd_en_m: STD_LOGIC;
 SIGNAL sel_fwd_en_accf: STD_LOGIC;
 --Sel bck
 SIGNAL sel_bck_en_m: STD_LOGIC;
+SIGNAL sel_bck_en_accb: STD_LOGIC;
 --SIGNAL sel_bck_reset_m: STD_LOGIC;
 SIGNAL b_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- selection from select back
-SIGNAL acc_b_en: STD_LOGIC;
+--SIGNAL acc_b_en: STD_LOGIC;
 --Mult
 SIGNAL mult_end: STD_LOGIC; -- Result when multiply is finished
 SIGNAL mult_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- Input for multiplier
@@ -227,8 +229,8 @@ SIGNAL in1		: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
 SIGNAL add_out: STD_LOGIC_VECTOR(19 DOWNTO 0);
 --Other
 SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
-SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
-SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
+--SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
+--SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
 SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
 --SIGNAL back_ack_all: STD_LOGIC; -- When all pred send ack signal
 SIGNAL mux1_sel: STD_LOGIC; -- Selector for mux 1 (going into mult_in)
@@ -263,8 +265,8 @@ U3: oneminusx
 U4: ACC_W 
 	GENERIC MAP (rand => rand)
 	PORT MAP(clk=>clk,write_w=>acc_t_en,mult_in=>acc_t_in,w_out=>acc_t_out); ---ACC_T
-U5: acc_F 
-	PORT MAP(clk=>clk, rst0=>reset, rst1=>'0', f_in=>acc_b_in, en=>acc_b_en, init0=>X"00000", init1=>X"00000", f_out=>acc_b_out);
+U5: acc_b --acc_b
+	PORT MAP(clk=>clk, rst=>acc_b_reset, b_in=>acc_b_in, b_en=>sel_bck_en_accb,  b_out=>acc_b_out);
 U6: COEFFS 
 	PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 U7: CNT 
@@ -274,7 +276,7 @@ U8: adder
 U9: SELECTOR 
 	PORT MAP (clr=>F_SEL_CLR, clk=>clk, forward=>foward, r=>fwd_pred , reqs=>rp_pred, res_m=>open , en_m=>sel_fwd_en_m, en_a=>sel_fwd_en_accf, sel=>f_sel);				---FORWARD
 U10:SELECTOR 
-	PORT MAP (clr=>B_SEL_CLR, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>open , en_m=>sel_bck_en_m, en_a=>acc_b_en, sel=>b_sel);                 ---BACK 
+	PORT MAP (clr=>B_SEL_CLR, clk=>clk, forward=>backward, r=>bck_succ , reqs=>sn_succ, res_m=>open , en_m=>sel_bck_en_m, en_a=>sel_bck_en_accb, sel=>b_sel);                 ---BACK 
 --U11: link_bcast 
 --	PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
 --U12: link_bcast 
@@ -321,6 +323,7 @@ controlSignals: PROCESS( state )
 		IF( state = init ) THEN
 			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '1';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -336,6 +339,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = accumulate ) THEN -- Accumulate inputs, prepare adder with first coeff
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '1';
 			cnt_en <= '0';
 			add_en <= '1';
@@ -351,6 +355,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = fa0 ) THEN -- Multiply and increment count
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '0';
 			cnt_en <= '1';
 			add_en <= '0';
@@ -366,6 +371,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = fa1 ) THEN-- Add multiply output and new coeffecient
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '1';
@@ -381,6 +387,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = fa2 ) THEN-- Add stores multiply and acc_f updates threshold 
 			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '1';
@@ -396,6 +403,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = th0 ) THEN-- Multiply<- ACC_F & ACC_B
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -411,6 +419,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = th1 ) THEN-- ACC_T <- mult/2
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -426,6 +435,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = bp0 ) THEN-- MULT <- ADD & ADD
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -441,6 +451,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = bp1 ) THEN-- ACC_F <- (1 - x)
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '1';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -456,6 +467,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = bp2 ) THEN-- MULT <- ACC_F & ACC_B
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -471,6 +483,7 @@ controlSignals: PROCESS( state )
 		ELSIF( state = bp3) THEN -- MULT WAIT
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -486,6 +499,7 @@ controlSignals: PROCESS( state )
 		ELSE -- Default to init stage
 			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '1';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -506,17 +520,17 @@ END PROCESS controlSignals;
 
 -- Bck_pred 
 is_back_prop <= back_rdy AND backward; -- To signal pred for back prop
-back_pred(0) <= (rp_pred(0) AND is_back_prop) OR broadcast;
-back_pred(1) <= (rp_pred(1) AND is_back_prop) OR broadcast;
-back_pred(2) <= (rp_pred(2) AND is_back_prop) OR broadcast;
-back_pred(3) <= (rp_pred(3) AND is_back_prop) OR broadcast;
+back_pred(0) <= (rp_pred(0) AND is_back_prop) ;
+back_pred(1) <= (rp_pred(1) AND is_back_prop) ;
+back_pred(2) <= (rp_pred(2) AND is_back_prop) ;
+back_pred(3) <= (rp_pred(3) AND is_back_prop);
 
 --fwd_succ
 is_fwd <= foward AND forward_rdy;
-fwd_succ(0) <= (sn_succ(0) AND is_fwd) OR broadcast;
-fwd_succ(1) <= (sn_succ(1) AND is_fwd) OR broadcast;
-fwd_succ(2) <= (sn_succ(2) AND is_fwd) OR broadcast;
-fwd_succ(3) <= (sn_succ(3) AND is_fwd) OR broadcast;
+fwd_succ(0) <= (sn_succ(0) AND is_fwd) ;
+fwd_succ(1) <= (sn_succ(1) AND is_fwd) ;
+fwd_succ(2) <= (sn_succ(2) AND is_fwd) ;
+fwd_succ(3) <= (sn_succ(3) AND is_fwd) ;
 
 -- Forward input MUX
 WITH f_sel( 1 DOWNTO 0 ) SELECT

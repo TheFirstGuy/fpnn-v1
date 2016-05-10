@@ -30,6 +30,7 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
+
 entity COEFFS is
 PORT(
 --Inputs
@@ -41,6 +42,16 @@ coeff: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 )
 end COEFFS;
 
 architecture Behavioral of COEFFS is
+
+function To_Std_Logic(L: BOOLEAN) return std_ulogic is
+begin
+if L then
+return('1');
+else
+return('0');
+end if;
+end function To_Std_Logic;
+
 SIGNAL max: SIGNED( 19 DOWNTO 0 ) := "00011110101110011010";
 SIGNAL min: SIGNED( 19 DOWNTO 0 ) := "11100001010001100110";
 SIGNAL zero: SIGNED( 19 DOWNTO 0 ) := "00000000000000000000";
@@ -59,6 +70,7 @@ CONSTANT pos: rom:=rom'(X"00000", "00001111111111111110","11111011110101011001")
 CONSTANT mpos: rom:=rom'( "00001111010111001101", X"00000", X"00000");
 -- -0.9601593017578125
 CONSTANT npos: rom:=rom'( "11110000101000110011", X"00000", X"00000");
+SIGNAL xs: STD_LOGIC_VECTOR(3 DOWNTO 0);
 begin
 
 x_addr_0 <= SIGNED(address) > max;
@@ -66,17 +78,34 @@ x_addr_1 <= SIGNED(address) > zero;
 x_addr_2 <= SIGNED(address) > min;
 x_addr_3 <= SIGNED(address) < min;
 
+--xs <= To_Std_Logic(x_addr_0) & To_Std_Logic(x_addr_1) & To_Std_Logic(x_addr_2) & To_Std_Logic(x_addr_3);
 --Select constant
+--PROCESS( xs, degree )
+--BEGIN
+--	case xs is
+--	--x > 1.920318603515625
+--		when "1000"=>coeff <= mpos(CONV_INTEGER(degree));
+--		-- 0 < x <= 1.920318603515625
+--		when "0100"=>coeff <= pos(CONV_INTEGER(degree));
+--		-- -1.920318603515625 < x < 0
+--		when "0010"=>coeff <= neg(CONV_INTEGER(degree));
+--		-- x < -1.920318603515625
+--		when "0001"=>coeff <= npos(CONV_INTEGER(degree));
+--		when others=>coeff <= mpos(CONV_INTEGER(degree));
+--	END CASE;
+--END PROCESS;
+
+
 PROCESS( x_addr_0, x_addr_1, x_addr_2, x_addr_3, degree )
 BEGIN
 --x > 1.920318603515625
-IF( x_addr_0 ) THEN 
+IF( x_addr_0) THEN 
 	coeff <= mpos(CONV_INTEGER(degree));
 -- 0 < x <= 1.920318603515625
-ELSIF( x_addr_1 AND NOT x_addr_0) THEN
+ELSIF( x_addr_1 AND NOT x_addr_0 ) THEN
 	coeff <= pos(CONV_INTEGER(degree));
 -- -1.920318603515625 < x < 0
-ELSIF( x_addr_2 AND NOT x_addr_3) THEN
+ELSIF( x_addr_2 AND NOT x_addr_3 ) THEN
 	coeff <= neg(CONV_INTEGER(degree));
 -- x < -1.920318603515625
 ELSIF( x_addr_3 ) THEN

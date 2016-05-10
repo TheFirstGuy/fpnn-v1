@@ -25,7 +25,7 @@ end SELECTOR;
 
 architecture Behavioral of SELECTOR is
 signal r_reg, d, q, reqsorq, nqr, predand, last_d, selected: std_logic_vector(3 downto 0) := "0000";
-signal pre_res_d, pre_res, e, ep, r01or, r23or, trior: std_logic := '0';
+signal pre_res_d, pre_en_m, pre_res, e, ep, r01or, r23or, trior: std_logic := '0';
 signal res_d: std_logic := '0';
 --signal en_m: std_logic;
 begin
@@ -42,8 +42,10 @@ pre_res_d <= pre_res AND forward;
 process(clk, clr, res_d, forward) begin
 	if(clk'EVENT AND clk = '1')then
 		if(forward = '1')then
-			en_m <= pre_res_d;
+			pre_en_m <= pre_res_d;
+			en_m <= pre_en_m;
 		else
+			pre_en_m <= '0';
 			en_m <= '0';
 		end if;
 	end if;
