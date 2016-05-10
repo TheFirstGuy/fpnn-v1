@@ -245,7 +245,7 @@ SIGNAL B_SEL_CLR: STD_LOGIC;
 
 
 --State Machine
-type s_type is (init, accumulate, fa0, fa1, fa2, fa3, th0, th1, bp0, bp1, bp2, bp3);
+type s_type is (init, accumulate, fa0, fa1, fa1p, fa2, fa3, th0, th1, bp0, bp1, bp2, bp3);
 signal state, nextstate: s_type;
 
 
@@ -303,7 +303,8 @@ U10:SELECTOR
 				WHEN init => IF( foward = '1' ) THEN nextstate <= accumulate; ELSE nextstate<= init; END IF;
 				WHEN accumulate => IF(sel_fwd_en_m = '1') THEN nextstate <= fa0; ELSE nextstate <= accumulate; END IF;
 				WHEN fa0 => nextstate <= fa1;
-				WHEN fa1 => IF(fin = '1') THEN nextstate <= fa2; ELSE nextstate <= fa0; END IF;
+				WHEN fa1 => IF(fin = '1') THEN nextstate <= fa1p; ELSE nextstate <= fa0; END IF;
+				WHEN fa1p => nextstate<= fa2;
 				WHEN fa2 => IF(backward = '1' AND sel_bck_en_m = '1') THEN nextstate <= th0; ELSIF( still_fwd = '1' ) THEN nextstate <= init; ELSE nextstate <= fa2; END IF;
 				--WHEN fa3 => IF(backward = '1') THEN nextstate <= th0; ELSE nextstate <= fa3; END IF;
 				WHEN th0 => nextstate <= th1; 
@@ -379,6 +380,22 @@ controlSignals: PROCESS( state )
 			add_ld_a <= '0';
 			add_ld_b <= '0';
 			mult_enable <= '0';
+			acc_t_en <= '0';
+			mux1_sel <= '0';--ACC_F
+			mux2_sel <= '1';--ADD
+			back_rdy <= '0';
+			forward_rdy <= '0';
+		ELSIF( state = fa1p) THEN
+			acc_f_reset0 <= '0';
+			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
+			mult_reset <= '0';
+			cnt_en <= '1';
+			add_en <= '0';
+			add_reset <= '0';
+			add_ld_a <= '0';
+			add_ld_b <= '0';
+			mult_enable <= '1';
 			acc_t_en <= '0';
 			mux1_sel <= '0';--ACC_F
 			mux2_sel <= '1';--ADD

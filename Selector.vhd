@@ -27,27 +27,31 @@ architecture Behavioral of SELECTOR is
 signal r_reg, d, q, reqsorq, nqr, predand, last_d, selected: std_logic_vector(3 downto 0) := "0000";
 signal pre_res_d, pre_en_m, pre_res, e, ep, r01or, r23or, trior: std_logic := '0';
 signal res_d: std_logic := '0';
+signal cd: STD_LOGIC_VECTOR(1 DOWNTO 0);
 --signal en_m: std_logic;
 begin
 
 --process (clr, clk) begin
 --if (clk'EVENT AND clk = '1') then
-reqsorq (0) <= NOT reqs(0) OR d(0);
-reqsorq (1) <= NOT reqs(1) OR d(1);
-reqsorq (2) <= NOT reqs(2) OR d(2);
-reqsorq (3) <= NOT reqs(3) OR d(3);
+
 
 pre_res <= reqsorq(0) AND reqsorq(1) AND reqsorq(2) AND reqsorq(3); --4 Input AND Gate
 pre_res_d <= pre_res AND forward;
+
 process(clk, clr, res_d, forward) begin
 	if(clk'EVENT AND clk = '1')then
-		if(forward = '1')then
-			pre_en_m <= pre_res_d;
-			en_m <= pre_en_m;
-		else
-			pre_en_m <= '0';
-			en_m <= '0';
-		end if;
+		case forward is
+			when '1' => pre_en_m <= pre_res_d;en_m <= pre_en_m;
+			when '0' =>pre_en_m <= '0';en_m <= '0';
+			when others=>pre_en_m <= '0';en_m <= '0';
+		end case;
+--		if(forward = '1')then
+--			pre_en_m <= pre_res_d;
+--			en_m <= pre_en_m;
+--		else
+--			pre_en_m <= '0';
+--			en_m <= '0';
+--		end if;
 	end if;
 end process;
 
@@ -55,7 +59,7 @@ end process;
 --res_m <= res_d AND pre_res AND forward;
 res_m <= '0';
 
-nqr <= NOT d AND r; --AND Gate following each of the four flip flops
+
 
 
 r23or <= nqr(2) OR nqr(3);
@@ -70,13 +74,19 @@ predand(0) <= NOT (nqr(3) OR (NOT nqr(2) AND nqr(1))) AND NOT r23or; --AND Gate 
 process(clk, d)begin
 	if(clk'EVENT AND clk='1')then
 		last_d <= d;
+		selected(0)<= last_d(0) xor d(0);
+		selected(1)<= last_d(1) xor d(1);
+		selected(2)<= last_d(2) xor d(2);
+		selected(3)<= last_d(3) xor d(3);
+		nqr <= NOT d AND r; --AND Gate following each of the four flip flops
+		reqsorq (0) <= NOT reqs(0) OR d(0);
+		reqsorq (1) <= NOT reqs(1) OR d(1);
+		reqsorq (2) <= NOT reqs(2) OR d(2);
+		reqsorq (3) <= NOT reqs(3) OR d(3);
 	end if;
 end process;
 
-selected(0)<= last_d(0) xor d(0);
-selected(1)<= last_d(1) xor d(1);
-selected(2)<= last_d(2) xor d(2);
-selected(3)<= last_d(3) xor d(3);
+
 
 
 --Select signal
@@ -87,17 +97,26 @@ with selected select
 	"11" when "1000",
 	"00" when others;
 
-process(clk, clr, e, d) begin
+
+
+cd <= clr & e;
+process(clk, clr, cd) begin
 	if(clk'EVENT AND clk = '1')then
-		if(clr = '1') then
-			d <= "0000";
-		else
-			IF( e = '1') then
-				d <= predand OR d;
-			else
-				d <= d;
-			end if;
-		end if;
+		case cd is
+			when "00"=> d <=d;
+			when "01"=> d<=predand OR d;
+			when "10"=> d<= "0000";
+			when others=>d<=d;
+		end case;
+--		if(clr = '1') then
+--			d <= "0000";
+--		else
+--			IF( e = '1') then
+--				d <= predand OR d;
+--			else
+--				d <= d;
+--			end if;
+--		end if;
 	end if;
 end process;
 
