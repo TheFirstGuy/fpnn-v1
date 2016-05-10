@@ -233,7 +233,7 @@ PORT(
 end component;
 
 --Sideways forward request Signals
-SIGNAL n1_n2_fr, n2_n1_fr, n2_n3_fr, n3_n2_fr, n3_n4_fr, n4_n3_fr: STD_LOGIC(1 DOWNTO 0 );
+SIGNAL n1_n2_fr, n2_n1_fr, n2_n3_fr, n3_n2_fr, n3_n4_fr, n4_n3_fr: STD_LOGIC(3 DOWNTO 0 );
 -- Sideways backward request Signals
 SIGNAL n2_n1_br, n1_n2_br, n2_n3_br, n3_n2_br, n3_n4_br, n4_n3_br: STD_LOGIC(3 DOWNTO 0 );
 --Sideways fdata
@@ -250,10 +250,26 @@ GENERIC MAP (rand1 => rand1,rand2 => rand2,rand3 => rand3)
 		sw_in_r=>in1_r(0), sa_in_r=>in1_r(1), sw_out_r=>n1_in1_br(0), sa_out_r=>n1_in1_br(1),
 		east_fdata_in=>X"00000", ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r=>'0', ew_in_r=>'0', ea_out_r=>open,
 		ew_out_r=>open, west_fdata_in=>n2_n1_fd, wa_bdata_out=>n1_n2_bd(39 DOWNTO 19), wa_in_r=>n2_n1_r(0), wa_out_r=>n1_n2_br(0), 
-		north_fdata_out=>n1_fdata, north_bdata_in0=>n1_bdata(59 DOWNTO 40), north_bdata_in1=n1_bdata(39 DOWNTO 20), north_bdata_in2=>n1_bdata(19 DOWNTO 0), 
-		north_bdata_in3=>X"00000", north_r=>n1_r, north_br=>n1_o_br, west_fdata_out=>n1_n2_fd, west_bdata_in0=>n2_n1_bd(39 DOWNTO 20), 
-		west_bdata_in1=>n2_n1_bd(19 DOWNTO 0), west_bdata_in2=>X"00000", west_bdata_in3=>X"00000", west_r(1 DOWNTO 0)=>n1_n2_fr, west_r(3 DOWNTO 2)=>"00", 
-		west_br=>n2_n1_br);
+		north_fdata_out=>n1_fdata, north_bdata_in0=>n1_bdata(59 DOWNTO 40), north_bdata_in1=n1_bdata(39 DOWNTO 20), 
+		north_bdata_in2=>n1_bdata(19 DOWNTO 0), north_bdata_in3=>X"00000", north_r=>n1_r, north_br=>n1_o_br, 
+		west_fdata_out=>n1_n2_fd, west_bdata_in0=>n2_n1_bd(39 DOWNTO 20), west_bdata_in1=>n2_n1_bd(19 DOWNTO 0), 
+		west_bdata_in2=>X"00000", west_bdata_in3=>X"00000", west_r=>n1_n2_fr, west_br=>n2_n1_br);
+
+Node2: neuron
+GENERIC MAP (rand1 => rand4,rand2 => rand5,rand3 => rand6)
+	PORT MAP( clk=>clk, forward=>forward, still_fwd=>still_fwd, backward=>backward, update=>update, reset=>reset,
+	south_fdata_in=>in2_fdata, sw_bdata_out=>n2_in2_bdata(59 DOWNTO 40), sa_bdata_out=>n2_in2_bdata(39 DOWNTO 20),
+	se_bdata_out=>n2_in2_bdata(19 DOWNTO 0), sw_in_r=>in2_r(0), sa_in_r=>in2_r(1), se_in_r=>in2_r(2), sw_out_r=>n2_in2_br(0),
+	sa_out_r=>n2_in2_br(1), se_out_r=>n2_in2_br(2), east_fdata_in=>n3_n2_fd, ew_bdata_out=>n2_n3_bd(39 DOWNTO 20), 
+	ea_bdata_out=>n2_n3_bd(19 DOWNTO 0), ew_in_r=>n3_n2_r(0), ea_in_r=>n3_n2_fr(1), ew_out_r=>n2_n3_fr(0), ea_out_r=>n2_n3_fr(1),
+	west_fdata_in=>n1_n2_fd,we_bdata_out=>n2_n1_bd(39 DOWNTO 20), wa_bdata_out=>n2_n1_bd(19 DOWNTO 0), 
+	wa_in_r=>n1_n2_fr(0), we_in_r=>n1_n2_fr(1), wa_out_r=>n2_n1_br(0), we_out_r=>n2_n1_br(1), north_fdata_out=>n2_out, 
+	north_bdata_in0=>n2_bdata(59 DOWNTO 40), north_bdata_in1=>n2_bdata(39 DOWNTO 20), north_bdata_in2=>n2_bdata(19 DOWNTO 0), north_bdata_in3=>X"00000", 
+	north_r=>n2_r, north_br=>n2_o_br, east_fdata_out=>n2_n3_fd, east_bdata_in0=>n3_n2_bd(39 DOWNTO 20), east_bdata_in1=>n3_n2_bd(19 DOWNTO 0),
+	east_bdata_in2=>X"00000", east_bdata_in3=>X"00000", east_r=>n2_n3_fr, east_br=>n3_n2_br, west_fdata_out=>n2_n1_fd,
+	west_bdata_in0=>n1_n2_bd(39 DOWNTO 20), west_bdata_in1=>n1_n2_bd(19 DOWNTO 0), west_bdata_in2=>X"00000", west_bdata_in3=>X"00000",
+	west_r=>n2_n1_fr, west_br=>n1_n2_br); 
+
 
 
 end Behavioral;
