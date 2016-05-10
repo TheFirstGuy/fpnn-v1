@@ -39,11 +39,14 @@ pre_res <= reqsorq(0) AND reqsorq(1) AND reqsorq(2) AND reqsorq(3); --4 Input AN
 pre_res_d <= pre_res AND forward;
 
 process(clk, clr, res_d, forward) begin
-	if(clk'EVENT AND clk = '1')then
+	if(clk'EVENT AND clk = '0')then
 		case forward is
-			when '1' => pre_en_m <= pre_res_d;en_m <= pre_en_m;
-			when '0' =>pre_en_m <= '0';en_m <= '0';
-			when others=>pre_en_m <= '0';en_m <= '0';
+			--when '1' => pre_en_m <= pre_res_d;en_m <= pre_en_m;
+			--when '0' =>pre_en_m <= '0';en_m <= '0';
+			--when others=>pre_en_m <= '0';en_m <= '0';
+			when '1' => en_m <= pre_res_d;
+			when '0' => en_m <= '0';
+			when others=>en_m<= '0';
 		end case;
 --		if(forward = '1')then
 --			pre_en_m <= pre_res_d;
@@ -78,14 +81,14 @@ process(clk, d)begin
 		selected(1)<= last_d(1) xor d(1);
 		selected(2)<= last_d(2) xor d(2);
 		selected(3)<= last_d(3) xor d(3);
-		nqr <= NOT d AND r; --AND Gate following each of the four flip flops
+	end if;
+end process;
+
+nqr <= NOT d AND r; --AND Gate following each of the four flip flops
 		reqsorq (0) <= NOT reqs(0) OR d(0);
 		reqsorq (1) <= NOT reqs(1) OR d(1);
 		reqsorq (2) <= NOT reqs(2) OR d(2);
 		reqsorq (3) <= NOT reqs(3) OR d(3);
-	end if;
-end process;
-
 
 
 
@@ -125,7 +128,7 @@ end process;
 e <= r01or AND forward; --ACC Enable signal
 process(clk, clr)begin
 	if(clk'event and clk = '1') then
-		en_<= e;
+		ep<= e;
 		en_a <= ep;
 	end if;
 end process;
