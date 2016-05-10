@@ -24,11 +24,7 @@ res_m: out std_logic
 end SELECTOR;
 
 architecture Behavioral of SELECTOR is
-<<<<<<< HEAD
 signal r_reg, in_d, d, q, reqsorq, nqr, predand, last_d, selected: std_logic_vector(3 downto 0) := "0000";
-=======
-signal r_reg, d, q, reqsorq, nqr, predand, last_d, selected: std_logic_vector(3 downto 0) := "0000";
->>>>>>> b449cf3fd6a4bfcaf762cf74ccaa85811d7fcdc6
 signal pre_res_d, pre_en_m, pre_res, e, ep, r01or, r23or, trior: std_logic := '0';
 signal res_d: std_logic := '0';
 signal cd: STD_LOGIC_VECTOR(1 DOWNTO 0);
@@ -53,10 +49,6 @@ d_r : d_reg
 
 --process (clr, clk) begin
 --if (clk'EVENT AND clk = '1') then
-<<<<<<< HEAD
-=======
-
->>>>>>> b449cf3fd6a4bfcaf762cf74ccaa85811d7fcdc6
 
 in_d<= predand OR d;
 pre_res <= reqsorq(0) AND reqsorq(1) AND reqsorq(2) AND reqsorq(3); --4 Input AND Gate
@@ -101,30 +93,19 @@ predand(0) <= NOT (nqr(3) OR (NOT nqr(2) AND nqr(1))) AND NOT r23or; --AND Gate 
 process(clk, d)begin
 	if(clk'EVENT AND clk='1')then
 		last_d <= d;
-		selected(0)<= last_d(0) xor d(0);
-		selected(1)<= last_d(1) xor d(1);
-		selected(2)<= last_d(2) xor d(2);
-		selected(3)<= last_d(3) xor d(3);
 	end if;
 end process;
 
-<<<<<<< HEAD
 		nqr <= NOT d AND r; --AND Gate following each of the four flip flops
-=======
-nqr <= NOT d AND r; --AND Gate following each of the four flip flops
->>>>>>> b449cf3fd6a4bfcaf762cf74ccaa85811d7fcdc6
 		reqsorq (0) <= NOT reqs(0) OR d(0);
 		reqsorq (1) <= NOT reqs(1) OR d(1);
 		reqsorq (2) <= NOT reqs(2) OR d(2);
 		reqsorq (3) <= NOT reqs(3) OR d(3);
-<<<<<<< HEAD
 		
 		selected(0)<= last_d(0) xor d(0);
 		selected(1)<= last_d(1) xor d(1);
 		selected(2)<= last_d(2) xor d(2);
 		selected(3)<= last_d(3) xor d(3);
-=======
->>>>>>> b449cf3fd6a4bfcaf762cf74ccaa85811d7fcdc6
 
 
 
@@ -138,7 +119,6 @@ with selected select
 
 
 
-<<<<<<< HEAD
 --cd <= clr & e;
 
 --process(clk, clr, cd) begin
@@ -149,17 +129,6 @@ with selected select
 --			when "10"=> d<= "0000";
 --			when others=>d<=d;
 --		end case;
-=======
-cd <= clr & e;
-process(clk, clr, cd) begin
-	if(clk'EVENT AND clk = '1')then
-		case cd is
-			when "00"=> d <=d;
-			when "01"=> d<=predand OR d;
-			when "10"=> d<= "0000";
-			when others=>d<=d;
-		end case;
->>>>>>> b449cf3fd6a4bfcaf762cf74ccaa85811d7fcdc6
 --		if(clr = '1') then
 --			d <= "0000";
 --		else
@@ -169,26 +138,16 @@ process(clk, clr, cd) begin
 --				d <= d;
 --			end if;
 --		end if;
-<<<<<<< HEAD
 --	end if;
 --end process;
-=======
-	end if;
-end process;
->>>>>>> b449cf3fd6a4bfcaf762cf74ccaa85811d7fcdc6
 
 --q <= d;
 
 e <= r01or AND forward; --ACC Enable signal
 process(clk, clr)begin
 	if(clk'event and clk = '1') then
-<<<<<<< HEAD
 		--ep<= e;
 		en_a <= e;--p;
-=======
-		ep<= e;
-		en_a <= ep;
->>>>>>> b449cf3fd6a4bfcaf762cf74ccaa85811d7fcdc6
 	end if;
 end process;
 
