@@ -121,11 +121,12 @@ process(clk, clr, cd) begin
 end process;
 
 --q <= d;
-en_a <= ep;
+
 e <= r01or AND forward; --ACC Enable signal
 process(clk, clr)begin
 	if(clk'event and clk = '1') then
-		ep <= e;
+		en_<= e;
+		en_a <= ep;
 	end if;
 end process;
 

@@ -290,8 +290,8 @@ U10:SELECTOR
 			ELSE
 				IF( clk'EVENT and clk = '1') THEN
 					state <= nextstate;
-				ELSE
-					state <= state;
+				--ELSE
+					--state <= state;
 				END IF;
 			END IF;
 	END PROCESS stateFSM;
@@ -321,7 +321,9 @@ U10:SELECTOR
 
 controlSignals: PROCESS( state )
 	BEGIN
-		IF( state = init ) THEN
+		--IF( state = init ) THEN
+		CASE state is
+			WHEN init =>
 			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -337,7 +339,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '0';
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = accumulate ) THEN -- Accumulate inputs, prepare adder with first coeff
+			WHEN accumulate =>
+		--ELSIF( state = accumulate ) THEN -- Accumulate inputs, prepare adder with first coeff
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -353,7 +356,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '0';
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = fa0 ) THEN -- Multiply and increment count
+		--ELSIF( state = fa0 ) THEN -- Multiply and increment count
+			WHEN fa0 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -369,7 +373,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '1';--ADD
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = fa1 ) THEN-- Add multiply output and new coeffecient
+		--ELSIF( state = fa1 ) THEN-- Add multiply output and new coeffecient
+			WHEN fa1 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -385,7 +390,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '1';--ADD
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = fa1p) THEN
+		--ELSIF( state = fa1p) THEN
+			WHEN fa1p =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -401,7 +407,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '1';--ADD
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = fa2 ) THEN-- Add stores multiply and acc_f updates threshold 
+		--ELSIF( state = fa2 ) THEN-- Add stores multiply and acc_f updates threshold 
+			WHEN fa2 =>
 			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -417,7 +424,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '1';--ADD
 			back_rdy <= '0';
 			forward_rdy <= '1';
-		ELSIF( state = th0 ) THEN-- Multiply<- ACC_F & ACC_B
+		--ELSIF( state = th0 ) THEN-- Multiply<- ACC_F & ACC_B
+			WHEN th0 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -433,7 +441,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '0';-- ACC_B
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = th1 ) THEN-- ACC_T <- mult/2
+		--ELSIF( state = th1 ) THEN-- ACC_T <- mult/2
+			WHEN th1 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -449,7 +458,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '0';-- ACC_B
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = bp0 ) THEN-- MULT <- ADD & ADD
+		--ELSIF( state = bp0 ) THEN-- MULT <- ADD & ADD
+			WHEN bp0 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '0';
@@ -465,7 +475,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '1';-- ADD
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = bp1 ) THEN-- ACC_F <- (1 - x)
+		--ELSIF( state = bp1 ) THEN-- ACC_F <- (1 - x)
+			WHEN bp1 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '1';
 			acc_b_reset <= '0';
@@ -481,7 +492,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '0';-- ACC_B
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = bp2 ) THEN-- MULT <- ACC_F & ACC_B
+		--ELSIF( state = bp2 ) THEN-- MULT <- ACC_F & ACC_B
+			WHEN bp2 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '0';
@@ -497,7 +509,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '0';-- ACC_B
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		ELSIF( state = bp3) THEN -- MULT WAIT
+		--ELSIF( state = bp3) THEN -- MULT WAIT
+			WHEN bp3 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '0';
@@ -513,7 +526,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '0';-- ACC_B
 			back_rdy <= '1';
 			forward_rdy <= '0';
-		ELSE -- Default to init stage
+		--ELSE -- Default to init stage
+			WHEN others =>
 			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '1';
@@ -529,7 +543,8 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '0';
 			back_rdy <= '0';
 			forward_rdy <= '0';
-		END IF;
+		END CASE;
+		--END IF;
 
 	
 END PROCESS controlSignals;
