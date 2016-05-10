@@ -56,7 +56,7 @@ control_sig<=rst0 & rst1 & en;
 					when "001"=> cnt<=cnt+f_in;
 					when "010" =>cnt<= init1;
 					when "100" => cnt<=init0;
-					when others => cnt<=cnt;
+					when others => cnt<=X"FFFFF";
 				end case;		
 			end if;	
     end process add;

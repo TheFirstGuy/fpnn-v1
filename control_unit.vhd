@@ -48,7 +48,7 @@ entity control_unit is
 end control_unit;
 
 architecture Behavioral of control_unit is
-    type  StateType is (ST_RST,ST_BCAST,ST_IO,ST_F,ST_B,ST_U, ST_FF);   --States
+    type  StateType is (ST_RST,ST_BCAST,ST_IO,ST_F,ST_B,ST_U, ST_U2, ST_FF);   --States
     signal state : StateType;
     signal bcast : std_logic;   --Broadcast Enable Signal
     signal cnt : std_logic_vector(3 downto 0);  --Counter
@@ -160,8 +160,15 @@ begin
 						io <= '0';
 						f <= '0';
 						cnt <= "0000";
+						state <= ST_U2;
+					 when ST_U2 => 
+						b <= '1'; -- keep b for acc_b
+						u <= '1'; -- turn on u for 1 cp
+						bcast <= '0';
+						io <= '0';
+						f <= '0';
+						cnt <= "0000";
 						state <= ST_IO;
-						
                 when others =>
             end case;
         end if;

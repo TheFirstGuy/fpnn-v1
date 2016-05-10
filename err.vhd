@@ -57,7 +57,7 @@ begin
 					--	 err_valid <= '1';
 					--else
 					--	 err_valid <= '0';
-					end if;
+					--end if;
 					if( rslt_valid = '1')then
 						err_val <= c_val - rslt;    --Calculate Error (Classification - Result)
 						err_valid <= '1';

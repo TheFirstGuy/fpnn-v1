@@ -70,7 +70,7 @@ foward: IN STD_LOGIC;  -- Forward activation mode
 --Backwards Control Signals
 bck_succ: IN STD_LOGIC_VECTOR( 3 DOWNTO 0); -- backward successors request signals
 backward: IN STD_LOGIC; -- backward activation mode
-broadcast: IN STD_LOGIC; -- Broadcase connections
+--broadcast: IN STD_LOGIC; -- Broadcase connections
 
 --Forward Data Input Signals
 --Data values from pred for forward activation
@@ -104,8 +104,7 @@ begin
 ACT: activator_skeleton 
 	GENERIC MAP (rand => X"08000")
 	PORT MAP( clk=>clk, reset=>reset, still_fwd=>still_fwd, 
-		fwd_pred=>fwd_pred,foward=>foward, bck_succ=>bck_succ, backward=>backward,
-		broadcast=>broadcast, x_pred_0=>x_pred_0, x_pred_1=>X"00000",
+		fwd_pred=>fwd_pred,foward=>foward, bck_succ=>bck_succ, backward=>backward, x_pred_0=>x_pred_0, x_pred_1=>X"00000",
 		x_pred_2=>X"00000", x_pred_3=>X"00000", b_succ_0=>b_succ_0,b_succ_1=>X"00000", b_succ_2=>X"00000", b_succ_3=>X"00000", y=>y, fwd_succ=>fwd_succ,
 		back_pred=>back_pred);
 

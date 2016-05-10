@@ -41,19 +41,30 @@ end acc_b;
 
 architecture Behavioral of acc_b is
 	signal cnt: std_logic_vector(19 downto 0) := X"00000";	--Counter Register to Store Results
+	signal sel: STD_LOGIC_VECTOR(1 DOWNTO 0);
+	
+	
 begin
+	sel <= rst & b_en;
+	
 	add: process(clk, rst, b_in, cnt)
 	begin
 		if (clk'event and clk =  '1') then	--Enable on Clock Tick
-			if (rst = '1') then	--Reset
-				cnt <= X"00000";	--Reset Counter Register
-			elsif (b_en = '1') then	--Accumulator Input Enable
-					cnt <= cnt + b_in;	--Sum of Counter Value and Input
-			else
-				cnt<= cnt;
-			end if;
-		else
-			cnt<= cnt;
+			case sel is
+				when "00"=>cnt<=cnt;
+				when "01"=>cnt<=cnt+b_in;
+				when "10"=>cnt<=X"00000";
+				when others=>cnt<=cnt;
+			end case;
+--			if (rst = '1') then	--Reset
+--				cnt <= X"00000";	--Reset Counter Register
+--			elsif (b_en = '1') then	--Accumulator Input Enable
+--					cnt <= cnt + b_in;	--Sum of Counter Value and Input
+--			else
+--				cnt<= cnt;
+--			end if;
+--		else
+--			cnt<= cnt;
 		end if;
 	end process add;
 	b_out <= cnt;	--Output Current Counter Value

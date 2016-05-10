@@ -139,7 +139,7 @@ component link_bcast is
 end component;
 
 SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if pred connections exist
-SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if succ connections exist
+SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="0001"; -- Vector determining if succ connections exist
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
 SIGNAL acc_b_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- input of accumulate B
@@ -193,9 +193,9 @@ U2: acc_f
 --U3: oneminusx PORT MAP(Input=>mult_out, Output=>omx_out);
 U4: ACC_W 
 	GENERIC MAP (rand => rand)
-	PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>acc_w_in,w_out=>acc_w_out); 
-U5: ACC_B 
-	PORT MAP(clk=>clk, rst=>acc_b_reset, b_in=>acc_b_in, b_en=>acc_b_en, b_out=>acc_b_out);
+	PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>acc_w_in,w_out=>acc_w_out);  
+U5: acc_f 
+	PORT MAP(clk=>clk , rst0=>acc_b_reset , rst1=>'0' , f_in=>acc_b_in , en=>acc_b_en , init0=>x"00000" , init1=>x"00000" , f_out=>acc_b_out );
 --U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 --U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
 --U8: adder PORT MAP (clk=>clk,rst=>add_reset, en=>add_en, save_a=>add_ld_a, save_b=>add_ld_b, a=>in1, b=>mult_out, c=>add_out);
@@ -230,6 +230,7 @@ WITH f_sel( 1 DOWNTO 0 ) SELECT
 	x_pred_2 WHEN "10",
 	x_pred_3 WHEN "11",
 	x_pred_0 WHEN others;
+	--x"00000" WHEN others;
 
 -- Backward input MUX
 WITH b_sel( 1 DOWNTO 0 ) SELECT
@@ -237,6 +238,7 @@ WITH b_sel( 1 DOWNTO 0 ) SELECT
 	b_succ_1 WHEN "01",
 	b_succ_2 WHEN "10",
 	b_succ_3 WHEN "11",
+	--x"00000" WHEN others;
 	b_succ_0 WHEN others;
 	
 --Multiply input MUX
