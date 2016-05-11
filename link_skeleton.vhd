@@ -138,7 +138,7 @@ component link_bcast is
            p3_val : out std_logic);
 end component;
 
-SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if pred connections exist
+SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="0001"; -- Vector determining if pred connections exist
 SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="0001"; -- Vector determining if succ connections exist
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
@@ -171,7 +171,8 @@ SIGNAL mult_out: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
 --Other
 SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
 SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
-SIGNAL update_and_nupdate: STD_LOGIC; -- output of OR gate for mult reset
+SIGNAL update_and_nupdate: STD_LOGIC; 
+SIGNAL nupdate_and_update: STD_LOGIC; -- output of OR gate for mult reset
 SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
 SIGNAL muxw_sel: STD_LOGIC; -- Controls mux2
 SIGNAL F_SEL_CLR: STD_LOGIC; 
@@ -183,18 +184,18 @@ begin
 F_SEL_CLR <= reset or backward or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
 B_SEL_CLR <= reset or foward;
 ACC_F_RST <= reset or update or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
-acc_f_reset <= update OR reset;
+acc_f_reset <= update_reg or update OR reset;
 acc_b_reset <= foward OR reset;
 --port
 U1: MULT 
 	PORT MAP(reset=>mult_reset,clock=>clk,en=>mult_enable,Input=>mult_in,W=>mult_w_in,Output=>mult_out,ready=>mult_end);
-U2: acc_f 
+U2: acc_f
 	PORT MAP(clk=>clk , rst0=>acc_f_reset , rst1=>'0' , f_in=>acc_f_in , en=>sel_fwd_en_accf , init0=>x"00000" , init1=>x"00000" , f_out=>acc_f_out );
 --U3: oneminusx PORT MAP(Input=>mult_out, Output=>omx_out);
 U4: ACC_W 
 	GENERIC MAP (rand => rand)
 	PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>acc_w_in,w_out=>acc_w_out);  
-U5: acc_f 
+U5: acc_f --acc_b
 	PORT MAP(clk=>clk , rst0=>acc_b_reset , rst1=>'0' , f_in=>acc_b_in , en=>acc_b_en , init0=>x"00000" , init1=>x"00000" , f_out=>acc_b_out );
 --U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
 --U7: CNT PORT MAP (clk=>clk ,enable=>cnt_en ,fin=>fin ,degree=>degree);
@@ -258,8 +259,9 @@ WITH muxw_sel SELECT
 	acc_w_out WHEN others;
 	
 --Mutliply reset control
-update_and_nupdate <= NOT update_reg AND update;
-mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR update_and_nupdate;
+update_and_nupdate <= update_reg AND NOT update;
+nupdate_and_update <= NOT update_reg AND  update;
+mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR nupdate_and_update;
 	
 --Update register
 PROCESS(clk, update)
