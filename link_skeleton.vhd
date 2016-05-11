@@ -138,6 +138,17 @@ component link_bcast is
            p3_val : out std_logic);
 end component;
 
+component d_reg is
+  PORT (
+    clk : IN STD_LOGIC;
+    input : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+	 en : IN STD_LOGIC;
+    clr : IN STD_LOGIC;
+    output : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
+  );
+end component;
+
+
 SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="0001"; -- Vector determining if pred connections exist
 SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="0001"; -- Vector determining if succ connections exist
 --ACC_B
@@ -170,7 +181,7 @@ SIGNAL mult_reset: STD_LOGIC;
 SIGNAL mult_out: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); 
 --Other
 SIGNAL is_back_prop: STD_LOGIC; -- Result of ANDing backwards and mult_end
-SIGNAL update_reg: STD_LOGIC; -- stores input of update in register for synchronization
+SIGNAL update_reg: STD_LOGIC_VECTOR( 3 DOWNTO 0); -- stores input of update in register for synchronization
 SIGNAL update_and_nupdate: STD_LOGIC; 
 SIGNAL nupdate_and_update: STD_LOGIC; -- output of OR gate for mult reset
 SIGNAL is_fwd: STD_LOGIC; -- Result of ANDING foward and end
@@ -184,7 +195,7 @@ begin
 F_SEL_CLR <= reset or backward or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
 B_SEL_CLR <= reset or foward;
 ACC_F_RST <= reset or update or (still_fwd and (not rn_succ(0) or bck_succ(0)) and (not rn_succ(1) or bck_succ(1)) and (not rn_succ(2) or bck_succ(2)) and (not rn_succ(3) or bck_succ(3)));
-acc_f_reset <= update_reg or update OR reset;
+acc_f_reset <= update_reg(0) or update OR reset;
 acc_b_reset <= foward OR reset;
 --port
 U1: MULT 
@@ -208,7 +219,8 @@ U10:SELECTOR
 	--PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>fwd_pred(0), p1=>fwd_pred(1), p2=>fwd_pred(2), p3=>fwd_pred(3), p0_val=>rp_pred(0), p1_val=>rp_pred(1), p2_val=>rp_pred(2), p3_val=>rp_pred(3)); -- Forward
 --U12: link_bcast 
 --	PORT MAP(clk=>clk, rst=>reset, en=>broadcast, p0=>bck_succ(0), p1=>bck_succ(1), p2=>bck_succ(2), p3=>bck_succ(3), p0_val=>rn_succ(0), p1_val=>rn_succ(1), p2_val=>rn_succ(2), p3_val=>rn_succ(3)); -- Backward
-
+update_regudr : d_reg
+	PORT MAP(clk => clk, input(0)=>update, input(3 DOWNTO 1)=>"000", en=>'1', clr=>'0', output=>update_reg);
 
 -- Bck_pred 
 is_back_prop <= mult_end AND backward; -- To signal pred for back prop
@@ -249,7 +261,7 @@ WITH backward SELECT
 	acc_f_out WHEN others;
 	
 --Multiply enable control
-	mult_enable <= sel_fwd_en_m OR sel_bck_en_m OR update_reg;
+	mult_enable <= sel_fwd_en_m OR sel_bck_en_m OR update_reg(0);
 	
 --Multiply W input MUX
 muxw_sel <= foward NOR update;
@@ -259,17 +271,17 @@ WITH muxw_sel SELECT
 	acc_w_out WHEN others;
 	
 --Mutliply reset control
-update_and_nupdate <= update_reg AND NOT update;
-nupdate_and_update <= NOT update_reg AND  update;
+update_and_nupdate <= update_reg(0) AND NOT update;
+nupdate_and_update <= NOT update_reg(0) AND  update;
 mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR nupdate_and_update;
 	
 --Update register
-PROCESS(clk, update)
-	BEGIN
-	IF(clk'EVENT AND clk = '1') THEN
-		update_reg <= update;
-	END IF;
-END PROCESS;
+--PROCESS(clk, update)
+--	BEGIN
+--	IF(clk'EVENT AND clk = '1') THEN
+--		update_reg <= update;
+--	END IF;
+--END PROCESS;
 
 -- ACC_W update value times learning rate
 WITH mult_out(19) SELECT
@@ -281,7 +293,7 @@ WITH mult_out(19) SELECT
 PROCESS(clk, update_reg)
 	BEGIN
 	IF(clk'EVENT AND clk = '1' )THEN
-		delay_foward<= update_reg;
+		delay_foward<= update_reg(0);
 	END IF;
 END PROCESS;
 
