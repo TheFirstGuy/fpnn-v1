@@ -540,7 +540,7 @@ end if;
 end if;
 end process;
 --ANODE <= TEMP;
-io_rdy <= rdaSig;
+io_rdy <= io_r;
 OUTDIGIT <= DIGIT;
 
 
