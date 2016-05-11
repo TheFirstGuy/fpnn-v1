@@ -11,7 +11,7 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity DISPLAY_UNIT is 
-generic (N: integer := 20; M: integer:= 3);--- N = No of Bits in Test vector + 1 (For Enable)
+generic (N: integer := 60; M: integer:= 6);--- N = No of Bits in Test vector + 1 (For Enable)
                                           --- M = No of Bits Reuired to count the N
 port(
 TXD : out std_logic := '1';RXD: in std_logic := '1';
@@ -420,7 +420,7 @@ HCONV1: HEX2ASC port map (CLK => CLK, VAL =>packet(3 downto 0), Y =>ro(7 downto 
 HCONV2: HEX2ASC port map (CLK => CLK, VAL =>packet(7 downto 4), Y =>ro(15 downto 8));
 HCONV3: HEX2ASC port map (CLK => CLK, VAL =>packet(11 downto 8), Y =>ro(23 downto 16));
 HCONV4: HEX2ASC port map (CLK => CLK, VAL =>packet(15 downto 12), Y =>ro(31 downto 24));
-
+HCONV5: HEX2ASC port map (CLK => CLK, VAL =>packet(19 downto 16), Y =>ro(39 downto 32));
 --Packet <= '0' & hex0 & hex1 ;
 
 
