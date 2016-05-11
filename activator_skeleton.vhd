@@ -22,8 +22,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity activator_skeleton is
 generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"F";
-			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"F");
+			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"7";
+			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"1");
 PORT(
 --Input
 --Forward Control Signals

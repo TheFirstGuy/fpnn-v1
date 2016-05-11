@@ -104,8 +104,8 @@ begin
 ACT: activator_skeleton 
 	GENERIC MAP (rand => X"08000")
 	PORT MAP( clk=>clk, reset=>reset, still_fwd=>still_fwd, 
-		fwd_pred=>fwd_pred,foward=>foward, bck_succ=>bck_succ, backward=>backward, x_pred_0=>x_pred_0, x_pred_1=>X"00000",
-		x_pred_2=>X"00000", x_pred_3=>X"00000", b_succ_0=>b_succ_0,b_succ_1=>X"00000", b_succ_2=>X"00000", b_succ_3=>X"00000", y=>y, fwd_succ=>fwd_succ,
+		fwd_pred=>fwd_pred,foward=>foward, bck_succ=>bck_succ, backward=>backward, x_pred_0=>x_pred_0, x_pred_1=>X"00002",
+		x_pred_2=>X"00003", x_pred_3=>X"00004", b_succ_0=>b_succ_0,b_succ_1=>X"00002", b_succ_2=>X"00003", b_succ_3=>X"00004", y=>y, fwd_succ=>fwd_succ,
 		back_pred=>back_pred);
 
 end Behavioral;
