@@ -19,11 +19,13 @@ st_indicator: OUT std_logic_vector(2 downto 0);
 --DU : in STD_LOGIC;  EN : in STD_LOGIC;
 ROC : in STD_LOGIC;REF : in STD_LOGIC;
 --G1,G2,G3,G6: in STD_LOGIC; 
-LEDS: out std_logic_vector(7 downto 0) := "11111111";
+--LEDS: out std_logic_vector(7 downto 0) := "11111111";
 clk : in std_logic; OUTDIGIT: out STD_LOGIC_VECTOR (7 downto 0);
 seg_out: out std_logic_vector(6 downto 0);
 dis: out std_logic_vector(7 downto 0);
-ANODE : out STD_LOGIC_VECTOR (3 downto 0);RST: in std_logic	:= '0'
+--ANODE : out STD_LOGIC_VECTOR (3 downto 0);
+RST: in std_logic	:= '0';
+io_rdy : out std_logic
 );
 end DISPLAY_UNIT;
 architecture behavior of DISPLAY_UNIT is
@@ -115,6 +117,7 @@ end component;
 	signal i_cntx: std_logic_vector(2 downto 0);
 	signal big_counter: std_logic_vector(31 downto 0);
 	signal temps: std_logic_vector (3 downto 0);
+	signal io_r : std_logic;
    
 signal osc,out1,GEX : std_logic;
 signal G1,G2,G3,G6,G7,EN,D: std_logic;
@@ -194,14 +197,14 @@ Shift_Length<= std_logic_vector( to_unsigned( N/4,M ));
 	G1<=Packet(N-2);
 	EN<=Packet(N-1);
 
-   LEDS(7) <= G7;
-	LEDS(6) <= G6;
-	LEDS(5) <= G3;
-	LEDS(4) <= G2;
-	LEDS(3) <= G1;
-	LEDS(2) <= Du;
-	LEDS(1) <= En;
-	LEDS(0) <= OSC;
+--   LEDS(7) <= G7;
+--	LEDS(6) <= G6;
+--	LEDS(5) <= G3;
+--	LEDS(4) <= G2;
+--	LEDS(3) <= G1;
+--	LEDS(2) <= Du;
+--	LEDS(1) <= En;
+--	LEDS(0) <= OSC;
    
 	UART: RS232RefComp port map (	TXD 	=> TXD,
 									RXD 	=> RXD,
@@ -275,6 +278,7 @@ process(clk, rst)
 	   state <= idle;
 	   rdSig <= '0';
 	   wrSig <= '0';
+	   io_r <= '0';
 	   RST_TEMP <='1';
            reg_in <= (others =>'0');
            dbInSig <= (others =>'0');
@@ -292,6 +296,7 @@ process(clk, rst)
                         Rflag<=(Others=>'0');
 								count<= "0000";
 								St_indic<= "111";
+								io_r <= '0'; 
 				               if(rdaSig = '1')then
 				                 state <= receive;
 				               end if;
@@ -391,7 +396,7 @@ process(clk, rst)
 		  dbInSig <=ro (7 downto 0);
 		  end if;
 
-							         rdsig<='0'; wrsig<='0';
+							         rdsig<='0'; wrsig<='0';io_r <= '1';
               							  
 											  if TBEsig='1' then
 											   state <= send1;
@@ -407,7 +412,7 @@ process(clk, rst)
       when send2    => if (count > "1010") then
 							           state  <= idle;
                              		rdsig<= '0';
-                                 wrsig<='0'; 											
+                                 wrsig<='0';										
 							         else
 							       --    count  <= "0000";
 							           state  <= stOutput;
@@ -534,7 +539,8 @@ end if;
 end if;
 end if;
 end process;
-ANODE <= TEMP;
+--ANODE <= TEMP;
+io_rdy <= rdaSig;
 OUTDIGIT <= DIGIT;
 
 
