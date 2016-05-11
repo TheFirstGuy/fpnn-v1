@@ -245,7 +245,7 @@ SIGNAL B_SEL_CLR: STD_LOGIC;
 
 
 --State Machine
-type s_type is (init, accumulate, fa0, fa1, fa1p, fa2, fa3, th0, th1, bp0, bp1, bp2, bp3);
+type s_type is (init, accumulate, add, fa0, fa1, fa1p, fa2, fa3, th0, th1, bp0, bp1, bp2, bp3);
 signal state, nextstate: s_type;
 
 
@@ -301,7 +301,8 @@ U10:SELECTOR
 			nextstate <= init;
 			CASE state is
 				WHEN init => IF( foward = '1' ) THEN nextstate <= accumulate; ELSE nextstate<= init; END IF;
-				WHEN accumulate => IF(sel_fwd_en_m = '1') THEN nextstate <= fa0; ELSE nextstate <= accumulate; END IF;
+				WHEN accumulate => IF(sel_fwd_en_m = '1') THEN nextstate <= add; ELSE nextstate <= accumulate; END IF;
+				WHEN add =>nextstate <= fa0;
 				WHEN fa0 => nextstate <= fa1;
 				WHEN fa1 => IF(fin = '1') THEN nextstate <= fa1p; ELSE nextstate <= fa0; END IF;
 				WHEN fa1p => nextstate<= fa2;
@@ -343,7 +344,7 @@ controlSignals: PROCESS( state )
 		--ELSIF( state = accumulate ) THEN -- Accumulate inputs, prepare adder with first coeff
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
-			acc_b_reset <= '1';
+			acc_b_reset <= '0';
 			mult_reset <= '1';
 			cnt_en <= '0';
 			add_en <= '1';
@@ -357,10 +358,26 @@ controlSignals: PROCESS( state )
 			back_rdy <= '0';
 			forward_rdy <= '0';
 		--ELSIF( state = fa0 ) THEN -- Multiply and increment count
+			WHEN add=>
+			acc_f_reset0 <= '0';
+			acc_f_reset1 <= '0';
+			acc_b_reset <= '0';
+			mult_reset <= '1';
+			cnt_en <= '0';
+			add_en <= '1';
+			add_reset <= '0';
+			add_ld_a <= '1';
+			add_ld_b <= '0';
+			mult_enable <= '0';
+			acc_t_en <= '0';
+			mux1_sel <= '0';
+			mux2_sel <= '0';
+			back_rdy <= '0';
+			forward_rdy <= '0';	
 			WHEN fa0 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
-			acc_b_reset <= '1';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '1';
 			add_en <= '0';
@@ -377,7 +394,7 @@ controlSignals: PROCESS( state )
 			WHEN fa1 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
-			acc_b_reset <= '1';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '1';
@@ -394,14 +411,14 @@ controlSignals: PROCESS( state )
 			WHEN fa1p =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
-			acc_b_reset <= '1';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
-			cnt_en <= '1';
+			cnt_en <= '0';
 			add_en <= '0';
 			add_reset <= '0';
 			add_ld_a <= '0';
 			add_ld_b <= '0';
-			mult_enable <= '1';
+			mult_enable <= '0';
 			acc_t_en <= '0';
 			mux1_sel <= '0';--ACC_F
 			mux2_sel <= '1';--ADD
@@ -411,7 +428,7 @@ controlSignals: PROCESS( state )
 			WHEN fa2 =>
 			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
-			acc_b_reset <= '1';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '1';
@@ -428,7 +445,7 @@ controlSignals: PROCESS( state )
 			WHEN th0 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
-			acc_b_reset <= '1';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
@@ -445,7 +462,7 @@ controlSignals: PROCESS( state )
 			WHEN th1 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
-			acc_b_reset <= '1';
+			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
