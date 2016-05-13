@@ -1,0 +1,245 @@
+import gnu.io.*;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.sql.*;
+import java.util.Scanner;
+
+/**
+ * Created by stevenlee on 5/12/16.
+ * Utilizes the RXTX Library available at http://rxtx.qbang.org/wiki/index.php/Main_Page
+ */
+public class Main {
+//    GUI Form Elements - Main.form
+    private JTextField textField1;
+    private JTextField textField2;
+    private JButton browseButton;
+    private JButton browseButton1;
+    private JPanel panel;
+    private JButton sendButton;
+    private JButton recieveButton;
+    private JButton aboutButton;
+    static JFileChooser fc = new JFileChooser();
+    static Scanner input;
+    static File saveFile;
+    static InputStream in;
+    static OutputStream out;
+    static SerialPort serialPort;
+
+    static {
+        try {
+            System.load("/Users/stevenlee/IdeaProjects/serial_usb/src/rxtx-2.2pre2-bins/mac-10.5/librxtxSerial.jnilib");
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("Native code library failed to load.\n" + e);
+            System.exit(1);
+        }
+    }
+
+    public Main() {
+//        GUI Constructor
+        JFrame frame = new JFrame("Serial");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(450, 150);
+        frame.add(panel);
+        frame.setVisible(true);
+        browseButton.addActionListener(new BrowseInput() {
+        });
+        browseButton1.addActionListener(new BrowseOutput());
+        sendButton.addActionListener(new sendPress());
+        recieveButton.addActionListener(new recievePress());
+    }
+
+    class BrowseInput implements ActionListener {
+        @Override
+//        Browse for Input File
+        public void actionPerformed(ActionEvent ae) {
+            if (ae.getSource() == browseButton) {
+                fc.setDialogTitle("Open Directory");
+                fc.setFileFilter(new FileNameExtensionFilter(".txt", "txt", "text"));
+                int returnVal = fc.showOpenDialog(null);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    textField1.setText(fc.getSelectedFile().getAbsolutePath());
+                    System.out.println("User opened file '" + fc.getSelectedFile().getAbsolutePath() +"'" );
+                    try {
+                        input = new Scanner(file);
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }
+    }
+
+    class BrowseOutput implements ActionListener {
+        @Override
+//        Browse for save location and file name
+        public void actionPerformed(ActionEvent ae) {
+            if (ae.getSource() == browseButton1) {
+                fc.setDialogTitle("Save Directory");
+                fc.setFileFilter(new FileNameExtensionFilter("Text Documents(*.txt)", "txt", "text"));
+                int returnVal = fc.showSaveDialog(null);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+//                    saveFile = fc.getSelectedFile();
+                    saveFile = new File(fc.getSelectedFile().getAbsoluteFile() + ".txt");
+                    textField2.setText(fc.getSelectedFile().getAbsolutePath() + ".txt");
+                    System.out.println("Saved at '" + fc.getSelectedFile().getAbsolutePath() + ".txt");
+                }
+
+            }
+        }
+    }
+
+    void connect(String comPort) throws Exception {
+//        Connect to Serial Port
+        CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(comPort);
+        if (portIdentifier.isCurrentlyOwned()) {
+            System.out.println("Error: Port is currently in use");
+        } else {
+            CommPort port = portIdentifier.open(this.getClass().getName(), 2000);
+
+            if (port instanceof SerialPort) {
+                serialPort = (SerialPort) port;
+                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_EVEN);
+
+                in = serialPort.getInputStream();
+                out = serialPort.getOutputStream();
+
+            }
+        }
+    }
+
+    public static class read implements Runnable {
+//        Fetch Data
+        InputStream in;
+
+        public read ( InputStream in )
+        {
+            this.in = in;
+        }
+
+        public void run () {
+            byte[] buffer = new byte[1024];
+            int len = -1;
+            try {
+                while ( ( len = this.in.read(buffer)) > -1 ) {
+                    try {
+                        writeFile(new String(buffer,0,len));
+                    } catch (Exception fe) {
+                        System.out.println("Could Not Write to " + saveFile);
+                    }
+
+                }
+            } catch ( IOException e ) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static class write implements Runnable {
+//        Send Data
+        OutputStream out;
+
+        public write ( OutputStream out ) {
+            this.out = out;
+        }
+
+        public void run () {
+            try {
+//                int c = 0;
+                while (input.hasNext()) {
+                    String word = input.nextLine();
+                    System.out.println(word);
+                    this.out.write('i');
+                    for (int i = 0; i < word.length(); i++) {
+                        char c = word.charAt(i);
+                        this.out.write(c);
+                    }
+                }
+//                while ( ( c = System.in.read()) > -1 ) {
+//                    this.out.write(c);
+//                }
+            } catch ( IOException e ) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    static void writeFile(String wd) throws Exception {
+//        Write to specified text file name and location
+        System.out.print(wd);
+        BufferedWriter wf = new BufferedWriter(new FileWriter(saveFile));
+        wf.write(wd);
+        wf.close();
+    }
+
+
+    class sendPress implements ActionListener {
+//        Send Data upon user clicking button
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try {
+                (new Thread(new write(out))).start();
+//                encrypt(connection);
+//                sendButton.setEnabled(false);
+                sendButton.setText("Sent");
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    class recievePress implements ActionListener {
+//        Recieve upon user clicking button
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try {
+
+//                encrypt(connection);
+//                sendButton.setEnabled(false);
+                (new Thread(new read(in))).start();
+            recieveButton.setText("Recieved");
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    static void listPorts() {
+//        Discover Available Ports
+        java.util.Enumeration<CommPortIdentifier> portEnum = CommPortIdentifier.getPortIdentifiers();
+        while ( portEnum.hasMoreElements() )
+        {
+            CommPortIdentifier portIdentifier = portEnum.nextElement();
+            System.out.println(portIdentifier.getName()  +  " - " +  getPortTypeName(portIdentifier.getPortType()) );
+        }
+    }
+
+    static String getPortTypeName ( int portType ) {
+//        Define Port Types
+        switch (portType) {
+            case CommPortIdentifier.PORT_I2C:
+                return "I2C";
+            case CommPortIdentifier.PORT_PARALLEL:
+                return "Parallel";
+            case CommPortIdentifier.PORT_RAW:
+                return "Raw";
+            case CommPortIdentifier.PORT_RS485:
+                return "RS485";
+            case CommPortIdentifier.PORT_SERIAL:
+                return "Serial";
+            default:
+                return "unknown type";
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            listPorts();
+            (new Main()).connect("/dev/tty.usbserial-210292709220A");
+        } catch ( Exception e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}
