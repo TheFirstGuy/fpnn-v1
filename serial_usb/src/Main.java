@@ -4,7 +4,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.sql.*;
 import java.util.Scanner;
 
 /**
@@ -27,13 +26,26 @@ public class Main {
     static InputStream in;
     static OutputStream out;
     static SerialPort serialPort;
+    static String OS = System.getProperty("os.name");;
 
     static {
         try {
-            System.load("/Users/stevenlee/IdeaProjects/serial_usb/src/rxtx-2.2pre2-bins/mac-10.5/librxtxSerial.jnilib");
+//            System.setProperty("java.library.path","/Users/stevenlee/Downloads/rxtx-2.2pre2-bins/mac-10.5/");
+            if (OS.equals(new String("Mac OS X"))) {
+                System.loadLibrary("librxtxSerial.jnilib");
+            }
+            if (OS.contains(new String("Windows"))) {
+                System.loadLibrary("rxtxSerial.dll");
+            }
+            else {
+                System.loadLibrary("librxtxParallel.so");
+                System.loadLibrary("librxtxSerial.so");
+            }
         } catch (UnsatisfiedLinkError e) {
             System.err.println("Native code library failed to load.\n" + e);
             System.exit(1);
+        } catch (NullPointerException np) {
+            System.err.println("Could Not Discover OS\n");
         }
     }
 
@@ -123,6 +135,8 @@ public class Main {
             byte[] buffer = new byte[1024];
             int len = -1;
             try {
+                write w = new write(out);
+                w.out.write('o');
                 while ( ( len = this.in.read(buffer)) > -1 ) {
                     try {
                         writeFile(new String(buffer,0,len));
@@ -234,9 +248,11 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        System.out.println(OS);
+
         try {
             listPorts();
-            (new Main()).connect("/dev/tty.usbserial-210292709220A");
+            (new Main()).connect("COM9");
         } catch ( Exception e ) {
             // TODO Auto-generated catch block
             e.printStackTrace();
