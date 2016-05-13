@@ -19,7 +19,6 @@ public class Main {
     private JPanel panel;
     private JButton sendButton;
     private JButton recieveButton;
-    private JButton aboutButton;
     static JFileChooser fc = new JFileChooser();
     static Scanner input;
     static File saveFile;
@@ -127,7 +126,8 @@ public class Main {
 //        Fetch Data
         InputStream in;
         write w = new write(out);
-        String s = new String();
+//        String s = new String();
+        StringBuilder s = new StringBuilder();
 
         public read ( InputStream in )
         {
@@ -140,11 +140,11 @@ public class Main {
             try {
                 w.out.write('o');
                 while ( ( len = this.in.read(buffer)) > -1 ) {
-                    s.concat(new String(buffer,0,len));
+                    s.append(new String(buffer,0,len));
                     System.out.print(new String(buffer,0,len));
                 }
                 try {
-                    writeFile(s);
+                    writeFile(s.toString());
                 } catch (Exception fe) {
                     System.err.println("Could not save to file: " + fc.getSelectedFile().getAbsolutePath() + ".txt");
                 }
