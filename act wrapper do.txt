@@ -11,8 +11,10 @@ force -freeze sim:/act_wrapper/b_succ_0 20'h00001 0
 run 4000ns
 force -freeze sim:/act_wrapper/reset 0 0
 run 40ns
+run 5ns
 force -freeze sim:/act_wrapper/foward 1 0
 force -freeze sim:/act_wrapper/fwd_pred 4'hF 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
@@ -26,11 +28,15 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/act_wrapper/foward 0 0
 force -freeze sim:/act_wrapper/fwd_pred 4'h0 0
+run 35ns
 run 40ns
+run 5ns
 force -freeze sim:/act_wrapper/backward 1 0
 force -freeze sim:/act_wrapper/bck_succ 4'hF 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
@@ -44,10 +50,15 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/act_wrapper/backward 0 0
 force -freeze sim:/act_wrapper/bck_succ 4'h0 0
+run 35ns
+run 40ns
+run 5ns
 force -freeze sim:/act_wrapper/foward 1 0
 force -freeze sim:/act_wrapper/fwd_pred 4'hF 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
@@ -61,11 +72,15 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/act_wrapper/foward 0 0
 force -freeze sim:/act_wrapper/fwd_pred 4'h0 0
+run 35ns
 run 40ns
+run 5ns
 force -freeze sim:/act_wrapper/backward 1 0
 force -freeze sim:/act_wrapper/bck_succ 4'hF 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
@@ -79,5 +94,7 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/act_wrapper/backward 0 0
 force -freeze sim:/act_wrapper/bck_succ 4'h0 0
+run 35ns
