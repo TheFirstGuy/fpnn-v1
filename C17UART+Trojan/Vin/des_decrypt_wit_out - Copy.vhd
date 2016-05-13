@@ -373,7 +373,7 @@ process(clk, rst)
 
 				 
 		  when stoutput   => 
-		  
+		   St_indic<="011"; 
 		  if count = "0001" then
 		  dbInSig <=x"20";
 		  ELSif count = "1010" then

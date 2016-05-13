@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-SCHERUBIN-LENOV::  Thu May 12 21:00:57 2016
+SCHERUBIN-LENOV::  Fri May 13 15:44:46 2016
 
 par -w -intstyle ise -ol high -mt off DISPLAY_UNIT_map.ncd DISPLAY_UNIT.ncd
 DISPLAY_UNIT.pcf 
@@ -51,11 +51,11 @@ Slice Logic Utilization:
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                   206 out of  15,850    1%
-  Number of LUT Flip Flop pairs used:          561
-    Number with an unused Flip Flop:           268 out of     561   47%
-    Number with an unused LUT:                  39 out of     561    6%
-    Number of fully used LUT-FF pairs:         254 out of     561   45%
+  Number of occupied Slices:                   182 out of  15,850    1%
+  Number of LUT Flip Flop pairs used:          555
+    Number with an unused Flip Flop:           262 out of     555   47%
+    Number with an unused LUT:                  33 out of     555    5%
+    Number of fully used LUT-FF pairs:         260 out of     555   46%
     Number of slice register sites lost
       to control set restrictions:               0 out of 126,800    0%
 
@@ -112,32 +112,32 @@ Specific Feature Utilization:
 Overall effort level (-ol):   High 
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 15 secs 
-Finished initial Timing Analysis.  REAL time: 15 secs 
+Starting initial Timing Analysis.  REAL time: 14 secs 
+Finished initial Timing Analysis.  REAL time: 14 secs 
 
 Starting Router
 
 
-Phase  1  : 2643 unrouted;      REAL time: 17 secs 
+Phase  1  : 2639 unrouted;      REAL time: 15 secs 
 
-Phase  2  : 2286 unrouted;      REAL time: 17 secs 
+Phase  2  : 2285 unrouted;      REAL time: 16 secs 
 
-Phase  3  : 676 unrouted;      REAL time: 18 secs 
+Phase  3  : 718 unrouted;      REAL time: 16 secs 
 
-Phase  4  : 676 unrouted; (Par is working to improve performance)     REAL time: 23 secs 
+Phase  4  : 718 unrouted; (Par is working to improve performance)     REAL time: 21 secs 
 
 Updating file: DISPLAY_UNIT.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 24 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 22 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 24 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 22 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 24 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 22 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 24 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 22 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 24 secs 
-Total REAL time to Router completion: 24 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 22 secs 
+Total REAL time to Router completion: 22 secs 
 Total CPU time to Router completion: 22 secs 
 
 Partition Implementation Status
@@ -158,20 +158,20 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net clk | SETUP       |         N/A|     2.914ns|     N/A|           0
-  _BUFGP                                    | HOLD        |     0.120ns|            |       0|           0
+  Autotimespec constraint for clock net clk | SETUP       |         N/A|     2.637ns|     N/A|           0
+  _BUFGP                                    | HOLD        |     0.194ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net UAR | SETUP       |         N/A|     1.990ns|     N/A|           0
-  T/rClk_BUFG                               | HOLD        |     0.177ns|            |       0|           0
+  Autotimespec constraint for clock net UAR | SETUP       |         N/A|     1.976ns|     N/A|           0
+  T/rClk_BUFG                               | HOLD        |     0.163ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net UAR | SETUP       |         N/A|     1.581ns|     N/A|           0
-  T/rClkDiv<3>                              | HOLD        |     0.177ns|            |       0|           0
+  Autotimespec constraint for clock net UAR | SETUP       |         N/A|     1.840ns|     N/A|           0
+  T/rClkDiv<3>                              | HOLD        |     0.131ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net CLK | SETUP       |         N/A|     2.377ns|     N/A|           0
-  M_BUFG                                    | HOLD        |     0.052ns|            |       0|           0
+  Autotimespec constraint for clock net CLK | SETUP       |         N/A|     2.424ns|     N/A|           0
+  M_BUFG                                    | HOLD        |     0.184ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
-  Autotimespec constraint for clock net RO2 | SETUP       |         N/A|     1.726ns|     N/A|           0
-  /G23t                                     | HOLD        |     0.002ns|            |       0|           0
+  Autotimespec constraint for clock net RO2 | SETUP       |         N/A|     2.193ns|     N/A|           0
+  /G23t                                     | HOLD        |     0.089ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -187,8 +187,8 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 25 secs 
-Total CPU time to PAR completion: 23 secs 
+Total REAL time to PAR completion: 23 secs 
+Total CPU time to PAR completion: 22 secs 
 
 Peak Memory Usage:  745 MB
 
