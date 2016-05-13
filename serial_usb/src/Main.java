@@ -137,7 +137,7 @@ public class Main {
             byte[] buffer = new byte[1024];
             int len = -1;
             try {
-                w.out.write('i');
+                w.out.write('o');
                 while ( ( len = this.in.read(buffer)) > -1 ) {
                     System.out.print(new String(buffer,0,len));
                 }
