@@ -127,6 +127,7 @@ public class Main {
 //        Fetch Data
         InputStream in;
         write w = new write(out);
+        String s = new String();
 
         public read ( InputStream in )
         {
@@ -139,10 +140,11 @@ public class Main {
             try {
                 w.out.write('o');
                 while ( ( len = this.in.read(buffer)) > -1 ) {
+                    s.concat(new String(buffer,0,len));
                     System.out.print(new String(buffer,0,len));
                 }
                 try {
-                    writeFile(new String(buffer,0,len));
+                    writeFile(s);
                 } catch (Exception fe) {
                 }
 
