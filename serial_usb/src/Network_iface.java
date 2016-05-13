@@ -1,7 +1,7 @@
 /**
  * An instance of a class implementing this interface has to be passed to the
  * constructor of {@link net.Network}. It will be used by {@link net.Network} to
- * forward received messages, write to a log and take action when the connection
+ * forward received messages, SerialWrite to a log and take action when the connection
  * is closed.
  * 
  * @see net.Network#Network(int, Network_iface, int)
@@ -10,7 +10,7 @@
  */
 public interface Network_iface {
 	/**
-	 * Is called to write connection information to the log. The information can
+	 * Is called to SerialWrite connection information to the log. The information can
 	 * either be ignored, directed to stdout or written out to a specialized
 	 * field or file in the program.
 	 * 

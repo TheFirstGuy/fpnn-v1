@@ -122,14 +122,14 @@ public class Main {
         }
     }
 
-    public static class read implements Runnable {
+    public static class SerialRead implements Runnable {
 //        Fetch Data
         InputStream in;
-        write w = new write(out);
+        SerialWrite w = new SerialWrite(out);
 //        String s = new String();
         StringBuilder s = new StringBuilder();
 
-        public read ( InputStream in )
+        public SerialRead(InputStream in )
         {
             this.in = in;
         }
@@ -142,13 +142,12 @@ public class Main {
                 while ( ( len = this.in.read(buffer)) > -1 ) {
                     s.append(new String(buffer,0,len));
                     System.out.print(new String(buffer,0,len));
+                    try {
+                        writeFile(s.toString());
+                    } catch (Exception fe) {
+                        System.err.println("Could not save to file: " + fc.getSelectedFile().getAbsolutePath() + ".txt");
+                    }
                 }
-                try {
-                    writeFile(s.toString());
-                } catch (Exception fe) {
-                    System.err.println("Could not save to file: " + fc.getSelectedFile().getAbsolutePath() + ".txt");
-                }
-
             }
             catch ( IOException e )
             {
@@ -157,11 +156,11 @@ public class Main {
         }
     }
 
-    public static class write implements Runnable {
+    public static class SerialWrite implements Runnable {
 //        Send Data
         OutputStream out;
 
-        public write ( OutputStream out ) {
+        public SerialWrite(OutputStream out ) {
             this.out = out;
         }
 
@@ -177,8 +176,8 @@ public class Main {
                         this.out.write(c);
                     }
                 }
-//                while ( ( c = System.in.read()) > -1 ) {
-//                    this.out.write(c);
+//                while ( ( c = System.in.SerialRead()) > -1 ) {
+//                    this.out.SerialWrite(c);
 //                }
             } catch ( IOException e ) {
                 e.printStackTrace();
@@ -202,7 +201,7 @@ public class Main {
         public void actionPerformed(ActionEvent ae) {
             try {
                 sendButton.setEnabled(false);
-                (new Thread(new write(out))).start();
+                (new Thread(new SerialWrite(out))).start();
                 sendButton.setText("Sent");
             } catch (Exception e) {
             }
@@ -215,7 +214,7 @@ public class Main {
         public void actionPerformed(ActionEvent ae) {
             try {
                 recieveButton.setEnabled(false);
-                (new Thread(new read(in))).start();
+                (new Thread(new SerialRead(in))).start();
                 recieveButton.setText("Recieved");
             } catch (Exception e) {
             }

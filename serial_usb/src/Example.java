@@ -177,7 +177,7 @@ public class Example implements Network_iface {
 
 	/**
 	 * Implementing {@link Network_iface#writeLog(int, String)}, which is
-	 * used to write information concerning the connection. In this example, all
+	 * used to SerialWrite information concerning the connection. In this example, all
 	 * the information is simply written out to command line.
 	 * 
 	 * @see Network_iface
