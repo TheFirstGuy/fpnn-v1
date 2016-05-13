@@ -96,7 +96,7 @@ public class Main {
 //                    saveFile = fc.getSelectedFile();
                     saveFile = new File(fc.getSelectedFile().getAbsoluteFile() + ".txt");
                     textField2.setText(fc.getSelectedFile().getAbsolutePath() + ".txt");
-                    System.out.println("Saved at '" + fc.getSelectedFile().getAbsolutePath() + ".txt");
+//                    System.out.println("Saved at '" + fc.getSelectedFile().getAbsolutePath() + ".txt");
                 }
 
             }
@@ -144,6 +144,7 @@ public class Main {
                     System.out.print(new String(buffer,0,len));
                     try {
                         writeFile(s.toString());
+                       //System.out.println("Saved at '" + fc.getSelectedFile().getAbsolutePath() + ".txt");
                     } catch (Exception fe) {
                         System.err.println("Could not save to file: " + fc.getSelectedFile().getAbsolutePath() + ".txt");
                     }
@@ -188,7 +189,7 @@ public class Main {
 
     static void writeFile(String wd) throws Exception {
 //        Write to specified text file name and location
-        System.out.print(wd);
+        //System.out.print(wd);
         BufferedWriter wf = new BufferedWriter(new FileWriter(saveFile));
         wf.write(wd);
         wf.close();
