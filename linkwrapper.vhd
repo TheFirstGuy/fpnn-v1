@@ -98,9 +98,9 @@ begin
 WL: link_skeleton 
 	PORT MAP( clk=>clk, reset=>reset,fwd_pred=>fwd_pred, foward=>forward, 
 		bck_succ=>bck_succ, backward=>backward, update=>update,
-		broadcast=>'0', still_fwd=>'0', x_pred_0=>x_pred_0, x_pred_1=>X"11111", x_pred_2=>X"22222", x_pred_3=>X"33333",
-		b_succ_0=>b_succ_0, b_succ_1=>x"11111", b_succ_2=>x"22222",
-		b_succ_3=>x"33333", y=>y, fwd_succ=>fwd_succ, back_pred=>back_pred);
+		broadcast=>'0', still_fwd=>'0', x_pred_0=>x_pred_0, x_pred_1=>X"00000", x_pred_2=>X"00000", x_pred_3=>X"00000",
+		b_succ_0=>b_succ_0, b_succ_1=>x"00000", b_succ_2=>x"00000",
+		b_succ_3=>x"00000", y=>y, fwd_succ=>fwd_succ, back_pred=>back_pred);
 
 end Behavioral;
 

@@ -41,7 +41,7 @@ component d_reg
 end component;
 
 
-signal en_m_reg :STD_LOGIC; --------------------5/12 oa
+signal en_m_reg :STD_LOGIC; --------------------5/12 o
 begin
 
 d_r : d_reg
@@ -60,7 +60,6 @@ process(clk, clr, res_d, forward) begin
 			--when '1' => pre_en_m <= pre_res_d;en_m <= pre_en_m;
 			--when '0' =>pre_en_m <= '0';en_m <= '0';
 			--when others=>pre_en_m <= '0';en_m <= '0';
-			
 			when '1' => en_m_reg <= pre_res_d;--en_m <= pre_res_d;   --------------------5/12 oa
 			when '0' => en_m_reg <= '0';--en_m <= '0';	--------------------5/12 oa
 			when others=>en_m_reg<= '0';--en_m<= '0';
@@ -78,7 +77,7 @@ process(clk, clr, res_d, en_m_reg) begin--------------------5/12 oa
 	if(clk'EVENT AND clk = '0')then                        --
 	en_m<=en_m_reg;													--
 	end if;																--
-end process;															--
+end process;	
 
 --en_m <= res_d; --MULT Enable signal
 --res_m <= res_d AND pre_res AND forward;
