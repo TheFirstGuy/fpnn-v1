@@ -92,6 +92,21 @@ component ascii_hex
            );
 end component;
 
+component xor_net
+    PORT(clk: IN STD_LOGIC;
+        reset: IN STD_LOGIC;
+        --Input Links in and out
+        uart_in1: IN STD_LOGIC_VECTOR(19 DOWNTO 0);
+        u_fwd_pred1: IN STD_LOGIC;
+        uart_in2: IN STD_LOGIC_VECTOR(19 DOWNTO 0);
+        u_fwd_pred2: IN STD_LOGIC;
+        uart_cval: IN STD_LOGIC_VECTOR(19 DOWNTO 0); -- Correct value of uart
+        io_val: IN STD_LOGIC; -- io valid
+        output_val: OUT STD_LOGIC;
+        u_art_out: OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
+);
+end component;
+
 	type StateType is (Idle, cnt, receive,Decide, send1, send2,
 	                   stInput,stOutput,Test_vector,DisplayI );
 
@@ -106,11 +121,11 @@ end component;
 	signal feSig	:	std_logic;
 	signal oeSig	:	std_logic;
 	signal state	:	StateType;
-   signal RST_TEMP:	Std_logic;
-   signal reg_in  :  std_logic_vector(7 downto 0);
+    signal RST_TEMP:	Std_logic;
+    signal reg_in  :  std_logic_vector(7 downto 0);
 	signal count   :  std_logic_vector(3 downto 0);
 	signal ro		:  std_logic_vector(63 downto 0);
-   signal St_indic:  std_logic_vector(2 downto 0);
+    signal St_indic:  std_logic_vector(2 downto 0);
 	signal Rflag   :  std_logic_vector(M-1 downto 0);
 	Signal Shift_Length:  std_logic_vector(M-1 downto 0);
 	signal tv   	:  std_logic_vector(N-1 downto 0);
@@ -119,6 +134,9 @@ end component;
 	signal temps: std_logic_vector (3 downto 0);
 	signal io_r : std_logic;
 	signal dummy_counter: std_logic_vector(7 downto 0);
+	signal final_val : std_logic_vector(19 downto 0);
+	signal fval_rdy : std_logic;
+	
    
 signal osc,out1,GEX : std_logic;
 signal G1,G2,G3,G6,G7,EN,D: std_logic;
@@ -224,6 +242,9 @@ Shift_Length<= std_logic_vector( to_unsigned( N/4,M ));
 									RST 	=> RST);
 
 
+X1: xor_net port map(clk => clk, reset => rst, io_val => io_r, u_fwd_pred1 => io_r, u_fwd_pred2 => io_r, output_val => fval_rdy,
+             uart_in1 =>packet(59 downto 40), uart_in2 => packet(39 downto 20),uart_cval => packet(19 downto 0),
+             u_art_out => final_val);
 --------------RO1------------------
 RO2: Circuit17 PORT MAP(EN,ROSEL,G1,G2,G3,G6,G7,GEX,out1,osc);
 -------------REFERENCE COUNT-------
@@ -425,7 +446,17 @@ process(clk, rst)
 	    end case;
          end if;
 end process;
-Packet <=TV(N-1 Downto 0);
+
+final: process(clk) begin
+    if (CLK'event and CLK='1') then
+        if(fval_rdy = '1') then
+            Packet <= x"0000000000" & final_val;
+        else
+            Packet <=TV(N-1 Downto 0);
+        end if;
+    end if;
+end process final;
+
 HCONV1: HEX2ASC port map (CLK => CLK, VAL =>packet(3 downto 0), Y =>ro(7 downto 0));
 HCONV2: HEX2ASC port map (CLK => CLK, VAL =>packet(7 downto 4), Y =>ro(15 downto 8));
 HCONV3: HEX2ASC port map (CLK => CLK, VAL =>packet(11 downto 8), Y =>ro(23 downto 16));
