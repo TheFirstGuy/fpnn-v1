@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="serial_usb:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/serial_usb_jar</output-path>
+    <root id="archive" name="serial_usb.jar">
+      <element id="module-output" name="serial_usb" />
+      <element id="library" level="project" name="win64" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/rxtx-2.2pre2-bins/RXTXcomm.jar" path-in-jar="/" />
+      <element id="library" level="project" name="mac-10" />
+    </root>
+  </artifact>
+</component>

@@ -96,7 +96,7 @@ public class Main {
 //                    saveFile = fc.getSelectedFile();
                     saveFile = new File(fc.getSelectedFile().getAbsoluteFile() + ".txt");
                     textField2.setText(fc.getSelectedFile().getAbsolutePath() + ".txt");
-//                    System.out.println("Saved at '" + fc.getSelectedFile().getAbsolutePath() + ".txt");
+                    System.out.println("Saved at '" + fc.getSelectedFile().getAbsolutePath() + ".txt");
                 }
 
             }
