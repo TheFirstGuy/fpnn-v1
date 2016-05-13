@@ -148,6 +148,8 @@ component d_reg is
   );
 end component;
 
+signal sel_fwd_en_m_reg :STD_LOGIC;
+signal sel_bck_en_m_reg :STD_LOGIC;
 
 SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if pred connections exist
 SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if succ connections exist
@@ -261,7 +263,7 @@ WITH backward SELECT
 	acc_f_out WHEN others;
 	
 --Multiply enable control
-	mult_enable <= sel_fwd_en_m OR sel_bck_en_m OR update_reg(0);
+	mult_enable <= sel_fwd_en_m_reg OR sel_bck_en_m_reg OR update_reg(0);--sel_fwd_en_m OR sel_bck_en_m OR update_reg(0);    5/13 oa
 	
 --Multiply W input MUX
 muxw_sel <= foward NOR update;
@@ -297,6 +299,12 @@ PROCESS(clk, update_reg)
 	END IF;
 END PROCESS;
 
+process(clk, sel_fwd_en_m,sel_bck_en_m) begin--------------------5/13 oa
+	if(clk'EVENT AND clk = '0')then                        --
+		sel_fwd_en_m_reg<=sel_fwd_en_m;	--
+		sel_bck_en_m_reg<=sel_bck_en_m;	--
+	end if;																--
+end process;	
 y<=mult_out;
 
 
