@@ -6,7 +6,7 @@ C:\Documents\Xilinx\14.7\ISE_DS\ISE\.
 -3
 Opened constraints file DISPLAY_UNIT.pcf.
 
-Tue May 10 21:40:30 2016
+Thu May 12 21:01:54 2016
 
 C:\Documents\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\bitgen.exe -intstyle ise -g UnconstrainedPins:Allow -w -g DebugBitstream:No -g Binary:no -g CRC:Enable -g ConfigRate:3 -g CclkPin:PullUp -g M0Pin:PullUp -g M1Pin:PullUp -g M2Pin:PullUp -g ProgPin:PullUp -g InitPin:Pullup -g TckPin:PullUp -g TdiPin:PullUp -g TdoPin:PullUp -g TmsPin:PullUp -g Disable_JTAG:No -g UnusedPin:PullNone -g UserID:0xFFFFFFFF -g ExtMasterCclk_en:Disable -g ConfigFallback:Disable -g BPI_page_size:1 -g BPI_sync_mode:Disable -g SPI_32bit_addr:No -g SPI_buswidth:1 -g SPI_Fall_Edge:No -g OverTempPowerDown:Disable -g USR_ACCESS:None -g JTAG_XADC:Enable -g DCIUpdateMode:AsRequired -g StartUpClk:CClk -g DONE_cycle:4 -g GTS_cycle:5 -g GWE_cycle:6 -g Match_cycle:NoWait -g Security:None -g ICAP_select:Auto -g DonePipe:Yes -g Encrypt:No DISPLAY_UNIT.ncd 
 
@@ -22,6 +22,7 @@ This message applies to the following I/O ports:
    OUTDIGIT<7>
    OUTDIGIT<5>
    OUTDIGIT<6>
+   io_rdy
 Summary of Bitgen Options:
 +----------------------+----------------------+
 | Option Name          | Current Setting      |
@@ -180,7 +181,12 @@ WARNING:PhysDesignRules:2452 - The IOB OUTDIGIT<7> is either not constrained
    (IOSTANDARD). This condition may seriously affect the device and will be an
    error in bitstream creation. It should be corrected by properly specifying
    the pin location and I/O Standard.
-DRC detected 0 errors and 5 warnings.  Please see the previously displayed
+WARNING:PhysDesignRules:2452 - The IOB io_rdy is either not constrained (LOC) to
+   a specific location and/or has an undefined I/O Standard (IOSTANDARD). This
+   condition may seriously affect the device and will be an error in bitstream
+   creation. It should be corrected by properly specifying the pin location and
+   I/O Standard.
+DRC detected 0 errors and 6 warnings.  Please see the previously displayed
 individual error or warning messages for more details.
 Creating bit map...
 Saving bit stream in "display_unit.bit".

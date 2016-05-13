@@ -26,21 +26,22 @@ public class Main {
     static InputStream in;
     static OutputStream out;
     static SerialPort serialPort;
+    static StringBuilder sb;
     static String OS = System.getProperty("os.name");;
 
     static {
         try {
 //            System.setProperty("java.library.path","/Users/stevenlee/Downloads/rxtx-2.2pre2-bins/mac-10.5/");
-            if (OS.equals(new String("Mac OS X"))) {
-                System.loadLibrary("librxtxSerial.jnilib");
-            }
-            if (OS.contains(new String("Windows"))) {
-                System.loadLibrary("rxtxSerial.dll");
-            }
-            else {
-                System.loadLibrary("librxtxParallel.so");
-                System.loadLibrary("librxtxSerial.so");
-            }
+//            if (OS.equals(new String("Mac OS X"))) {
+//                System.loadLibrary("librxtxSerial.jnilib");
+//            }
+           // if (OS.contains(new String("Windows"))) {
+                System.load("C:/Users/Steyr/Documents/FPNN/serial_usb/src/rxtx-2.2pre2-bins/win64/rxtxSerial.dll");
+            //}
+//            else {
+//                System.loadLibrary("librxtxParallel.so");
+//                System.loadLibrary("librxtxSerial.so");
+//            }
         } catch (UnsatisfiedLinkError e) {
             System.err.println("Native code library failed to load.\n" + e);
             System.exit(1);
@@ -61,6 +62,7 @@ public class Main {
         browseButton1.addActionListener(new BrowseOutput());
         sendButton.addActionListener(new sendPress());
         recieveButton.addActionListener(new recievePress());
+        sb = new StringBuilder();
     }
 
     class BrowseInput implements ActionListener {
@@ -135,20 +137,41 @@ public class Main {
             byte[] buffer = new byte[1024];
             int len = -1;
             try {
+
                 write w = new write(out);
                 w.out.write('o');
-                while ( ( len = this.in.read(buffer)) > -1 ) {
-                    try {
-                        writeFile(new String(buffer,0,len));
-                    } catch (Exception fe) {
-                        System.out.println("Could Not Write to " + saveFile);
-                    }
 
+                while ( ( len = this.in.read(buffer)) > -1 ) {
+//                    try {
+//                        if (buffer[1023] != 0){
+//                            writeFile(new String(buffer,0,len));
+//                        }
+//                        for (byte b: buffer) {
+//                            System.out.println(b);
+//                        }
+                        //writeFile(new String(buffer,0,len));
+                        //String s = new String();
+
+
+                        System.out.print(new String(buffer,0,len));
+                        sb.append(buffer);
+
+//                    } catch (Exception fe) {
+//                        System.out.println("Could Not Write to " + saveFile);
+//                    }
+
+                }
+                try {
+                    writeFile(sb.toString());
+                } catch (Exception fe) {
+                    System.out.println("Could Not Write to " + saveFile);
                 }
             } catch ( IOException e ) {
                 e.printStackTrace();
             }
+
         }
+
     }
 
     public static class write implements Runnable {
@@ -183,6 +206,7 @@ public class Main {
 
     static void writeFile(String wd) throws Exception {
 //        Write to specified text file name and location
+        System.out.println(wd);
         System.out.print(wd);
         BufferedWriter wf = new BufferedWriter(new FileWriter(saveFile));
         wf.write(wd);

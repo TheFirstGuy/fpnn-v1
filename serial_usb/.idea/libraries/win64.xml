@@ -1,9 +1,9 @@
 <component name="libraryTable">
-  <library name="mac-10">
+  <library name="win64">
     <CLASSES />
     <JAVADOC />
     <NATIVE>
-      <root url="file://$PROJECT_DIR$/src/rxtx-2.2pre2-bins/mac-10.5" />
+      <root url="file://$PROJECT_DIR$/src/rxtx-2.2pre2-bins/win64" />
     </NATIVE>
     <SOURCES />
   </library>
