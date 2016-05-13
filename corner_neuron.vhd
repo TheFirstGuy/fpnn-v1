@@ -34,8 +34,8 @@ generic (
 	rand1: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand2: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	fwd_pred:  STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := "0000";
-	bck_succ:  STD_LOGIC_VECTOR( 3 DOWNTO 0) := "0000"
+	pred:  STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"1";
+	succ:  STD_LOGIC_VECTOR( 3 DOWNTO 0) := X"3"
 	);
 PORT(
 	--Control
@@ -87,7 +87,9 @@ end corner_neuron;
 architecture Behavioral of corner_neuron is
 
 component activator_skeleton
-generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
+			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"7";
+			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"1");
 PORT(
 --Input
 --Forward Control Signals
@@ -133,7 +135,9 @@ back_pred: OUT STD_LOGIC_VECTOR( 3 DOWNTO 0 ) -- Sends request to preds that bac
 end component;
 
 component link_skeleton
-generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
+			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"7";
+			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"1");
 PORT(
 --Input
 --Forward Control Signals
@@ -194,7 +198,7 @@ SIGNAL ground: STD_LOGIC_VECTOR(7 DOWNTO 0);
 begin
 	--PORT MAP
 	ACT: activator_skeleton 
-	GENERIC MAP (rand => rand1)
+	GENERIC MAP (rand => rand1, pred => pred)
 	PORT MAP(clk=>clk, reset=>reset, still_fwd=>still_fwd, 
 		fwd_pred(0)=>wa_in_r, fwd_pred(1)=>sa_in_r, fwd_pred(2)=>ea_in_r, fwd_pred(3)=>'0',
 		foward=>forward, bck_succ(0)=>north_back_r, bck_succ(3 DOWNTO 1)=>"000", backward=>backward,
@@ -205,7 +209,7 @@ begin
 	
 	
 	WL: link_skeleton 
-	GENERIC MAP (rand => rand2)
+	GENERIC MAP (rand => rand2, pred=> X"2", succ=> X"3")
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>ew_in_r, fwd_pred(1)=>sw_in_r,
 		fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>west_br, backward=>backward, update=>update, still_fwd=>still_fwd,
 		--broadcast=>broadcast,
@@ -215,7 +219,7 @@ begin
 		back_pred(3 DOWNTO 2)=>ground(2 DOWNTO 1));
 	
 	NL: link_skeleton 
-	GENERIC MAP (rand => rand3)
+	GENERIC MAP (rand => rand3, pred=>X"1", succ=> succ)
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>act_fwd_r(0), fwd_pred(3 DOWNTO 1)=>"000",
 		foward=>forward, bck_succ=>north_br, backward=>backward, update=>update, --broadcast=>broadcast,
 		still_fwd=>still_fwd, x_pred_0=>act_out,

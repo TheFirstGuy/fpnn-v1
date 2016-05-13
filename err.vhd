@@ -46,7 +46,7 @@ end err;
 architecture Behavioral of err is
     signal err_val : std_logic_vector(19 downto 0);
 begin
-    calc_err : process(clk, rst, rslt, c_val, rslt_valid, broadcast)
+    calc_err : process(clk, rst, rslt, c_val, rslt_valid)
     begin
         if (clk'event and clk =  '1') then
             if (rst = '1') then

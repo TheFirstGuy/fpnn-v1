@@ -70,18 +70,18 @@ begin
 				sf <= '0';
         elsif (clk'event and clk = '1') then
             case state is
-					 when ST_RST => state <= ST_BCAST;
-                when ST_BCAST =>    --Broadcast State
-                    if (cnt = "1000") then  --Enable for 8 clock cycles (2x Port Verify)
-                        state <= ST_IO;     --Switch to I/O Ready State
-                    else
-                        bcast <= '1';
-                        cnt <= cnt + 1;
-								io <= '0';
-								f <= '0';
-								b <= '0';
-								u <= '0';
-                    end if;
+					 when ST_RST => state <= ST_IO;
+--                when ST_BCAST =>    --Broadcast State
+--                    if (cnt = "1000") then  --Enable for 8 clock cycles (2x Port Verify)
+--                        state <= ST_IO;     --Switch to I/O Ready State
+--                    else
+--                        bcast <= '1';
+--                        cnt <= cnt + 1;
+--								io <= '0';
+--								f <= '0';
+--								b <= '0';
+--								u <= '0';
+--                    end if;
                 when ST_IO =>   --I/O Ready
 					if (f_init = '0' AND io_val = '1') then --Verify I/O Ready
 					   io <= io_val;

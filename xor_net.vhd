@@ -48,6 +48,7 @@ u_fwd_pred2: IN STD_LOGIC;
 
 uart_cval: IN STD_LOGIC_VECTOR(19 DOWNTO 0); -- Correct value of uart
 io_val: IN STD_LOGIC; -- io valid
+output_val: OUT STD_LOGIC;
 u_art_out: OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
 );
 end xor_net;
@@ -55,7 +56,9 @@ end xor_net;
 architecture Behavioral of xor_net is
 
 component link_skeleton is
-generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
+			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"7";
+			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"1");
 PORT(
 --Input
 --Forward Control Signals
@@ -105,7 +108,11 @@ generic (
 	rand1: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand2: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand4: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000"
+	rand4: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	north_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"7";
+	west_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"3";
+	east_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"3";
+	south_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ):= X"7"
 	);
 PORT(
 	--Control
@@ -168,7 +175,9 @@ component corner_neuron is
 generic (
 	rand1: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand2: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000"
+	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+	pred:  STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"1";
+	succ:  STD_LOGIC_VECTOR( 3 DOWNTO 0) := X"3"
 	);
 PORT(
 	--Control
@@ -218,7 +227,9 @@ PORT(
 end component;
 
 component activator_skeleton is
-generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ));
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
+			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"7";
+			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"1");
 PORT(
 --Input
 --Forward Control Signals
@@ -333,7 +344,7 @@ begin
 	PORT MAP(clk=>clk, rst=>reset, --broadcast=>broadcast,
 	rslt_valid=>net_fwd_done, rslt=>o_y, c_val=>uart_cval, err=>error_b, err_valid=>error_br); 
 	IL1: link_skeleton 
-	GENERIC MAP (rand => rand1)
+	GENERIC MAP (rand => rand1, pred=>X"1", succ=>X"3")
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 
 		fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in1_br, bck_succ(1)=>n1_in1_br, bck_succ(3 DOWNTO 2)=>"00",
 		backward=>backward, update=>update, --broadcast=>broadcast,
@@ -342,7 +353,7 @@ begin
 		back_pred(0)=>back_prop_done(0), back_pred(3 DOWNTO 1)=>sink(2 DOWNTO 0));
 
 	IL2: link_skeleton 
-	GENERIC MAP (rand => rand2)
+	GENERIC MAP (rand => rand2, pred=>X"1", succ=>X"3")
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred2,
 		fwd_pred(3 DOWNTO 1)=>"000", foward=>forward, bck_succ(0)=>n3_in2_br, bck_succ(1)=>n2_in2_br, bck_succ(3 DOWNTO 2)=>"00",
 		backward=>backward, update=>update, --broadcast=>broadcast,
@@ -383,7 +394,7 @@ begin
 	--Node 3 is the central neuron. It recieves its inputs from its link connections from node 1 and 2. 
 	-- Node 3 is a full neuron with bi direction links and an output link
 	Node3: neuron 
-	GENERIC MAP (rand1 => rand9,rand2 => rand10,rand3 => rand11,rand4 => rand12)
+	GENERIC MAP (rand1 => rand9,rand2 => rand10,rand3 => rand11,rand4 => rand12, south_conn=>X"0", north_conn=>X"1")
 	PORT MAP(clk=>clk, --broadcast=>broadcast,
 	forward=>forward, still_fwd=>still_fwd,
 		backward=>backward, update=>update, reset=>reset, south_fdata_in=>X"00000", sw_bdata_out=>open, sa_bdata_out=>open, se_bdata_out=>open,
@@ -414,4 +425,5 @@ begin
 	b_val<= back_prop_done(1) AND back_prop_done(0)  AND NOT io_rdy;--AND NOT broadcast;
 	n4_b <= o_y;
 	u_art_out<= o_y;
+	output_val<= f_val;
 end Behavioral;
