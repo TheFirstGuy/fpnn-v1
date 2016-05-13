@@ -30,11 +30,14 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/reset 0 0
+run 35ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/x_pred_0 20'h22345 0
-
+run 35ns
 run 40ns
 run 40ns
 run 40ns
@@ -48,10 +51,14 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/forward 1 0
+run 35ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/fwd_pred 4'hF 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
@@ -89,20 +96,30 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/forward 0 0
+run 35ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/fwd_pred 4'h0 0
+run 35ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/b_succ_0 20'h67890 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/backward 1 0
+run 35ns
 run 40ns
 run 40ns
+run 5ns
 #force -freeze sim:/linkwrapper/fwd_pred 4'h0 0
 force -freeze sim:/linkwrapper/bck_succ 4'hF 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
@@ -156,7 +173,9 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/update 1 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
@@ -170,21 +189,27 @@ run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/backward 0 0
 force -freeze sim:/linkwrapper/update 0 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/x_pred_0 20'h00000 0
 force -freeze sim:/linkwrapper/b_succ_0 20'h00000 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
 run 40ns
+run 5ns
 force -freeze sim:/linkwrapper/bck_succ 4'h0 0
+run 35ns
 run 40ns
 run 40ns
 run 40ns
