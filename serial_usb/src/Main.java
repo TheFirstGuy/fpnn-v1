@@ -146,6 +146,7 @@ public class Main {
                 try {
                     writeFile(s);
                 } catch (Exception fe) {
+                    System.err.println("Could not save to file: " + fc.getSelectedFile().getAbsolutePath() + ".txt");
                 }
 
             }
@@ -188,7 +189,6 @@ public class Main {
 
     static void writeFile(String wd) throws Exception {
 //        Write to specified text file name and location
-        System.out.println(wd);
         System.out.print(wd);
         BufferedWriter wf = new BufferedWriter(new FileWriter(saveFile));
         wf.write(wd);
@@ -214,7 +214,7 @@ public class Main {
         @Override
         public void actionPerformed(ActionEvent ae) {
             try {
-                sendButton.setEnabled(false);
+                recieveButton.setEnabled(false);
                 (new Thread(new read(in))).start();
                 recieveButton.setText("Recieved");
             } catch (Exception e) {
