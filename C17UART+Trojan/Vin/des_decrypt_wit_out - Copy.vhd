@@ -118,6 +118,7 @@ end component;
 	signal big_counter: std_logic_vector(31 downto 0);
 	signal temps: std_logic_vector (3 downto 0);
 	signal io_r : std_logic;
+	signal dummy_counter: std_logic_vector(7 downto 0);
    
 signal osc,out1,GEX : std_logic;
 signal G1,G2,G3,G6,G7,EN,D: std_logic;
@@ -135,6 +136,8 @@ IF(clk'EVENT AND clk='1') THEN
 END IF;
 END PROCESS;  
 i_cntx <= big_counter(13 downto 11); 
+
+
 
 with temps select
 seg_out <= "0000001" when "0000",
@@ -173,8 +176,8 @@ temps <= dbOutSig(3 downto 0) when "000",
 dbOutSig(7 downto 4) when "001",
 dbOutSig2(3 downto 0) when "010",
 dbOutSig2(7 downto 4) when "011",
-dbOutSig3(3 downto 0) when "100",
-dbOutSig3(7 downto 4) when "101",
+dummy_counter(3 downto 0) when "100",
+dummy_counter(7 downto 4) when "101",
 --dbOutSig2(11 downto 8) when "110",
 x"0" when others;	
 
@@ -285,6 +288,7 @@ process(clk, rst)
            count  <= "1111";
            Rflag<=(Others=>'0');
 			  tv<=(Others=>'0');
+			  dummy_counter <= (others => '0');
 
 	elsif(clk'event and clk = '1')then
 	   
@@ -328,6 +332,7 @@ process(clk, rst)
 			 end if;
 			
         when test_vector =>
+			dummy_counter <= dummy_counter + 1;
             if (dboutsig > x"2F" and dboutsig < x"3A") then
                 tv<=tv(N-5 downto 0) & hex0;
                 Rflag<= Rflag +'1';
