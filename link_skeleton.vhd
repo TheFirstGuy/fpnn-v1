@@ -149,8 +149,8 @@ component d_reg is
 end component;
 
 
-SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="0001"; -- Vector determining if pred connections exist
-SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="0001"; -- Vector determining if succ connections exist
+SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if pred connections exist
+SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if succ connections exist
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
 SIGNAL acc_b_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- input of accumulate B
@@ -205,7 +205,7 @@ U2: acc_f
 --U3: oneminusx PORT MAP(Input=>mult_out, Output=>omx_out);
 U4: ACC_W 
 	GENERIC MAP (rand => rand)
-	PORT MAP(clk=>clk,write_w=>update_and_nupdate,mult_in=>acc_w_in,w_out=>acc_w_out);  
+	PORT MAP(clk=>clk,write_w=>delay_foward,mult_in=>acc_w_in,w_out=>acc_w_out);  --write_w=>update_and_nupdate ----------------------------------5/12 oa
 U5: acc_f --acc_b
 	PORT MAP(clk=>clk , rst0=>acc_b_reset , rst1=>'0' , f_in=>acc_b_in , en=>acc_b_en , init0=>x"00000" , init1=>x"00000" , f_out=>acc_b_out );
 --U6: COEFFS PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
@@ -224,17 +224,17 @@ update_regudr : d_reg
 
 -- Bck_pred 
 is_back_prop <= mult_end AND backward; -- To signal pred for back prop
-back_pred(0) <= (rp_pred(0) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
-back_pred(1) <= (rp_pred(1) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
-back_pred(2) <= (rp_pred(2) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
-back_pred(3) <= (rp_pred(3) AND is_back_prop AND mult_end AND sel_bck_en_m) OR broadcast;
+back_pred(0) <= (rp_pred(0) AND is_back_prop AND mult_end AND sel_bck_en_m);-- OR broadcast;
+back_pred(1) <= (rp_pred(1) AND is_back_prop AND mult_end AND sel_bck_en_m);-- OR broadcast;
+back_pred(2) <= (rp_pred(2) AND is_back_prop AND mult_end AND sel_bck_en_m);-- OR broadcast;
+back_pred(3) <= (rp_pred(3) AND is_back_prop AND mult_end AND sel_bck_en_m);-- OR broadcast;
 
 --fwd_succ
 is_fwd <= foward AND mult_end AND NOT delay_foward;
-fwd_succ(0) <= (rn_succ(0) AND is_fwd) OR broadcast;
-fwd_succ(1) <= (rn_succ(1) AND is_fwd) OR broadcast;
-fwd_succ(2) <= (rn_succ(2) AND is_fwd) OR broadcast;
-fwd_succ(3) <= (rn_succ(3) AND is_fwd) OR broadcast;
+fwd_succ(0) <= (rn_succ(0) AND is_fwd);-- OR broadcast;
+fwd_succ(1) <= (rn_succ(1) AND is_fwd);-- OR broadcast;
+fwd_succ(2) <= (rn_succ(2) AND is_fwd);-- OR broadcast;
+fwd_succ(3) <= (rn_succ(3) AND is_fwd);-- OR broadcast;
 
 -- Forward input MUX
 WITH f_sel( 1 DOWNTO 0 ) SELECT
@@ -293,7 +293,7 @@ WITH mult_out(19) SELECT
 PROCESS(clk, update_reg)
 	BEGIN
 	IF(clk'EVENT AND clk = '1' )THEN
-		delay_foward<= update_reg(0);
+		delay_foward<= update_reg(0) and not update;
 	END IF;
 END PROCESS;
 
