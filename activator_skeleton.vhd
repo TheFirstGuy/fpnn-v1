@@ -128,7 +128,8 @@ component COEFFS is
 	PORT(
 		  degree: IN STD_LOGIC_VECTOR( 1 DOWNTO 0 );	
 		 address: IN STD_LOGIC_VECTOR( 19 DOWNTO 0 );
-			coeff: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 )
+			coeff: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 );
+			maxmin: OUT STD_LOGIC
 	);
 end component;
 
@@ -188,6 +189,7 @@ SIGNAL sn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ) := succ; -- Vector determining if 
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
 SIGNAL acc_b_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- input of accumulate B
+SIGNAL delay_en_b: STD_LOGIC;
 SIGNAL acc_b_reset: STD_LOGIC;
 --ACC_F
 SIGNAL acc_f_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_f
@@ -202,6 +204,7 @@ SIGNAL acc_t_in: STD_LOGIC_VECTOR(19 DOWNTO 0); -- input to acc_t in
 SIGNAL f_sel: STD_LOGIC_VECTOR( 1 DOWNTO 0 ); -- Select signal for forward input MUX
 --SIGNAL sel_fwd_reset_m: STD_LOGIC;
 SIGNAL sel_fwd_en_m: STD_LOGIC;  
+SIGNAL delay_en_f: STD_LOGIC;
 SIGNAL sel_fwd_en_accf: STD_LOGIC;
 --Sel bck
 SIGNAL sel_bck_en_m: STD_LOGIC;
@@ -220,6 +223,8 @@ SIGNAL mult_out: STD_LOGIC_VECTOR( 19 DOWNTO 0 );
 SIGNAL cnt_en: STD_LOGIC; -- enable counter
 SIGNAL fin: STD_LOGIC; -- when last degree is given
 SIGNAL degree: STD_LOGIC_VECTOR( 1 DOWNTO 0 );
+--COEFFS
+SIGNAL maxmin: STD_LOGIC;
 --ADD
 SIGNAL add_en: STD_LOGIC; -- enable adder
 SIGNAL add_reset: STD_LOGIC; -- reset adder
@@ -245,7 +250,7 @@ SIGNAL B_SEL_CLR: STD_LOGIC;
 
 
 --State Machine
-type s_type is (init, accumulate, add, fa0, fa1, fa1p, fa2, fa3, th0, th1, bp0, bp1, bp2, bp3);
+type s_type is (init, accumulate, add, fa0, fa1, fa1p, fa2, fa3, th0, th1, bp0, bp1, bp2, bp3, bp4);
 signal state, nextstate: s_type;
 
 
@@ -268,7 +273,7 @@ U4: ACC_W
 U5: acc_b --acc_b
 	PORT MAP(clk=>clk, rst=>acc_b_reset, b_in=>acc_b_in, b_en=>sel_bck_en_accb,  b_out=>acc_b_out);
 U6: COEFFS 
-	PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1);
+	PORT MAP(degree=>degree,address=>acc_f_out,coeff=>in1, maxmin=>maxmin);
 U7: CNT 
 	PORT MAP (clk=>clk ,enable=>cnt_en, reset=>reset ,fin=>fin ,degree=>degree);
 U8: adder 
@@ -306,14 +311,15 @@ U10:SELECTOR
 				WHEN fa0 => nextstate <= fa1;
 				WHEN fa1 => IF(fin = '1') THEN nextstate <= fa1p; ELSE nextstate <= fa0; END IF;
 				WHEN fa1p => nextstate<= fa2;
-				WHEN fa2 => IF(backward = '1' AND sel_bck_en_m = '1') THEN nextstate <= th0; ELSIF( still_fwd = '1' ) THEN nextstate <= init; ELSE nextstate <= fa2; END IF;
+				WHEN fa2 => IF(backward = '1' AND sel_bck_en_m = '1') THEN nextstate <= bp0; ELSIF( still_fwd = '1' ) THEN nextstate <= init; ELSE nextstate <= fa2; END IF;
 				--WHEN fa3 => IF(backward = '1') THEN nextstate <= th0; ELSE nextstate <= fa3; END IF;
 				WHEN th0 => nextstate <= th1; 
 				WHEN th1 => nextstate <= bp0;
 				WHEN bp0 => nextstate <= bp1;
 				WHEN bp1 => nextstate <= bp2;
-				WHEN bp2 => IF( mult_end = '1') THEN nextstate <= bp3; ELSE nextstate <= bp2; END IF; 
-				WHEN bp3 => IF( foward = '1') THEN nextstate <= init; ELSE nextstate <= bp3; END IF; 
+				WHEN bp2 => nextstate <= bp3; 
+				WHEN bp3 => nextstate <= bp4;
+				WHEN bp4 => IF( foward = '1') THEN nextstate <= init; ELSE nextstate <= bp4; END IF; 
 				WHEN others => nextstate <= init;
 			END CASE;
 	END PROCESS outputFSM;
@@ -373,7 +379,7 @@ controlSignals: PROCESS( state )
 			mux1_sel <= '0';
 			mux2_sel <= '0';
 			back_rdy <= '0';
-			forward_rdy <= '0';	
+			forward_rdy <= '0';			
 			WHEN fa0 =>
 			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
@@ -424,23 +430,25 @@ controlSignals: PROCESS( state )
 			mux2_sel <= '1';--ADD
 			back_rdy <= '0';
 			forward_rdy <= '0';
+			--IF( maxmin = '1' ) THEN y<=in1; ELSE y<=mult_out; END IF;
 		--ELSIF( state = fa2 ) THEN-- Add stores multiply and acc_f updates threshold 
 			WHEN fa2 =>
-			acc_f_reset0 <= '1';
+			acc_f_reset0 <= '0';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '0';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '1';
 			add_reset <= '0';
-			add_ld_a <= '0';
-			add_ld_b <= '1';
+			--add_ld_a <= '0';
+			--add_ld_b <= '1';
 			mult_enable <= '0';
 			acc_t_en <= '0';
 			mux1_sel <= '0';--ACC_F
 			mux2_sel <= '1';--ADD
 			back_rdy <= '0';
 			forward_rdy <= '1';
+			IF( maxmin = '1' ) THEN add_ld_a <= '1'; add_ld_b <= '0';ELSE  add_ld_a <= '0'; add_ld_b <= '1'; END IF;
 		--ELSIF( state = th0 ) THEN-- Multiply<- ACC_F & ACC_B
 			WHEN th0 =>
 			acc_f_reset0 <= '0';
@@ -477,7 +485,7 @@ controlSignals: PROCESS( state )
 			forward_rdy <= '0';
 		--ELSIF( state = bp0 ) THEN-- MULT <- ADD & ADD
 			WHEN bp0 =>
-			acc_f_reset0 <= '0';
+			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
 			acc_b_reset <= '0';
 			mult_reset <= '0';
@@ -528,19 +536,35 @@ controlSignals: PROCESS( state )
 			forward_rdy <= '0';
 		--ELSIF( state = bp3) THEN -- MULT WAIT
 			WHEN bp3 =>
-			acc_f_reset0 <= '0';
+			acc_f_reset0 <= '1';
 			acc_f_reset1 <= '0';
-			acc_b_reset <= '0';
+			acc_b_reset <= '1';
 			mult_reset <= '0';
 			cnt_en <= '0';
 			add_en <= '0';
-			add_reset <= '0';
+			add_reset <= '1';
+			add_ld_a <= '0';
+			add_ld_b <= '0';
+			mult_enable <= '0';
+			acc_t_en <= '1';
+			mux1_sel <= '0';
+			mux2_sel <= '0';
+			back_rdy <= '1';
+			forward_rdy <= '0';
+			WHEN bp4 =>
+			acc_f_reset0 <= '1';
+			acc_f_reset1 <= '0';
+			acc_b_reset <= '1';
+			mult_reset <= '0';
+			cnt_en <= '0';
+			add_en <= '0';
+			add_reset <= '1';
 			add_ld_a <= '0';
 			add_ld_b <= '0';
 			mult_enable <= '0';
 			acc_t_en <= '0';
-			mux1_sel <= '0';-- ACC_F
-			mux2_sel <= '0';-- ACC_B
+			mux1_sel <= '0';
+			mux2_sel <= '0';
 			back_rdy <= '1';
 			forward_rdy <= '0';
 		--ELSE -- Default to init stage
@@ -619,7 +643,13 @@ WITH mux2_sel SELECT
 --Mutliply reset control
 --update_and_nupdate <= NOT update_reg AND update;
 --mult_reset <= sel_fwd_reset_m OR sel_bck_reset_m OR update_and_nupdate;
-y<=mult_out;
+-- Mult out controller
+
+WITH maxmin SELECT
+	y <= mult_out WHEN '0',
+	in1 WHEN '1',
+	mult_out when others;
+--y<=mult_out;
 
 WITH mult_out(19) SELECT
 		acc_t_in<= ('0'& mult_out(19 DOWNTO 1)) WHEN '0',

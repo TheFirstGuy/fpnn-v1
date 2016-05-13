@@ -37,7 +37,8 @@ PORT(
 degree: IN STD_LOGIC_VECTOR( 1 DOWNTO 0 );
 address: IN STD_LOGIC_VECTOR( 19 DOWNTO 0 );
 --Outputs
-coeff: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 )
+coeff: OUT STD_LOGIC_VECTOR( 19 DOWNTO 0 );
+maxmin: OUT STD_LOGIC
 );
 end COEFFS;
 
@@ -67,9 +68,9 @@ CONSTANT neg: rom:=rom'(X"00000", "00001111111111111110","00000100001010100111")
 -- -0.2603607177734375x^2 +0.999969482421875x + 0
 CONSTANT pos: rom:=rom'(X"00000", "00001111111111111110","11111011110101011001");
 -- 0.9601593017578125
-CONSTANT mpos: rom:=rom'( "00001111010111001101", X"00000", X"00000");
+CONSTANT mpos: STD_LOGIC_VECTOR(19 DOWNTO 0) := "00001111010111001101";
 -- -0.9601593017578125
-CONSTANT npos: rom:=rom'( "11110000101000110011", X"00000", X"00000");
+CONSTANT npos: STD_LOGIC_VECTOR(19 DOWNTO 0) := "11110000101000110011";
 SIGNAL xs: STD_LOGIC_VECTOR(3 DOWNTO 0);
 begin
 
@@ -85,14 +86,14 @@ PROCESS( xs, degree )
 BEGIN
 	case xs is
 	--x > 1.920318603515625
-		when "1100"=>coeff <= mpos(CONV_INTEGER(degree));
+		when "1110"=>coeff <= mpos; maxmin<= '1';
 		-- 0 < x <= 1.920318603515625
-		when "0110"=>coeff <= pos(CONV_INTEGER(degree));
+		when "0110"=>coeff <= pos(CONV_INTEGER(degree));maxmin<= '0';
 		-- -1.920318603515625 < x < 0
-		when "0010"=>coeff <= neg(CONV_INTEGER(degree));
+		when "0010"=>coeff <= neg(CONV_INTEGER(degree)); maxmin<= '0';
 		-- x < -1.920318603515625
-		when "0001"=>coeff <= npos(CONV_INTEGER(degree));
-		when others=>coeff <= mpos(CONV_INTEGER(degree));
+		when "0001"=>coeff <= npos; maxmin<= '1';
+		when others=>coeff <= mpos; maxmin<= '0';
 	END CASE;
 END PROCESS;
 

@@ -44,8 +44,16 @@ entity wrapper is
 		westIn: IN STD_LOGIC_VECTOR(19 DOWNTO 0);
 		southIn: IN STD_LOGIC_VECTOR(19 DOWNTO 0);
 		
-		output: OUT STD_LOGIC_VECTOR(19 DOWNTO 0 )
-
+		fwd_r: IN STD_LOGIC_VECTOR( 6 DOWNTO 0 );
+		bck_r: IN STD_LOGIC_VECTOR( 4 DOWNTO 0 );
+		e_bout: OUT STD_LOGIC_VECTOR( 1 DOWNTO 0 );
+		w_bout: OUT STD_LOGIC_VECTOR( 1 DOWNTO 0 );
+		e_out: OUT STD_LOGIC_VECTOR( 1 DOWNTO 0 );
+		w_out: OUT STD_LOGIC_VECTOR( 1 DOWNTO 0 );
+		n_out: OUT STD_LOGIC;
+		n_output: OUT STD_LOGIC_VECTOR(19 DOWNTO 0 );
+		e_output: OUT STD_LOGIC_VECTOR(19 DOWNTO 0);
+		w_output: OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
 	);
 end wrapper;
 
@@ -118,21 +126,23 @@ PORT(
 end component;
 
 SIGNAL ground: STD_LOGIC := '0';
+SIGNAL sink: STD_LOGIC_VECTOR( 2 DOWNTO 0);
 begin
 
 n : neuron
 	PORT MAP(clk=>clk, broadcast=>broadcast, forward=>forward, still_fwd=>still_fwd,
 		backward=>backward, update=>update, reset=>reset, south_fdata_in=>southIn, sw_bdata_out=>open, sa_bdata_out=>open, se_bdata_out=>open,
-		sw_in_r=>ground, sa_in_r=>ground, se_in_r=>ground, sw_out_r=>open, sa_out_r=>open, se_out_r=>open,
-		east_fdata_in=>eastIn, ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r =>'1', ew_in_r=>'1',
-		ea_out_r=>open, ew_out_r=>open, west_fdata_in=>westIn, we_bdata_out=>open, wa_bdata_out=>open,
-		wa_in_r=>'1', we_in_r=>'1', wa_out_r=>open, we_out_r=>open,
-		north_fdata_out=>output, north_bdata_in0=>X"00000", north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", 
-		north_bdata_in3=>X"00000", north_r=>open, north_br(0)=>'1', north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
-		east_fdata_out=>open, east_bdata_in0=>X"00000", east_bdata_in1=>X"00000", east_bdata_in2=>X"00000",
-		east_bdata_in3=>X"00000", east_r=>open, east_br=>"0000",west_fdata_out=>open,
-		west_bdata_in0=>X"00000", west_bdata_in1=>X"00000", west_bdata_in2=>X"00000", west_bdata_in3=>X"00000", west_r=>open,
-		west_br=>"0000");
+		sw_in_r=>fwd_r(0), sa_in_r=>fwd_r(1), se_in_r=>fwd_r(2), sw_out_r=>open, sa_out_r=>open, se_out_r=>open,
+		east_fdata_in=>eastIn, ew_bdata_out=>open, ea_bdata_out=>open, ea_in_r =>fwd_r(3), ew_in_r=>fwd_r(4),
+		ea_out_r=>e_bout(0), ew_out_r=>e_bout(1), west_fdata_in=>westIn, we_bdata_out=>open, wa_bdata_out=>open,
+		wa_in_r=>fwd_r(5), we_in_r=>fwd_r(6), wa_out_r=>w_bout(0), we_out_r=>w_bout(1),
+		north_fdata_out=>n_output, north_bdata_in0=>X"01111", north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", 
+		north_bdata_in3=>X"00000", north_r(0)=>n_out, north_r(3 DOWNTO 1)=> sink, north_br(0)=>bck_r(0), 
+		north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
+		east_fdata_out=>e_output, east_bdata_in0=>X"01111", east_bdata_in1=>X"00000", east_bdata_in2=>X"00000",
+		east_bdata_in3=>X"00000", east_r(1 DOWNTO 0)=>e_out, east_r(3 DOWNTO 2)=>sink(1 DOWNTO 0), east_br(3 DOWNTO 2)=>"00", east_br(1 DOWNTO 0)=>bck_r(2 DOWNTO 1), west_fdata_out=>w_output,
+		west_bdata_in0=>X"01111", west_bdata_in1=>X"00000", west_bdata_in2=>X"00000", west_bdata_in3=>X"00000", west_r(1 DOWNTO 0)=>w_out, west_r(3 DOWNTO 2)=>sink( 1 DOWNTO 0),
+		west_br(3 DOWNTO 2)=>"00", west_br(1 DOWNTO 0)=>bck_r(4 DOWNTO 3));
 
 
 end Behavioral;

@@ -21,7 +21,9 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity link_skeleton is
-generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000");
+generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
+			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"3";
+			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"3");
 PORT(
 --Input
 --Forward Control Signals
@@ -151,8 +153,8 @@ end component;
 signal sel_fwd_en_m_reg :STD_LOGIC;
 signal sel_bck_en_m_reg :STD_LOGIC;
 
-SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if pred connections exist
-SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):="1111"; -- Vector determining if succ connections exist
+SIGNAL rp_pred: STD_LOGIC_VECTOR(3 DOWNTO 0 ):= pred; -- Vector determining if pred connections exist
+SIGNAL rn_succ: STD_LOGIC_VECTOR(3 DOWNTO 0 ):= succ; -- Vector determining if succ connections exist
 --ACC_B
 SIGNAL acc_b_out: STD_LOGIC_VECTOR(19 DOWNTO 0 ); -- output of acc_b
 SIGNAL acc_b_in: STD_LOGIC_VECTOR( 19 DOWNTO 0 ); -- input of accumulate B
