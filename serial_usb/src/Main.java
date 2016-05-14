@@ -32,7 +32,7 @@ public class Main {
         try {
 //            System.setProperty("java.library.path","/Users/stevenlee/Downloads/rxtx-2.2pre2-bins/mac-10.5/");
             if (OS.equals(new String("Mac OS X"))) {
-                System.load("/Users/stevenlee/Downloads/rxtx-2.2pre2-bins/mac-10.5/librxtxSerial.jnilib");
+                System.load("/Library/Java/Extensions/librxtxSerial.jnilib");
             }
             else if (OS.contains(new String("Windows"))) {
                 System.load("C:/Users/Steyr/Documents/FPNN/serial_usb/src/rxtx-2.2pre2-bins/win64/rxtxSerial.dll");
@@ -113,7 +113,7 @@ public class Main {
 
             if (port instanceof SerialPort) {
                 serialPort = (SerialPort) port;
-                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_2, SerialPort.PARITY_EVEN);
+                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_EVEN);
 
                 in = serialPort.getInputStream();
                 out = serialPort.getOutputStream();
