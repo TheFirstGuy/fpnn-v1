@@ -36,7 +36,7 @@ public class Main {
                 System.load("/Library/Java/Extensions/librxtxSerial.jnilib");
             }
             else if (OS.contains(new String("Windows"))) {
-                System.load("C:/Program Files/Java/jre1.8.0_91/bin/rxtxSerial.dll");
+                System.load("C:/ProgramData/Oracle/Java/javapath/rxtxSerial.dll");
             }
             else {
                 System.loadLibrary("librxtxParallel.so");
