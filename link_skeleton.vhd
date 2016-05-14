@@ -22,8 +22,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity link_skeleton is
 generic (rand: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-			pred: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"3";
-			succ: STD_LOGIC_VECTOR(3 DOWNTO 0):=X"3");
+			pred: STD_LOGIC_VECTOR(3 DOWNTO 0);
+			succ: STD_LOGIC_VECTOR(3 DOWNTO 0));
 PORT(
 --Input
 --Forward Control Signals

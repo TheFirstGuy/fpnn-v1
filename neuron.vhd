@@ -36,8 +36,8 @@ generic (
 	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand4: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	north_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"7";
-	west_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"3";
-	east_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"3";
+	west_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"1";
+	east_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"1";
 	south_conn: STD_LOGIC_VECTOR( 3 DOWNTO 0 ):= X"7"
 	);
 PORT(
@@ -224,7 +224,7 @@ begin
 	
 	
 	WL: link_skeleton 
-	GENERIC MAP (rand => rand2, pred=>X"1", succ=>west_conn)
+	GENERIC MAP (rand => rand2, pred=>X"1", succ=>X"1")
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>ew_in_r, fwd_pred(1)=>sw_in_r,
 		fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>west_br, backward=>backward, update=>update,
 		still_fwd=>still_fwd,x_pred_0=>east_fdata_in, x_pred_1=>south_fdata_in, x_pred_2=>open, x_pred_3=>open,
@@ -241,7 +241,7 @@ begin
 		back_pred(3 DOWNTO 1)=>ground(5 DOWNTO 3));
 	
 	EL: link_skeleton 
-	GENERIC MAP (rand => rand4, pred=>X"1", succ=>east_conn)
+	GENERIC MAP (rand => rand4, pred=>X"1", succ=>X"1")
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>we_in_r, fwd_pred(1)=>se_in_r, 
 		fwd_pred(3 DOWNTO 2)=>"00", foward=>forward, bck_succ=>east_br, backward=>backward, update=>update,still_fwd=>still_fwd,
 	   x_pred_0=>west_fdata_in, x_pred_1=>south_fdata_in, x_pred_2=>open, x_pred_3=>open,

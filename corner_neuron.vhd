@@ -34,7 +34,7 @@ generic (
 	rand1: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand2: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
 	rand3: STD_LOGIC_VECTOR( 19 DOWNTO 0 ) := X"08000";
-	pred:  STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"1";
+	pred:  STD_LOGIC_VECTOR( 3 DOWNTO 0 ) := X"3";
 	succ:  STD_LOGIC_VECTOR( 3 DOWNTO 0) := X"3"
 	);
 PORT(
@@ -198,7 +198,7 @@ SIGNAL ground: STD_LOGIC_VECTOR(7 DOWNTO 0);
 begin
 	--PORT MAP
 	ACT: activator_skeleton 
-	GENERIC MAP (rand => rand1, pred => pred)
+	GENERIC MAP (rand => rand1, pred => X"3")
 	PORT MAP(clk=>clk, reset=>reset, still_fwd=>still_fwd, 
 		fwd_pred(0)=>wa_in_r, fwd_pred(1)=>sa_in_r, fwd_pred(2)=>ea_in_r, fwd_pred(3)=>'0',
 		foward=>forward, bck_succ(0)=>north_back_r, bck_succ(3 DOWNTO 1)=>"000", backward=>backward,
@@ -219,7 +219,7 @@ begin
 		back_pred(3 DOWNTO 2)=>ground(2 DOWNTO 1));
 	
 	NL: link_skeleton 
-	GENERIC MAP (rand => rand3, pred=>X"1", succ=> succ)
+	GENERIC MAP (rand => rand3, pred=>X"1", succ=> X"1")
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>act_fwd_r(0), fwd_pred(3 DOWNTO 1)=>"000",
 		foward=>forward, bck_succ=>north_br, backward=>backward, update=>update, --broadcast=>broadcast,
 		still_fwd=>still_fwd, x_pred_0=>act_out,

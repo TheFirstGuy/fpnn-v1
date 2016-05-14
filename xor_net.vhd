@@ -401,11 +401,11 @@ begin
 		sw_in_r=>ground, sa_in_r=>ground, se_in_r=>ground, sw_out_r=>open, sa_out_r=>open, se_out_r=>open,
 		east_fdata_in=>n2_n3_y, ew_bdata_out=>n3_n2_b, ea_bdata_out=>n3_b, ea_in_r =>n2_n3_fr(0), ew_in_r=>n2_n3_fr(1),
 		ea_out_r=>n3_n2_br(0), ew_out_r=>n3_n2_br(1), west_fdata_in=>n1_n3_y, we_bdata_out=>n3_n1_b, wa_bdata_out=>n3_b,
-		wa_in_r=>n1_n3_fr(0), we_in_r=>n1_n3_fr(1), wa_out_r=>n3_n1_br(0), we_out_r=>n3_n1_br(1),
+		wa_in_r=>n1_n3_fr(0), we_in_r=>n1_n3_fr(1), wa_out_r=>n3_n1_br(1), we_out_r=>n3_n1_br(0),
 		north_fdata_out=>n3_n4_y, north_bdata_in0=>n4_b, north_bdata_in1=>X"00000", north_bdata_in2=>X"00000", 
 		north_bdata_in3=>X"00000", north_r=>n3_nfr, north_br(0)=>n4_br(1), north_br(1)=>ground, north_br(2)=>ground, north_br(3)=>ground,
 		east_fdata_out=>n3_n2_y, east_bdata_in0=>n2_n3_b, east_bdata_in1=>X"00000", east_bdata_in2=>X"00000",
-		east_bdata_in3=>X"00000", east_r(0)=>n3_n2_fr, east_r(3 DOWNTO 1)=>openGround(2 DOWNTO 0), east_br(0)=>n3_n2_br(0), east_br(3 DOWNTO 1)=>"000",west_fdata_out=>n3_n1_y,
+		east_bdata_in3=>X"00000", east_r(0)=>n3_n2_fr, east_r(3 DOWNTO 1)=>openGround(2 DOWNTO 0), east_br(0)=>n2_n3_br, east_br(3 DOWNTO 1)=>"000",west_fdata_out=>n3_n1_y,
 		west_bdata_in0=>n1_n3_b, west_bdata_in1=>X"00000", west_bdata_in2=>X"00000", west_bdata_in3=>X"00000", west_r(0)=>n3_n1_fr, west_r(3 DOWNTO 1)=>openGround(8 DOWNTO 6),
 		west_br(0)=>n1_n3_br, west_br(3 DOWNTO 1)=>"000");
 
