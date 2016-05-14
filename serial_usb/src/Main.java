@@ -180,17 +180,21 @@ public class Main {
                     System.out.println(word);
                     for (int i = 0; i < word.length(); i++) {
                         char c = word.charAt(i);
-                        if (cnt == 5) {
+                        if (cnt < 5) {
                             this.out.write(c);
                         }
                         else {
+                            cnt++;
                             if (j < 5) {
                                 buffer[j] = c;
                                 j++;
                             }
                             else {
-                                j = 0;
-                                cnt = 0;
+                                for (int k = 0; k < 5; k++) {
+                                    this.out.write(buffer[k]);
+                                    j = 0;
+                                    cnt = 0;
+                                }
                             }
                         }
                     }
