@@ -115,7 +115,7 @@ public class Main {
 
             if (port instanceof SerialPort) {
                 serialPort = (SerialPort) port;
-                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_EVEN);
+                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_2, SerialPort.PARITY_EVEN);
 
                 in = serialPort.getInputStream();
                 out = serialPort.getOutputStream();
@@ -162,7 +162,7 @@ public class Main {
     public static class SerialWrite implements Runnable {
 //        Send Data
         OutputStream out;
-        char[] buffer = new char[3];
+        char[] buffer = new char[2];
         int j = 0;
 
         public SerialWrite(OutputStream out ) {
@@ -180,17 +180,17 @@ public class Main {
                     System.out.println(word);
                     for (int i = 0; i < word.length(); i++) {
                         char c = word.charAt(i);
-                        if (cnt < 3) {
+                        if (cnt < 2) {
                             this.out.write(c);
                         }
                         else {
                             cnt++;
-                            if (j < 3) {
+                            if (j < 2) {
                                 buffer[j] = c;
                                 j++;
                             }
                             else {
-                                for (int k = 0; k < 3; k++) {
+                                for (int k = 0; k < 2; k++) {
                                     this.out.write(buffer[k]);
                                     j = 0;
                                     cnt = 0;
