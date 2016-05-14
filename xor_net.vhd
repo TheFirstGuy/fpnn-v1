@@ -299,6 +299,7 @@ component err is
 			  rslt_valid : in std_logic; -- result ready
            rslt : in std_logic_vector(19 downto 0); --Calculated Result
            c_val : in std_logic_vector(19 downto 0);    --Classification Value
+			  c_valid: in std_logic;
            err : out std_logic_vector(19 downto 0);    --Calculated Error
 			  err_valid: out std_logic); -- error output valid
 end component;
@@ -343,7 +344,7 @@ begin
 	
 	ERROR: err
 	PORT MAP(clk=>clk, rst=>reset, --broadcast=>broadcast,
-	rslt_valid=>net_fwd_done, rslt=>o_y, c_val=>uart_cval, err=>error_b, err_valid=>error_br); 
+	rslt_valid=>net_fwd_done, rslt=>o_y, c_val=>uart_cval, c_valid=>io_rdy, err=>error_b, err_valid=>error_br); 
 	IL1: link_skeleton 
 	GENERIC MAP (rand => rand1, pred=>X"1", succ=>X"3")
 	PORT MAP( clk=>clk, reset=>reset, fwd_pred(0)=>u_fwd_pred1, 

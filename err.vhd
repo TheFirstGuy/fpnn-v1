@@ -39,19 +39,22 @@ entity err is
 			  rslt_valid : in std_logic; -- result ready
            rslt : in std_logic_vector(19 downto 0); --Calculated Result
            c_val : in std_logic_vector(19 downto 0);    --Classification Value
+			  c_valid: in std_logic;
            err : out std_logic_vector(19 downto 0);    --Calculated Error
 			  err_valid: out std_logic); -- error output valid
 end err;
 
 architecture Behavioral of err is
     signal err_val : std_logic_vector(19 downto 0);
+	 signal expected_val : std_logic_vector(19 downto 0);
 begin
-    calc_err : process(clk, rst, rslt, c_val, rslt_valid)
+    calc_err : process(clk, rst, rslt, c_val, rslt_valid, c_valid)
     begin
         if (clk'event and clk =  '1') then
             if (rst = '1') then
                 err_val <= (others => '0');
 					 err_valid <= '0';
+					 expected_val<= X"00000";
 				else
 					--if( broadcast = '1' or rslt_valid = '1') then -- broadcast 
 					--	 err_valid <= '1';
@@ -59,8 +62,10 @@ begin
 					--	 err_valid <= '0';
 					--end if;
 					if( rslt_valid = '1')then
-						err_val <= c_val - rslt;    --Calculate Error (Classification - Result)
+						err_val <= expected_val - rslt;    --Calculate Error (Classification - Result)
 						err_valid <= '1';
+					elsif( c_valid = '1') then
+						expected_val <= c_val;
 					else
 						err_val <= err_val;
 						err_valid <= '0';
