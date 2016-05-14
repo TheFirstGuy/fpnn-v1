@@ -168,10 +168,10 @@ public class Main {
         public void run () {
             try {
 //                int c = 0;
+                this.out.write('i');
                 while (input.hasNext()) {
                     String word = input.nextLine();
                     System.out.println(word);
-                    this.out.write('i');
                     for (int i = 0; i < word.length(); i++) {
                         char c = word.charAt(i);
                         this.out.write(c);
