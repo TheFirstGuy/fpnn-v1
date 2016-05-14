@@ -1,15 +1,15 @@
 Release 14.7 Drc P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Fri May 13 21:21:40 2016
+Sat May 14 13:34:51 2016
 
 drc -z DISPLAY_UNIT.ncd DISPLAY_UNIT.pcf
 
-WARNING:PhysDesignRules:372 - Gated clock. Clock net UART/rClkDiv<3> is sourced
-   by a combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net RO2/G23t is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net UART/rClkDiv<3> is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:2452 - The IOB OUTDIGIT<5> is either not constrained
    (LOC) to a specific location and/or has an undefined I/O Standard
