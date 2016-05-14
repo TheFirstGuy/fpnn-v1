@@ -115,7 +115,7 @@ public class Main {
 
             if (port instanceof SerialPort) {
                 serialPort = (SerialPort) port;
-                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_2, SerialPort.PARITY_EVEN);
+                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_EVEN);
 
                 in = serialPort.getInputStream();
                 out = serialPort.getOutputStream();
