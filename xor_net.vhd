@@ -48,6 +48,7 @@ u_fwd_pred2: IN STD_LOGIC;
 
 uart_cval: IN STD_LOGIC_VECTOR(19 DOWNTO 0); -- Correct value of uart
 io_val: IN STD_LOGIC; -- io valid
+f_init: IN STD_LOGIC; -- '1' WHEN DONE LEARNING
 output_val: OUT STD_LOGIC;
 u_art_out: OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
 );
@@ -308,7 +309,7 @@ SIGNAL forward: STD_LOGIC;
 SIGNAL still_fwd: STD_LOGIC;
 SIGNAL backward: STD_LOGIC;
 SIGNAL update: STD_LOGIC;
-SIGNAL f_init: STD_LOGIC := '0'; -- Will use for hybrid activation mod
+--SIGNAL f_init: STD_LOGIC := '0'; -- Will use for hybrid activation mod
 SIGNAL f_val: STD_LOGIC; -- When forward activation is done
 SIGNAL b_val: STD_LOGIC; -- When back prop is done
 SIGNAL io_rdy: STD_LOGIC;
