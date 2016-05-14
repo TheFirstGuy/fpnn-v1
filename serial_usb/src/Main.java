@@ -27,6 +27,7 @@ public class Main {
     static SerialPort serialPort;
     static String OS = System.getProperty("os.name");;
     static StringBuilder sb = new StringBuilder();
+    static int cnt;
 
     static {
         try {
@@ -35,7 +36,7 @@ public class Main {
                 System.load("/Library/Java/Extensions/librxtxSerial.jnilib");
             }
             else if (OS.contains(new String("Windows"))) {
-                System.load("C:/Users/Steyr/Documents/FPNN/serial_usb/src/rxtx-2.2pre2-bins/win64/rxtxSerial.dll");
+                System.loadLibrary("rxtxSerial");
             }
             else {
                 System.loadLibrary("librxtxParallel.so");
@@ -61,6 +62,7 @@ public class Main {
         browseButton1.addActionListener(new BrowseOutput());
         sendButton.addActionListener(new sendPress());
         recieveButton.addActionListener(new recievePress());
+        cnt = 0;
     }
 
     class BrowseInput implements ActionListener {
@@ -113,7 +115,7 @@ public class Main {
 
             if (port instanceof SerialPort) {
                 serialPort = (SerialPort) port;
-                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_EVEN);
+                serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_2, SerialPort.PARITY_EVEN);
 
                 in = serialPort.getInputStream();
                 out = serialPort.getOutputStream();
@@ -160,6 +162,8 @@ public class Main {
     public static class SerialWrite implements Runnable {
 //        Send Data
         OutputStream out;
+        char[] buffer = new char[5];
+        int j = 0;
 
         public SerialWrite(OutputStream out ) {
             this.out = out;
@@ -168,13 +172,27 @@ public class Main {
         public void run () {
             try {
 //                int c = 0;
-                this.out.write('i');
+                if (cnt == 0) {
+                    this.out.write('i');
+                }
                 while (input.hasNext()) {
                     String word = input.nextLine();
                     System.out.println(word);
                     for (int i = 0; i < word.length(); i++) {
                         char c = word.charAt(i);
-                        this.out.write(c);
+                        if (cnt == 5) {
+                            this.out.write(c);
+                        }
+                        else {
+                            if (j < 5) {
+                                buffer[j] = c;
+                                j++;
+                            }
+                            else {
+                                j = 0;
+                                cnt = 0;
+                            }
+                        }
                     }
                 }
 //                while ( ( c = System.in.SerialRead()) > -1 ) {

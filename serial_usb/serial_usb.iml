@@ -18,5 +18,6 @@
     </orderEntry>
     <orderEntry type="library" exported="" name="win64" level="project" />
     <orderEntry type="library" exported="" name="mac-10" level="project" />
+    <orderEntry type="library" name="i686-pc-linux-gnu" level="project" />
   </component>
 </module>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="i686-pc-linux-gnu">
+    <CLASSES />
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/src/rxtx-2.2pre2-bins/i686-pc-linux-gnu" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>
