@@ -181,16 +181,16 @@ public class Main {
                     for (int i = 0; i < word.length(); i++) {
                         char c = word.charAt(i);
                         this.out.write(c);
-                        if (cnt < 3) {
+                        if (cnt < 2) {
                             this.out.write(c);
                         }
                         else {
-                            if (j < 3) {
+                            if (j < 2) {
                                 buffer[j] = c;
                                 j++;
                             }
                             else {
-                                for (int k = 0; k < 3; k++) {
+                                for (int k = 0; k < 2; k++) {
                                     this.out.write(buffer[k]);
                                     j = 0;
                                     cnt = 0;
