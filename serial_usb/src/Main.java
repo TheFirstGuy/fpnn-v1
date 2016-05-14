@@ -184,7 +184,6 @@ public class Main {
                             this.out.write(c);
                         }
                         else {
-                            cnt++;
                             if (j < 2) {
                                 buffer[j] = c;
                                 j++;
@@ -197,6 +196,7 @@ public class Main {
                                 }
                             }
                         }
+                        cnt++;
                     }
                 }
 //                while ( ( c = System.in.SerialRead()) > -1 ) {
