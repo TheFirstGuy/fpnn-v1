@@ -162,7 +162,7 @@ public class Main {
     public static class SerialWrite implements Runnable {
 //        Send Data
         OutputStream out;
-        char[] buffer = new char[2];
+        char[] buffer = new char[1];
         int j = 0;
 
         public SerialWrite(OutputStream out ) {
@@ -180,16 +180,16 @@ public class Main {
                     System.out.println(word);
                     for (int i = 0; i < word.length(); i++) {
                         char c = word.charAt(i);
-                        if (cnt < 2) {
+                        if (cnt < 1) {
                             this.out.write(c);
                         }
                         else {
-                            if (j < 2) {
+                            if (j < 1) {
                                 buffer[j] = c;
                                 j++;
                             }
                             else {
-                                for (int k = 0; k < 2; k++) {
+                                for (int k = 0; k < 1; k++) {
                                     this.out.write(buffer[k]);
                                     j = 0;
                                     cnt = 0;
