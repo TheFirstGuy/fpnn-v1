@@ -1,0 +1,28 @@
+force -freeze sim:/xor_net/clk 1 0, 0 {20000 ps} -r 40ns
+run 5ns
+force -freeze sim:/xor_net/reset 1 0
+force -freeze sim:/xor_net/uart_in1 20'h0 0
+force -freeze sim:/xor_net/u_fwd_pred1 0 0
+force -freeze sim:/xor_net/uart_in2 20'h00000 0
+force -freeze sim:/xor_net/u_fwd_pred2 0 0
+force -freeze sim:/xor_net/uart_cval 20'h00000 0
+force -freeze sim:/xor_net/io_val 0 0
+run 35ns
+run 4000ns
+run 5ns
+force -freeze sim:/xor_net/reset 0 0
+run 35ns
+run 40ns
+run 5ns
+force -freeze sim:/xor_net/uart_in1 20'h10000 0
+force -freeze sim:/xor_net/u_fwd_pred1 1 0
+force -freeze sim:/xor_net/uart_in2 20'hF0000 0
+force -freeze sim:/xor_net/u_fwd_pred2 1 0
+force -freeze sim:/xor_net/uart_cval 20'h10000 0
+force -freeze sim:/xor_net/io_val 1 0
+run 35ns
+run 400ns
+run 400ns
+run 400ns
+
+
