@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> Reading design: DISPLAY_UNIT.prj
 
@@ -99,12 +99,69 @@ DSP48 Utilization Ratio            : 100
 Auto BRAM Packing                  : NO
 Slice Utilization Ratio Delta      : 5
 
+---- Other Options
+Cores Search Directories           : {"../.."  }
+
 =========================================================================
 
 
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\fixedpointmult.vhd" into library work
+Parsing entity <fixedpointmult>.
+Parsing architecture <fixedpointmult_a> of entity <fixedpointmult>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\d_reg.vhd" into library work
+Parsing entity <d_reg>.
+Parsing architecture <Behavioral> of entity <d_reg>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\Selector.vhd" into library work
+Parsing entity <SELECTOR>.
+Parsing architecture <Behavioral> of entity <selector>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\oneminusx.vhd" into library work
+Parsing entity <oneminusx>.
+Parsing architecture <Behavioral> of entity <oneminusx>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\MULT.vhd" into library work
+Parsing entity <MULT>.
+Parsing architecture <Behavioral> of entity <mult>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\COEFFS.vhd" into library work
+Parsing entity <COEFFS>.
+Parsing architecture <Behavioral> of entity <coeffs>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\CNT.vhd" into library work
+Parsing entity <CNT>.
+Parsing architecture <Behavioral> of entity <cnt>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\adder.vhd" into library work
+Parsing entity <adder>.
+Parsing architecture <Behavioral> of entity <adder>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd" into library work
+Parsing entity <ACC_W>.
+Parsing architecture <Behavioral> of entity <acc_w>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\acc_f.vhd" into library work
+Parsing entity <acc_f>.
+Parsing architecture <Behavioral> of entity <acc_f>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\acc_b.vhd" into library work
+Parsing entity <acc_b>.
+Parsing architecture <Behavioral> of entity <acc_b>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd" into library work
+Parsing entity <link_skeleton>.
+Parsing architecture <Behavioral> of entity <link_skeleton>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" into library work
+Parsing entity <activator_skeleton>.
+Parsing architecture <Behavioral> of entity <activator_skeleton>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\neuron.vhd" into library work
+Parsing entity <neuron>.
+Parsing architecture <Behavioral> of entity <neuron>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\err.vhd" into library work
+Parsing entity <err>.
+Parsing architecture <Behavioral> of entity <err>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\corner_neuron.vhd" into library work
+Parsing entity <corner_neuron>.
+Parsing architecture <Behavioral> of entity <corner_neuron>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\control_unit.vhd" into library work
+Parsing entity <control_unit>.
+Parsing architecture <Behavioral> of entity <control_unit>.
+Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" into library work
+Parsing entity <xor_net>.
+Parsing architecture <Behavioral> of entity <xor_net>.
 Parsing VHDL file "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\RS232RefComp.vhd" into library work
 Parsing entity <Rs232RefComp>.
 Parsing architecture <Behavioral> of entity <rs232refcomp>.
@@ -129,30 +186,127 @@ Parsing architecture <behavior> of entity <display_unit>.
 =========================================================================
 
 Elaborating entity <DISPLAY_UNIT> (architecture <behavior>) with generics from library <work>.
-WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 126: Using initial value '1' for rosel since it is never assigned
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 144: Using initial value '1' for rosel since it is never assigned
 
 Elaborating entity <Rs232RefComp> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <xor_net> (architecture <Behavioral>) with generics from library <work>.
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" Line 311: Using initial value '0' for f_init since it is never assigned
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" Line 333: Using initial value '0' for ground since it is never assigned
+
+Elaborating entity <control_unit> (architecture <Behavioral>) from library <work>.
+WARNING:HDLCompiler:1127 - "C:\Users\Steyr\Documents\FPNN\control_unit.vhd" Line 61: Assignment to cnt ignored, since the identifier is never used
+
+Elaborating entity <err> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd" Line 156: Using initial value "0001" for rp_pred since it is never assigned
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd" Line 157: Using initial value "0011" for rn_succ since it is never assigned
+WARNING:HDLCompiler:1127 - "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd" Line 201: Assignment to acc_f_rst ignored, since the identifier is never used
+
+Elaborating entity <MULT> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <fixedpointmult> (architecture <fixedpointmult_a>) from library <work>.
+
+Elaborating entity <acc_f> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <SELECTOR> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <d_reg> (architecture <Behavioral>) from library <work>.
+INFO:HDLCompiler:679 - "C:\Users\Steyr\Documents\FPNN\Selector.vhd" Line 65. Case statement is complete. others clause is never selected
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <corner_neuron> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <activator_skeleton> (architecture <Behavioral>) with generics from library <work>.
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" Line 186: Using initial value "0011" for rp_pred since it is never assigned
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" Line 187: Using initial value "0001" for sn_succ since it is never assigned
+
+Elaborating entity <oneminusx> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <acc_b> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <COEFFS> (architecture <Behavioral>) from library <work>.
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\COEFFS.vhd" Line 56: Using initial value "00011110101110011010" for max since it is never assigned
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\COEFFS.vhd" Line 57: Using initial value "11100001010001100110" for min since it is never assigned
+WARNING:HDLCompiler:871 - "C:\Users\Steyr\Documents\FPNN\COEFFS.vhd" Line 58: Using initial value "00000000000000000000" for zero since it is never assigned
+
+Elaborating entity <CNT> (architecture <Behavioral>) from library <work>.
+
+Elaborating entity <adder> (architecture <Behavioral>) from library <work>.
+WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" Line 451: maxmin should be on the sensitivity list of the process
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <corner_neuron> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <activator_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <neuron> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <activator_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <link_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <activator_skeleton> (architecture <Behavioral>) with generics from library <work>.
+
+Elaborating entity <ACC_W> (architecture <Behavioral>) with generics from library <work>.
 
 Elaborating entity <Circuit17> (architecture <Behavioral>) from library <work>.
 WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\Circuit17.vhd" Line 61: g6 should be on the sensitivity list of the process
 WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\Circuit17.vhd" Line 62: g23t should be on the sensitivity list of the process
 WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\Circuit17.vhd" Line 63: g6 should be on the sensitivity list of the process
 INFO:HDLCompiler:679 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\Circuit17.vhd" Line 63. Case statement is complete. others clause is never selected
-WARNING:HDLCompiler:1127 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 241: Assignment to count1 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 262: Assignment to count1 ignored, since the identifier is never used
 
 Elaborating entity <ascii_hex> (architecture <Behavioral>) from library <work>.
 WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\ascii_hex.vhd" Line 46: ascii should be on the sensitivity list of the process
-WARNING:HDLCompiler:1127 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 277: Assignment to rst_temp ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 298: Assignment to rst_temp ignored, since the identifier is never used
 
 Elaborating entity <HEX2ASC> (architecture <Behavioral>) from library <work>.
 WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\HEX2ASC.vhd" Line 18: val should be on the sensitivity list of the process
 INFO:HDLCompiler:679 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\HEX2ASC.vhd" Line 35. Case statement is complete. others clause is never selected
-WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 474: gex should be on the sensitivity list of the process
+WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 508: gex should be on the sensitivity list of the process
 
 Elaborating entity <Dec2LED> (architecture <Behavioral>) from library <work>.
 WARNING:HDLCompiler:92 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\hex2LED - Copy.vhd" Line 15: x should be on the sensitivity list of the process
-WARNING:HDLCompiler:634 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 99: Net <dbOutSig2[7]> does not have a driver.
-WARNING:HDLCompiler:634 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 112: Net <ro[63]> does not have a driver.
+WARNING:HDLCompiler:634 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 114: Net <dbOutSig2[7]> does not have a driver.
+WARNING:HDLCompiler:634 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" Line 127: Net <ro[63]> does not have a driver.
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -162,14 +316,14 @@ Synthesizing Unit <DISPLAY_UNIT>.
     Related source file is "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd".
         N = 60
         M = 6
-INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" line 212: Output port <PE> of the instance <UART> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" line 212: Output port <FE> of the instance <UART> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" line 212: Output port <OE> of the instance <UART> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" line 230: Output port <PE> of the instance <UART> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" line 230: Output port <FE> of the instance <UART> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\des_decrypt_wit_out - Copy.vhd" line 230: Output port <OE> of the instance <UART> is unconnected or connected to loadless signal.
 WARNING:Xst:653 - Signal <dbOutSig2> is used but never assigned. This sourceless signal will be automatically connected to value GND.
 WARNING:Xst:653 - Signal <ro<63:40>> is used but never assigned. This sourceless signal will be automatically connected to value GND.
     Found 1-bit register for signal <rdSig>.
     Found 1-bit register for signal <wrSig>.
-    Found 1-bit register for signal <io_rdy>.
+    Found 1-bit register for signal <io_r>.
     Found 4-bit register for signal <count>.
     Found 32-bit register for signal <countR>.
     Found 32-bit register for signal <count_RO_t>.
@@ -180,6 +334,7 @@ WARNING:Xst:653 - Signal <ro<63:40>> is used but never assigned. This sourceless
     Found 60-bit register for signal <tv>.
     Found 32-bit register for signal <count_RO>.
     Found 3-bit register for signal <st_indicator>.
+    Found 60-bit register for signal <packet>.
     Found 1-bit register for signal <CLKM>.
     Found 32-bit register for signal <Z>.
     Found 8-bit register for signal <TMPDGT<0>>.
@@ -219,42 +374,42 @@ WARNING:Xst:653 - Signal <ro<63:40>> is used but never assigned. This sourceless
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 32-bit adder for signal <big_counter[31]_GND_6_o_add_1_OUT> created at line 134.
-    Found 32-bit adder for signal <countR[31]_GND_6_o_add_9_OUT> created at line 236.
-    Found 32-bit adder for signal <count_RO_t[31]_GND_6_o_add_13_OUT> created at line 247.
-    Found 8-bit adder for signal <dummy_counter[7]_GND_6_o_add_35_OUT> created at line 335.
-    Found 6-bit adder for signal <Rflag[5]_GND_6_o_add_41_OUT> created at line 342.
-    Found 4-bit adder for signal <count[3]_GND_6_o_add_81_OUT> created at line 414.
-    Found 32-bit adder for signal <Z[31]_GND_6_o_add_111_OUT> created at line 450.
-    Found 32-bit adder for signal <NAMEA[31]_GND_6_o_add_128_OUT> created at line 499.
-    Found 32-bit adder for signal <NAMEB[31]_GND_6_o_add_132_OUT> created at line 505.
-    Found 32-bit adder for signal <NAMEC[31]_GND_6_o_add_136_OUT> created at line 511.
-    Found 32-bit adder for signal <NAMED[31]_GND_6_o_add_140_OUT> created at line 517.
-    Found 32-bit adder for signal <G[31]_GND_6_o_add_142_OUT> created at line 521.
+    Found 32-bit adder for signal <big_counter[31]_GND_6_o_add_1_OUT> created at line 152.
+    Found 32-bit adder for signal <countR[31]_GND_6_o_add_9_OUT> created at line 257.
+    Found 32-bit adder for signal <count_RO_t[31]_GND_6_o_add_13_OUT> created at line 268.
+    Found 8-bit adder for signal <dummy_counter[7]_GND_6_o_add_35_OUT> created at line 357.
+    Found 6-bit adder for signal <Rflag[5]_GND_6_o_add_41_OUT> created at line 364.
+    Found 4-bit adder for signal <count[3]_GND_6_o_add_81_OUT> created at line 437.
+    Found 32-bit adder for signal <Z[31]_GND_6_o_add_112_OUT> created at line 484.
+    Found 32-bit adder for signal <NAMEA[31]_GND_6_o_add_129_OUT> created at line 533.
+    Found 32-bit adder for signal <NAMEB[31]_GND_6_o_add_133_OUT> created at line 539.
+    Found 32-bit adder for signal <NAMEC[31]_GND_6_o_add_137_OUT> created at line 545.
+    Found 32-bit adder for signal <NAMED[31]_GND_6_o_add_141_OUT> created at line 551.
+    Found 32-bit adder for signal <G[31]_GND_6_o_add_143_OUT> created at line 555.
     Found 16x7-bit Read Only RAM for signal <seg_out>
     Found 8x8-bit Read Only RAM for signal <dis>
-    Found 8-bit 13-to-1 multiplexer for signal <NAMEA[3]_NAME[15][7]_wide_mux_126_OUT> created at line 495.
-    Found 8-bit 13-to-1 multiplexer for signal <NAMEB[3]_NAME[15][7]_wide_mux_130_OUT> created at line 501.
-    Found 8-bit 13-to-1 multiplexer for signal <NAMEC[3]_NAME[15][7]_wide_mux_134_OUT> created at line 507.
-    Found 8-bit 13-to-1 multiplexer for signal <NAMED[3]_NAME[15][7]_wide_mux_138_OUT> created at line 513.
-    Found 1-bit 6-to-1 multiplexer for signal <temps<3>> created at line 142.
-    Found 1-bit 6-to-1 multiplexer for signal <temps<2>> created at line 142.
-    Found 1-bit 6-to-1 multiplexer for signal <temps<1>> created at line 142.
-    Found 1-bit 6-to-1 multiplexer for signal <temps<0>> created at line 142.
-    Found 32-bit comparator greater for signal <countR[31]_GND_6_o_LessThan_9_o> created at line 235
-    Found 8-bit comparator greater for signal <n0029> created at line 314
-    Found 8-bit comparator greater for signal <n0032> created at line 318
-    Found 8-bit comparator greater for signal <GND_6_o_dbOutSig[7]_LessThan_37_o> created at line 336
-    Found 8-bit comparator greater for signal <dbOutSig[7]_GND_6_o_LessThan_38_o> created at line 336
-    Found 8-bit comparator greater for signal <GND_6_o_dbOutSig[7]_LessThan_40_o> created at line 340
-    Found 8-bit comparator greater for signal <dbOutSig[7]_GND_6_o_LessThan_41_o> created at line 340
-    Found 4-bit comparator greater for signal <PWR_6_o_count[3]_LessThan_83_o> created at line 417
+    Found 8-bit 13-to-1 multiplexer for signal <NAMEA[3]_NAME[15][7]_wide_mux_127_OUT> created at line 529.
+    Found 8-bit 13-to-1 multiplexer for signal <NAMEB[3]_NAME[15][7]_wide_mux_131_OUT> created at line 535.
+    Found 8-bit 13-to-1 multiplexer for signal <NAMEC[3]_NAME[15][7]_wide_mux_135_OUT> created at line 541.
+    Found 8-bit 13-to-1 multiplexer for signal <NAMED[3]_NAME[15][7]_wide_mux_139_OUT> created at line 547.
+    Found 1-bit 6-to-1 multiplexer for signal <temps<3>> created at line 160.
+    Found 1-bit 6-to-1 multiplexer for signal <temps<2>> created at line 160.
+    Found 1-bit 6-to-1 multiplexer for signal <temps<1>> created at line 160.
+    Found 1-bit 6-to-1 multiplexer for signal <temps<0>> created at line 160.
+    Found 32-bit comparator greater for signal <countR[31]_GND_6_o_LessThan_9_o> created at line 256
+    Found 8-bit comparator greater for signal <n0029> created at line 335
+    Found 8-bit comparator greater for signal <n0032> created at line 339
+    Found 8-bit comparator greater for signal <GND_6_o_dbOutSig[7]_LessThan_37_o> created at line 358
+    Found 8-bit comparator greater for signal <dbOutSig[7]_GND_6_o_LessThan_38_o> created at line 358
+    Found 8-bit comparator greater for signal <GND_6_o_dbOutSig[7]_LessThan_40_o> created at line 362
+    Found 8-bit comparator greater for signal <dbOutSig[7]_GND_6_o_LessThan_41_o> created at line 362
+    Found 4-bit comparator greater for signal <PWR_6_o_count[3]_LessThan_83_o> created at line 440
     Summary:
 	inferred   2 RAM(s).
 	inferred  12 Adder/Subtractor(s).
-	inferred 453 D-type flip-flop(s).
+	inferred 513 D-type flip-flop(s).
 	inferred   8 Comparator(s).
-	inferred  43 Multiplexer(s).
+	inferred  44 Multiplexer(s).
 	inferred   2 Finite State Machine(s).
 Unit <DISPLAY_UNIT> synthesized.
 
@@ -333,6 +488,581 @@ WARNING:Xst:737 - Found 1-bit latch for signal <TBE>. Latches may be generated f
 	inferred   3 Finite State Machine(s).
 Unit <Rs232RefComp> synthesized.
 
+Synthesizing Unit <xor_net>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\xor_net.vhd".
+        rand1 = "00001000000100100011"
+        rand2 = "11111000000000000000"
+        rand3 = "00000111001000010000"
+        rand4 = "00000011001011110010"
+        rand5 = "00001010101100110010"
+        rand6 = "00001000001111000011"
+        rand7 = "11111111001010010011"
+        rand8 = "11110010001100110010"
+        rand9 = "00000010100100110100"
+        rand10 = "00001111001100100011"
+        rand11 = "11110001000000001001"
+        rand12 = "11110001001001000100"
+        rand13 = "11110001001100101101"
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 339: Output port <bcast_en> of the instance <CU> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 367: Output port <ew_bdata_out> of the instance <Node1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 367: Output port <ea_bdata_out> of the instance <Node1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 367: Output port <ea_out_r> of the instance <Node1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 367: Output port <ew_out_r> of the instance <Node1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 381: Output port <ew_bdata_out> of the instance <Node2> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 381: Output port <ea_bdata_out> of the instance <Node2> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 381: Output port <ea_out_r> of the instance <Node2> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 381: Output port <ew_out_r> of the instance <Node2> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 396: Output port <sw_bdata_out> of the instance <Node3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 396: Output port <sa_bdata_out> of the instance <Node3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 396: Output port <se_bdata_out> of the instance <Node3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 396: Output port <sw_out_r> of the instance <Node3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 396: Output port <sa_out_r> of the instance <Node3> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\xor_net.vhd" line 396: Output port <se_out_r> of the instance <Node3> is unconnected or connected to loadless signal.
+    Summary:
+	no macro.
+Unit <xor_net> synthesized.
+
+Synthesizing Unit <control_unit>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\control_unit.vhd".
+    Found 3-bit register for signal <state>.
+    Found 1-bit register for signal <bcast>.
+    Found 1-bit register for signal <io>.
+    Found 1-bit register for signal <f>.
+    Found 1-bit register for signal <b>.
+    Found 1-bit register for signal <u>.
+    Found 1-bit register for signal <sf>.
+INFO:Xst:1799 - State st_bcast is never reached in FSM <state>.
+INFO:Xst:1799 - State st_ff is never reached in FSM <state>.
+    Found finite state machine <FSM_5> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 8                                              |
+    | Transitions        | 9                                              |
+    | Inputs             | 3                                              |
+    | Outputs            | 8                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | rst (positive)                                 |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | st_rst                                         |
+    | Power Up State     | st_rst                                         |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Summary:
+	inferred   5 D-type flip-flop(s).
+	inferred   1 Finite State Machine(s).
+Unit <control_unit> synthesized.
+
+Synthesizing Unit <err>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\err.vhd".
+    Found 1-bit register for signal <err_valid>.
+    Found 20-bit register for signal <err_val>.
+    Found 20-bit subtractor for signal <c_val[19]_rslt[19]_sub_1_OUT<19:0>> created at line 62.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  21 D-type flip-flop(s).
+Unit <err> synthesized.
+
+Synthesizing Unit <link_skeleton_1>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "00001000000100100011"
+        pred = "0001"
+        succ = "0011"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Found 20-bit 3-to-1 multiplexer for signal <acc_b_in> created at line 253.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_1> synthesized.
+
+Synthesizing Unit <MULT>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\MULT.vhd".
+    Found 1-bit register for signal <ready>.
+    Summary:
+	inferred   1 D-type flip-flop(s).
+Unit <MULT> synthesized.
+
+Synthesizing Unit <acc_f>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\acc_f.vhd".
+    Found 20-bit register for signal <cnt>.
+    Found 20-bit adder for signal <cnt[19]_f_in[19]_add_1_OUT> created at line 56.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+	inferred   5 Multiplexer(s).
+Unit <acc_f> synthesized.
+
+Synthesizing Unit <ACC_W_1>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "00001000000100100011"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_1> synthesized.
+
+Synthesizing Unit <SELECTOR>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\Selector.vhd".
+    Found 4-bit register for signal <last_d>.
+    Found 1-bit register for signal <en_a>.
+    Found 1-bit register for signal <en_m>.
+    Found 16x2-bit Read Only RAM for signal <sel>
+    Summary:
+	inferred   1 RAM(s).
+	inferred   6 D-type flip-flop(s).
+Unit <SELECTOR> synthesized.
+
+Synthesizing Unit <d_reg>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\d_reg.vhd".
+    Found 4-bit register for signal <output>.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+Unit <d_reg> synthesized.
+
+Synthesizing Unit <link_skeleton_2>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "11111000000000000000"
+        pred = "0001"
+        succ = "0011"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Found 20-bit 3-to-1 multiplexer for signal <acc_b_in> created at line 253.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_2> synthesized.
+
+Synthesizing Unit <ACC_W_2>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "11111000000000000000"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_2> synthesized.
+
+Synthesizing Unit <corner_neuron_1>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\corner_neuron.vhd".
+        rand1 = "00000111001000010000"
+        rand2 = "00000011001011110010"
+        rand3 = "00001010101100110010"
+        pred = "0001"
+        succ = "0011"
+    Summary:
+	no macro.
+Unit <corner_neuron_1> synthesized.
+
+Synthesizing Unit <activator_skeleton_1>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd".
+        rand = "00000111001000010000"
+        pred = "0011"
+        succ = "0001"
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 264: Output port <ready> of the instance <U1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 281: Output port <res_m> of the instance <U9> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 283: Output port <res_m> of the instance <U10> is unconnected or connected to loadless signal.
+    Found 4-bit register for signal <state>.
+INFO:Xst:1799 - State fa3 is never reached in FSM <state>.
+INFO:Xst:1799 - State th0 is never reached in FSM <state>.
+INFO:Xst:1799 - State th1 is never reached in FSM <state>.
+    Found finite state machine <FSM_6> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 15                                             |
+    | Transitions        | 20                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 16                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | init                                           |
+    | Power Up State     | init                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 20-bit 3-to-1 multiplexer for signal <acc_f_in> created at line 609.
+    Summary:
+	inferred   7 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <activator_skeleton_1> synthesized.
+
+Synthesizing Unit <oneminusx>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\oneminusx.vhd".
+    Found 20-bit subtractor for signal <Output> created at line 35.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+Unit <oneminusx> synthesized.
+
+Synthesizing Unit <ACC_W_3>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "00000111001000010000"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_3> synthesized.
+
+Synthesizing Unit <acc_b>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\acc_b.vhd".
+    Found 20-bit register for signal <cnt>.
+    Found 20-bit adder for signal <cnt[19]_b_in[19]_add_1_OUT> created at line 55.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <acc_b> synthesized.
+
+Synthesizing Unit <COEFFS>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\COEFFS.vhd".
+    Found 16x1-bit Read Only RAM for signal <maxmin>
+    Found 20-bit comparator greater for signal <x_addr_0> created at line 77
+    Found 20-bit comparator greater for signal <x_addr_1> created at line 78
+    Found 20-bit comparator greater for signal <x_addr_2> created at line 79
+    Found 20-bit comparator greater for signal <x_addr_3> created at line 80
+    Summary:
+	inferred   1 RAM(s).
+	inferred   4 Comparator(s).
+	inferred   6 Multiplexer(s).
+Unit <COEFFS> synthesized.
+
+Synthesizing Unit <CNT>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\CNT.vhd".
+    Found 2-bit register for signal <cnt>.
+    Found 1-bit register for signal <f>.
+    Found 2-bit subtractor for signal <GND_203_o_GND_203_o_sub_2_OUT<1:0>> created at line 1308.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   3 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <CNT> synthesized.
+
+Synthesizing Unit <adder>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\adder.vhd".
+    Found 20-bit register for signal <sum>.
+    Found 20-bit adder for signal <a[19]_b[19]_add_0_OUT> created at line 57.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+	inferred   2 Multiplexer(s).
+Unit <adder> synthesized.
+
+Synthesizing Unit <link_skeleton_3>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "00000011001011110010"
+        pred = "0010"
+        succ = "0011"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Found 20-bit 3-to-1 multiplexer for signal <acc_b_in> created at line 253.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_3> synthesized.
+
+Synthesizing Unit <ACC_W_4>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "00000011001011110010"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_4> synthesized.
+
+Synthesizing Unit <link_skeleton_4>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "00001010101100110010"
+        pred = "0001"
+        succ = "0001"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_4> synthesized.
+
+Synthesizing Unit <ACC_W_5>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "00001010101100110010"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_5> synthesized.
+
+Synthesizing Unit <corner_neuron_2>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\corner_neuron.vhd".
+        rand1 = "00001000001111000011"
+        rand2 = "11111111001010010011"
+        rand3 = "11110010001100110010"
+        pred = "0001"
+        succ = "0011"
+    Summary:
+	no macro.
+Unit <corner_neuron_2> synthesized.
+
+Synthesizing Unit <activator_skeleton_2>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd".
+        rand = "00001000001111000011"
+        pred = "0011"
+        succ = "0001"
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 264: Output port <ready> of the instance <U1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 281: Output port <res_m> of the instance <U9> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 283: Output port <res_m> of the instance <U10> is unconnected or connected to loadless signal.
+    Found 4-bit register for signal <state>.
+INFO:Xst:1799 - State fa3 is never reached in FSM <state>.
+INFO:Xst:1799 - State th0 is never reached in FSM <state>.
+INFO:Xst:1799 - State th1 is never reached in FSM <state>.
+    Found finite state machine <FSM_7> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 15                                             |
+    | Transitions        | 20                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 16                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | init                                           |
+    | Power Up State     | init                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 20-bit 3-to-1 multiplexer for signal <acc_f_in> created at line 609.
+    Summary:
+	inferred   7 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <activator_skeleton_2> synthesized.
+
+Synthesizing Unit <ACC_W_6>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "00001000001111000011"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_6> synthesized.
+
+Synthesizing Unit <link_skeleton_5>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "11111111001010010011"
+        pred = "0010"
+        succ = "0011"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Found 20-bit 3-to-1 multiplexer for signal <acc_b_in> created at line 253.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_5> synthesized.
+
+Synthesizing Unit <ACC_W_7>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "11111111001010010011"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_7> synthesized.
+
+Synthesizing Unit <link_skeleton_6>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "11110010001100110010"
+        pred = "0001"
+        succ = "0001"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_6> synthesized.
+
+Synthesizing Unit <ACC_W_8>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "11110010001100110010"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_8> synthesized.
+
+Synthesizing Unit <neuron>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\neuron.vhd".
+        rand1 = "00000010100100110100"
+        rand2 = "00001111001100100011"
+        rand3 = "11110001000000001001"
+        rand4 = "11110001001001000100"
+        north_conn = "0001"
+        west_conn = "0011"
+        east_conn = "0011"
+        south_conn = "0000"
+    Summary:
+	no macro.
+Unit <neuron> synthesized.
+
+Synthesizing Unit <activator_skeleton_3>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd".
+        rand = "00000010100100110100"
+        pred = "0101"
+        succ = "0001"
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 264: Output port <ready> of the instance <U1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 281: Output port <res_m> of the instance <U9> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 283: Output port <res_m> of the instance <U10> is unconnected or connected to loadless signal.
+    Found 4-bit register for signal <state>.
+INFO:Xst:1799 - State fa3 is never reached in FSM <state>.
+INFO:Xst:1799 - State th0 is never reached in FSM <state>.
+INFO:Xst:1799 - State th1 is never reached in FSM <state>.
+    Found finite state machine <FSM_8> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 15                                             |
+    | Transitions        | 20                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 16                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | init                                           |
+    | Power Up State     | init                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 20-bit 4-to-1 multiplexer for signal <acc_f_in> created at line 609.
+    Summary:
+	inferred   7 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <activator_skeleton_3> synthesized.
+
+Synthesizing Unit <ACC_W_9>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "00000010100100110100"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_9> synthesized.
+
+Synthesizing Unit <link_skeleton_7>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "00001111001100100011"
+        pred = "0001"
+        succ = "0001"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_7> synthesized.
+
+Synthesizing Unit <ACC_W_10>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "00001111001100100011"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_10> synthesized.
+
+Synthesizing Unit <link_skeleton_8>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "11110001000000001001"
+        pred = "0001"
+        succ = "0001"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_8> synthesized.
+
+Synthesizing Unit <ACC_W_11>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "11110001000000001001"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_11> synthesized.
+
+Synthesizing Unit <link_skeleton_9>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\link_skeleton.vhd".
+        rand = "11110001001001000100"
+        pred = "0001"
+        succ = "0001"
+    Found 1-bit register for signal <sel_fwd_en_m_reg>.
+    Found 1-bit register for signal <sel_bck_en_m_reg>.
+    Found 1-bit register for signal <delay_foward>.
+    Summary:
+	inferred   3 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
+Unit <link_skeleton_9> synthesized.
+
+Synthesizing Unit <ACC_W_12>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "11110001001001000100"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_12> synthesized.
+
+Synthesizing Unit <activator_skeleton_4>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd".
+        rand = "11110001001100101101"
+        pred = "0111"
+        succ = "0001"
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 264: Output port <ready> of the instance <U1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 281: Output port <res_m> of the instance <U9> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Steyr\Documents\FPNN\activator_skeleton.vhd" line 283: Output port <res_m> of the instance <U10> is unconnected or connected to loadless signal.
+    Found 4-bit register for signal <state>.
+INFO:Xst:1799 - State fa3 is never reached in FSM <state>.
+INFO:Xst:1799 - State th0 is never reached in FSM <state>.
+INFO:Xst:1799 - State th1 is never reached in FSM <state>.
+    Found finite state machine <FSM_9> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 15                                             |
+    | Transitions        | 20                                             |
+    | Inputs             | 6                                              |
+    | Outputs            | 16                                             |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | init                                           |
+    | Power Up State     | init                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 20-bit 4-to-1 multiplexer for signal <acc_f_in> created at line 609.
+    Summary:
+	inferred   7 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <activator_skeleton_4> synthesized.
+
+Synthesizing Unit <ACC_W_13>.
+    Related source file is "C:\Users\Steyr\Documents\FPNN\ACC_W.vhd".
+        rand = "11110001001100101101"
+    Found 20-bit register for signal <weight_reg>.
+    Found 20-bit adder for signal <weight_reg[19]_mult_in[19]_add_0_OUT> created at line 49.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+Unit <ACC_W_13> synthesized.
+
 Synthesizing Unit <Circuit17>.
     Related source file is "C:\Users\Steyr\Documents\FPNN\C17UART+Trojan\Vin\Circuit17.vhd".
     Set property "INIT = 7" for instance <G10_lut>.
@@ -385,46 +1115,59 @@ Unit <Dec2LED> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# RAMs                                                 : 15
+# RAMs                                                 : 45
+ 16x1-bit single-port Read Only RAM                    : 4
+ 16x2-bit single-port Read Only RAM                    : 26
  16x7-bit single-port Read Only RAM                    : 1
  16x8-bit single-port Read Only RAM                    : 13
  8x8-bit single-port Read Only RAM                     : 1
-# Adders/Subtractors                                   : 17
+# Adders/Subtractors                                   : 69
+ 2-bit subtractor                                      : 4
+ 20-bit adder                                          : 43
+ 20-bit subtractor                                     : 5
  32-bit adder                                          : 9
  4-bit adder                                           : 5
  6-bit adder                                           : 1
  8-bit adder                                           : 1
  9-bit adder                                           : 1
-# Registers                                            : 38
- 1-bit register                                        : 9
+# Registers                                            : 250
+ 1-bit register                                        : 111
  10-bit register                                       : 1
  11-bit register                                       : 1
+ 2-bit register                                        : 4
+ 20-bit register                                       : 44
  3-bit register                                        : 1
  32-bit register                                       : 10
- 4-bit register                                        : 5
+ 4-bit register                                        : 66
  6-bit register                                        : 1
- 60-bit register                                       : 1
+ 60-bit register                                       : 2
  8-bit register                                        : 8
  9-bit register                                        : 1
 # Latches                                              : 1
  1-bit latch                                           : 1
-# Comparators                                          : 8
+# Comparators                                          : 24
+ 20-bit comparator greater                             : 16
  32-bit comparator greater                             : 1
  4-bit comparator greater                              : 1
  8-bit comparator greater                              : 6
-# Multiplexers                                         : 48
- 1-bit 2-to-1 multiplexer                              : 3
+# Multiplexers                                         : 263
+ 1-bit 2-to-1 multiplexer                              : 11
  1-bit 4-to-1 multiplexer                              : 1
  1-bit 6-to-1 multiplexer                              : 4
  11-bit 2-to-1 multiplexer                             : 1
+ 2-bit 2-to-1 multiplexer                              : 4
+ 20-bit 2-to-1 multiplexer                             : 194
+ 20-bit 3-to-1 multiplexer                             : 6
+ 20-bit 4-to-1 multiplexer                             : 2
  32-bit 2-to-1 multiplexer                             : 1
  4-bit 2-to-1 multiplexer                              : 17
  6-bit 2-to-1 multiplexer                              : 1
- 60-bit 2-to-1 multiplexer                             : 2
+ 60-bit 2-to-1 multiplexer                             : 3
  8-bit 13-to-1 multiplexer                             : 4
  8-bit 2-to-1 multiplexer                              : 14
-# FSMs                                                 : 5
-# Xors                                                 : 2
+# FSMs                                                 : 10
+# Xors                                                 : 106
+ 1-bit xor2                                            : 104
  1-bit xor8                                            : 1
  1-bit xor9                                            : 1
 
@@ -434,6 +1177,102 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+Reading core <../../fixedpointmult.ngc>.
+Reading Secure Unit <blk00000001>.
+Loading core <fixedpointmult> for timing and area information for instance <U1>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_1> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_2> of sequential type is unconnected in block <update_regudr>.
+WARNING:Xst:2677 - Node <output_3> of sequential type is unconnected in block <update_regudr>.
+
+Synthesizing (advanced) Unit <ACC_W_1>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_1> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_10>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_10> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_11>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_11> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_12>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_12> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_13>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_13> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_2>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_2> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_3>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_3> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_4>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_4> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_5>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_5> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_6>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_6> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_7>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_7> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_8>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_8> synthesized (advanced).
+
+Synthesizing (advanced) Unit <ACC_W_9>.
+The following registers are absorbed into accumulator <weight_reg>: 1 register on signal <weight_reg>.
+Unit <ACC_W_9> synthesized (advanced).
+
+Synthesizing (advanced) Unit <COEFFS>.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_maxmin> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16-word x 1-bit                     |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <(x_addr_0,x_addr_1,x_addr_2,x_addr_3)> |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <maxmin>        |          |
+    -----------------------------------------------------------------------
+Unit <COEFFS> synthesized (advanced).
 
 Synthesizing (advanced) Unit <DISPLAY_UNIT>.
 The following registers are absorbed into counter <big_counter>: 1 register on signal <big_counter>.
@@ -443,10 +1282,10 @@ The following registers are absorbed into counter <countR>: 1 register on signal
 The following registers are absorbed into counter <dummy_counter>: 1 register on signal <dummy_counter>.
 The following registers are absorbed into counter <Rflag>: 1 register on signal <Rflag>.
 The following registers are absorbed into counter <G>: 1 register on signal <G>.
-The following registers are absorbed into counter <NAMEA>: 1 register on signal <NAMEA>.
 The following registers are absorbed into counter <NAMEB>: 1 register on signal <NAMEB>.
-The following registers are absorbed into counter <NAMED>: 1 register on signal <NAMED>.
+The following registers are absorbed into counter <NAMEA>: 1 register on signal <NAMEA>.
 The following registers are absorbed into counter <NAMEC>: 1 register on signal <NAMEC>.
+The following registers are absorbed into counter <NAMED>: 1 register on signal <NAMED>.
 The following registers are absorbed into counter <count_RO_t>: 1 register on signal <count_RO_t>.
 INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_dis> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
     -----------------------------------------------------------------------
@@ -487,7 +1326,7 @@ INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_Y> will be implemented on LUTs eithe
 Unit <Dec2LED> synthesized (advanced).
 
 Synthesizing (advanced) Unit <HEX2ASC>.
-INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_Y> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+INFO:Xst:3231 - The small RAM <Mram_Y> will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
     -----------------------------------------------------------------------
     | ram_type           | Distributed                         |          |
     -----------------------------------------------------------------------
@@ -508,37 +1347,69 @@ The following registers are absorbed into counter <tfCtr>: 1 register on signal 
 The following registers are absorbed into counter <dataCtr>: 1 register on signal <dataCtr>.
 Unit <Rs232RefComp> synthesized (advanced).
 
+Synthesizing (advanced) Unit <SELECTOR>.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_sel> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16-word x 2-bit                     |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <selected>      |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <sel>           |          |
+    -----------------------------------------------------------------------
+Unit <SELECTOR> synthesized (advanced).
+
+Synthesizing (advanced) Unit <acc_b>.
+The following registers are absorbed into accumulator <cnt>: 1 register on signal <cnt>.
+Unit <acc_b> synthesized (advanced).
+
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# RAMs                                                 : 15
+# RAMs                                                 : 45
+ 16x1-bit single-port distributed Read Only RAM        : 4
+ 16x2-bit single-port distributed Read Only RAM        : 26
  16x7-bit single-port distributed Read Only RAM        : 1
  16x8-bit single-port distributed Read Only RAM        : 13
  8x8-bit single-port distributed Read Only RAM         : 1
+# Adders/Subtractors                                   : 35
+ 2-bit subtractor                                      : 4
+ 20-bit adder                                          : 26
+ 20-bit subtractor                                     : 5
 # Counters                                             : 17
  32-bit up counter                                     : 9
  4-bit up counter                                      : 5
  6-bit up counter                                      : 1
  8-bit up counter                                      : 1
  9-bit up counter                                      : 1
-# Registers                                            : 181
- Flip-Flops                                            : 181
-# Comparators                                          : 8
+# Accumulators                                         : 17
+ 20-bit up accumulator                                 : 13
+ 20-bit up loadable accumulator                        : 4
+# Registers                                            : 1135
+ Flip-Flops                                            : 1135
+# Comparators                                          : 24
+ 20-bit comparator greater                             : 16
  32-bit comparator greater                             : 1
  4-bit comparator greater                              : 1
  8-bit comparator greater                              : 6
-# Multiplexers                                         : 103
- 1-bit 2-to-1 multiplexer                              : 62
+# Multiplexers                                         : 251
+ 1-bit 2-to-1 multiplexer                              : 10
  1-bit 4-to-1 multiplexer                              : 1
  1-bit 6-to-1 multiplexer                              : 4
  11-bit 2-to-1 multiplexer                             : 1
+ 20-bit 2-to-1 multiplexer                             : 190
+ 20-bit 3-to-1 multiplexer                             : 6
+ 20-bit 4-to-1 multiplexer                             : 2
  4-bit 2-to-1 multiplexer                              : 16
- 60-bit 2-to-1 multiplexer                             : 1
+ 60-bit 2-to-1 multiplexer                             : 3
  8-bit 13-to-1 multiplexer                             : 4
  8-bit 2-to-1 multiplexer                              : 14
-# FSMs                                                 : 5
-# Xors                                                 : 2
+# FSMs                                                 : 10
+# Xors                                                 : 106
+ 1-bit xor2                                            : 104
  1-bit xor8                                            : 1
  1-bit xor9                                            : 1
 
@@ -547,6 +1418,28 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_1> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_2> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_3> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_4> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_5> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_6> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_7> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_9> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+INFO:Xst:2261 - The FF/Latch <update_regudr/output_3> in Unit <link_skeleton_8> is equivalent to the following 2 FFs/Latches, which will be removed : <update_regudr/output_2> <update_regudr/output_1> 
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_1>.
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_2>.
+WARNING:Xst:2677 - Node <U1/ready> of sequential type is unconnected in block <activator_skeleton_1>.
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_3>.
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_4>.
+WARNING:Xst:2677 - Node <U1/ready> of sequential type is unconnected in block <activator_skeleton_2>.
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_5>.
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_6>.
+WARNING:Xst:2677 - Node <U1/ready> of sequential type is unconnected in block <activator_skeleton_3>.
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_7>.
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_9>.
+WARNING:Xst:2677 - Node <update_regudr/output_3> of sequential type is unconnected in block <link_skeleton_8>.
+WARNING:Xst:2677 - Node <U1/ready> of sequential type is unconnected in block <activator_skeleton_4>.
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <FSM_1> on signal <TEMP[1:4]> with user encoding.
 -------------------
@@ -602,11 +1495,109 @@ Optimizing FSM <UART/FSM_3> on signal <stbeCur[1:2]> with gray encoding.
  stbewaitload  | 11
  stbewaitwrite | 10
 ---------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <X1/CU/FSM_5> on signal <state[1:3]> with gray encoding.
+----------------------
+ State    | Encoding
+----------------------
+ st_rst   | 000
+ st_bcast | unreached
+ st_io    | 001
+ st_f     | 011
+ st_b     | 010
+ st_u     | 110
+ st_u2    | 111
+ st_ff    | unreached
+----------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <X1/Node1/ACT/FSM_6> on signal <state[1:12]> with one-hot encoding.
+----------------------------
+ State      | Encoding
+----------------------------
+ init       | 000000000001
+ accumulate | 000000000010
+ add        | 000000000100
+ fa0        | 000000001000
+ fa1        | 000000010000
+ fa1p       | 000000100000
+ fa2        | 000001000000
+ fa3        | unreached
+ th0        | unreached
+ th1        | unreached
+ bp0        | 000010000000
+ bp1        | 000100000000
+ bp2        | 001000000000
+ bp3        | 010000000000
+ bp4        | 100000000000
+----------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <X1/Node2/ACT/FSM_7> on signal <state[1:12]> with one-hot encoding.
+----------------------------
+ State      | Encoding
+----------------------------
+ init       | 000000000001
+ accumulate | 000000000010
+ add        | 000000000100
+ fa0        | 000000001000
+ fa1        | 000000010000
+ fa1p       | 000000100000
+ fa2        | 000001000000
+ fa3        | unreached
+ th0        | unreached
+ th1        | unreached
+ bp0        | 000010000000
+ bp1        | 000100000000
+ bp2        | 001000000000
+ bp3        | 010000000000
+ bp4        | 100000000000
+----------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <X1/Node3/ACT/FSM_8> on signal <state[1:12]> with one-hot encoding.
+----------------------------
+ State      | Encoding
+----------------------------
+ init       | 000000000001
+ accumulate | 000000000010
+ add        | 000000000100
+ fa0        | 000000001000
+ fa1        | 000000010000
+ fa1p       | 000000100000
+ fa2        | 000001000000
+ fa3        | unreached
+ th0        | unreached
+ th1        | unreached
+ bp0        | 000010000000
+ bp1        | 000100000000
+ bp2        | 001000000000
+ bp3        | 010000000000
+ bp4        | 100000000000
+----------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <X1/Node4/FSM_9> on signal <state[1:12]> with one-hot encoding.
+----------------------------
+ State      | Encoding
+----------------------------
+ init       | 000000000001
+ accumulate | 000000000010
+ add        | 000000000100
+ fa0        | 000000001000
+ fa1        | 000000010000
+ fa1p       | 000000100000
+ fa2        | 000001000000
+ fa3        | unreached
+ th0        | unreached
+ th1        | unreached
+ bp0        | 000010000000
+ bp1        | 000100000000
+ bp2        | 001000000000
+ bp3        | 010000000000
+ bp4        | 100000000000
+----------------------------
 WARNING:Xst:1293 - FF/Latch <tfSReg_10> has a constant value of 1 in block <Rs232RefComp>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <TMPDGT_0_7> (without init value) has a constant value of 1 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <TMPDGT_3_7> (without init value) has a constant value of 1 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <TMPDGT_1_7> (without init value) has a constant value of 1 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <TMPDGT_0_7> (without init value) has a constant value of 1 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <TMPDGT_2_7> (without init value) has a constant value of 1 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <TMPDGT_3_7> (without init value) has a constant value of 1 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <big_counter_14> of sequential type is unconnected in block <DISPLAY_UNIT>.
 WARNING:Xst:2677 - Node <big_counter_15> of sequential type is unconnected in block <DISPLAY_UNIT>.
 WARNING:Xst:2677 - Node <big_counter_16> of sequential type is unconnected in block <DISPLAY_UNIT>.
@@ -628,92 +1619,298 @@ WARNING:Xst:2677 - Node <big_counter_31> of sequential type is unconnected in bl
 INFO:Xst:2261 - The FF/Latch <rdSig> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <wrSig> 
 WARNING:Xst:1426 - The value init of the FF/Latch DIGIT_7 hinder the constant cleaning in the block DISPLAY_UNIT.
    You should achieve better results by setting this init to 1.
-WARNING:Xst:2170 - Unit DISPLAY_UNIT : the following signal(s) form a combinatorial loop: RO2/G19, RO2/G6t, RO2/G11, RO2/G23t.
+WARNING:Xst:2170 - Unit DISPLAY_UNIT : the following signal(s) form a combinatorial loop: RO2/G19, RO2/G23t, RO2/G6t, RO2/G11.
+
+Optimizing unit <err> ...
 
 Optimizing unit <DISPLAY_UNIT> ...
 
 Optimizing unit <Rs232RefComp> ...
+
+Optimizing unit <xor_net> ...
+
+Optimizing unit <link_skeleton_1> ...
+
+Optimizing unit <SELECTOR> ...
+
+Optimizing unit <acc_f> ...
+
+Optimizing unit <link_skeleton_2> ...
+
+Optimizing unit <control_unit> ...
+
+Optimizing unit <activator_skeleton_1> ...
+
+Optimizing unit <link_skeleton_3> ...
+
+Optimizing unit <link_skeleton_4> ...
+
+Optimizing unit <activator_skeleton_2> ...
+
+Optimizing unit <link_skeleton_5> ...
+
+Optimizing unit <link_skeleton_6> ...
+
+Optimizing unit <activator_skeleton_3> ...
+
+Optimizing unit <link_skeleton_7> ...
+
+Optimizing unit <link_skeleton_9> ...
+
+Optimizing unit <link_skeleton_8> ...
+
+Optimizing unit <activator_skeleton_4> ...
+WARNING:Xst:1710 - FF/Latch <X1/Node3/ACT/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U9/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U9/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node4/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node4/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node4/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node4/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U9/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U9/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U9/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U10/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U9/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U9/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U10/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U9/d_r/output_2> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U9/d_r/output_1> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U9/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U10/d_r/output_3> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U9/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/EL/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL2/U9/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U9/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node4/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node4/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node4/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node4/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/IL1/U9/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/NL/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U9/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/NL/U9/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/NL/U9/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U9/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/WL/U9/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/ACT/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U10/last_d_1> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U10/last_d_2> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/ACT/U10/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node3/ACT/U9/last_d_3> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <UART/OE> of sequential type is unconnected in block <DISPLAY_UNIT>.
 WARNING:Xst:2677 - Node <UART/PE> of sequential type is unconnected in block <DISPLAY_UNIT>.
 WARNING:Xst:2677 - Node <UART/FE> of sequential type is unconnected in block <DISPLAY_UNIT>.
-WARNING:Xst:1293 - FF/Latch <NAMED_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_9> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_10> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_11> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_12> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_13> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_14> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_15> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_16> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_17> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_31> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_4> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_5> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_7> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_15> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_16> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_17> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/IL1/U9/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/IL2/U9/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node1/ACT/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node1/NL/U9/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node1/NL/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node2/ACT/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node2/NL/U9/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node2/NL/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node3/ACT/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node3/WL/U9/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node3/WL/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node3/EL/U9/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node3/EL/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node3/NL/U9/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node3/NL/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <X1/Node4/U10/last_d_0> is unconnected in block <DISPLAY_UNIT>.
 WARNING:Xst:1293 - FF/Latch <NAMEC_31> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMED_31> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_4> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_5> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_7> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_9> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_10> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_11> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_12> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEC_13> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_17> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_16> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_15> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEC_14> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_31> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_13> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_12> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_11> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_10> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_9> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_7> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_5> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEC_4> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_31> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_17> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_16> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_15> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_14> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_13> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_12> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_11> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_10> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_9> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_7> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_5> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMED_4> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_31> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_17> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_16> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_15> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_14> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_13> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_12> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_11> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_10> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_9> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_7> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_5> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEB_4> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_31> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <NAMEA_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_4> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_5> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
@@ -722,70 +1919,35 @@ WARNING:Xst:1293 - FF/Latch <NAMEA_8> has a constant value of 0 in block <DISPLA
 WARNING:Xst:1293 - FF/Latch <NAMEA_9> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_10> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_11> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_7> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_9> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_10> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_11> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_12> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_13> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_14> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_15> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_16> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_17> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <G_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_30> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_31> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_4> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_5> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_6> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_7> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_9> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_10> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_11> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_12> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_13> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_14> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_15> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_16> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_17> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEB_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_12> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_13> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_14> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_15> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_16> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <NAMEA_17> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_18> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_19> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_20> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_21> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_22> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_23> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_24> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_25> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_26> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_27> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_28> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1293 - FF/Latch <NAMEA_29> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <countR_31> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <UART/clkDiv_8> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
-INFO:Xst:2261 - The FF/Latch <NAMEA_0> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <NAMEC_0> 
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/CU/sf> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U9/d_r/output_0> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U9/d_r/output_0> (without init value) has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node1/WL/U9/last_d_0> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <X1/Node2/WL/U9/last_d_0> has a constant value of 0 in block <DISPLAY_UNIT>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <X1/IL1/delay_foward> in Unit <DISPLAY_UNIT> is equivalent to the following 8 FFs/Latches, which will be removed : <X1/IL2/delay_foward> <X1/Node1/WL/delay_foward> <X1/Node1/NL/delay_foward> <X1/Node2/WL/delay_foward> <X1/Node2/NL/delay_foward> <X1/Node3/WL/delay_foward> <X1/Node3/EL/delay_foward> <X1/Node3/NL/delay_foward> 
+INFO:Xst:2261 - The FF/Latch <NAMEB_0> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <NAMED_0> 
 INFO:Xst:2261 - The FF/Latch <big_counter_0> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <UART/clkDiv_0> 
 INFO:Xst:2261 - The FF/Latch <big_counter_1> in Unit <DISPLAY_UNIT> is equivalent to the following FF/Latch, which will be removed : <UART/clkDiv_1> 
-INFO:Xst:3203 - The FF/Latch <NAMEA_0> in Unit <DISPLAY_UNIT> is the opposite to the following 2 FFs/Latches, which will be removed : <NAMEB_0> <NAMED_0> 
+INFO:Xst:2261 - The FF/Latch <X1/IL1/update_regudr/output_0> in Unit <DISPLAY_UNIT> is equivalent to the following 8 FFs/Latches, which will be removed : <X1/IL2/update_regudr/output_0> <X1/Node1/WL/update_regudr/output_0> <X1/Node1/NL/update_regudr/output_0> <X1/Node2/WL/update_regudr/output_0> <X1/Node2/NL/update_regudr/output_0> <X1/Node3/WL/update_regudr/output_0> <X1/Node3/EL/update_regudr/output_0> <X1/Node3/NL/update_regudr/output_0> 
 INFO:Xst:3203 - The FF/Latch <NAMEA_1> in Unit <DISPLAY_UNIT> is the opposite to the following FF/Latch, which will be removed : <NAMEC_1> 
+INFO:Xst:3203 - The FF/Latch <NAMEB_0> in Unit <DISPLAY_UNIT> is the opposite to the following 2 FFs/Latches, which will be removed : <NAMEA_0> <NAMEC_0> 
 INFO:Xst:3203 - The FF/Latch <NAMEB_1> in Unit <DISPLAY_UNIT> is the opposite to the following FF/Latch, which will be removed : <NAMED_1> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block DISPLAY_UNIT, actual ratio is 1.
+Found area constraint ratio of 100 (+ 5) on block DISPLAY_UNIT, actual ratio is 9.
+FlipFlop X1/Node1/ACT/state_FSM_FFd5 has been replicated 1 time(s)
+FlipFlop X1/Node2/ACT/state_FSM_FFd5 has been replicated 1 time(s)
+FlipFlop X1/Node3/ACT/state_FSM_FFd5 has been replicated 1 time(s)
+FlipFlop X1/Node4/state_FSM_FFd5 has been replicated 1 time(s)
+FlipFlop X1/Node4/state_FSM_FFd6 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -798,8 +1960,8 @@ Unit <DISPLAY_UNIT> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 347
- Flip-Flops                                            : 347
+# Registers                                            : 1522
+ Flip-Flops                                            : 1522
 # Shift Registers                                      : 2
  2-bit shift register                                  : 1
  3-bit shift register                                  : 1
@@ -825,27 +1987,31 @@ Top Level Output File Name         : DISPLAY_UNIT.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 932
-#      GND                         : 1
-#      INV                         : 19
-#      LUT1                        : 136
-#      LUT2                        : 31
-#      LUT3                        : 48
-#      LUT4                        : 191
-#      LUT5                        : 63
-#      LUT6                        : 152
-#      MUXCY                       : 136
-#      MUXF7                       : 14
-#      VCC                         : 1
-#      XORCY                       : 140
-# FlipFlops/Latches                : 350
-#      FD                          : 28
-#      FDC                         : 4
-#      FDCE                        : 148
-#      FDE                         : 91
-#      FDPE                        : 4
-#      FDR                         : 27
-#      FDRE                        : 47
+# BELS                             : 24836
+#      GND                         : 14
+#      INV                         : 101
+#      LUT1                        : 167
+#      LUT2                        : 3375
+#      LUT3                        : 768
+#      LUT4                        : 3467
+#      LUT5                        : 406
+#      LUT6                        : 540
+#      MULT_AND                    : 2730
+#      MUXCY                       : 6470
+#      MUXF7                       : 15
+#      VCC                         : 14
+#      XORCY                       : 6769
+# FlipFlops/Latches                : 2045
+#      FD                          : 117
+#      FD_1                        : 18
+#      FDC                         : 56
+#      FDCE                        : 195
+#      FDE                         : 871
+#      FDP                         : 4
+#      FDPE                        : 8
+#      FDR                         : 82
+#      FDR_1                       : 26
+#      FDRE                        : 667
 #      LD                          : 1
 # Shift Registers                  : 2
 #      SRLC16E                     : 2
@@ -863,18 +2029,18 @@ Selected Device : 7a100tcsg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             349  out of  126800     0%  
- Number of Slice LUTs:                  642  out of  63400     1%  
-    Number used as Logic:               640  out of  63400     1%  
+ Number of Slice Registers:            2044  out of  126800     1%  
+ Number of Slice LUTs:                 8826  out of  63400    13%  
+    Number used as Logic:              8824  out of  63400    13%  
     Number used as Memory:                2  out of  19000     0%  
        Number used as SRL:                2
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    655
-   Number with an unused Flip Flop:     306  out of    655    46%  
-   Number with an unused LUT:            13  out of    655     1%  
-   Number of fully used LUT-FF pairs:   336  out of    655    51%  
-   Number of unique control sets:        37
+ Number of LUT Flip Flop pairs used:   9797
+   Number with an unused Flip Flop:    7753  out of   9797    79%  
+   Number with an unused LUT:           971  out of   9797     9%  
+   Number of fully used LUT-FF pairs:  1073  out of   9797    10%  
+   Number of unique control sets:       134
 
 IO Utilization: 
  Number of IOs:                          33
@@ -905,9 +2071,9 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 182   |
+clk                                | BUFGP                  | 1851  |
 RO2/G23t(RO2/G23_lut:O)            | NONE(*)(count_RO_0)    | 64    |
-CLKM                               | BUFG                   | 57    |
+CLKM                               | BUFG                   | 83    |
 UART/rClkDiv_3                     | NONE(UART/tfCtr_3)     | 16    |
 UART/rClk                          | BUFG                   | 32    |
 UART/stbeCur_FSM_FFd1              | NONE(UART/TBE)         | 1     |
@@ -925,8 +2091,8 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 2.681ns (Maximum Frequency: 373.019MHz)
-   Minimum input arrival time before clock: 3.039ns
+   Minimum period: 8.696ns (Maximum Frequency: 114.998MHz)
+   Minimum input arrival time before clock: 3.703ns
    Maximum output required time after clock: 2.435ns
    Maximum combinational path delay: No path found
 
@@ -936,26 +2102,76 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 2.681ns (frequency: 373.019MHz)
-  Total number of paths / destination ports: 4080 / 403
+  Clock period: 8.696ns (frequency: 114.998MHz)
+  Total number of paths / destination ports: 48571586383 / 4196
 -------------------------------------------------------------------------
-Delay:               2.681ns (Levels of Logic = 2)
-  Source:            Z_8 (FF)
-  Destination:       Z_0 (FF)
+Delay:               8.696ns (Levels of Logic = 51)
+  Source:            X1/Node4/state_FSM_FFd7 (FF)
+  Destination:       sec_inst (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: Z_8 to Z_0
+  Data Path: X1/Node4/state_FSM_FFd7 to sec_inst
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             3   0.361   0.703  Z_8 (Z_8)
-     LUT6:I0->O            2   0.097   0.688  GND_6_o_Z[31]_not_equal_110_o_inv_inv32_SW0_SW0 (N56)
-     LUT6:I1->O           33   0.097   0.386  _n0444 (_n0444)
-     FDRE:R                    0.349          Z_0
+     FDC:C->Q              2   0.361   0.688  X1/Node4/state_FSM_FFd7 (X1/Node4/state_FSM_FFd7)
+     LUT5:I0->O           20   0.097   0.383  X1/Node4/state_mux2_sel1 (X1/Node4/mux2_sel)
+     LUT3:I2->O           21   0.097   0.602  X1/Node4/Mmux_mult_w_in121 (X1/Node4/mult_w_in<1>)
+     begin scope: 'X1/Node4/U1/U1:b<1>'
+     begin scope: 'X1/Node4/U1/U1/blk00000001:B<1>'
+     SEC:in->out           1   0.097   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.353   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           0   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           3   0.370   0.389  sec_inst (sec_net)
+     SEC:in->out           1   0.097   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.353   0.000  sec_inst (sec_net)
+     SEC:in->out           0   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           6   0.370   0.402  sec_inst (sec_net)
+     SEC:in->out           1   0.097   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.353   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           0   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out          10   0.370   0.421  sec_inst (sec_net)
+     SEC:in->out           1   0.097   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.353   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           0   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           3   0.370   0.389  sec_inst (sec_net)
+     SEC:in->out           1   0.097   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.353   0.000  sec_inst (sec_net)
+     SEC:in->out           0   0.023   0.000  sec_inst (sec_net)
+     SEC:in->out           1   0.370   0.000  sec_inst (sec_net)
+     SEC:in                    0.008          sec_inst
     ----------------------------------------
-    Total                      2.681ns (0.904ns logic, 1.777ns route)
-                                       (33.7% logic, 66.3% route)
+    Total                      8.696ns (5.422ns logic, 3.274ns route)
+                                       (62.4% logic, 37.6% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'RO2/G23t'
@@ -1013,26 +2229,27 @@ Delay:               2.178ns (Levels of Logic = 33)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLKM'
-  Clock period: 2.299ns (frequency: 434.881MHz)
-  Total number of paths / destination ports: 849 / 112
+  Clock period: 3.482ns (frequency: 287.211MHz)
+  Total number of paths / destination ports: 3673 / 164
 -------------------------------------------------------------------------
-Delay:               2.299ns (Levels of Logic = 2)
-  Source:            G_1 (FF)
-  Destination:       NAMEA_0 (FF)
+Delay:               3.482ns (Levels of Logic = 3)
+  Source:            G_0 (FF)
+  Destination:       NAMEB_0 (FF)
   Source Clock:      CLKM rising
   Destination Clock: CLKM rising
 
-  Data Path: G_1 to NAMEA_0
+  Data Path: G_0 to NAMEB_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q              2   0.361   0.697  G_1 (G_1)
-     LUT6:I0->O           49   0.097   0.405  GND_6_o_G[31]_equal_126_o<31>1 (GND_6_o_G[31]_equal_126_o)
-     LUT5:I4->O            4   0.097   0.293  _n04481 (_n0448)
-     FDRE:R                    0.349          NAMEA_0
+     FDR:C->Q              2   0.361   0.697  G_0 (G_0)
+     LUT6:I0->O            1   0.097   0.693  GND_6_o_G[31]_equal_127_o<31>1 (GND_6_o_G[31]_equal_127_o<31>)
+     LUT6:I0->O           75   0.097   0.797  GND_6_o_G[31]_equal_127_o<31>7 (GND_6_o_G[31]_equal_127_o)
+     LUT5:I0->O            4   0.097   0.293  _n04531 (_n0453)
+     FDRE:R                    0.349          NAMEB_0
     ----------------------------------------
-    Total                      2.299ns (0.904ns logic, 1.395ns route)
-                                       (39.3% logic, 60.7% route)
+    Total                      3.482ns (1.001ns logic, 2.481ns route)
+                                       (28.7% logic, 71.3% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'UART/rClkDiv_3'
@@ -1058,10 +2275,10 @@ Delay:               1.309ns (Levels of Logic = 1)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'UART/rClk'
-  Clock period: 1.904ns (frequency: 525.182MHz)
+  Clock period: 2.302ns (frequency: 434.386MHz)
   Total number of paths / destination ports: 201 / 60
 -------------------------------------------------------------------------
-Delay:               1.904ns (Levels of Logic = 2)
+Delay:               2.302ns (Levels of Logic = 2)
   Source:            UART/ctr_1 (FF)
   Destination:       UART/ctr_3 (FF)
   Source Clock:      UART/rClk rising
@@ -1072,81 +2289,82 @@ Delay:               1.904ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDR:C->Q              8   0.361   0.411  UART/ctr_1 (UART/ctr_1)
-     LUT2:I0->O            1   0.097   0.295  UART/ctRst_SW0 (N44)
-     LUT6:I5->O            4   0.097   0.293  UART/ctRst (UART/ctRst)
+     LUT2:I0->O            1   0.097   0.693  UART/ctRst_SW0 (N44)
+     LUT6:I0->O            4   0.097   0.293  UART/ctRst (UART/ctRst)
      FDR:R                     0.349          UART/ctr_0
     ----------------------------------------
-    Total                      1.904ns (0.904ns logic, 1.000ns route)
-                                       (47.5% logic, 52.5% route)
+    Total                      2.302ns (0.904ns logic, 1.398ns route)
+                                       (39.3% logic, 60.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 97 / 97
+  Total number of paths / destination ports: 945 / 945
 -------------------------------------------------------------------------
-Offset:              1.283ns (Levels of Logic = 2)
+Offset:              1.365ns (Levels of Logic = 2)
   Source:            RST (PAD)
-  Destination:       St_indic_0 (FF)
+  Destination:       X1/IL1/U9/d_r/output_0 (FF)
   Destination Clock: clk rising
 
-  Data Path: RST to St_indic_0
+  Data Path: RST to X1/IL1/U9/d_r/output_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           101   0.001   0.801  RST_IBUF (RST_IBUF)
-     LUT5:I0->O            3   0.097   0.289  _n0670_inv1 (_n0670_inv)
-     FDE:CE                    0.095          St_indic_0
+     IBUF:I->O           574   0.001   0.560  RST_IBUF (RST_IBUF)
+     LUT2:I0->O           18   0.097   0.358  X1/IL1/F_SEL_CLR1 (X1/IL1/F_SEL_CLR)
+     FDCE:CLR                  0.349          X1/IL1/U9/d_r/output_0
     ----------------------------------------
-    Total                      1.283ns (0.193ns logic, 1.090ns route)
-                                       (15.0% logic, 85.0% route)
+    Total                      1.365ns (0.447ns logic, 0.918ns route)
+                                       (32.8% logic, 67.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLKM'
-  Total number of paths / destination ports: 1878 / 28
+  Total number of paths / destination ports: 1986 / 28
 -------------------------------------------------------------------------
-Offset:              3.039ns (Levels of Logic = 5)
+Offset:              3.703ns (Levels of Logic = 6)
   Source:            REF (PAD)
-  Destination:       TMPDGT_3_0 (FF)
+  Destination:       TMPDGT_0_2 (FF)
   Destination Clock: CLKM rising
 
-  Data Path: REF to TMPDGT_3_0
+  Data Path: REF to TMPDGT_0_2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            57   0.001   0.667  REF_IBUF (REF_IBUF)
-     LUT4:I0->O            7   0.097   0.721  Mmux_n037821 (n0378<1>)
-     LUT6:I0->O            4   0.097   0.570  CONV1/Mram_Y11 (CONV1/Mram_Y)
-     LUT5:I1->O            1   0.097   0.683  Mmux_NAMEC[3]_NAME[15][7]_wide_mux_134_OUT22 (Mmux_NAMEC[3]_NAME[15][7]_wide_mux_134_OUT21)
-     LUT6:I1->O            1   0.097   0.000  Mmux_NAMEC[3]_NAME[15][7]_wide_mux_134_OUT24 (NAMEC[3]_NAME[15][7]_wide_mux_134_OUT<0>)
-     FDE:D                     0.008          TMPDGT_2_0
+     IBUF:I->O            62   0.001   0.668  REF_IBUF (REF_IBUF)
+     LUT4:I0->O            7   0.097   0.721  Mmux_n038311 (n0383<0>)
+     LUT6:I0->O            4   0.097   0.570  CONV1/Mram_Y21 (CONV1/Mram_Y2)
+     LUT6:I2->O            1   0.097   0.556  Mmux_NAMEA[3]_NAME[15][7]_wide_mux_127_OUT63 (Mmux_NAMEA[3]_NAME[15][7]_wide_mux_127_OUT62)
+     LUT5:I1->O            1   0.097   0.693  Mmux_NAMEA[3]_NAME[15][7]_wide_mux_127_OUT64 (Mmux_NAMEA[3]_NAME[15][7]_wide_mux_127_OUT63)
+     LUT6:I0->O            1   0.097   0.000  Mmux_NAMEA[3]_NAME[15][7]_wide_mux_127_OUT65 (NAMEA[3]_NAME[15][7]_wide_mux_127_OUT<2>)
+     FDE:D                     0.008          TMPDGT_0_2
     ----------------------------------------
-    Total                      3.039ns (0.397ns logic, 2.642ns route)
-                                       (13.1% logic, 86.9% route)
+    Total                      3.703ns (0.494ns logic, 3.209ns route)
+                                       (13.3% logic, 86.7% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'UART/rClk'
   Total number of paths / destination ports: 17 / 17
 -------------------------------------------------------------------------
-Offset:              1.443ns (Levels of Logic = 2)
-  Source:            RXD (PAD)
-  Destination:       UART/ctr_3 (FF)
+Offset:              1.202ns (Levels of Logic = 2)
+  Source:            RST (PAD)
+  Destination:       UART/RDA (FF)
   Destination Clock: UART/rClk rising
 
-  Data Path: RXD to UART/ctr_3
+  Data Path: RST to UART/RDA
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             3   0.001   0.703  RXD_IBUF (RXD_IBUF)
-     LUT6:I0->O            4   0.097   0.293  UART/ctRst (UART/ctRst)
-     FDR:R                     0.349          UART/ctr_0
+     IBUF:I->O           574   0.001   0.476  RST_IBUF (RST_IBUF)
+     LUT2:I1->O            1   0.097   0.279  UART/RD_RST_OR_9_o11 (UART/RD_RST_OR_9_o)
+     FDCE:CLR                  0.349          UART/RDA
     ----------------------------------------
-    Total                      1.443ns (0.447ns logic, 0.996ns route)
-                                       (31.0% logic, 69.0% route)
+    Total                      1.202ns (0.447ns logic, 0.755ns route)
+                                       (37.2% logic, 62.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'UART/rClkDiv_3'
   Total number of paths / destination ports: 2 / 2
 -------------------------------------------------------------------------
-Offset:              0.747ns (Levels of Logic = 1)
+Offset:              0.810ns (Levels of Logic = 1)
   Source:            RST (PAD)
   Destination:       UART/sttCur_FSM_FFd2 (FF)
   Destination Clock: UART/rClkDiv_3 rising
@@ -1155,15 +2373,15 @@ Offset:              0.747ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           101   0.001   0.397  RST_IBUF (RST_IBUF)
+     IBUF:I->O           574   0.001   0.460  RST_IBUF (RST_IBUF)
      FDR:R                     0.349          UART/sttCur_FSM_FFd1
     ----------------------------------------
-    Total                      0.747ns (0.350ns logic, 0.397ns route)
-                                       (46.9% logic, 53.1% route)
+    Total                      0.810ns (0.350ns logic, 0.460ns route)
+                                       (43.2% logic, 56.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 196 / 19
+  Total number of paths / destination ports: 195 / 18
 -------------------------------------------------------------------------
 Offset:              2.264ns (Levels of Logic = 4)
   Source:            big_counter_11 (FF)
@@ -1253,9 +2471,9 @@ Clock to Setup on destination clock CLKM
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLKM           |    2.299|         |         |         |
-RO2/G23t       |    3.151|         |         |         |
-clk            |    6.084|         |         |         |
+CLKM           |    3.482|         |         |         |
+RO2/G23t       |    3.774|         |         |         |
+clk            |    6.612|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock RO2/G23t
@@ -1272,7 +2490,7 @@ Clock to Setup on destination clock UART/rClk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-UART/rClk      |    1.904|         |         |         |
+UART/rClk      |    2.302|         |         |         |
 clk            |    1.480|         |         |         |
 ---------------+---------+---------+---------+---------+
 
@@ -1282,7 +2500,7 @@ Clock to Setup on destination clock UART/rClkDiv_3
 Source Clock         |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------------+---------+---------+---------+---------+
 UART/rClkDiv_3       |    1.309|         |         |         |
-UART/stbeCur_FSM_FFd1|    1.102|         |         |         |
+UART/stbeCur_FSM_FFd1|    1.098|         |         |         |
 clk                  |    1.419|         |         |         |
 ---------------------+---------+---------+---------+---------+
 
@@ -1299,23 +2517,23 @@ Clock to Setup on destination clock clk
                      | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock         |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------------+---------+---------+---------+---------+
-UART/rClk            |    3.554|         |         |         |
+UART/rClk            |    3.780|         |         |         |
 UART/rClkDiv_3       |    0.882|         |         |         |
-UART/stbeCur_FSM_FFd1|    1.447|         |         |         |
-clk                  |    2.681|         |         |         |
+UART/stbeCur_FSM_FFd1|    1.756|         |         |         |
+clk                  |    8.696|    1.847|    1.608|         |
 ---------------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 16.00 secs
-Total CPU time to Xst completion: 16.43 secs
+Total REAL time to Xst completion: 36.00 secs
+Total CPU time to Xst completion: 35.63 secs
  
 --> 
 
-Total memory usage is 432236 kilobytes
+Total memory usage is 500868 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  187 (   0 filtered)
-Number of infos    :   15 (   0 filtered)
+Number of warnings :  367 (   0 filtered)
+Number of infos    :   69 (   0 filtered)
 

@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Fri May 13 16:44:20 2016
+Fri May 13 21:20:58 2016
 
 
 # NOTE: This file is designed to be imported into a spreadsheet program
@@ -282,7 +282,7 @@ R8||IOB33M|IO_L24P_T3_34|UNUSED||34|||||||||
 R9|||VCCO_0|||0|||||any******||||
 R10|seg_out<5>|IOB33|IO_25_14|OUTPUT|LVCMOS33|14|12|SLOW||||LOCATED|NO|NONE|
 R11||IOB33|IO_0_14|UNUSED||14|||||||||
-R12||IOB33M|IO_L5P_T0_D06_14|UNUSED||14|||||||||
+R12|io_rdy|IOB33|IO_L5P_T0_D06_14|OUTPUT|LVCMOS33|14|12|SLOW||||LOCATED|NO|NONE|
 R13||IOB33S|IO_L5N_T0_D07_14|UNUSED||14|||||||||
 R14|||GND||||||||||||
 R15||IOB33S|IO_L13N_T2_MRCC_14|UNUSED||14|||||||||
@@ -309,7 +309,7 @@ T17|||GND||||||||||||
 T18||IOB33S|IO_L7N_T1_D10_14|UNUSED||14|||||||||
 U1||IOB33M|IO_L7P_T1_34|UNUSED||34|||||||||
 U2||IOB33M|IO_L9P_T1_DQS_34|UNUSED||34|||||||||
-U3|io_rdy|IOB|IO_L8N_T1_34|OUTPUT|LVCMOS18*|34|12|SLOW||||UNLOCATED|NO|NONE|
+U3||IOB33S|IO_L8N_T1_34|UNUSED||34|||||||||
 U4||IOB33M|IO_L8P_T1_34|UNUSED||34|||||||||
 U5|||VCCO_34|||34|||||1.80||||
 U6||IOB33S|IO_L22N_T3_34|UNUSED||34|||||||||

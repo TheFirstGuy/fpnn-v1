@@ -348,6 +348,7 @@ process(clk, rst)
 		   St_indic<="000"; 
 		    rdsig <= '0';
 			 wrsig <= '0';
+			 io_r <= '1';
 			 if (rdaSig = '1') then
 			 state<= test_vector;
 			 end if;
@@ -400,6 +401,7 @@ process(clk, rst)
 				 
 		  when stoutput   => 
 		   St_indic<="011"; 
+			
 		  if count = "0001" then
 		  dbInSig <=x"20";
 		  ELSif count = "1010" then
@@ -422,7 +424,7 @@ process(clk, rst)
 		  dbInSig <=ro (7 downto 0);
 		  end if;
 
-							         rdsig<='0'; wrsig<='0';io_r <= '1';
+							         rdsig<='0'; wrsig<='0';io_r <= '0';
               							  
 											  if TBEsig='1' then
 											   state <= send1;
@@ -451,6 +453,7 @@ final: process(clk) begin
     if (CLK'event and CLK='1') then
         if(fval_rdy = '1') then
             Packet <= x"0000000000" & final_val;
+				io_rdy <= fval_rdy;
         else
             Packet <=TV(N-1 Downto 0);
         end if;
@@ -576,7 +579,7 @@ end if;
 end if;
 end process;
 --ANODE <= TEMP;
-io_rdy <= io_r;
+
 OUTDIGIT <= DIGIT;
 
 

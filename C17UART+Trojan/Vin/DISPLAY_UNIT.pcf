@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Fri May 13 16:43:52 2016
+// Written by: Map P.20131013 on Fri May 13 21:19:44 2016
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -12,6 +12,7 @@ COMP "REF" LOCATE = SITE "L16" LEVEL 1;
 COMP "ROC" LOCATE = SITE "J15" LEVEL 1;
 COMP "RST" LOCATE = SITE "V10" LEVEL 1;
 COMP "RXD" LOCATE = SITE "C4" LEVEL 1;
+COMP "io_rdy" LOCATE = SITE "R12" LEVEL 1;
 COMP "TXD" LOCATE = SITE "D4" LEVEL 1;
 COMP "clk" LOCATE = SITE "E3" LEVEL 1;
 COMP "dis<0>" LOCATE = SITE "J17" LEVEL 1;
