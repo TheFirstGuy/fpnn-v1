@@ -92,7 +92,7 @@ begin
 						u <= '0';
 						cnt <= "0000";
 						sf <= '0';
-					elsif( f_init = '1' and f_val = '1') then
+					elsif( f_init = '1' AND io_val = '1') then
 						io <= io_val;
 					   state <= ST_FF;  
 						bcast <= '0';
